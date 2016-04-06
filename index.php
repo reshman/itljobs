@@ -141,9 +141,9 @@
     <div class="container">
     <div class="row">    
     <div class="search-box">
-<form method="POST" action="search-job.php" enctype="multipart/form-data">  
-  <input type="text" placeholder="JOB TITLE,KEYWORDS" id="box1" name="keyword">
-  <input type="text" placeholder="COUNTRY" id="box2" name="location">
+<form method="GET" action="search-job.php" enctype="multipart/form-data">
+  <input type="text" placeholder="JOB TITLE,KEYWORDS" id="box1" name="q">
+  <input type="text" placeholder="COUNTRY" id="box2" name="l">
    <input type="submit" value="SEARCH JOBS" id="btn-search">
    </form> 
     </div>
