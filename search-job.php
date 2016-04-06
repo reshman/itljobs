@@ -81,7 +81,14 @@
 
             date_default_timezone_set('Asia/Kolkata');
             $date                = date('Y-m-d h:i:s');
-            $query = sprintf("SELECT j.id,j.job_listing, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE jc.name='%s' OR j.job_location='%s' OR j.job_listing='%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",$keyword,$location,$keyword,$date,'1','0');
+            if (empty($location)) {
+                $query = sprintf("SELECT j.id,j.job_listing, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE  j.job_location LIKE '%s'  AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$location.'%',$date,'1','0');
+            } else if (empty($keyword)) {
+                $query = sprintf("SELECT j.id,j.job_listing, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE jc.name LIKE '%s'  OR j.job_listing LIKE'%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$keyword.'%','%'.$keyword.'%',$date,'1','0');
+            } else {
+                $query = sprintf("SELECT j.id,j.job_listing, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE jc.name LIKE '%s' OR j.job_location LIKE '%s' OR j.job_listing LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$keyword.'%','%'.$location.'%','%'.$keyword.'%',$date,'1','0');
+            }
+
             $result = Db::query($query);
             while ($row = mysql_fetch_array($result)) {
 
