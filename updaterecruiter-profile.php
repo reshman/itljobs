@@ -18,15 +18,10 @@ $mobile              = trim($_POST['mobile']);
 $enquiry             = trim($_POST['enquiry']);
 
 
-$countemail= sprintf("SELECT * FROM `users` WHERE email='%s'",$email);
+$countemail= sprintf("SELECT * FROM `users` WHERE email='%s' AND del_status='%s'",$email.'0');
 $countresultemail = Db::query($countemail);
 $countdtable=mysql_num_rows($countresultemail); 
 if($countdtable==1){
-        // echo "hi"; exit;
-     $_SESSION['editsucc']=3;
- }
-else
-    {
 
   $sql    = sprintf("UPDATE employers SET company_name = '%s', designation = '%s', mobile = '%s', enquiry_requirement = '%s' WHERE user_id = '%s'", $companyname, $designation, $mobile,$enquiry,$id); 
 

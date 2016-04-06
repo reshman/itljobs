@@ -1,5 +1,5 @@
 <!doctype html>
-
+<?php require 'check_session.php'; ?>
 
 <html lang="en" class="no-js">
 <head>
@@ -191,7 +191,7 @@
                                             ?>
                                     <?php
                                         if(isset($_SESSION['reclog'])){
-                                         $user_id      = $_SESSION['reclog'];
+                                         $user_id  = $_SESSION['reclog'];
                                         }
                                         
                                         $query = sprintf("SELECT e.user_id,e.company_name, e.designation,e.mobile,e.enquiry_requirement,u.name,u.email  from employers e LEFT JOIN  users u ON e.user_id = u.id  WHERE  e.user_id='%s' AND del_status='%s'",$user_id,'0');  

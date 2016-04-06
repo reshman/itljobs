@@ -25,10 +25,10 @@ $mobile       = (trim($_POST['mobile']));
 $enquiry      = (trim($_POST['enquiry']));
 $password     = MD5($key);   
 
-$countemail= sprintf("SELECT * FROM `users` AND del_status='%s'",$email,'0');
+$countemail= sprintf("SELECT * FROM `users` WHERE email='%s' AND del_status='%s'",$email,'0');
 $countresultemail = Db::query($countemail);
 $countdtable=mysql_num_rows($countresultemail); 
-if($countdtable==1){
+if($countdtable>0){
         // echo "hi"; exit;
      $_SESSION['regsucc']=3;
  }

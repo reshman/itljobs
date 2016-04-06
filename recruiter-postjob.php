@@ -165,7 +165,7 @@
         </div>
         
        <div class="col-md-9">
-          <input id="datepicker" name="create_date" type="text" placeholder="Create Date" data-format="yyyy-MM-dd">    
+           <input id="datepicker" name="create_date" type="text" placeholder="Create Date" value="<?php echo date('d-m-Y'); ?>" readonly>    
         </div>
 
         </div>
@@ -176,7 +176,7 @@
         </div>
         
        <div class="col-md-9">        
-         <input id="datepicker1" name="closing_date" type="text" placeholder="Closing Date" data-format="yyyy-MM-dd">    
+         <input id="datepicker1" name="closing_date" type="text" placeholder="Closing Date" >    
         </div>
 
         </div> 
@@ -196,7 +196,7 @@
         <option>CONTRACT</option>
         <option>INTERNSHIP</option>
         <option>FRESHER</option>
-        <option>WALKIN</option>
+        <option>WALK-IN</option>
        
         </select>     
         </div>
@@ -261,16 +261,14 @@
           <?php  include("footer.php");?>
 		
 		<!-- End footer -->
-		
-     </div>
        <script>
     $(function() {
-        $("#datepicker").datepicker();
+        $("#datepicker").datepicker({minDate:0});
     });
  </script> 
   <script>
     $(function() {
-        $("#datepicker1").datepicker();
+        $("#datepicker1").datepicker({minDate:0});
     });
  </script>
      
@@ -280,6 +278,10 @@
             // When the browser is ready...
 
             $(function () {
+
+                $.validator.addMethod('salrange', function (value) { 
+                    return /^[0-9]+(-[0-9]+)+$/.test(value); 
+                }, 'Please enter a valid Salary Range like: lowest Salary - Highest Salary. If salary is Fixed give Both side the same salary.');
 
                 // Setup form validation on the #register-form element
 
@@ -293,8 +295,10 @@
                         description: "required",
                         location: "required",
                         jobtype: "required",
-                        salary: "required",
+                        salary: {required:true, salrange:true },
                         salarycat: "required",
+                        closing_date:"required"       
+                        
                     },
                     // Specify the validation error messages
 
@@ -306,6 +310,7 @@
                         jobtype: "Please enter jobtype",
                         salary: "Please enter salary",
                         salarycat: "Please enter salary category",
+                        closing_date:"Please enter a Closing Date"
                        
                     },
 
