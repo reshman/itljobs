@@ -20,7 +20,7 @@ while ($row = mysql_fetch_array($result)) {
 if($val==0){
 $countrow = mysql_num_rows($result);
 }
-$urlinlogin="job-seeker.php";
+$urlinlogin="/";
 $urlinnotlogin="itljobs-login.php";
 if ($countrow >0){
 $_SESSION['logged-in'] = true;
