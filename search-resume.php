@@ -1,5 +1,5 @@
 <!doctype html>
-
+<?php require 'check_session.php'; ?>
 
 <html lang="en" class="no-js">
 <head>
@@ -80,7 +80,7 @@
        <div class="col-md-9">
         <select name="category" id="category">
          <?php
-          $qry = sprintf("SELECT id,name FROM `job_categories`");
+          $qry = sprintf("SELECT * FROM `job_categories`");
           $res = Db::query($qry);
           while ($row = mysql_fetch_array($res)) {
          ?>
@@ -149,7 +149,7 @@
 	
 	<!--Dummy input created just for producing the error message....-->
         <div class="col-md-10" style="float:right">
-        <input type="radio" name="check" readonly style="width:0px">
+        <input type="radio" name="check" style="width:0px;">
         </div>
         
         </div> 
@@ -179,8 +179,6 @@
           <?php  include("footer.php");?>
 		
 		<!-- End footer -->
-		
-     </div>
 <!-- Revolution slider -->
      <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
         <script>

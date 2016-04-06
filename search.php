@@ -184,16 +184,15 @@
                                    <table class="table">
                                        <?php 
                                                   $i=1;
-                                                  require_once 'db.php';
+                                                  require 'db.php';
                                                   $category      = $_POST['category'];
                                                   $subcategory   = $_POST['subcategory'];
-                                                  $exp           = $_POST['experience'];
+                                                  $experience    = $_POST['experience'];
                                                   $location      = $_POST['location'];
                                                   $qualification = $_POST['qualification'];
-                                                  $experience    = $exp.yrs;
-                                                  $query = sprintf("SELECT r.id, r.experience,r.current_location,r.sub_category,r.file_name, u.name as name,u.email ,jc.name as jobcatname from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE u.name='%s' OR r.experience='%s' OR r.current_location='%s'OR r.qualification='%s'",$category,$experience,$location,$qualification); 
+                                                  $query = sprintf("SELECT * from resume RIGHT JOIN users ON users.id = resume.user_id WHERE resume.job_category_id='%s' AND (resume.sub_category = '%s' OR resume.experience = '%s' OR resume.current_location = '%s' OR resume.qualification = '%s') AND users.del_status='0'",$category,$subcategory,$experience,$location,$qualification); 
                                                   $result = Db::query($query);
-                                                  $countrow=mysql_num_rows($result); 
+                                                  $countrow=mysql_num_rows($result);
                                                   if($countrow>0){
                                                       
                                             ?>
@@ -202,7 +201,7 @@
                                                             <th>Sl.No</th>
 						            <th>Name</th>
                                                             <th>E-mail</th>
-                                                            <th>ResumeName</th>
+                                                            <th>Resume Name</th>
 	
 							</tr>
 						</thead>
@@ -210,13 +209,12 @@
                                                 <tbody>
                                                 <?php
                                                    while ($row = mysql_fetch_array($result)) {
-
                                                 ?>
 						<tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['email']; ?></td>
-                                                    <td><a href="uploads/<?php echo $row['file_name'] ?>" target="_blank"><?php echo $row['file_name']; ?></a></td>
+                                                    <td><a href="uploads/<?php echo $row['file_name'] ?>" target="_blank"><?php $filename = "uploads/".$row['file_name']; if(file_exists($filename)){echo $row['file_name'];} else { echo 'File Doesnot exits'; } ?></a></td>
 			                       </tr>
                                                   </tbody> 
                                                   <?php $i++; } } else { ?>

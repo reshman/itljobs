@@ -1,5 +1,5 @@
 <!doctype html>
-
+<?php require 'check_session.php'; ?>
 
 <html lang="en" class="no-js">
 <head>
