@@ -15,6 +15,7 @@ while ($row = mysql_fetch_array($result)) {
     $id=$row['id'];
     $pass=$row['password'];
     $val=  strcmp($pass, $password);
+    $name = $row['name'];
 }
 if($val==0){
 $countrow = mysql_num_rows($result);
@@ -22,7 +23,7 @@ $countrow = mysql_num_rows($result);
 $urlinlogin="recruiter.php";
 $urlinnotlogin="employer_enquiry.php#log";
 if ($countrow >0){
-$_SESSION['logged-in'] = true;
+$_SESSION['logged-in'] = $name;
 $_SESSION['reclog'] = $id;
 echo "<script type='text/javascript'>
 location.href = '" . $urlinlogin . "';

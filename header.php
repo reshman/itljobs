@@ -57,33 +57,16 @@
 
 							<li><a <?php if($filename == 'itljobs-contact.php'){ ?> class="active" <?php } ?> href="itljobs-contact.php">Contact</a></li>
 						</ul>
-
-                                            
-                        <?php //For getting name to displayable
-                        include 'db.php';
-                        if (isset($_SESSION['log'])){
-                            $id = $_SESSION['log'];
-                        }
-                        elseif (isset($_SESSION['reclog'])){
-                            $id = $_SESSION['reclog'];
-                        }
-                        $query = sprintf("SELECT name FROM users WHERE id = '%s'",$id);
-                        $result_name = Db::query($query);
-                        $row_name = mysql_fetch_array($result_name);
-                        $_SESSION['log-name'] = $row_name['name'];
-                        ?>
-                                            
                         <ul class="nav navbar-nav navbar-right">
-                            <?php if (isset($_SESSION['log'])) :?>
-                                <li><a href="javascript:void(0)">Logged As: <?php echo $_SESSION['log-name']?></a></li>
+                            <?php if (isset($_SESSION['log'])){ ?>
+                                <li><a href="javascript:void(0)">Logged As: <?php echo $_SESSION['logged-in']?></a></li>
                                 <li><a href="itljobs-logout.php">Logout</a></li>
-                            <?php elseif (isset($_SESSION['reclog'])) :?>
-                                <li><a href="javascript:void(0)">Logged As: <?php echo $_SESSION['log-name']?></a></li>
+                            <?php } elseif (isset($_SESSION['reclog'])) {?>
+                                <li><a href="javascript:void(0)">Logged As: <?php echo $_SESSION['logged-in']?></a></li>
                                 <li><a href="recruiter-logout.php">Logout</a></li>
-                            <?php else: ?>
-                            <?php if(empty($_SESSION['logged-in'])){ ?><li><a <?php if($filename == 'itljobs-registration.php'){ ?> class="active" <?php } ?> href="itljobs-registration.php">Register</a></li><?php } ?>
-                            <?php if(!empty($_SESSION['logged-in'])){ ?><li><a <?php if($filename == 'itljobs-login.php'){ ?> class="active" <?php } ?> href="itljobs-login.php">Login</a></li><?php } ?>
-                            <?php endif;?>
+                            <?php } else { ?>
+                            <?php if(empty($_SESSION['logged-in'])){ ?><li><a <?php if($filename == 'itljobs-registration.php'){ ?> class="active" <?php } ?> href="itljobs-registration.php">Register</a></li>
+                            <li><a <?php if($filename == 'itljobs-login.php'){ ?> class="active" <?php } ?> href="itljobs-login.php">Login</a></li><?php } } ?>
                         </ul>
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.container -->
