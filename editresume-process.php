@@ -14,7 +14,7 @@ $name                = trim($_POST['name']);
 $email               = trim($_POST['email']);
 $india_exp           = trim($_POST['india']);
 $abr_exp             = trim($_POST['abroad']);
-$experience          = trim($_POST['total']);
+
 $specification       = trim($_POST['specification']);
 $mobile              = trim($_POST['mobile']);
 $qualification       = trim($_POST['qualification']);
@@ -22,6 +22,10 @@ $qualification       = trim($_POST['qualification']);
 $current_location    = trim($_POST['current_location']);
 $date_of_birth       = $_POST['dob'];
 $dob                 = date("Y-m-d", strtotime($date_of_birth));
+
+$ab_exp              = filter_var($abr_exp, FILTER_SANITIZE_NUMBER_INT);
+$ind_exp             = filter_var($india_exp, FILTER_SANITIZE_NUMBER_INT);
+$experience          = $ab_exp + $ind_exp;
 
 $job_category_id     = trim($_POST['job_category_id']);
 $sub_category        = trim($_POST['sub_category']);
@@ -74,9 +78,9 @@ $resultedit = Db::query($sql);
      $resultedit = Db::query($sql); 
  }
 
-$sql    = sprintf("UPDATE users SET name = '%s',email = '%s' WHERE id = '%s'", $titlename, $email,$id);
+$sqluser    = sprintf("UPDATE users SET name = '%s',email = '%s' WHERE id = '%s'", $titlename, $email,$id);
 
-$resultedit1 = Db::query($sql);
+$resultedit1 = Db::query($sqluser);
 
 if($resultedit)
 
