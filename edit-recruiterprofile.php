@@ -598,7 +598,7 @@
             $(function () {
                 
                 jQuery.validator.addMethod("nonNumeric", function( value, element ) {
-                    var regex = new RegExp("^[a-zA-Z]+$");
+                    var regex = new RegExp("^[a-zA-Z ]+$");
                     var key = value;
 
                     if (!regex.test(key)) {
@@ -606,6 +606,16 @@
                     }
                     return true;
                 }, "Please Do not use Numbers or Special Characters");
+                
+                jQuery.validator.addMethod("notEqual", function( value ) {
+                    var regex = new RegExp("-1");
+                    var key = value;
+
+                    if (regex.test(key)) {
+                        return false;
+                    }
+                    return true;
+                });
 
                 // Setup form validation on the #register-form element
 
@@ -617,11 +627,12 @@
                         name: {required:true, nonNumeric:true},
                         companyname: {required:true, nonNumeric:true},
                         designation: {required:true, nonNumeric:true},
-                        country: "required",
+                        country: { notEqual : true },
                         mobile:{
                         required: true,
+                        number:true,
                         minlength: 10, //or look at the additional-methods.js to see available phone validations
-                        maxlength: 15
+                        maxlength: 15                        
                         },
                         enquiry: "required",
                         email: {required: true,email: true}
@@ -632,11 +643,12 @@
                         name: {required:"Please enter Name"},
                         companyname: {required:"Please enter Company Name"},
                         designation: {required:"Please enter Designation"},
-                        country: "Please enter country",
+                        country:"Please select Country",
                          mobile:{
                         required: "Please enter your mobile number.",
                         minlength: "Enter valid contact number",
-                        maxlength: "Enter valid contact number"
+                        maxlength: "Enter valid contact number",
+                        number:"Please enter Numbers only"
                         },
                         enquiry: "Please enter enquiry",
                         email: {required: "Please enter email",email: "Please enter valid email"}

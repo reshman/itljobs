@@ -431,7 +431,7 @@
 
             $(function () {
                 
-                jQuery.validator.addMethod("nonNumeric", function( value, element ) {
+                jQuery.validator.addMethod("nonNumeric", function( value ) {
                     var regex = new RegExp("^[a-zA-Z ]+$");
                     var key = value;
 
@@ -440,7 +440,16 @@
                     }
                     return true;
                 }, "Please Do not use Numbers or Special Characters");
+                
+                jQuery.validator.addMethod("notEqual", function( value ) {
+                    var regex = new RegExp("-1");
+                    var key = value;
 
+                    if (regex.test(key)) {
+                        return false;
+                    }
+                    return true;
+                });
                 // Setup form validation on the #register-form element
 
                 $("#contact-form").validate({
@@ -451,7 +460,7 @@
                         name: {required:true, nonNumeric:true},
                         companyname: {required:true, nonNumeric:true},
                         designation: {required:true, nonNumeric:true},
-                        country: "required",
+                        country:{notEqual:true},
                         mobile:{
                         required: true,
                         number:true,
@@ -467,7 +476,7 @@
                         name: {required:"Please enter Name"},
                         companyname: {required:"Please enter Company Name"},
                         designation: {required:"Please enter Designation"},
-                        country: "Please enter country",
+                        country: "Please select country",
                          mobile:{
                         required: "Please enter your mobile number.",
                         number:"Please enter Numbers Only",
