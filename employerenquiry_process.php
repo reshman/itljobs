@@ -41,7 +41,7 @@ $resultsql    = Db::query($sql);
 $uid = mysql_insert_id();
 
 
- $sql          = sprintf("INSERT INTO employers SET company_name = '%s', user_id = '%s', designation = '%s', mobile = '%s', enquiry_requirement = '%s'", $companyname, $uid, $designation, $mobile, $enquiry); 
+ $sql          = sprintf("INSERT INTO employers SET company_name = '%s', user_id = '%s', designation = '%s', mobile = '%s', enquiry_requirement = '%s',country='%s'", $companyname, $uid, $designation, $mobile, $enquiry,$country); 
 $resultsql     = Db::query($sql);
 
 $inid = mysql_insert_id();
