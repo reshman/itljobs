@@ -48,8 +48,6 @@
                 border: 1px solid;
                 padding: 15px;
                 border-color: #C1C1C1;
-
-                //margin-right: 10px;
             }
         </style>
         
