@@ -1,6 +1,10 @@
 <!doctype html>
 
-<?php session_start(); ?>
+<?php session_start();
+if (empty($_SESSION) || empty($_SESSION['log'])) {
+        header('location:index.php');
+}
+?>
 <html lang="en" class="no-js">
 <head>
 	<title>ITL JOBS</title>

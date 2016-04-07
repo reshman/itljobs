@@ -59,10 +59,20 @@
 						</ul>
                         <ul class="nav navbar-nav navbar-right">
                             <?php if (isset($_SESSION['log'])){ ?>
-                                <li><a href="javascript:void(0)">Logged As: <?php echo $_SESSION['logged-in']?></a></li>
-                                <li><a href="itljobs-logout.php">Logout</a></li>
+                                <li><a href="javascript:void(0)">Logged As: <?php echo $_SESSION['logged_name']?></a></li>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="my-profile.php">My Profile</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="itljobs-logout.php">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
                             <?php } elseif (isset($_SESSION['reclog'])) {?>
-                                <li><a href="javascript:void(0)">Logged As: <?php echo $_SESSION['logged-in']?></a></li>
+                                <li><a href="javascript:void(0)">Logged As: <?php echo $_SESSION['logged_name']?></a></li>
                                 <li><a href="recruiter-logout.php">Logout</a></li>
                             <?php } else { ?>
                             <?php if(empty($_SESSION['logged-in'])){ ?><li><a <?php if($filename == 'itljobs-registration.php'){ ?> class="active" <?php } ?> href="itljobs-registration.php">Register</a></li>

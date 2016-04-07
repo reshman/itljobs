@@ -23,7 +23,7 @@ $countrow = mysql_num_rows($result);
 $urlinlogin="index.php";
 $urlinnotlogin="itljobs-login.php";
 if ($countrow >0){
-$_SESSION['logged-in'] = $name;
+$_SESSION['logged-in'] = true;
 $_SESSION['log'] = $id;
 $_SESSION['logged_name'] = ucwords($name);
 $userid = $_SESSION['log'];
