@@ -42,8 +42,8 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Admins 
-                        <small> List Of Admins </small>
+                        Recruiters
+                        <small> List Of Recruiters </small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -66,7 +66,7 @@
                                          <?php
                                             $id = $_REQUEST['id'];
                                             $i = 1;
-                                           $query = sprintf("SELECT r.id, r.user_id, r.company_name,r.designation,r.mobile,r.enquiry_requirement, u.active, u.id as uid, u.name as name,u.email,u.del_status from employers r LEFT JOIN  users u ON r.user_id = u.id  WHERE role_id='%s' AND u.del_status='%s' AND r.id='%s'",'4','0',$id);  
+                                           $query = sprintf("SELECT u.id,u.name,u.email,u.active,r.company_name,r.designation,r.mobile,r.enquiry_requirement,r.country from employers r LEFT JOIN  users u ON r.user_id = u.id  WHERE u.del_status='%s' AND u.id='%s'",'0',$id);  
                                             $result = Db::query($query);
                                             while ($row = mysql_fetch_array($result)) {
                                                 ?>
@@ -77,14 +77,15 @@
                                                 <tr><th>Email</th><td><?php echo $row['email']; ?></td></tr>
                                                 <tr><th>Enquiry Requirement</th><td><?php echo $row['enquiry_requirement']; ?></td></tr>
                                                 <tr><th>Company Name</th><td><?php echo $row['company_name']; ?></td></tr>
+                                                <tr><th>Country</th><td><?php echo $row['country']; ?></td></tr>
                                                 <tr><th>Mobile</th><td><?php echo $row['mobile']; ?></td></tr>
                                                 <tr><th>Status</th>
                                                 <td>
-                                                    <input <?php echo ($row['active']=='1') ? 'checked' : '';?> rowid="<?php echo $row['uid'];?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
+                                                    <input <?php echo ($row['active']=='1') ? 'checked' : '';?> data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox" value="<?php echo $row['id']; ?>">                                
                                                     </td> 
                                                 </tr>
                                                 <tr><th>Delete</th>
-                                                <td class="center"><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_recruiter.php?delid=<?= $row['uid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>  
+                                                <td class="center"><a href="javascript:void(0)" onclick="deleteConfirm('delete_recruiter.php?delid=<?= $row['uid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>  
                                                 </tr>
                                                 
                                         </thead>
@@ -317,24 +318,20 @@
                 });
             });
         </script>
-        <script>
+       <script>
     $(function() {
-//        
-//         $('.toggle-event').bootstrapToggle({
-//            on: 'Hold',
-//            off: 'Unhold'
-//         });
+        
         $('.toggle-event').change(function() {
             //alert("asda");
-            var status = $(this).prop('checked')==true?'1':'0';
-            var rowId  = $(this).attr('rowid');
+            var status = $(this).prop('checked')===true?'1':'0';
+            var rowId  = $(this).val();
             url = "active_employer.php";
             $.ajax({
                 url:url,
                 type:'POST',
                 data:{id:rowId, status:status}
             }).done(function( data ) {
-                //location.reload();
+                alert(data);
             });
 
         })
