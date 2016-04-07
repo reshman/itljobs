@@ -432,7 +432,7 @@
             $(function () {
                 
                 jQuery.validator.addMethod("nonNumeric", function( value, element ) {
-                    var regex = new RegExp("^[a-zA-Z]+$");
+                    var regex = new RegExp("^[a-zA-Z ]+$");
                     var key = value;
 
                     if (!regex.test(key)) {
@@ -454,8 +454,9 @@
                         country: "required",
                         mobile:{
                         required: true,
+                        number:true,
                         minlength: 10, //or look at the additional-methods.js to see available phone validations
-                        maxlength: 15
+                        maxlength: 15                        
                         },
                         enquiry: "required",
                         email: {required: true,email: true}
@@ -469,6 +470,7 @@
                         country: "Please enter country",
                          mobile:{
                         required: "Please enter your mobile number.",
+                        number:"Please enter Numbers Only",
                         minlength: "Enter valid contact number",
                         maxlength: "Enter valid contact number"
                         },
