@@ -29,13 +29,11 @@
     </head>
     <body class="skin-blue sidebar-mini">
         <div class="wrapper">
-            <?php // include 'db.php'; ?>
+            <?php include 'db.php'; ?>
 
              <?php include 'header.php'; ?>
 
             <?php include 'menu.php'; ?>
-            
-            <?php include_once 'db.php'; ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -106,10 +104,9 @@
                                           <?php 
                                          
                                            $i = 1;
-                                          $query = sprintf("SELECT r.id, r.user_id, r.company_name,r.designation,r.mobile,r.enquiry_requirement, u.active, u.id as uid, u.name as name,u.email,u.del_status from employers r LEFT JOIN  users u ON r.user_id = u.id  WHERE role_id='%s' AND u.del_status='%s'",'4','0');  
+                                          $query = sprintf("SELECT u.id as id,u.name,u.email,r.designation,u.active,r.designation from employers r LEFT JOIN  users u ON r.user_id = u.id  WHERE role_id='%s' AND u.del_status='%s'",'4','0');  
                                           $result = Db::query($query);
                                           while ($row = mysql_fetch_array($result)) {
-                                        
                                           ?>
                                            
                                                 <tr>
@@ -121,11 +118,11 @@
                                                     <td><?php echo $row['company_name']; ?></td>
                                                     <td><?php echo $row['mobile']; ?></td> -->
                                                     <td>
-                                                    <input <?php echo ($row['active']=='1') ? 'checked' : '';?> rowid="<?php echo $row['uid'];?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
+                                                    <input <?php echo ($row['active']=='1') ? 'checked' : '';?> data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox" value="<?php echo $row['id']; ?>">                                
                                                     </td> 
-                                                     <td><a href="viewmore_listemployers.php?id=<?php echo $row['id'] ?>">View More</a></td>
+                                                    <td><a href="viewmore_listemployers.php?id=<?php echo $row['id'] ?>" target="_BLANK">View More</a></td>
 
-                                                    <td class="center"><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_recruiter.php?delid=<?= $row['uid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                                    <td class="center"><a href="javascript:void(0)" onclick="deleteConfirm('delete_recruiter.php?delid=<?= $row['uid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
                                                 <?php
                                                 $i = $i + 1;
@@ -357,22 +354,18 @@
         </script>
         <script>
     $(function() {
-//        
-//         $('.toggle-event').bootstrapToggle({
-//            on: 'Hold',
-//            off: 'Unhold'
-//         });
+        
         $('.toggle-event').change(function() {
             //alert("asda");
-            var status = $(this).prop('checked')==true?'1':'0';
-            var rowId  = $(this).attr('rowid');
+            var status = $(this).prop('checked')===true?'1':'0';
+            var rowId  = $(this).val();
             url = "active_employer.php";
             $.ajax({
                 url:url,
                 type:'POST',
                 data:{id:rowId, status:status}
             }).done(function( data ) {
-                //location.reload();
+               // alert(data);
             });
 
         })
