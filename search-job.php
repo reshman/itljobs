@@ -322,7 +322,7 @@
                     });
                 },
                 autoFocus: true,
-                minLength: 0
+                minLength: 1
             });
 
             $('#box2').autocomplete({
