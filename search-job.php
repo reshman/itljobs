@@ -81,10 +81,22 @@
 
             date_default_timezone_set('Asia/Kolkata');
             $date                = date('Y-m-d h:i:s');
-            if (empty($location)) {
+
+            $jobsArray = array();
+            $sqlJobsApplied = sprintf("SELECT job_id FROM jobs_applied WHERE user_id = '%s'", $_SESSION['log']);
+            $resultApplied  = Db::query($sqlJobsApplied);
+            if (mysql_num_rows($resultApplied) > 0) {
+                while ($rowApplied = mysql_fetch_assoc($resultApplied)) {
+                    $jobsArray[] = $rowApplied['job_id'];
+                }
+            }
+
+
+
+            if (empty($keyword) && !empty($location)) {
                 $query = sprintf("SELECT j.id,j.job_listing, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE  j.job_location LIKE '%s'  AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$location.'%',$date,'1','0');
-            } else if (empty($keyword)) {
-                $query = sprintf("SELECT j.id,j.job_listing, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE jc.name LIKE '%s'  OR j.job_listing LIKE'%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$keyword.'%','%'.$keyword.'%',$date,'1','0');
+            } else if (empty($location) && !empty($keyword)) {
+                $query = sprintf("SELECT j.id,j.job_listing, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE jc.name LIKE '%s'  OR j.job_listing LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$keyword.'%','%'.$keyword.'%',$date,'1','0');
             } else {
                 $query = sprintf("SELECT j.id,j.job_listing, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE jc.name LIKE '%s' OR j.job_location LIKE '%s' OR j.job_listing LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$keyword.'%','%'.$location.'%','%'.$keyword.'%',$date,'1','0');
             }
@@ -98,7 +110,7 @@
        <div class="col-md-12">
        <h3><?php echo $row['job_listing'];?></h3>
        <p><?php echo $row['job_description'];?></p>
-       <div id="apply"><a href="itljobs-login.php?jid=<?php echo $row['id']?>"><input type="submit" value="APPLY"></a></div>
+       <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id']?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsArray)) ? 'APPLIED' : 'APPLY'?>"></a></div>
        <div id="view"><a href="itljobs-login.php"><input type="submit" value="SAVE"></a></div>
        </div>
        </div>
@@ -118,6 +130,17 @@
      </div>
 <!-- Revolution slider -->
 	<script type="text/javascript">
+
+        function apply(job_id, $this) {
+            var current = $this;
+            $.ajax({
+                url:'ajax-jobs-applied.php?jobid='+job_id
+            }).done(function(data){
+                if (data == 'SUCCESS') {
+                    $(current).children().val('APPLIED');
+                }
+            });
+        }
 
 		jQuery(document).ready(function() {
 
