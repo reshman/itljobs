@@ -1,5 +1,5 @@
 <!doctype html>
-
+<?php require 'check_session.php'; ?>
 
 <html lang="en" class="no-js">
 <head>
@@ -42,7 +42,7 @@
 </head>
  
 
-<body onload="document.getElementById('captcha-form').focus()">
+<body onload="document.getElementById('contact-form').focus()">
 
 	<!-- Container -->
 	<div id="container">
@@ -160,7 +160,7 @@
                                                         if ($_SESSION['addsucc'] == '3') {
                                                             ?>
                                                                 <div class="alert alert-danger">
-                                                                    Password is Incorrect!  
+                                                                    Given Password is Incorrect!  
                                                                 </div>
 
                                                                 <?php
@@ -171,7 +171,14 @@
                                                                     Your password changed successfully
                                                                 </div>
                                                                 <?php
-                                                                }else{
+                                                                }else if ($_SESSION['addsucc'] == '2') {
+                                                                ?>
+                                                                <div class="alert alert-danger">
+                                                                    Please enter old password.
+                                                                </div>
+                                                                <?php
+                                                                }
+                                                                else{
                                                                  ?>
                                                                 <div class="alert alert-danger">
                                                                     Could not change your password!
@@ -312,20 +319,24 @@
                         {
                             // Specify the validation rules
                             rules: {
-                                email: {required: true,email: true},
+                                opassword: {required: true},
                                 npassword: {required: true, minlength: 5},
                                 cpassword: {required: true, equalTo: "#npassword"}
 
                             },
                             // Specify the validation error messages
                             messages: {
-                                email: {required: "Please enter email",email: "Please enter valid email"},
+                                opassword: {required: "Please enter Old password"},
                                 npassword: "Please enter your New password with minimum 5 characters",
                                 cpassword: "Please enter your Confirm password Same as Password",
                             },
                             submitHandler: function (form) {
                                 form.submit();
                             }
+                        });
+                        
+                        $('#cpassword').bind("cut copy paste",function(e) {
+                            e.preventDefault();
                         });
 
             });

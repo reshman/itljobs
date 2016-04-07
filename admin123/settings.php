@@ -24,38 +24,6 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
      <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-        <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-        <script>
-
-            // When the browser is ready...
-
-
-            $(function () {
-
-                // Setup form validation on the #register-form element
-                $("#frm").validate(
-                        {
-                            // Specify the validation rules
-                            rules: {
-                                txtpass: "required",
-                                txtpass1: {required: true, minlength: 5},
-                                txtpass2: {required: true, equalTo: "#txtpass1"}
-
-                            },
-                            // Specify the validation error messages
-                            messages: {
-                                txtpass: "Please enter your old password",
-                                txtpass1: "Please enter your New password with minimum 5 characters",
-                                txtpass2: "Please enter your Confirm password Same as Password",
-                            },
-                            submitHandler: function (form) {
-                                form.submit();
-                            }
-                        });
-
-            });
-// }
-        </script>
   </head>
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
@@ -99,28 +67,47 @@
                          <?php
                                                     error_reporting(0);
                                                     ?><div class="panel-body"><?php
-                                                    if ($_SESSION['invalid'] != '') {
+                                                    if (!empty($_SESSION['invalid'])) {
                                                         if ($_SESSION['invalid'] == '2') {
                                                             ?>
                                                                 <div class="alert alert-danger">
-                                                                    Please enter your old password correctly  
+                                                                    Please enter your old password correctly. 
                                                                 </div>
 
+                                                                <?php
+                                                            }
+                                                            else if ($_SESSION['invalid'] == '3'){
+                                                                ?>
+                                                                <div class="alert alert-danger">
+                                                                    Your new password should have atleast 5 characters.
+                                                                </div>
+                                                                <?php
+                                                            }else if ($_SESSION['invalid'] == '4'){
+                                                                ?>
+                                                                <div class="alert alert-danger">
+                                                                    Passwords doesnot match.
+                                                                </div>
+                                                                <?php
+                                                            }else if ($_SESSION['invalid'] == '5'){
+                                                                ?>
+                                                                <div class="alert alert-danger">
+                                                                    Please Enter Current password.
+                                                                </div>
                                                                 <?php
                                                             }
                                                             else {
                                                                 ?>
                                                                 <div class="alert alert-success">
-                                                                    Your password changed successfully
+                                                                    Your password changed successfully.
                                                                 </div>
                                                                 <?php
-                                                                }
+                                                            }
                                                             } unset($_SESSION['invalid']);
                                                             ?>
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Current Password</label>
-                      <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Current Password" name="txtpass">
+                      <input type="password" class="form-control" id="txtpass" placeholder="Current Password" name="txtpass">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">New Password</label>
