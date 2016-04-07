@@ -8,7 +8,7 @@ $urlin = "itljobs-login.php";
 $femail = $_POST['femail'];
 //echo $femail; 
 
-$sql = sprintf("SELECT * FROM `users` WHERE email='%s' AND role_id='%s' limit 1",$femail,3);
+$sql = sprintf("SELECT * FROM `users` WHERE email='%s' AND del_status = '%s' limit 1",$femail,0);
 $result = Db::query($sql);
 //check email exist or not
 if (mysql_num_rows($result) > 0) {
@@ -26,7 +26,7 @@ function generateRandomString($length = 8) {
 $key = generateRandomString();
 $keymd = md5($key);
 //end random key generation
-$query =  sprintf("Update `users` set password='%s' where email='%s' AND role_id='%s' limit 1",$keymd,$femail,3);
+$query =  sprintf("Update `users` set password='%s' where email='%s' AND del_status='%s' limit 1",$keymd,$femail,0);
 Db::query($query);
 //send key
 

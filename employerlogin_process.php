@@ -5,8 +5,8 @@ session_start();
 require_once("db.php");
 
 // Check connection
-$email = $_POST['loginemail'];
-$password = md5($_POST['loginpassword']);
+$email = trim($_POST['loginemail']);
+$password = md5(trim($_POST['loginpassword']));
 
 $query = sprintf("SELECT * FROM `users` WHERE email='%s' AND password='%s' AND role_id='%s' AND active='%s'",$email,$password,4,1);
 $result = Db::query($query);

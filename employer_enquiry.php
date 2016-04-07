@@ -269,12 +269,40 @@
         </div>
     
          <div class="col-md-6">          
-                <input type="submit" value="LOGIN"> 
+                <input type="submit" value="LOGIN">
          </div>
+            <a class="forgot" data-toggle="modal" data-target="#myModal" href="javascript:void(0)" style="float:right; margin-right: 20px;">Forgot Password?</a>
       
-        </form>   
-      
+        </form>
         </div>
+                    
+              <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Forgot Password</h4>
+                </div>
+                <div class="modal-body">
+                <div class="input-group add-on">    
+                <input type="email" class="form-control" required name="forgotemail" id="field-forgotemail" value="" placeholder="ENTER YOUR EMAIL ID" />
+                </div>
+                    
+                    <div class="row">
+                        <div id="error" style="display:none; color:#C80000; margin-left: 20px; font-size:16px;"><b>Invalid Email</b></div>
+                    </div>
+               </div>
+             
+                <div class="modal-footer">
+                  <button onclick="forgot()" type="button" class="btn btn-primary btn-lg" >Submit</button>
+                </div>
+
+              </div>
+
+            </div>
+         </div>
             
             
 		</section>
@@ -372,6 +400,31 @@
         <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
 
         <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+<script>
+    function forgot() {
+        //alert("test");
+        var femail = document.getElementById("field-forgotemail").value;
+        
+        $.ajax({ 
+            method: "POST",
+            url: 'forgot-password.php',
+            data: {femail: femail},
+              success: function (data) {
+            if (data == 1) {
+                //alert("Registration Successfull");
+                
+                window.location = "index.php";
+                return true;
+            } else {
+                $('#error').show();
+             //alert("Invalid email")
+               return false;
+            }
+        }
+        });
+      
+    }
+</script>
         <script>
 
             // When the browser is ready...
