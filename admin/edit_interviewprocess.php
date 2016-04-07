@@ -10,11 +10,15 @@ session_start();
 //post values
 $id              = $_POST['id'];
 $name            = $_POST['name'];
+$company_name = (trim($_POST['company_name']));
+$time         = (trim($_POST['time']));
+$venue        = (trim($_POST['venue']));
 $title           = $_POST['title'];
 $date            = $_POST['date'];
-$converteddate = date("Y-m-d", strtotime($date));
 $description     = $_POST['description'];
-$converteddate = date("Y-m-d", strtotime($date));
+$contact      = (trim($_POST['contact']));
+$interview    = (trim($_POST['interview']));
+echo $converteddate = date("Y-m-d", strtotime($date));
 
    date_default_timezone_set('Asia/Calcutta'); 
    $todaydate         = date("Y-m-d h:i:s"); 
@@ -25,8 +29,7 @@ $converteddate = date("Y-m-d", strtotime($date));
       $_SESSION['addsucc']=3;
   }
  else {
-
-$sql    = sprintf("UPDATE interviews SET name = '%s', title = '%s', schedule_date = '%s', description = '%s' WHERE id = '%s'", $name, $title, $converteddate, $description,$id); 
+ $sql    = sprintf("UPDATE interviews SET name = '%s',company_name = '%s',schedule_time = '%s', venue='%s', title = '%s', schedule_date = '%s', description = '%s', contact = '%s', interview = '%s' WHERE id = '%s'", $name, $company_name, $time,$venue, $title, $converteddate, $description,$contact,$interview,$id); 
 
 $resultedit = Db::query($sql);
 

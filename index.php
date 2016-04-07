@@ -9,14 +9,14 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen">	
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen">	
 	<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="css/magnific-popup.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="css/owl.theme.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="css/owl.theme.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="css/animate.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,900,300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,900,300' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Dancing+Script:400,700' rel='stylesheet' type='text/css'>
     <!-- REVOLUTION BANNER CSS SETTINGS -->
 	<link rel="stylesheet" type="text/css" href="css/settings.css" media="screen"/>
@@ -214,9 +214,8 @@ or a service you can do for others</p>
        </div>
        <div class="col-md-8">
        <h3><?php echo $rw['name'];?></h3>
-       <p><?php echo substr($rw['description'],0,120);?>...</p>
-       <div id="apply"><input type="submit" id="submit_contact" value="APPLY"></div>       
-       <div id="view"><a href="itljobs-upcominginterviews.php"><input type="submit" id="submit_contact" value="VIEW MORE"></a></div>    
+       <p><?php echo substr($rw['description'],0,120);?>...</p>      
+       <div id="view"><a href="moreinterviews.php"><input type="submit" id="submit_contact" value="VIEW MORE"></a></div>    
        </div>        
        </div>     
             <?php

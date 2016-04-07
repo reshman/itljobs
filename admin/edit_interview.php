@@ -86,7 +86,12 @@
                         name: {required:true,lettersonly:true},
                         title: "required",
                         date: {required:true, dateFormat: true},
-                        description: "required"
+                        description: "required",
+                        company_name: {required:true,lettersonly:true},
+                        time : "required",
+                        venue : {required:true,lettersonly:true},
+                        interview : "required",
+                        contact : "required"
                     },
                     // Specify the validation error messages
 
@@ -95,7 +100,12 @@
                         name: {required:"Please enter name",lettersonly:"Please enter letters only"},
                         title: "Please select job category",
                         date: {required: "Please enter date",dateFormat: "Please enter a date in the format dd/mm/yyyy."},
-                        description: "Please enter description"
+                        description: "Please enter description",
+                        company_name: {required:"Please enter company name",lettersonly:"Please enter letters only"},
+                        time: "Please enter time",
+                        venue: {required:"Please enter venue",lettersonly:"Please enter letters only"},
+                        interview: "please select interview",
+                        contact: "please enter contact details"
                     },
                     
                     submitHandler: function (form) {
@@ -110,6 +120,13 @@
             });
 
         </script>   
+
+	<style>
+         .error{
+            color: #C80000 !important;
+        
+            }
+        </style>  
 
 </head>
 
@@ -195,7 +212,7 @@
 
                                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-                                                        Interview Details Added Successfully <a href="#" class="alert-link"></a>.
+                                                        Interview Details Updated Successfully <a href="#" class="alert-link"></a>.
 
                                                     </div>
 
@@ -206,7 +223,7 @@
 
                                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-                                                        Unable to add Interview Details<a href="#" class="alert-link"></a>.
+                                                        Unable to update Interview Details<a href="#" class="alert-link"></a>.
 
                                                     </div>
                                             <?php
@@ -227,7 +244,7 @@
 
                             <?php
                             require_once("db.php");
-                            $sql    = sprintf("SELECT id,title,name,schedule_date,description FROM interviews WHERE id = '%s'", $id); 
+                            $sql    = sprintf("SELECT id,title,name,company_name,schedule_date,schedule_time,venue,interview,contact,description FROM interviews WHERE id = '%s'", $id); 
                             $result = Db::query($sql);
                             $row    = array();
                             if (mysql_num_rows($result) > 0) {
@@ -266,14 +283,39 @@
 
                                         </div>
                                         
+                                         
                                          <div class="form-group">
+
+                                            <label for="exampleInputEmail1">Company Name</label>
+
+                                            <input type="text" class="form-control" id="company_name" placeholder="Company Name" name="company_name" value="<?php echo $rowedit['company_name']?>">
+
+                                        </div>
+                                        
+                                        
+                                        <div class="form-group">
 
                                             <label for="exampleInputEmail1">Interview Date</label>
 
                                             <input type="text" class="form-control" id="datepicker" name="date" value="<?php echo $converteddate?>" placeholder="Interview Date" data-format="yyyy-MM-dd"/>
 
                                         </div>
-                                           
+                               
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">Schedule Time</label>
+
+                                            <input type="text" class="form-control" id='datepicker' name="time" placeholder="Interview Date" value="<?php echo $rowedit['schedule_time']?>"/>
+                                            
+                                         </div>
+                                        
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">Venue</label>
+
+                                            <input type="text" class="form-control" id="venue" placeholder="Venue" name="venue" value="<?php echo $rowedit['venue']?>">
+
+                                        </div>   
                                         
                                         <div class="form-group">
 
@@ -282,9 +324,24 @@
                                             <textarea  class="form-control" rows="3" placeholder="Enter ..." name="description"><?php echo $rowedit['description']?></textarea>
 
                                         </div>
+                               
+                                        <div class=""form-group>
+                                                <label for="exampleInputEmail1">Interview Type</label>
+                                                <select name="interview" class="form-control">
+                                                    <!--<option disabled="" selected="">SELECT</option>-->
+                                                    <option value="Overseas" <?php if($rowedit['interview']=='Overseas'){?> selected=""<?php } ?> >Overseas</option>
+                                                    <option value="India" <?php if($rowedit['interview']=='India'){?> selected=""<?php } ?> >India</option>
+                                                    <option value="Direct" <?php if($rowedit['interview']=='Direct'){?> selected=""<?php } ?> >Direct</option>
+                                                </select>
+                                        </div>
+                                        
+                                        <div class="form-group">
 
+                                            <label for="exampleInputEmail1">Contact</label>
 
-     
+                                            <input type="text" class="form-control" id="contact" placeholder="Contact" name="contact" value="<?php echo $rowedit['contact']?>">
+
+                                        </div>
 
                                     <input type="hidden"  name="id" value="<?php echo $id;?>" />
 

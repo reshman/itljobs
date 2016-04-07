@@ -69,7 +69,12 @@
                                                 <th>Title</th>
                                                 <th>Schedule date</th>
                                                 <th>Name</th>
-                                                <!--<th>Order</th>-->
+                                                <th>Company Name</th>
+                                                <th>Time</th>
+                                                <th>Venue</th>
+                                                <th>Description</th>
+                                                <th>Interview</th>
+                                                <th>Contact</th>
                                                 <th>Status</th>
                                                 <!--<th>Edit</th>-->
                                                 <th>Delete</th>
@@ -91,6 +96,12 @@
                                                     <td><?php echo $row['jobname']; ?></td>
                                                     <td><?php echo $row['schedule_date']; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
+                                                    <td><?php echo $row['company_name']; ?></td>
+                                                    <td><?php echo $row['schedule_time']; ?></td>
+                                                    <td><?php echo $row['venue']; ?></td>
+                                                    <td><?php echo $row['description']; ?></td>
+                                                    <td><?php echo $row['interview']; ?></td>
+                                                    <td><?php echo $row['contact']; ?></td>
 <!--                                                    <td><input type="number" name="order" id="order" class="order" value="<?php //echo $row['job_order'];?>"/><a onclick="otpcheck()" class="btn btn-primary">update</a></td>
                                        <input type="hidden" name="id" id="id" value="<?php// echo $row['id'];?>"/>-->
                                                     <td>

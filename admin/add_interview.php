@@ -96,7 +96,12 @@
                         name: {required:true,lettersonly:true},
                         title: "required",
                         date: {required:true, dateFormat: true},
-                        description: "required"
+                        description: "required",
+                        company_name: {required:true,lettersonly:true},
+                        time : "required",
+                        venue : {required:true,lettersonly:true},
+                        interview : "required",
+                        contact : "required"
                     },
                     // Specify the validation error messages
 
@@ -105,7 +110,12 @@
                         name: {required:"Please enter name",lettersonly:"Please enter letters only"},
                         title: "Please select job category",
                         date: {required: "Please enter date",dateFormat: "Please enter a date in the format dd/mm/yyyy."},
-                        description: "Please enter description"
+                        description: "Please enter description",
+                        company_name: {required:"Please enter company name",lettersonly:"Please enter letters only"},
+                        time: "Please enter time",
+                        venue: {required:"Please enter venue",lettersonly:"Please enter letters only"},
+                        interview: "please select interview",
+                        contact: "please enter contact details"
                     },
                     
                     submitHandler: function (form) {
@@ -273,52 +283,37 @@
 
                                         </div>
                                         
-                                         <div class="form-group">
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">Company Name</label>
+
+                                            <input type="text" class="form-control" id="company_name" placeholder="Company Name" name="company_name">
+
+                                        </div>
+                                        
+                                        <div class="form-group">
 
                                             <label for="exampleInputEmail1">Interview Date</label>
 
-                                            <input type="text" class="form-control" id="datepicker" name="date" placeholder="Interview Date" data-format="yyyy-MM-dd"/>
-                                             <?php
-                                            if ($_SESSION['addsucc'] != '') {
+                                            <input type="text" class="form-control" id='datepicker' name="date" placeholder="Interview Date"/>
+                                            
+                                         </div>
+                                        
+                                        <div class="form-group">
 
-                                                if ($_SESSION['addsucc'] == '1') {
+                                            <label for="exampleInputEmail1">Interview Time</label>
 
-                                                    ?>
+                                            <input type="text" class="form-control"  name="time" placeholder="Interview Time"/>
+                                            
+                                         </div>
+                                        
+                                        <div class="form-group">
 
-                                                    <div class="alert alert-success alert-dismissable">
+                                            <label for="exampleInputEmail1">Venue</label>
 
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            <input type="text" class="form-control" id="venue" placeholder="Venue" name="venue">
 
-                                                        Interview Details Added Successfully <a href="#" class="alert-link"></a>.
-
-                                                    </div>
-
-                                                    <?php
-
-                                                }else if ($_SESSION['addsucc'] == '2'){ ?>
-                                                    <div class="alert alert-danger alert-dismissable">
-
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                                                        Unable to add Interview Details<a href="#" class="alert-link"></a>.
-
-                                                    </div>
-                                            <?php
-                                                }else if ($_SESSION['addsucc'] == '3'){ ?>
-                                                    <div class="alert alert-danger alert-dismissable">
-
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                                                        Interview date should be greater than today's date!<a href="#" class="alert-link"></a>.
-
-                                                    </div>
-                                            <?php
-                                                }
-                                                unset($_SESSION['addsucc']);
-                                            }
-
-                                            ?>
-                                           
+                                        </div>
                                         
                                         <div class="form-group">
 
@@ -327,7 +322,25 @@
                                             <textarea  class="form-control" rows="3" placeholder="Enter ..." name="description"></textarea>
 
                                         </div>
+                                            
+                                        <div class=""form-group>
+                                                <label for="exampleInputEmail1">Interview Type</label>
+                                                <select name="interview" class="form-control">
+                                                    <option disabled="" selected="">SELECT</option>
+                                                    <option name="Overseas">Overseas</option>
+                                                    <option name="India">India</option>
+                                                    <option name="Direct">Direct</option>
+                                                </select>
+                                        </div>
+                                        
+                                        <div class="form-group">
 
+                                            <label for="exampleInputEmail1">Contact</label>
+
+                                            <input type="text" class="form-control" id="contact" placeholder="Contact" name="contact">
+
+                                        </div>
+                                        
                            
                                          <input type="hidden" name="id" value="<?php echo $id;?>"/>
                                         

@@ -95,7 +95,12 @@
                                                  <th>Name</th>
                                                 <th>Title</th>
                                                 <th>Schedule date</th>
+                                                <th>Company Name</th>
+                                                <th>Time</th>
+                                                <th>Venue</th>
                                                 <th>Description</th>
+                                                <th>Interview</th>
+                                                <th>Contact</th>
                                                 <th>Status</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
@@ -108,7 +113,7 @@
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d h:m:s');
-                                          $query = sprintf("SELECT us.id,us.name,iv.id as intId,jc.name as job_title,iv.id,iv.schedule_date,iv.user_id,iv.name,iv.description,iv.active FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id INNER JOIN job_categories as jc ON iv.title=jc.id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' AND iv.user_id='%s'",$today_date,0,$id); 
+                                          $query = sprintf("SELECT us.id,us.name,iv.id as intId,jc.name as job_title,iv.id,iv.schedule_date,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id INNER JOIN job_categories as jc ON iv.title=jc.id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' AND iv.user_id='%s'",$today_date,0,$id); 
                                                
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {
@@ -119,7 +124,12 @@
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['job_title']; ?></td>
                                                     <td><?php echo $row['schedule_date']; ?></td>
+                                                    <td><?php echo $row['company_name']; ?></td>
+                                                    <td><?php echo $row['schedule_time']; ?></td>
+                                                    <td><?php echo $row['venue']; ?></td>
                                                     <td><?php echo $row['description']; ?></td>
+                                                    <td><?php echo $row['interview']; ?></td>
+                                                    <td><?php echo $row['contact']; ?></td>
                                                   
 <!--                                                    <td><input type="number" name="order" id="order" class="order" value="<?php //echo $row['job_order'];?>"/><a onclick="otpcheck()" class="btn btn-primary">update</a></td>
                                        <input type="hidden" name="id" id="id" value="<?php// echo $row['id'];?>"/>-->

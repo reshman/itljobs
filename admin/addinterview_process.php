@@ -8,21 +8,25 @@ $urlin = "add_interview.php";
 //$sResultFileName = "";
 $id           = (trim($_POST['id']));
 $name         = (trim($_POST['name']));
+$company_name = (trim($_POST['company_name']));
+$time         = (trim($_POST['time']));
+$venue        = (trim($_POST['venue']));
 $title        = (trim($_POST['title']));
 $date         = (trim($_POST['date']));
 $description  = (trim($_POST['description']));
+$contact      = (trim($_POST['contact']));
+$interview    = (trim($_POST['interview']));
 
-$converteddate = date("Y-m-d", strtotime($date));
+ $converteddate = date("Y-m-d", strtotime($date));
 
    date_default_timezone_set('Asia/Calcutta'); 
    $todaydate         = date("Y-m-d h:i:s"); 
-   if($converteddate<$todaydate){
-      $_SESSION['addsucc']=3;
+   if($converteddate < $todaydate){
+     $_SESSION['addsucc']=3;
   }
  else {
-   
-$sql          = sprintf("INSERT INTO interviews SET name = '%s', title = '%s', schedule_date = '%s', description = '%s', user_id = '%s', active = '%s', del_status = '%s', date = '%s'", $name, $title, $converteddate, $description, $id,'0','0',$todaydate); 
-$resultsql    = Db::query($sql);
+  $sql          = sprintf("INSERT INTO interviews(name,title,company_name,schedule_date,schedule_time,venue,description,interview,contact,user_id,active,del_status,date) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $name, $title, $company_name, $converteddate, $time, $venue, $description, $interview, $contact, $id,'0','0',$todaydate); 
+  $resultsql    = Db::query($sql);
 
 $inid = mysql_insert_id();
    //insert jon seeker to notification table
