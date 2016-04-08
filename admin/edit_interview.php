@@ -68,6 +68,7 @@
         
      <link href="css/datepicker.css" rel="stylesheet" />
      <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+     <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.css" rel="stylesheet" />
 
    <script>
 
@@ -141,7 +142,7 @@
     <?php include 'menu.php';
             
     session_start();
-
+    date_default_timezone_set('Asia/Calcutta');
     ?>
     <?php $id = isset($_GET['id']) ? $_GET['id'] : 0;?>
     
@@ -297,17 +298,15 @@
 
                                             <label for="exampleInputEmail1">Interview Date</label>
 
-                                            <input type="text" class="form-control" id="datepicker" name="date" value="<?php echo $converteddate?>" placeholder="Interview Date" data-format="yyyy-MM-dd"/>
+                                            <input type="text" class="form-control" id="datepicker" name="date" value="<?php echo $converteddate?>" placeholder="Interview Date" data-format="MM-dd-yyyy"/>
 
                                         </div>
                                
-                                        <div class="form-group">
-
-                                            <label for="exampleInputEmail1">Schedule Time</label>
-
-                                            <input type="text" class="form-control" id='datepicker' name="time" placeholder="Interview Date" value="<?php echo $rowedit['schedule_time']?>"/>
-                                            
-                                         </div>
+                                        <label for="exampleInputEmail1">Interview Time</label>
+                                        <div class="input-group bootstrap-timepicker timepicker">
+                                            <input id="timepicker1" type="text" class="form-control input-small" placeholder="Schedule Time" name="time" value="<?php echo $rowedit['schedule_time']?>"> 
+                                                <span class="input-group-addon"></span>
+                                        </div>
                                         
                                         <div class="form-group">
 
@@ -389,6 +388,7 @@
 <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="plugins/datetimepicker/moment.js" type="text/javascript"></script>
 <script src="plugins/datetimepicker/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
 
 <!-- FastClick -->
 
@@ -409,6 +409,9 @@
         $("#datepicker").datepicker();
     });
  </script> 
+ <script type="text/javascript">
+            $('#timepicker1').timepicker();
+ </script>
 
 </body>
 

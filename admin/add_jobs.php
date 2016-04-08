@@ -310,10 +310,14 @@
                                         </div>
                                         
                                         <div class="form-group">
+                                            <?php
+                                               date_default_timezone_set('Asia/Calcutta'); 
+                                               $todaydate         = date("m/d/Y"); 
+                                            ?>
 
                                             <label for="exampleInputEmail1">Create Date</label>
 
-                                            <input type="text" class="form-control" id="datepicker" name="create_date" placeholder="Create Date" data-format="yyyy-MM-dd"/>
+                                            <input type="text" class="form-control" name="create_date" placeholder="Create Date" value="<?php echo $todaydate;?>" readonly=""/>
 
                                         </div>
                                          

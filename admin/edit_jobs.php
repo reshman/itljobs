@@ -284,18 +284,25 @@
                                         </div>
                                         
                                          <div class="form-group">
+                                             <?php
+                                               date_default_timezone_set('Asia/Calcutta'); 
+                                               $createdate         = date("m/d/Y",  strtotime($row['created_date'])); 
+                                            ?>
 
                                             <label for="exampleInputEmail1">Create Date</label>
 
-                                            <input type="text" class="form-control" id="datepicker" name="create_date" placeholder="Create Date" data-format="yyyy-MM-dd" value="<?php echo $row['created_date']; ?>"/>
+                                            <input type="text" class="form-control" name="create_date" placeholder="Create Date" data-format="yyyy-MM-dd" value="<?php echo $createdate; ?>" readonly=""/>
 
                                         </div>
                                          
                                         <div class="form-group">
+                                             <?php 
+                                               $closedate         = date("m/d/Y",  strtotime($row['closing_date'])); 
+                                            ?>
 
                                             <label for="exampleInputEmail1">Closing Date</label>
 
-                                            <input type="text" class="form-control" id="datepicker1" name="closing_date" placeholder="Closing Date" data-format="yyyy-MM-dd" value="<?php echo $row['closing_date']; ?>"/>
+                                            <input type="text" class="form-control" id="datepicker1" name="closing_date" placeholder="Closing Date" data-format="yyyy-MM-dd" value="<?php echo $closedate; ?>"/>
 
                                         </div>
                                         

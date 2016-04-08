@@ -2,6 +2,7 @@
 require('db.php');
 
 $jc=$_POST['jobcat']; 
+ date_default_timezone_set('Asia/Calcutta'); 
             $i=1;
 //            $query = sprintf("SELECT * FROM `jobs` where job_type='%s' AND active='%s' AND del_status='%s'",$jc,1,0);
             $query = sprintf("SELECT inv.name,inv.company_name,inv.schedule_date,inv.schedule_time,inv.venue,inv.interview,inv.contact,us.email FROM interviews as inv JOIN users as us ON inv.user_id=us.id WHERE inv.interview='$jc' AND inv.active='1' AND inv.del_status='0'");
@@ -31,7 +32,7 @@ $jc=$_POST['jobcat'];
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['company_name']; ?></td>
-                                                    <td><?php echo $row['schedule_date']; ?></td>
+                                                    <td><?php echo date("d-m-Y",  strtotime($row['schedule_date'])); ?></td>
                                                     <td><?php echo $row['schedule_time']; ?></td>
                                                     <td><?php echo $row['venue']; ?></td>
                                                     <td><?php echo $row['contact']; ?></td>

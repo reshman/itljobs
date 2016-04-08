@@ -78,7 +78,7 @@
         
      <link href="css/datepicker.css" rel="stylesheet" />
      <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-
+     <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.css" rel="stylesheet" />
          <script>
 
             // When the browser is ready...
@@ -299,13 +299,11 @@
                                             
                                          </div>
                                         
-                                        <div class="form-group">
-
-                                            <label for="exampleInputEmail1">Interview Time</label>
-
-                                            <input type="text" class="form-control"  name="time" placeholder="Interview Time"/>
-                                            
-                                         </div>
+                                        <label for="exampleInputEmail1">Interview Time</label>
+                                        <div class="input-group bootstrap-timepicker timepicker">
+                                            <input id="timepicker1" type="text" class="form-control input-small" placeholder="Schedule Time" name="time"> 
+                                                <span class="input-group-addon"></span>
+                                        </div>
                                         
                                         <div class="form-group">
 
@@ -385,7 +383,8 @@
 <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="plugins/datetimepicker/moment.js" type="text/javascript"></script>
 <script src="plugins/datetimepicker/bootstrap-datetimepicker.js" type="text/javascript"></script>
-
+<!--<script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.js"></script>-->
+<script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
 <!-- FastClick -->
 
 <script src='plugins/fastclick/fastclick.min.js'></script>
@@ -406,6 +405,9 @@
         $("#datepicker").datepicker();
     });
  </script> 
+  <script type="text/javascript">
+            $('#timepicker1').timepicker();
+  </script>
 
 </body>
   
