@@ -37,7 +37,7 @@ Db::query($query);
     $txt = "Dear  " . $name .", <br/>" . $msg;
     $email_template_forgot = file_get_contents("email_template_forgot.html");
     $email_template_forgot = str_replace("{{content}}", $txt, $email_template_forgot);
-    $email_template_forgot  = str_replace("{{key}}", $key, $email_template_forgot );
+    $email_template_forgot = str_replace("{{key}}", $key, $email_template_forgot );
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
     $headers.= "From:itljobs.com" . "\r\n";

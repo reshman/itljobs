@@ -223,12 +223,21 @@
 
                                                     <?php
 
-                                                }else{ ?>
+                                                }else if ($_SESSION['addsucc'] == '2') { ?>
                                                     <div class="alert alert-danger alert-dismissable">
 
                                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
                                                         Unable to add job<a href="#" class="alert-link"></a>.
+
+                                                    </div>
+                                            <?php
+                                                }else if ($_SESSION['addsucc'] == '3') { ?>
+                                                    <div class="alert alert-danger alert-dismissable">
+
+                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                        Job create date should be lesser than closing date!<a href="#" class="alert-link"></a>.
 
                                                     </div>
                                             <?php
@@ -247,7 +256,40 @@
                                             <input type="text" class="form-control" id="title" placeholder="Title" name="title">
 
                                         </div>
-                                
+                                        
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">Company Name</label>
+
+                                            <input type="text" class="form-control" id="title" placeholder="Company Name" name="company">
+
+                                        </div>
+                                        
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">Job Description</label>
+
+                                            <textarea class="form-control" id="job_description" placeholder="Job Description" name="job_description"></textarea>
+                                            
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            
+                                            <label for="exampleInputEmail1">Job Type</label>
+
+                                            <select class="form-control" name="job_type">
+                                                <option disabled="" selected="">SELECT</option>
+                                                <option value="FULL TIME">FULL TIME</option>
+                                                <option value="PART TIME">PART TIME</option>
+                                                <option value="TEMPORARY">TEMPORARY</option>
+                                                <option value="CONTRACT">CONTRACT</option>
+                                                <option value="INTERNSHIP">INTERNSHIP</option>
+                                                <option value="FRESHER">FRESHER</option>
+                                                <option value="WALKIN">WALKIN</option>
+                                            </select>
+
+                                        </div>
+                                        
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail1">Experience</label>

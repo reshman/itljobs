@@ -10,15 +10,15 @@ session_start();
 //post values
 $id              = $_POST['id'];
 $name            = $_POST['name'];
-$company_name = (trim($_POST['company_name']));
-$time         = (trim($_POST['time']));
-$venue        = (trim($_POST['venue']));
+$company_name    = (trim($_POST['company_name']));
+$time            = (trim($_POST['time']));
+$venue           = (trim($_POST['venue']));
 $title           = $_POST['title'];
 $date            = $_POST['date'];
 $description     = $_POST['description'];
-$contact      = (trim($_POST['contact']));
-$interview    = (trim($_POST['interview']));
-echo $converteddate = date("Y-m-d", strtotime($date));
+$contact         = (trim($_POST['contact']));
+$interview       = (trim($_POST['interview']));
+$converteddate   = date("Y-m-d", strtotime($date));
 
    date_default_timezone_set('Asia/Calcutta'); 
    $todaydate         = date("Y-m-d h:i:s"); 

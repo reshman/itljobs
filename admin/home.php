@@ -52,7 +52,9 @@
 
             <?php include 'menu.php'; ?>
             
-            <?php include 'db.php'; ?>
+            <?php include 'db.php';
+            session_start();
+            ?>
             
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -67,10 +69,15 @@
                         <li class="active">Dashboard</li>
                     </ol>
                 </section>
-
+                <?php
+                    $user_id      = $_SESSION['id'];
+                    $query1 = sprintf("SELECT name,email from users WHERE id=$user_id");
+                    $result1 = Db::query($query1);
+                    $row1 = mysql_fetch_assoc($result1);
+                ?>
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">SUMMARY</h3>
+                        <h2 class="box-title" style="text-transform: uppercase;font-weight: bold;">WELCOME <?php echo $row1['name'];?></h2>
                         <div class="box-tools pull-right">
                             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                             <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -90,62 +97,11 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <!--<td><a href="#">ITP001</a></td>-->
-                                        <td>Total Number Of Registered Users</td>
-                                        <?php
-                                        $query1 = "SELECT count(*) from register";
-                                        $result1 = Db::query($query1);
-                                        $row1 = mysql_fetch_row($result1);
-                                        ?>
-                                        <td><span class="label label-success"><?php echo $row1[0]; ?></span></td>
+                                      
+                                        <td><span class="label label-success">Online</span>
+                                       &nbsp;&nbsp;<a><?php echo $row1['email'];?></a></td>
                                         <!--<td><div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div></td>-->
                                     </tr>
-                                    <tr>
-                                        <!--<td><a href="#">ITP002</a></td>-->
-                                        <td>Total Number Of Active Users</td>
-                                        <?php
-                                        $query2 = "SELECT count(*) from register WHERE status='activated'";
-                                        $result2 = Db::query($query2);
-                                        $row2 = mysql_fetch_row($result2);
-                                        ?>
-                                        <td><span class="label label-warning"><?php echo $row2[0]; ?></span></td>
-                                        <!--<td><div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div></td>-->
-                                    </tr>
-                                    <tr>
-                                        <!--<td><a href="#">ITP003</a></td>-->
-                                        <td>Total Number Of Inactive Users</td>
-                                        <?php
-                                        $query3 = "SELECT count(*) from register WHERE status='activate'";
-                                        $result3 = Db::query($query3);
-                                        $row3 = mysql_fetch_row($result3);
-                                        ?>
-                                        <td><span class="label label-danger"><?php echo $row3[0]; ?></span></td>
-                                        <!--<td><div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div></td>-->
-                                    </tr>
-            <!--                        <tr>
-                                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                      <td>Samsung Smart TV</td>
-                                      <td><span class="label label-info">Processing</span></td>
-                                      <td><div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div></td>
-                                    </tr>-->
-            <!--                        <tr>
-                                      <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                      <td>Samsung Smart TV</td>
-                                      <td><span class="label label-warning">Pending</span></td>
-                                      <td><div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div></td>
-                                    </tr>-->
-            <!--                        <tr>
-                                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                      <td>iPhone 6 Plus</td>
-                                      <td><span class="label label-danger">Delivered</span></td>
-                                      <td><div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div></td>
-                                    </tr>-->
-            <!--                        <tr>
-                                      <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                      <td>Call of Duty IV</td>
-                                      <td><span class="label label-success">Shipped</span></td>
-                                      <td><div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div></td>
-                                    </tr>-->
                                 </tbody>
                             </table>
                         </div><!-- /.table-responsive -->

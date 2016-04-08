@@ -178,6 +178,34 @@
 
             
          </div>
+         &nbsp&nbsp&nbsp<a class="forgot" data-toggle="modal" data-target="#myModal" href="javascript:void(0)">Forgot Password?</a>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Forgot Password</h4>
+                </div>
+                <div class="modal-body">
+                <div class="input-group add-on">    
+                <input type="email" class="form-control" required name="forgotemail" id="field-forgotemail" value="" placeholder="ENTER YOUR EMAIL ID" />
+                </div>
+                    
+                    <div class="row">
+                        <div id="error" style="display:none; color:#C80000; margin-left: 20px; font-size:16px;"><b>Invalid Email</b></div>
+                    </div>
+               </div>
+             
+                <div class="modal-footer">
+                  <button onclick="forgot()" type="button" class="btn btn-primary btn-lg" >Submit</button>
+                </div>
+
+              </div>
+
+            </div>
+         </div>
         </form>    
             
         </div>
@@ -308,6 +336,31 @@
             });
 
         </script>
+        <script>
+    function forgot() {
+        //alert("test");
+        var femail = document.getElementById("field-forgotemail").value;
+        
+        $.ajax({ 
+            method: "POST",
+            url: 'forgot-password.php',
+            data: {femail: femail},
+              success: function (data) {
+            if (data == 1) {
+                //alert("Registration Successfull");
+                
+                window.location = "itljobs-login.php";
+                return true;
+            } else {
+                $('#error').show();
+             //alert("Invalid email")
+               return false;
+            }
+        }
+        });
+      
+    }
+</script>
 <!-- Revolution slider -->
 	<script type="text/javascript">
 

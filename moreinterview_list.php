@@ -43,6 +43,6 @@ $jc=$_POST['jobcat'];
 <?php
             }else { ?>
                                               
-                                                  <div class="col-md-12"><h2 style="text-align: center; margin-bottom: 10px; font-size: 30px;">NO MATCHES FOUND</h2></div>
+                                                  <div class="col-md-12"><h2 style="text-align: center; margin-bottom: 10px; font-size: 20px;">NO MATCHES FOUND</h2></div>
                                                
                                                  <?php } ?>
