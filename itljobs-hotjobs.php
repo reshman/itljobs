@@ -63,9 +63,31 @@
                <div class="col-md-12">
 						<div class="accordion-box">
                                                     
-                                                    <?php
+           <?php
             include 'db.php';
             date_default_timezone_set('Asia/Kolkata');
+
+           if (isset($_SESSION['log'])) {
+
+               $jobsArray     = array();
+               $jobsSaveArray = array();
+               $sqlJobsApplied = sprintf("SELECT job_id FROM jobs_applied WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
+               $resultApplied  = Db::query($sqlJobsApplied);
+               if (mysql_num_rows($resultApplied) > 0) {
+                   while ($rowApplied = mysql_fetch_assoc($resultApplied)) {
+                       $jobsArray[] = $rowApplied['job_id'];
+                   }
+               }
+
+               $sqlJobsSaved     = sprintf("SELECT job_id FROM jobs_saved WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
+               $resultJobsSaved  = Db::query($sqlJobsSaved);
+               if (mysql_num_rows($resultJobsSaved) > 0) {
+                   while ($rowSave = mysql_fetch_assoc($resultJobsSaved)) {
+                       $jobsSaveArray[] = $rowSave['job_id'];
+                   }
+               }
+           }
+
             $today_date = date('Y-m-d');
             $query = sprintf("SELECT * FROM `jobs` WHERE active='%s'AND job_order!='%s' AND del_status='%s' AND closing_date>='%s' ORDER BY job_order DESC ",1,0,0,$today_date); 
             $result = Db::query($query);
@@ -79,8 +101,17 @@
 								</div>
 								<div class="accord-content" style="display: none;">
 									<p><?php echo $row['job_description'];?></p>
-									<div id="apply"><a href="itljobs-login.php?jid=<?php echo $row['id']?>"><input type="submit" value="APPLY"></a></div>
-                                                                        <div id="view"><a href="itljobs-login.php?jid=<?php echo $row['id']?>"><input type="submit" value="SAVE"></a></div>  
+
+                                    <?php if (isset($_SESSION['log'])):?>
+                                        <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id']?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsArray)) ? 'APPLIED' : 'APPLY'?>"></a></div>
+                                        <?php if (!in_array($row['id'], $jobsArray)): ?>
+                                            <div id="view"><a href="javascript:void(0)" onclick="view(<?php echo $row['id']?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsSaveArray)) ? 'SAVED' : 'SAVE'?>"></a></div>
+                                        <?php endif;?>
+                                    <?php else: ?>
+                                        <div id="apply"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" ><input type="submit" value="APPLY"></a></div>
+                                        <div id="view"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><input type="submit" value="SAVE"></a></div>
+                                    <?php endif;?>
+
 								</div>
 							</div>
 
@@ -105,8 +136,80 @@
           <?php  include("footer.php");?>
 		
 		<!-- End footer -->
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">LOGIN/REGISTER</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="login-popup">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="popup-email" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="popup-password" placeholder="Password">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="itljobs-registration.php" class="btn btn-success pull-left">Register</a>
+                        <!--<button type="button" class="btn btn-success pull-left" data-dismiss="modal">Register</button>-->
+                        <button type="button" class="btn btn-primary" id="popup-login">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 		
      </div>
+
+    <script>
+        $(function(){
+            $('#popup-login').on('click', function(){
+                var email    = $.trim($('#popup-email').val());
+                var password = $.trim($('#popup-password').val());
+                if (email != '' && password != '') {
+                    $.ajax({
+                        url:'popup-login.php?email='+email+'&password='+password
+                    }).done(function(status){
+                        if (status == 'SUCCESS') {
+                            window.location.reload();
+                        }
+                    })
+                }
+            });
+        });
+
+        function view(job_id, $this) {
+            var current = $this;
+            $.ajax({
+                url:'ajax-jobs-saved.php?jobid='+job_id
+            }).done(function(data){
+                if (data == 'SUCCESS') {
+                    $(current).children().val('SAVED');
+                }
+            });
+        }
+
+        function apply(job_id, $this) {
+            var current = $this;
+            $.ajax({
+                url:'ajax-jobs-applied.php?jobid='+job_id
+            }).done(function(data){
+                if (data == 'SUCCESS') {
+                    viewDiv = $(current).parent().next();
+                    $(viewDiv).hide();
+                    $(current).children().val('APPLIED');
+                }
+            });
+        }
+    </script>
+
 <!-- Revolution slider -->
 	<script type="text/javascript">
 
