@@ -25,28 +25,28 @@ if (!empty($_REQUEST['captcha'])) {
     unset($_SESSION['captcha']);
 }
 
-if($flag == 1){
+if($flag != 1)
+{
 //posted form values
 $title               = trim($_POST['title']);
 $fullname            = trim($_POST['name']);
 $name                = "$title.$fullname";
 $email               = trim($_POST['email']);
-$experience          = trim($_POST['total']);
 $specification       = trim($_POST['specification']);
 $qualification       = trim($_POST['qualification']);
 $mobile              = trim($_POST['mobile']);
-$abroad_experience   = trim($_POST['abroad_experience']);
 $current_location    = trim($_POST['current_location']);
 $date_of_birth       = trim($_POST['dob']);
-$date_of_birth       = date("Y-m-d", strtotime($date_of_birth));
+$date_of_birth = explode('/', $date_of_birth);
+$date_of_birth = array_reverse($date_of_birth);
+$date_of_birth = implode('-', $date_of_birth);
 $job_category_id     = trim($_POST['job_category_id']);
 $sub_category        = trim($_POST['sub_category']);
 date_default_timezone_set('asia/kolkata');
 $create_date         = date("Y-m-d h:i:sa");
 $india_exp           = trim($_POST['india']);
 $abr_exp             = trim($_POST['abroad']);
-$abrexp_year = "$abr_exp year(s)";
-$indexp_year = "$india_exp year(s)";
+$experience = $india_exp + $abr_exp;
 
  $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -105,7 +105,7 @@ $indexp_year = "$india_exp year(s)";
 
         //insert job seeker to resume table
        
-       $sql          = sprintf("INSERT INTO resume(user_id, experience, specification, abroad_experience, india_experience, current_location, mobile, qualification, date_of_birth, job_category_id, sub_category, file_name,created_date) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $inid, $experience, $specification, $abrexp_year, $indexp_year, $current_location, $mobile, $qualification, $date_of_birth, $job_category_id, $sub_category, $filename, $create_date); 
+       $sql          = sprintf("INSERT INTO resume(user_id, experience, specification, abroad_experience, india_experience, current_location, mobile, qualification, date_of_birth, job_category_id, sub_category, file_name,created_date) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $inid, $experience, $specification, $abr_exp, $india_exp, $current_location, $mobile, $qualification, $date_of_birth, $job_category_id, $sub_category, $filename, $create_date); 
        $resultsql    = Db::query($sql);
        $uid  = mysql_insert_id();
        //insert jon seeker to notification table

@@ -21,7 +21,9 @@ $qualification       = trim($_POST['qualification']);
 //$abroad_experience   = trim($_POST['abroad_experience']);
 $current_location    = trim($_POST['current_location']);
 $date_of_birth       = $_POST['dob'];
-$dob                 = date("Y-m-d", strtotime($date_of_birth));
+$date_of_birth = explode('/', $date_of_birth);
+$date_of_birth = array_reverse($date_of_birth);
+$date_of_birth = implode('-', $date_of_birth);
 
 $ab_exp              = filter_var($abr_exp, FILTER_SANITIZE_NUMBER_INT);
 $ind_exp             = filter_var($india_exp, FILTER_SANITIZE_NUMBER_INT);
@@ -73,7 +75,7 @@ $resultedit = Db::query($sql);
 
  }
  else{
-    $sql    = sprintf("UPDATE resume SET experience = '%s', specification = '%s', abroad_experience = '%s',india_experience = '%s', mobile = '%s', date_of_birth = '%s', qualification = '%s' ,job_category_id = '%s', sub_category = '%s',current_location = '%s' WHERE user_id = '%s'", $experience, $specification, $abrexp_year, $indexp_year, $mobile,$dob,$qualification,$job_category_id,$sub_category,$current_location,$id); 
+    $sql    = sprintf("UPDATE resume SET experience = '%s', specification = '%s', abroad_experience = '%s',india_experience = '%s', mobile = '%s', date_of_birth = '%s', qualification = '%s' ,job_category_id = '%s', sub_category = '%s',current_location = '%s' WHERE user_id = '%s'", $experience, $specification, $abrexp_year, $indexp_year, $mobile,$date_of_birth,$qualification,$job_category_id,$sub_category,$current_location,$id); 
 
      $resultedit = Db::query($sql); 
  }

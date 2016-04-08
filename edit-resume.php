@@ -1,5 +1,5 @@
 <!doctype html>
-
+<?php include 'check_session_js.php'; ?>
 
 <html lang="en" class="no-js">
 <head>
@@ -74,7 +74,7 @@
 </head>
 
 
-<body onload="document.getElementById('captcha-form').focus()">
+<body onload="document.getElementById('contact-form').focus()">
 
 <!-- Container -->
 <div id="container">
@@ -132,7 +132,7 @@ if ($_SESSION['editsucc'] != '') {
 ?>
 <input name="id" type="hidden" value="<?php echo $id;?>">
 <?php
-    $query  = sprintf("SELECT r.id,r.mobile,r.qualification, r.user_id, r.abroad_experience,r.india_experience, r.experience,r.specification,r.abroad_experience, r.experience, r.current_location,r.date_of_birth,r.sub_category,r.file_name, u.name as name,u.email ,jc.name as jobcatname, jc.id from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.user_id='%s'",$id );
+    $query  = sprintf("SELECT jc.id,r.mobile,r.qualification, r.user_id, r.abroad_experience,r.india_experience, r.experience,r.specification,r.abroad_experience, r.experience, r.current_location,r.date_of_birth,r.sub_category,r.file_name, u.name as name,u.email ,jc.name as jobcatname from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.user_id='%s'",$id );
 
     $result = Db::query($query);
     $rowresult = mysql_fetch_array($result);
@@ -187,7 +187,7 @@ if ($_SESSION['editsucc'] != '') {
     </div>
 
     <div class="col-md-4">
-        <input type='text' id="datepicker" name="dob" placeholder="DATE OF BIRTH (DD/MM/YYYY)" value="<?php echo date('d/m/Y', $dob)?>" />
+        <input type='text' id="datepicker" name="dob" placeholder="DATE OF BIRTH (DD/MM/YYYY)" value="<?php echo date('d/m/Y', $dob)?>" readonly/>
     </div>
 
 </div>

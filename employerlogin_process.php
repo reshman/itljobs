@@ -1,5 +1,5 @@
 <?php
-
+session_destroy();
 session_start();
 // Create connection
 require_once("db.php");
@@ -23,8 +23,9 @@ $countrow = mysql_num_rows($result);
 $urlinlogin="recruiter.php";
 $urlinnotlogin="employer_enquiry.php#log";
 if ($countrow >0){
-$_SESSION['logged-in'] = $name;
+$_SESSION['logged-in'] = true;
 $_SESSION['reclog'] = $id;
+$_SESSION['logged_name']= $name;
 echo "<script type='text/javascript'>
 location.href = '" . $urlinlogin . "';
 </script>";

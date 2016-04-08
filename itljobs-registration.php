@@ -166,7 +166,7 @@
         </div>
         
         <div class="col-md-4">
-           <input type='text' id="datepicker" name="dob" placeholder="DATE OF BIRTH (DD/MM/YYYY)" />
+           <input type='text' id="datepicker" name="dob" placeholder="DATE OF BIRTH (DD/MM/YYYY)" readonly/>
         </div>
          
         </div> 
@@ -259,7 +259,7 @@
         
             
         <div class="col-md-4" id="totalyrs">
-        <input name="total" id="email" type="text" placeholder="TOTAL YEARS" disabled="">    
+        <input name="total1" id="email" type="text" placeholder="TOTAL YEARS" disabled="">    
         </div>
         
         <div class="col-md-4" id="result">
@@ -303,7 +303,7 @@
          <div class="col-md-12">
             <div class="col-md-12">
 
-            <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV">
+            <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV" >
             <label for="f02">UPLOAD YOUR CV (Pdf Only)</label>
 
             </div>

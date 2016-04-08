@@ -45,16 +45,15 @@
 							<li><a <?php if($filename == 'itl-services.php'){ ?> class="active" <?php } ?> href="itl-services.php">Services</a>
 								
 							</li>
+                                                        <?php if(empty($_SESSION['reclog'])){ ?>
 							<li><a <?php if($filename == 'itljobs-upcominginterviews.php'){ ?> class="active" <?php } ?> href="itljobs-upcominginterviews.php">Upcoming Interviews</a>
 								
 							</li>
 							<li><a <?php if($filename == 'itljobs-hotjobs.php'){ ?> class="active" <?php } ?> href="itljobs-hotjobs.php">Hot Jobs</a>
 							
 							</li>
-							<li><a <?php if($filename == 'employer_enquiry.php'){ ?> class="active" <?php } ?> href="employer_enquiry.php">Employer</a>
-								
-							</li>
-
+							<?php if(empty($_SESSION['log'])){ ?><li><a <?php if($filename == 'employer_enquiry.php'){ ?> class="active" <?php } ?> href="employer_enquiry.php">Employer</a></li>
+                                                        <?php } } ?>
 							<li><a <?php if($filename == 'itljobs-contact.php'){ ?> class="active" <?php } ?> href="itljobs-contact.php">Contact</a></li>
 						</ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -84,8 +83,8 @@
                                     </li>
                                 </ul>
                             <?php } else { ?>
-                            <?php if(empty($_SESSION['logged-in'])){ ?><li><a <?php if($filename == 'itljobs-registration.php'){ ?> class="active" <?php } ?> href="itljobs-registration.php">Register</a></li>
-                            <li><a <?php if($filename == 'itljobs-login.php'){ ?> class="active" <?php } ?> href="itljobs-login.php">Login</a></li><?php } } ?>
+                            <li><a <?php if($filename == 'itljobs-registration.php'){ ?> class="active" <?php } ?> href="itljobs-registration.php">Register</a></li>
+                            <li><a <?php if($filename == 'itljobs-login.php'){ ?> class="active" <?php } ?> href="itljobs-login.php">Login</a></li><?php } ?>
                         </ul>
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.container -->
