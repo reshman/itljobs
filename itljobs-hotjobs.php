@@ -75,7 +75,7 @@
 							<div class="accord-elem">
 								<div class="accord-title">
 									<a class="accord-link" href="#"></a>
-									<h2><?php echo $row['job_listing'];?></h2>
+									<h2><?php echo strtoupper($row['job_listing']);?></h2>
 								</div>
 								<div class="accord-content" style="display: none;">
 									<p><?php echo $row['job_description'];?></p>

@@ -121,7 +121,9 @@
        <p><?php echo $row['job_description'];?></p>
        <?php if (isset($_SESSION['log'])):?>
            <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id']?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsArray)) ? 'APPLIED' : 'APPLY'?>"></a></div>
-           <div id="view"><a href="javascript:void(0)" onclick="view(<?php echo $row['id']?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsSaveArray)) ? 'SAVED' : 'SAVE'?>"></a></div>
+           <?php if (!in_array($row['id'], $jobsArray)): ?>
+               <div id="view"><a href="javascript:void(0)" onclick="view(<?php echo $row['id']?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsSaveArray)) ? 'SAVED' : 'SAVE'?>"></a></div>
+           <?php endif;?>
        <?php else: ?>
            <div id="apply"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" ><input type="submit" value="APPLY"></a></div>
            <div id="view"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><input type="submit" value="SAVE"></a></div>
