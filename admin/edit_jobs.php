@@ -97,7 +97,7 @@
                         experience: {required: true,digits: true},
                         location: {required: true, lettersonly: true},
                         create_date: {required:true, dateFormat: true},
-                        closing_date: {required:true, dateFormat: true, greaterThan: "#StartDate"},
+                        closing_date: "required",
                         job_cat: "required"
                     },
                     // Specify the validation error messages
@@ -108,7 +108,7 @@
                         experience: {required:"Please enter experience",digits:"Please enter number"},
                         location: {required:"Please enter location",lettersonly:"Please enter letters only"},
                         create_date: {required: "Please enter create date",dateFormat: "Please enter a date in the format dd/mm/yyyy."},
-                        closing_date: {required: "Please enter title closing date",dateFormat: "Please enter a date in the format dd/mm/yyyy."},
+                        closing_date:"Please enter closing date",
                         job_cat: "Please enter job category"
                     },
 
@@ -121,16 +121,7 @@
                  jQuery.validator.addMethod("lettersonly", function(value, element) {
                     return this.optional(element) || /^[a-z\s]+$/i.test(value);
                   });
-                  jQuery.validator.addMethod("greaterThan", 
-                    function(value, element, params) {
-
-                        if (!/Invalid|NaN/.test(new Date(value))) {
-                            return new Date(value) > new Date($(params).val());
-                        }
-
-                        return isNaN(value) && isNaN($(params).val()) 
-                            || (Number(value) > Number($(params).val())); 
-                    },'Must be greater than {0}.');
+                  
               });
 
         </script>
@@ -217,7 +208,7 @@
                             require_once("db.php");
                             date_default_timezone_set('Asia/Kolkata');
                             $today_date = date('Y-m-d');
-                            $query = sprintf("SELECT jc.id as cid,jc.name,j.id,j.job_listing,j.company_name,j.job_description,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE del_status='%s' AND closing_date>='%s' AND j.id='%s'",0,$today_date,$id);
+                            $query = sprintf("SELECT jc.id as cid,jc.name,j.id,j.job_listing,j.company_name,j.job_description,j.experience,j.job_location,j.job_type,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE del_status='%s' AND closing_date>='%s' AND j.id='%s'",0,$today_date,$id);
                             $result = Db::query($query);
                             $row    = array();
                             if (mysql_num_rows($result) > 0) {
@@ -229,7 +220,7 @@
 
                               <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Title</label>
+                                        <label for="exampleInputEmail1">Title</label>
 
                                             <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="<?php echo $row['job_listing']; ?>">
 
@@ -255,14 +246,14 @@
                                             <label for="exampleInputEmail1">Job Type</label>
 
                                             <select class="form-control" name="job_type">
-                                                <option disabled="" selected="">SELECT</option>
-                                                <option value="FULL TIME" <?php if($row['company_name']=='FULL TIME'){?> selected=""<?php } ?>>FULL TIME</option>
-                                                <option value="PART TIME" <?php if($row['company_name']=='PART TIME'){?> selected=""<?php } ?>>PART TIME</option>
-                                                <option value="TEMPORARY" <?php if($row['company_name']=='TEMPORARY'){?> selected=""<?php } ?>>TEMPORARY</option>
-                                                <option value="CONTRACT" <?php if($row['company_name']=='CONTRACT'){?> selected=""<?php } ?>>CONTRACT</option>
-                                                <option value="INTERNSHIP" <?php if($row['company_name']=='INTERNSHIP'){?> selected=""<?php } ?>>INTERNSHIP</option>
-                                                <option value="FRESHER" <?php if($row['company_name']=='FRESHER'){?> selected=""<?php } ?>>FRESHER</option>
-                                                <option value="WALKIN" <?php if($row['company_name']=='WALKIN'){?> selected=""<?php } ?>>WALKIN</option>
+                                                <!--<option disabled="" selected="">SELECT</option>-->
+                                                <option value="FULL TIME" <?php if($row['job_type']=='FULL TIME'){?> selected=""<?php } ?>>FULL TIME</option>
+                                                <option value="PART TIME" <?php if($row['job_type']=='PART TIME'){?> selected=""<?php } ?>>PART TIME</option>
+                                                <option value="TEMPORARY" <?php if($row['job_type']=='TEMPORARY'){?> selected=""<?php } ?>>TEMPORARY</option>
+                                                <option value="CONTRACT" <?php if($row['job_type']=='CONTRACT'){?> selected=""<?php } ?>>CONTRACT</option>
+                                                <option value="INTERNSHIP" <?php if($row['job_type']=='INTERNSHIP'){?> selected=""<?php } ?>>INTERNSHIP</option>
+                                                <option value="FRESHER" <?php if($row['job_type']=='FRESHER'){?> selected=""<?php } ?>>FRESHER</option>
+                                                <option value="WALKIN" <?php if($row['job_type']=='WALKIN'){?> selected=""<?php } ?>>WALKIN</option>
                                             </select>
 
                                         </div>
@@ -376,14 +367,16 @@
 <script src="js/datepick.js"></script>
  <script src="js/bootstrap-datepicker.js"></script>
  <script src="js/bootstrap-datetimepicker.min.js"></script>
-  <script>
+<script>
     $(function() {
-        $("#datepicker").datepicker();
+        $("#datepicker1").datepicker({minDate:0});
     });
- </script> 
+ </script>
   <script>
     $(function() {
-        $("#datepicker1").datepicker();
+        $("#location").geocomplete({
+            types: ["geocode", "establishment"],
+        });
     });
  </script> 
 
