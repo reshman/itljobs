@@ -1,10 +1,6 @@
 <!doctype html>
 
-<?php session_start();
-if (empty($_SESSION) || empty($_SESSION['log'])) {
-        header('location:index.php');
-}
-?>
+<?php include 'check_session_js.php'; ?>
 <html lang="en" class="no-js">
 <head>
 	<title>ITL JOBS</title>

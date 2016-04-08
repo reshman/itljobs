@@ -1,5 +1,5 @@
 <!doctype html>
-<?php include 'check_session.php'; ?>
+<?php include 'check_session_rec.php'; ?>
 
 <html lang="en" class="no-js">
 <head>
