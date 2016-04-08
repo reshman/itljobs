@@ -1,5 +1,5 @@
 <?php
-
+session_destroy();
 session_start();
 // Create connection
 require_once("db.php");

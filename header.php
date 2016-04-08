@@ -51,7 +51,7 @@
 							<li><a <?php if($filename == 'itljobs-hotjobs.php'){ ?> class="active" <?php } ?> href="itljobs-hotjobs.php">Hot Jobs</a>
 							
 							</li>
-							<li><a <?php if($filename == 'employer_enquiry.php'){ ?> class="active" <?php } ?> href="employer_enquiry.php">Employer Enquiry</a>
+							<li><a <?php if($filename == 'employer_enquiry.php'){ ?> class="active" <?php } ?> href="employer_enquiry.php">Employer</a>
 								
 							</li>
 
@@ -71,9 +71,18 @@
                                     </li>
                                 </ul>
 
-                            <?php } elseif (isset($_SESSION['reclog'])) {?>
+                            <?php } elseif (isset($_SESSION['reclog'])){ ?>
                                 <li><a href="javascript:void(0)">Logged As: <?php echo $_SESSION['logged_name']?></a></li>
-                                <li><a href="recruiter-logout.php">Logout</a></li>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="recruiter.php">My Profile</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="recruiter-logout.php">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             <?php } else { ?>
                             <?php if(empty($_SESSION['logged-in'])){ ?><li><a <?php if($filename == 'itljobs-registration.php'){ ?> class="active" <?php } ?> href="itljobs-registration.php">Register</a></li>
                             <li><a <?php if($filename == 'itljobs-login.php'){ ?> class="active" <?php } ?> href="itljobs-login.php">Login</a></li><?php } } ?>
