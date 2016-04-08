@@ -37,6 +37,7 @@
         <script type="text/javascript" src="js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/jquery.blockui.js"></script>
 
 </head>
 <body>
@@ -166,28 +167,28 @@
 								</div>
                                                             <?php
                                                             include 'db.php';
-                                                           $query = sprintf("SELECT * FROM `jobs` WHERE active='%s'AND job_order!='%s' AND del_status='%s' AND closing_date>='%s' ORDER BY job_order DESC ",1,0,0,$today_date);
+                                                            $query = sprintf("SELECT j.job_listing, j.job_description,j.id, j.experience,j.job_location,j.closing_date  FROM jobs j JOIN  jobs_saved js ON j.id = js.job_id WHERE js.user_id = '%s' AND js.del_status = '%s'", $id, 0);
                                                             $result = Db::query($query);
                                                             if(mysql_num_rows($result) > 0){
                                                             while ($row = mysql_fetch_array($result)) {
                                                              ?>   
-                                                            <div class="accord-content" style="display: none;">
+                                                            <div class="accord-content" style="display: none;" id="accord-saved-<?php echo $row['id'];?>">
                                                                 <h4><?php echo $row['job_listing'];?></h4>
                                                                 <p><?php echo $row['job_description'];?></p>
                                                                 <p><span style="color:#6495ED">Experience : </span><?php echo $row['experience'];?> years,
                                                                 <span style="color:#6495ED">Location : </span><?php echo $row['job_location'];?>,
                                                                 <span style="color:#6495ED">Closing date : </span><?php echo $row['closing_date'];?></p> 
-                                                                <input type="hidden" name="bid" id="bid" value="<?php echo $row['jobid'];?>"/>
+                                                                <input type="hidden" name="bid" id="bid" value="<?php echo $row['id'];?>"/>
                                                             
                                                                  <div class="dropdown">
-                                                                    <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <button onclick="apply(<?php echo $row['id'];?>, this)" type="button">
                                                                      Apply Now
-                                                                      <span class="caret"></span>
+                                                                      <!--<span class="caret"></span>-->
                                                                     </button>
-                                                                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                                                    <!--<ul class="dropdown-menu" aria-labelledby="dLabel">
                                                                         <li><a id="applied"> Move to Applied</a></li>
                                                                         <li><a id="archived"> Move to Archived</a></li>
-                                                                    </ul>
+                                                                    </ul>-->
                                                                   </div></div>
                                                             <?php
                                                             } }else{ ?>
@@ -204,7 +205,7 @@
 									<h2>APPLIED</h2>
 								</div>
                                                             <?php
-                                                            $qry = sprintf("SELECT ja.id,ja.user_id,ja.job_id,ja.del_status,jb.id as jobid,jb.job_listing,jb.job_description,jb.experience,jb.job_location,jb.closing_date FROM jobs_applied as ja JOIN jobs as jb ON ja.job_id = jb.id WHERE ja.user_id=$id AND jb.active='1' AND ja.del_status='0'");
+                                                            $qry = sprintf("SELECT j.id, j.job_description, j.experience, j.closing_date, j.job_listing FROM jobs j JOIN `jobs_applied` ja ON j.id = ja.job_id WHERE ja.user_id = '%s' AND ja.del_status = '%s'", $id, 0);
                                                             $res = Db::query($qry);
                                                             if(mysql_num_rows($res) > 0){
                                                             while ($rw = mysql_fetch_array($res)) {
@@ -215,18 +216,9 @@
                                                                 <p><span style="color:#6495ED">Experience : </span><?php echo $rw['experience'];?> years,
                                                                 <span style="color:#6495ED">Location : </span><?php echo $rw['job_location'];?>,
                                                                 <span style="color:#6495ED">Closing date : </span><?php echo $rw['closing_date'];?></p>
-                                                                 <input type="hidden" name="jbid" id="jbid" value="<?php echo $rw['jobid'];?>"/>
-                                                                
-                                                                 <div class="dropdown">
-                                                                    <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                      I got an interview
-                                                                      <span class="caret"></span>
-                                                                    </button>
-                                                                    <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                                                        <li><a id="saved"> Move to saved</a></li>
-                                                                        <li><a id="interviewing"> Move to Archived</a></li>
-                                                                    </ul>
-                                                                  </div></div>
+                                                                 <input type="hidden" name="jbid" id="jbid" value="<?php echo $rw['id'];?>"/>
+
+                                </div>
                                                             <?php
                                                             } }else{ ?>
                                                             <div class="accord-content" style="display: none;">
@@ -258,7 +250,13 @@
 									<h2>OFFERED</h2>
 								</div>
                                                              <?php
-                                                                $qryOffer = sprintf("SELECT * FROM jobs WHERE active='1' ORDER BY job_order DESC");
+                                                                //get job category resume
+                                                                $sqlResume     = sprintf("SELECT job_category_id FROM resume WHERE user_id = '%s'", $id);
+                                                                $resultResume  = Db::query($sqlResume);
+                                                                $resumeArray   = mysql_fetch_assoc($resultResume);
+                                                                $jobCategoryId = $resumeArray['job_category_id'];
+
+                                                                $qryOffer = sprintf("SELECT * FROM jobs WHERE active='%s' AND job_category_id = '%s' ORDER BY job_order DESC", 1, $jobCategoryId);
                                                                 $resOffer = Db::query($qryOffer);
                                                                 if(mysql_num_rows($resOffer) > 0){
                                                                 while ($rwofr = mysql_fetch_array($resOffer)) {
@@ -300,6 +298,34 @@
 		
      </div>
         <script>
+
+            function apply(job_id, $this) {
+                var current = $this;
+                $.blockUI({ css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .5,
+                    color: '#fff'
+                },
+                    message:'Loading'
+                });
+                $.ajax({
+                    url:'ajax-jobs-saved-appiled.php?jobid='+job_id
+                }).done(function(data){
+                    if (data == 'SUCCESS') {
+
+                        $.unblockUI;
+
+                        //viewDiv = $(current).parent().next();
+                        //$(viewDiv).hide();
+                        //$(current).children().val('APPLIED');
+                    }
+                });
+            }
+
         $(function(){
       $('#applied').on('click', function () {
                                 var jobid = $('#bid').val();
