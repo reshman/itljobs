@@ -92,7 +92,12 @@
                         time : "required",
                         venue : {required:true,lettersonly:true},
                         interview : "required",
-                        contact : "required"
+                        contact : {
+                        required: true,
+                        digits  :true,
+                        minlength: 10, //or look at the additional-methods.js to see available phone validations
+                        maxlength: 15
+                        }
                     },
                     // Specify the validation error messages
 
@@ -106,7 +111,12 @@
                         time: "Please enter time",
                         venue: {required:"Please enter venue",lettersonly:"Please enter letters only"},
                         interview: "please select interview",
-                        contact: "please enter contact details"
+                        contact:{
+                        required: "Please enter your contact number.",
+                        digits: "Enter digits only",
+                        minlength: "Enter valid contact number",
+                        maxlength: "Enter valid contact number"
+                        }
                     },
                     
                     submitHandler: function (form) {
@@ -336,7 +346,7 @@
                                         
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Contact</label>
+                                            <label for="exampleInputEmail1">Contact Number</label>
 
                                             <input type="text" class="form-control" id="contact" placeholder="Contact" name="contact" value="<?php echo $rowedit['contact']?>">
 
