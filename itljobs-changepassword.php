@@ -1,5 +1,5 @@
 <!doctype html>
-<?php require 'check_session.php'; ?>
+<?php require 'check_session_rec.php'; ?>
 
 <html lang="en" class="no-js">
 <head>
@@ -190,7 +190,7 @@
                                     
     
         <div class="col-md-12">
-        <input  id="opassword" name="opassword" type="password" placeholder="Old Password">    
+        <input  id="opassword" name="opassword" type="password" placeholder="OLD PASSWORD">    
         
         </div>
         <div class="col-md-12">

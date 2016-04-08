@@ -211,7 +211,7 @@ or a service you can do for others</p>
                <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><input type="submit" value="APPLY"></a>
            </div>
        <?php endif; ?>
-       <div id="view"><a href="itljobs-hotjobs.php"><input type="submit" id="submit_contact" value="MORE JOBS"></a></div>        
+       <div id="view"><form action="itljobs-hotjobs.php"><input type="submit" value="MORE JOBS"></form></div>        
        </div>        
        </div>
         <?php
@@ -236,7 +236,7 @@ or a service you can do for others</p>
        <div class="col-md-8">
        <h3><?php echo $rw['name'];?></h3>
        <p><?php echo substr($rw['description'],0,120);?>...</p>      
-       <div id="view"><a href="moreinterviews.php"><input type="submit" id="submit_contact" value="VIEW MORE"></a></div>    
+       <div id="view"><form action="moreinterviews.php"><input type="submit" value="VIEW MORE"></form></div>    
        </div>        
        </div>     
             <?php
