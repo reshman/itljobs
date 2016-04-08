@@ -162,7 +162,7 @@
                                        <?php   }                                 
                                     unset($_SESSION['in']);
                                ?>
-        
+        <div id="sucess" style="display:none; color:#006633; margin-left: 20px; font-size:16px;"><b>Invalid Email</b></div>
          <input type="hidden" name="jid" value="<?php echo $_REQUEST['jid'];?>" />
         <div class="col-md-12">
         <input name="email" id="email" type="text" placeholder="EMAIL ">    
@@ -336,7 +336,7 @@
             });
 
         </script>
-        <script>
+  <script>
     function forgot() {
         //alert("test");
         var femail = document.getElementById("field-forgotemail").value;
@@ -347,13 +347,13 @@
             data: {femail: femail},
               success: function (data) {
             if (data == 1) {
-                //alert("Registration Successfull");
+                //alert("New Password Sent Successfuly");
                 
                 window.location = "itljobs-login.php";
                 return true;
             } else {
                 $('#error').show();
-             //alert("Invalid email")
+            // alert("Invalid email");
                return false;
             }
         }

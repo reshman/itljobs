@@ -43,7 +43,7 @@ Db::query($query);
     $headers.= "From:itljobs.com" . "\r\n";
     $to = $femail;
     $subject = "ITLJobs Retrieve Password";
-    //print_r($email_template_forgot);
+//    print_r($email_template_forgot);
     mail($to, $subject, $email_template_forgot, $headers);
     $_SESSION['passsucc']=1;
     die('1');
