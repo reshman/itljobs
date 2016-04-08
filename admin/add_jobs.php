@@ -76,6 +76,9 @@
      <link href="css/datepicker.css" rel="stylesheet" />
      <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 
+     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+     <script src="js/jquery.geocomplete.js"></script>
+
            <script>
             // When the browser is ready...
 
@@ -422,6 +425,10 @@
   <script>
     $(function() {
         $("#datepicker1").datepicker();
+
+        $("#location").geocomplete({
+            types: ["geocode", "establishment"],
+        });
     });
  </script> 
 </body>
