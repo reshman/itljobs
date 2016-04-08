@@ -64,10 +64,16 @@ $target_dir = "uploads/";
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-
-        if($imageFileType != "pdf") {
+        
+        $file = explode('.', $target_file);
+        if($file[1]!='pdf') {
            $_SESSION['editsucc']=4;
-            $uploadOk = 0;
+           echo "<script type='text/javascript'>
+
+            location.href = '" . $urlin . "';
+
+            </script>";
+           die();
         }
 
         if ($uploadOk == 0) {

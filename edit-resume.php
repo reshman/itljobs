@@ -51,7 +51,7 @@
             filter: alpha(opacity=0);
             opacity: 0;
         }
-        input, [type="file"] + label {
+        input, [type="file"] ~ label {
             border: 1px solid #ccc;
             border-radius: 0;
             font-size: 13px;
@@ -327,7 +327,7 @@ if ($_SESSION['editsucc'] != '') {
 <div class="col-md-12">
     <div class="col-md-12">
 
-        <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV" accept="application/pdf">
+        <input type="file"  class="resume" name="fileToUpload" id="f02">
         <label for="f02"><?php echo isset($rowresult['file_name'])? $rowresult['file_name'] : 'UPLOAD YOUR CV (Pdf Only)'?></label>
 
     </div>
@@ -448,7 +448,7 @@ include 'footer.php';
         if($(this).val()!=""){
             $(this).next().text(file);
         } else {
-            $(this).next().text(dflt);
+            $(this).next().text("Select you Resume.");
         }
     });
 </script>
