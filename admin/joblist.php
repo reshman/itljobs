@@ -203,7 +203,7 @@
 
                                         <div class="form-group">
                                              <?php
-                                                $sql    = sprintf("SELECT id, name FROM `users` WHERE role_id='%s'",2);
+                                                $sql    = sprintf("SELECT * FROM `users` WHERE id='%s'",$_SESSION['id']);
                                                 $result = Db::query($sql);
                                                 $ct     = isset($_GET['ct']) ? $_GET['ct'] : 0;
                                             ?>

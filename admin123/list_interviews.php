@@ -103,10 +103,10 @@
 <!--                                                    <td><input type="number" name="order" id="order" class="order" value="<?php //echo $row['job_order'];?>"/><a onclick="otpcheck()" class="btn btn-primary">update</a></td>
                                        <input type="hidden" name="id" id="id" value="<?php// echo $row['id'];?>"/>-->
                                                     <td>
-     <input <?php echo ($row['active']=='1') ? 'checked' : '';?> rowid="<?php echo $row['intId'];?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
+     <input <?php echo ($row['active']=='1') ? 'checked' : '';?> value="<?php echo $row['intId'];?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
                                          </td>   
                                                 <!--<a type="button" href="edit_jobs.php?id=<?//= $row['id'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>-->
-                                                <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_interviews.php?delid=<?= $row['intId'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                                <td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_interviews.php?delid=<?= $row['intId'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
                                                 <?php
                                                 $i = $i + 1;
@@ -180,7 +180,7 @@
         $('.toggle-event').change(function() {
 //            alert("asda");
             var status = $(this).prop('checked')==true?'1':'0';
-            var rowId  = $(this).attr('rowid');
+            var rowId  = $(this).val();
 //            alert(status);
             url = "interview_status.php";
             $.ajax({

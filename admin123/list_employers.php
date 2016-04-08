@@ -104,7 +104,7 @@
                                           <?php 
                                          
                                            $i = 1;
-                                          $query = sprintf("SELECT u.id as id,u.name,u.email,r.designation,u.active,r.designation from employers r LEFT JOIN  users u ON r.user_id = u.id  WHERE role_id='%s' AND u.del_status='%s'",'4','0');  
+                                          $query = sprintf("SELECT u.id as uid,u.name,u.email,r.designation,u.active,r.designation from employers r LEFT JOIN  users u ON r.user_id = u.id  WHERE role_id='%s' AND u.del_status='%s'",'4','0');  
                                           $result = Db::query($query);
                                           while ($row = mysql_fetch_array($result)) {
                                           ?>
