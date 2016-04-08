@@ -21,6 +21,7 @@
     <!-- REVOLUTION BANNER CSS SETTINGS -->
 	<link rel="stylesheet" type="text/css" href="css/settings.css" media="screen"/>
 	<link rel="stylesheet" type="text/css" href="css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/blockui.css" media="screen">
 
 	
 	<script type="text/javascript" src="js/jquery.min.js"></script>
@@ -204,33 +205,35 @@
 									<a class="accord-link" href="#"></a>
 									<h2>APPLIED</h2>
 								</div>
-                                                            <?php
-                                                            $qry = sprintf("SELECT j.id, j.job_description, j.experience, j.closing_date, j.job_listing FROM jobs j JOIN `jobs_applied` ja ON j.id = ja.job_id WHERE ja.user_id = '%s' AND ja.del_status = '%s'", $id, 0);
-                                                            $res = Db::query($qry);
-                                                            if(mysql_num_rows($res) > 0){
-                                                            while ($rw = mysql_fetch_array($res)) {
-                                                             ?> 
-								<div class="accord-content" style="display: none;">
-									<h4><?php echo $rw['job_listing'];?></h4>
-                                                                <p><?php echo $rw['job_description'];?></p>
-                                                                <p><span style="color:#6495ED">Experience : </span><?php echo $rw['experience'];?> years,
-                                                                <span style="color:#6495ED">Location : </span><?php echo $rw['job_location'];?>,
-                                                                <span style="color:#6495ED">Closing date : </span><?php echo $rw['closing_date'];?></p>
-                                                                 <input type="hidden" name="jbid" id="jbid" value="<?php echo $rw['id'];?>"/>
+                                    <div id="applied-affix">
+                                        <?php
+                                        $qry = sprintf("SELECT j.id, j.job_description, j.experience, j.closing_date, j.job_listing FROM jobs j JOIN `jobs_applied` ja ON j.id = ja.job_id WHERE ja.user_id = '%s' AND ja.del_status = '%s'", $id, 0);
+                                        $res = Db::query($qry);
+                                        if(mysql_num_rows($res) > 0){
+                                        while ($rw = mysql_fetch_array($res)) {
+                                         ?>
+                                            <div class="accord-content" style="display: none;">
+                                                <h4><?php echo $rw['job_listing'];?></h4>
+                                                <p><?php echo $rw['job_description'];?></p>
+                                                <p><span style="color:#6495ED">Experience : </span><?php echo $rw['experience'];?> years,
+                                                <span style="color:#6495ED">Location : </span><?php echo $rw['job_location'];?>,
+                                                <span style="color:#6495ED">Closing date : </span><?php echo $rw['closing_date'];?></p>
+                                                 <input type="hidden" name="jbid" id="jbid" value="<?php echo $rw['id'];?>"/>
 
-                                </div>
-                                                            <?php
-                                                            } }else{ ?>
-                                                            <div class="accord-content" style="display: none;">
-                                                            <p>Track all of your job applications:</p>
-                                                            <p><ul>
-                                                                <li> When you apply to jobs posted on Indeed, they will appear here automatically </li>
-                                                                <li> Organize jobs you've applied to on other websites by saving them, then choosing "Move to applied" in Saved </li>
-                                                            </ul> </p>
-                                                            </div>
-                                                                <?php
-                                                                }
-                                                            ?>
+                                            </div>
+                                        <?php
+                                        } }else{ ?>
+                                        <div class="accord-content" style="display: none;">
+                                        <p>Track all of your job applications:</p>
+                                        <p><ul>
+                                            <li> When you apply to jobs posted on Indeed, they will appear here automatically </li>
+                                            <li> Organize jobs you've applied to on other websites by saving them, then choosing "Move to applied" in Saved </li>
+                                        </ul> </p>
+                                        </div>
+                                            <?php
+                                            }
+                                        ?>
+                                    </div>
 							</div>
 
 						<!--	<div class="accord-elem">
@@ -256,18 +259,31 @@
                                                                 $resumeArray   = mysql_fetch_assoc($resultResume);
                                                                 $jobCategoryId = $resumeArray['job_category_id'];
 
-                                                                $qryOffer = sprintf("SELECT * FROM jobs WHERE active='%s' AND job_category_id = '%s' ORDER BY job_order DESC", 1, $jobCategoryId);
+                                                                 $jobsArray     = array();
+                                                                 $jobsSaveArray = array();
+                                                                 $sqlJobsApplied = sprintf("SELECT job_id FROM jobs_applied WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
+                                                                 $resultApplied  = Db::query($sqlJobsApplied);
+                                                                 if (mysql_num_rows($resultApplied) > 0) {
+                                                                     while ($rowApplied = mysql_fetch_assoc($resultApplied)) {
+                                                                         $jobsArray[] = $rowApplied['job_id'];
+                                                                     }
+                                                                 }
+
+                                                                 $jobsStr = implode(',', $jobsArray);
+                                                             //print_r($jobsArray);die;
+
+                                                                $qryOffer = sprintf("SELECT * FROM jobs WHERE active='%s' AND job_category_id = '%s' AND  id NOT IN('%s') ORDER BY job_order DESC", 1, $jobCategoryId, $jobsStr);
                                                                 $resOffer = Db::query($qryOffer);
                                                                 if(mysql_num_rows($resOffer) > 0){
                                                                 while ($rwofr = mysql_fetch_array($resOffer)) {
                                                                  ?>
-								<div class="accord-content" style="">
+								<div class="accord-content" style="" id="accord-offered-<?php echo $rwofr['id'];?>">
 								<h4><?php echo $rwofr['job_listing'];?></h4>
                                                                 <p><?php echo $rwofr['job_description'];?></p>
                                                                 <p><span style="color:#6495ED">Experience : </span><?php echo $rwofr['experience'];?> years,
                                                                 <span style="color:#6495ED">Location : </span><?php echo $rwofr['job_location'];?>,
                                                                 <span style="color:#6495ED">Closing date : </span><?php echo $rwofr['closing_date'];?></p>
-                                                                <input type="submit" value="Apply Now"/>
+                                                                <input type="submit" value="Apply Now" onclick="offered(<?php echo $rwofr['id'];?>, this)"/>
 								</div>
                                                             <?php
                                                             } }else{ ?>
@@ -301,7 +317,7 @@
 
             function apply(job_id, $this) {
                 var current = $this;
-                $.blockUI({ css: {
+                /*$.blockUI({ css: {
                     border: 'none',
                     padding: '15px',
                     backgroundColor: '#000',
@@ -311,64 +327,36 @@
                     color: '#fff'
                 },
                     message:'Loading'
-                });
+                });*/
                 $.ajax({
-                    url:'ajax-jobs-saved-appiled.php?jobid='+job_id
-                }).done(function(data){
-                    if (data == 'SUCCESS') {
+                    url:'ajax-job-saved-appiled.php?jobid='+job_id
+                }).done(function(data) {
+                    //$.unblockUI;
+                    $('#applied-affix').append(data);
+                    $('#accord-saved-'+job_id).empty();
+                    $.growlUI('SAVED JOBS', 'Job Applied Successfully');
+                    //if (data == 'SUCCESS') {
 
-                        $.unblockUI;
+                        //$.unblockUI;
 
                         //viewDiv = $(current).parent().next();
                         //$(viewDiv).hide();
                         //$(current).children().val('APPLIED');
-                    }
+                    //}
                 });
             }
 
-        $(function(){
-      $('#applied').on('click', function () {
-                                var jobid = $('#bid').val();
-                                 alert(jobid);
-                            
-                                $.ajax({
-                                    url: 'move2applied.php',
-                                    type: 'POST',
-                                    data: {jobid: jobid},
-                                    success: function (data) {
-                                         location.reload();
-                                    }
-                                });
-                            });
-      $('#saved').on('click', function () {
-                                var jobid = $('#jbid').val();
-                                 alert(jobid);
-                            
-                                $.ajax({
-                                    url: 'move2saved.php',
-                                    type: 'POST',
-                                    data: {jobid: jobid},
-                                    success: function (data) {
-                                         location.reload();
-                                     
-                                    }
-                                });
-                            });
-      $('#archived').on('click', function () {
-                                var jobid = $('#bid').val();
-                                 alert(jobid);
-                            
-                                $.ajax({
-                                    url: 'move2archived.php',
-                                    type: 'POST',
-                                    data: {jobid: jobid},
-                                    success: function (data) {
-                                         location.reload();
-                                     
-                                    }
-                                });
-                            });
-                        });
+            function offered(jobid, $this) {
+                $.ajax({
+                    url:'ajax-job-offered.php?jobid='+jobid
+                }).done(function(data){
+                    $('#accord-offered-'+jobid).remove();
+                    $('#applied-affix').append(data);
+                    $.growlUI('OFFERED JOBS', 'Offered Job Applied Successfully');
+                });
+            }
+
+
     </script>
 
 <!-- Revolution slider -->
