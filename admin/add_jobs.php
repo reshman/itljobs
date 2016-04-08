@@ -97,7 +97,7 @@
                         experience: {required: true,digits: true},
                         location: {required: true, lettersonly: true},
                         create_date: {required:true, dateFormat: true},
-                        closing_date: {required:true, dateFormat: true, greaterThan: "#StartDate"},
+                        closing_date: "required",
                         job_cat: "required"
                     },
                     // Specify the validation error messages
@@ -108,7 +108,7 @@
                         experience: {required:"Please enter experience",digits:"Please enter number"},
                         location: {required:"Please enter location",lettersonly:"Please enter letters only"},
                         create_date: {required: "Please enter create date",dateFormat: "Please enter a date in the format dd/mm/yyyy."},
-                        closing_date: {required: "Please enter closing date",dateFormat: "Please enter a date in the format dd/mm/yyyy."},
+                        closing_date:"Please enter closing date",
                         job_cat: "Please enter job category"
                     },
 
@@ -121,16 +121,7 @@
                  jQuery.validator.addMethod("lettersonly", function(value, element) {
                     return this.optional(element) || /^[a-z\s]+$/i.test(value);
                   });
-                  jQuery.validator.addMethod("greaterThan", 
-                    function(value, element, params) {
-
-                        if (!/Invalid|NaN/.test(new Date(value))) {
-                            return new Date(value) > new Date($(params).val());
-                        }
-
-                        return isNaN(value) && isNaN($(params).val()) 
-                            || (Number(value) > Number($(params).val())); 
-                    },'Must be greater than {0}.');
+                  
               });
 
         </script>    
@@ -421,20 +412,11 @@
  <script src="js/datepick.js"></script>
  <script src="js/bootstrap-datepicker.js"></script>
  <script src="js/bootstrap-datetimepicker.min.js"></script>
-  <script>
+<script>
     $(function() {
-        $("#datepicker").datepicker();
+        $("#datepicker1").datepicker({minDate:0});
     });
- </script> 
-  <script>
-    $(function() {
-        $("#datepicker1").datepicker();
-
-        $("#location").geocomplete({
-            types: ["geocode", "establishment"],
-        });
-    });
- </script> 
+ </script>
 </body>
   
 

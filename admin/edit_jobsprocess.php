@@ -18,7 +18,7 @@ session_start();
    $job_cat           = trim($_POST['job_cat']);
    $user_id           = $_SESSION['id'];
    
-   $sql = sprintf("UPDATE `jobs` SET job_listing='%s',company_name='%s',job_description='%s',experience='%s',job_type='%s',job_location='%s',created_date='%s',closing_date='%s',job_category_id='%s',user_id='%s' WHERE id='%s' ",$title,$company,$job_description,$job_type,$experience,$location,$create_date,$closing_date,$job_cat,$user_id,$id);
+   $sql = sprintf("UPDATE `jobs` SET job_listing='%s',company_name='%s',job_description='%s',experience='%s',job_type='%s',job_location='%s',created_date='%s',closing_date='%s',job_category_id='%s',user_id='%s' WHERE id='%s' ",$title,$company,$job_description,$experience,$job_type,$location,$create_date,$closing_date,$job_cat,$user_id,$id);
    $result = Db::query($sql);
     
     if($result)

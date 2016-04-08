@@ -21,10 +21,10 @@ session_start();
    $date         = date("Y-m-d h:i:s"); 
    //echo $user_id; die;
 
-   if($closing_date<$create_date){
-      $_SESSION['addsucc']=3;
-    }
-   else {
+//   if($closing_date<$create_date){
+//      $_SESSION['addsucc']=3;
+//    }
+//   else {
    $sql = sprintf("INSERT INTO `jobs`(job_listing,job_description,experience,job_location,created_date,closing_date,company_name,job_type,job_category_id,user_id,date) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",$title,$job_description,$experience,$location,$create_date,$closing_date,$company,$job_type,$job_cat,$user_id,$date);
    $result = Db::query($sql);
    
@@ -43,7 +43,7 @@ session_start();
 		
 	}
 
-}
+//}
  $urlin= "add_jobs.php";
 echo "<script type='text/javascript'>
 
