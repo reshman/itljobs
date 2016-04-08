@@ -5,8 +5,27 @@ require('db.php');
 session_start();
 $urlin = "edit-resume.php";
 
-//$sResultFileName = "";
+/** Validate captcha */
+if (!empty($_REQUEST['captcha'])) {
+//    if (empty($_SESSION['captcha']) || trim(strtolower($_REQUEST['captcha'])) != $_SESSION['captcha']) {
+    $captcha = $_REQUEST['captcha'];
+    if(md5($captcha).'a4xn' == $_COOKIE['tntcon']){
+        $flag = 1;
+        //$_SESSION['captcha_message'] = "Valid captcha";
+        $style = "background-color: #FF606C";
+    } else {
+       // $_SESSION['captcha_message'] = "Invalid captcha";
+        
+        $style = "background-color: #CCFF99";
+    }
+    setcookie('tntcon','');
+   // $request_captcha = htmlspecialchars($_REQUEST['captcha']);
 
+    unset($_SESSION['captcha']);
+}
+
+if($flag == 1)
+{
 //post values
 $id                  = trim($_POST['id']);
 $title               = trim($_POST['title']);
@@ -47,7 +66,7 @@ $target_dir = "uploads/";
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
         if($imageFileType != "pdf") {
-           $onlypdf = "Sorry, only pdf files are allowed.";
+           $_SESSION['editsucc']=4;
             $uploadOk = 0;
         }
 
@@ -94,6 +113,11 @@ else
 {
     $_SESSION['editsucc']=2;
 }
+
+}else{
+            
+	$_SESSION['editsucc']=3;
+    }
 echo "<script type='text/javascript'>
 
 location.href = '" . $urlin . "';

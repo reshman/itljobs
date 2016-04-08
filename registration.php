@@ -25,7 +25,7 @@ if (!empty($_REQUEST['captcha'])) {
     unset($_SESSION['captcha']);
 }
 
-if($flag != 1)
+if($flag == 1)
 {
 //posted form values
 $title               = trim($_POST['title']);
@@ -57,7 +57,7 @@ $experience = $india_exp + $abr_exp;
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
         if($imageFileType != "pdf") {
-           $onlypdf = "Sorry, only pdffiles are allowed.";
+           $_SESSION['regsucc']=4;
             $uploadOk = 0;
         }
 
@@ -139,7 +139,7 @@ $experience = $india_exp + $abr_exp;
 
     }else{
             
-	$_SESSION['regsucc']=2;
+	$_SESSION['regsucc']=5;
     }
 echo "<script type='text/javascript'>
 

@@ -116,7 +116,12 @@
                             <?php
                              }else if ($_SESSION['regsucc'] == '4'){ ?>
                             <div class="alert alert-danger">
-                            <?php echo "<span style='color:red'/><b>Upload pdf files only</b></span><br/><br/>"; ?>
+                            <?php echo "<span style='color:red'/><b>Please upload only PDF Files!</b></span><br/><br/>"; ?>
+                            </div>
+                            <?php
+                             }else if ($_SESSION['regsucc'] == '5'){ ?>
+                            <div class="alert alert-danger">
+                            <?php echo "<span style='color:red'/><b>Incorrect Captcha!!</b></span><br/><br/>"; ?>
                             </div>
                             <?php
                              }else{ ?>
@@ -500,7 +505,16 @@
             $(function () {
 
                 // Setup form validation on the #register-form element
+                jQuery.validator.addMethod("nonNumeric", function( value ) {
+                    var regex = new RegExp("^[a-zA-Z ]+$");
+                    var key = value;
 
+                    if (!regex.test(key)) {
+                        return false;
+                    }
+                    return true;
+                }, "Please Do not use Numbers or Special Characters");
+                
                 $("#contact-form").validate({
 
                     // Specify the validation rules
@@ -508,7 +522,7 @@
                     rules: {
                         
                         title: "required",
-                        name: "required",
+                        name: {required:true,nonNumeric:true},
                         job_category_id: "required",
                         sub_category:"required",
                         india: "required",
@@ -520,7 +534,7 @@
                         minlength: 10, //or look at the additional-methods.js to see available phone validations
                         maxlength: 10
                         },
-                        specification:"required",
+                        specification:{required:true,nonNumeric:true},
                         qualification:"required",
                         current_location:"required",
                        

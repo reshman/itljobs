@@ -2,23 +2,22 @@
 require_once("db.php");
 session_start();
 $urlin="myaccount.php";
-$email = $_POST['email']; 
-//$oldpass=$_POST['txtpass'];
-$password = $_POST['password']; 
+$opassword = $_POST['opassword'];
+$old = md5($opassword);
+$npassword = $_POST['npassword']; 
 $newpass=  MD5($password);
 $cpassword = $_POST['cpassword']; 
 
-$q = sprintf("SELECT email from users  WHERE email='%s' AND role_id='%s'",$email,'3');  
+$q = sprintf("SELECT * from users  WHERE password='%s' AND role_id='%s'",$old,'3');  
 
 $result=Db::query($q);
 $row=mysql_fetch_array($result);
-
-if($row['email']==$email)
+$id = $row['id'];
+if(mysql_num_rows($result)==1)
 {
-		        $query="UPDATE  users SET password = '$newpass' WHERE email = '$email'"; 
+		        $query=sprintf("UPDATE  users SET password = '$newpass' WHERE id = '%s'",$id); 
 			Db::query($query);
-			json_encode(array("result"=>true));
-$_SESSION[invalid]=1;			
+                        $_SESSION[invalid]=1;			
 }
 else 
 	{

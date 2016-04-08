@@ -154,41 +154,43 @@
                                          
                                                     error_reporting(0);
                                                     ?><div class="panel-body"><?php
-                                                    if ($_SESSION['invalid'] != '') {
-                                                        if ($_SESSION['invalid'] == '2') {
+                                                    if (isset($_SESSION['invalid'])) {
+                                                        if ($_SESSION['invalid'] == '1') {
                                                             ?>
-                                                                <div class="alert alert-danger">
-                                                                    Email id does not exists 
+                                                                <div class="alert alert-success">
+                                                                    Your password is changed successfully.
                                                                 </div>
 
                                                                 <?php
                                                             }
                                                             else {
                                                                 ?>
-                                                                <div class="alert alert-success">
-                                                                    Your password changed successfully
+                                                                
+                                                                <div class="alert alert-danger">
+                                                                    Email id does not exists 
                                                                 </div>
                                                                 <?php
                                                                 }
-                                                            } unset($_SESSION['invalid']);
+                                                                unset($_SESSION['invalid']);
+                                                            } 
                                                ?>
         <form id="contact-form" method="POST" action="changepassword.php" enctype="multipart/form-data">  
             
         <div class="col-md-12">
             <div class="col-md-12">
-            <input name="email" id="email" type="text" placeholder="ENTER YOUR EMAIL">    
+            <input name="opassword" id="opassword" type="password" placeholder="ENTER OLD PASSWORD">    
             </div>
   
         </div>
             <div class="col-md-12">
             <div class="col-md-12">
-            <input name="password" id="password" type="text" placeholder="ENTER NEW PASSWORD">    
+            <input name="npassword" id="npassword" type="password" placeholder="ENTER NEW PASSWORD">
             </div>
   
         </div>
             <div class="col-md-12">
             <div class="col-md-12">
-            <input name="cpassword" id="cpassword" type="text" placeholder="CONFIRM PASSWORD">    
+            <input name="cpassword" id="cpassword" type="password" placeholder="CONFIRM PASSWORD">    
             </div>
   
         </div>

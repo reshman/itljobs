@@ -117,7 +117,13 @@ if ($_SESSION['editsucc'] != '') {
     } else if ($_SESSION['editsucc'] == '3') {
         ?>
         <div class="alert alert-danger">
-            <?php echo "<span style='color:red'/><b>Already registered!</b></span><br/><br/>"; ?>
+            <?php echo "<span style='color:red'/><b>Incorrect Captcha!!</b></span><br/><br/>"; ?>
+        </div>
+    <?php
+    } else if ($_SESSION['editsucc'] == '4') {
+        ?>
+        <div class="alert alert-danger">
+            <?php echo "<span style='color:red'/><b>Please upload only PDF Files!</b></span><br/><br/>"; ?>
         </div>
     <?php
     } else {
@@ -321,7 +327,7 @@ if ($_SESSION['editsucc'] != '') {
 <div class="col-md-12">
     <div class="col-md-12">
 
-        <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV">
+        <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV" accept="application/pdf">
         <label for="f02"><?php echo isset($rowresult['file_name'])? $rowresult['file_name'] : 'UPLOAD YOUR CV (Pdf Only)'?></label>
 
     </div>
@@ -529,15 +535,25 @@ include 'footer.php';
     $(function () {
 
         // Setup form validation on the #register-form element
+        jQuery.validator.addMethod("nonNumeric", function( value ) {
+                    var regex = new RegExp("^[a-zA-Z ]+$");
+                    var key = value;
 
+                    if (!regex.test(key)) {
+                        return false;
+                    }
+                    return true;
+                }, "Please Do not use Numbers or Special Characters");
+                
         $("#contact-form").validate({
 
             // Specify the validation rules
-
+            
+                
             rules: {
 
                 title: "required",
-                name: "required",
+                name: {required:true,nonNumeric:true},
                 job_category_id: "required",
                 sub_category:"required",
                 india: "required",
@@ -549,7 +565,7 @@ include 'footer.php';
                     minlength: 10, //or look at the additional-methods.js to see available phone validations
                     maxlength: 10
                 },
-                specification:"required",
+                specification:{required:true,nonNumeric:true},
                 qualification:"required",
                 current_location:"required",
 
