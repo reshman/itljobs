@@ -37,6 +37,7 @@
         <script type="text/javascript" src="js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/notify.js"></script>
 
 </head>
 <body>
@@ -142,33 +143,35 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">LOGIN/REGISTER</h4>
+                        <h3 class="modal-title" id="myModalLabel">LOGIN</h3>
                     </div>
                     <div class="modal-body">
                         <form id="login-popup">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
+                                <!--label for="exampleInputEmail1">Email address</label-->
                                 <input type="email" class="form-control" id="popup-email" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
+                                <!--label for="exampleInputPassword1">Password</label-->
                                 <input type="password" class="form-control" id="popup-password" placeholder="Password">
                             </div>
 
+                            <div id="log"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><input type="submit" value="LOGIN"></a></div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <a href="itljobs-registration.php" class="btn btn-success pull-left">Register</a>
+                        <!--a href="itljobs-registration.php" class="btn btn-success pull-left">Register</a-->
                         <!--<button type="button" class="btn btn-success pull-left" data-dismiss="modal">Register</button>-->
-                        <button type="button" class="btn btn-primary" id="popup-login">Login</button>
+                        <!--button type="button" class="btn btn-primary" id="popup-login">Login</button-->
+                        <p class="text-center"><b>Don't have an account?</b></p>
+                        <p class="text-center"><a href="itljobs-registration.php"> Create Account</a></p>
                     </div>
                 </div>
             </div>
         </div>
-		
-     </div>
 
-    <script>
+
+        <script>
         $(function(){
             $('#popup-login').on('click', function(){
                 var email    = $.trim($('#popup-email').val());
@@ -192,6 +195,17 @@
             }).done(function(data){
                 if (data == 'SUCCESS') {
                     $(current).children().val('SAVED');
+                    //$(current).notify('Job Successfully Saved!', 'success');
+
+                    $(current).children().notify(
+                        "Job Successfully Saved!",
+                        { position:"right" }
+                    );
+                } else if (data == 'ALREADY SAVED'){
+                    $(current).children().notify(
+                        "Job Already Saved!",
+                        { position:"right" }
+                    );
                 }
             });
         }
@@ -205,6 +219,10 @@
                     viewDiv = $(current).parent().next();
                     $(viewDiv).hide();
                     $(current).children().val('APPLIED');
+                    $(current).notify(
+                        "Job Applied Successfully","success",
+                        { position:"right" }
+                    );
                 }
             });
         }
