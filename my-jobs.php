@@ -269,11 +269,11 @@
                                                                      }
                                                                  }
 
-                                                                 $jobsStr = implode(',', $jobsArray);
-                                                             //print_r($jobsArray);die;
+                                                             $jobsStr = implode("','", $jobsArray);
 
-                                                                $qryOffer = sprintf("SELECT * FROM jobs WHERE active='%s' AND job_category_id = '%s' AND  id NOT IN('%s') ORDER BY job_order DESC", 1, $jobCategoryId, $jobsStr);
-                                                                $resOffer = Db::query($qryOffer);
+
+                                                             $qryOffer = sprintf("SELECT * FROM jobs WHERE active='%s' AND job_category_id = '%s' AND  id NOT IN('%s') ORDER BY job_order DESC", 1, $jobCategoryId, $jobsStr);
+                                                             $resOffer = Db::query($qryOffer);
                                                                 if(mysql_num_rows($resOffer) > 0){
                                                                 while ($rwofr = mysql_fetch_array($resOffer)) {
                                                                  ?>
