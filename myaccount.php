@@ -1,5 +1,5 @@
 <!doctype html>
-
+<?php include 'check_session_js.php'; ?>
 
 <html lang="en" class="no-js">
 <head>
@@ -48,7 +48,6 @@
 		<!-- Header
 		    ================================================== -->
 		<?php
-                session_start();
                     include 'header.php';
                 ?>
         
@@ -309,16 +308,16 @@
                         {
                             // Specify the validation rules
                             rules: {
-                                email: {required: true, email: true},
-                                password: {required: true, minlength: 5},
-                                cpassword: {required: true, equalTo: "#password"}
+                                opassword: {required: true},
+                                npassword: {required: true, minlength: 5},
+                                cpassword: {required: true, equalTo: "#npassword"}
 
                             },
                             // Specify the validation error messages
                             messages: {
-                                email: "Please enter your email",
-                                password: "Please enter your New password with minimum 5 characters",
-                                cpassword: "Please enter your Confirm password Same as Password",
+                                opassword: "Please enter your Old Password",
+                                npassword: "Please enter your New password with minimum 5 characters",
+                                cpassword: "Please enter your Confirm password Same as Password"
                             },
                             submitHandler: function (form) {
                                 form.submit();

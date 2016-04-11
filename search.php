@@ -1,5 +1,5 @@
 <!doctype html>
-<?php session_start(); ?>
+<?php include 'check_session_rec.php'; ?>
 
 <html lang="en" class="no-js">
 <head>
@@ -190,7 +190,7 @@
                                                   $experience    = $_POST['experience'];
                                                   $location      = $_POST['location'];
                                                   $qualification = $_POST['qualification'];
-                                                  $query = sprintf("SELECT * from resume RIGHT JOIN users ON users.id = resume.user_id WHERE resume.job_category_id='%s' AND (resume.sub_category = '%s' OR resume.experience = '%s' OR resume.current_location = '%s' OR resume.qualification = '%s') AND users.del_status='0'",$category,$subcategory,$experience,$location,$qualification); 
+                                                  $query = sprintf("SELECT * from resume r RIGHT JOIN users u ON u.id = r.user_id WHERE r.job_category_id='%s' AND (r.sub_category = '%s' OR r.experience >= '%s' OR r.current_location = '%s' OR r.qualification = '%s') AND u.del_status='0'",$category,$subcategory,$experience,$location,$qualification); 
                                                   $result = Db::query($query);
                                                   $countrow=mysql_num_rows($result);
                                                   if($countrow>0){

@@ -1,5 +1,5 @@
 <!doctype html>
-<?php require 'check_session.php'; ?>
+<?php require 'check_session_rec.php'; ?>
 
 <html lang="en" class="no-js">
 <head>
@@ -41,9 +41,8 @@
 	<script type="text/javascript" src="js/script.js"></script>
 	
 	  
-         <script src="admin/js/datepick.js"></script>
-         <script src="admin/js/bootstrap-datepicker.js"></script>
-         <script src="admin/js/bootstrap-datetimepicker.min.js"></script>
+         <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+         <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
 </head>
 <body>
@@ -164,7 +163,7 @@
         </div>
         
        <div class="col-md-9">
-           <input id="datepicker" name="create_date" type="text" placeholder="Create Date" value="<?php echo date('d-m-Y'); ?>" readonly>    
+           <input name="create_date" type="text" value="<?php echo date('d/m/Y'); ?>" readonly>    
         </div>
 
         </div>
@@ -175,7 +174,7 @@
         </div>
         
        <div class="col-md-9">        
-         <input id="datepicker1" name="closing_date" type="text" placeholder="Closing Date" >    
+         <input id="datepicker1" name="closing_date" type="text" placeholder="Closing Date" readonly>    
         </div>
 
         </div> 
@@ -260,27 +259,31 @@
           <?php  include("footer.php");?>
 		
 		<!-- End footer -->
-       <script>
-    $(function() {
-        $("#datepicker").datepicker({minDate:0});
-    });
- </script> 
-  <script>
-    $(function() {
-        $("#datepicker1").datepicker({minDate:0});
-    });
- </script>
-     
+ 
       <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
      <script>
 
             // When the browser is ready...
 
             $(function () {
+                $('#datepicker1').datepicker({
+                    format:"dd/mm/yyyy",
+                    startDate: '11/04/2016'
+                });
 
                 $.validator.addMethod('salrange', function (value) { 
-                    return /^[0-9]+(-[0-9]+)+$/.test(value); 
+                    return /^[0-9 ]+(-[0-9 ]+)+$/.test(value); 
                 }, 'Please enter a valid Salary Range like: lowest Salary - Highest Salary. If salary is Fixed give Both side the same salary.');
+                
+                jQuery.validator.addMethod("nonNumeric", function( value ) {
+                    var regex = new RegExp("^[a-zA-Z ]+$");
+                    var key = value;
+
+                    if (!regex.test(key)) {
+                        return false;
+                    }
+                    return true;
+                }, "Please Do not use Numbers or Special Characters");
 
                 // Setup form validation on the #register-form element
 
@@ -289,8 +292,8 @@
                     // Specify the validation rules
 
                     rules: {
-                        companyname: "required",
-                        companytitle: "required",
+                        companyname: {required:true,nonNumeric:true},
+                        companytitle: {required:true,nonNumeric:true},
                         description: "required",
                         location: "required",
                         jobtype: "required",
@@ -302,12 +305,12 @@
                     // Specify the validation error messages
 
                     messages: {
-                        companyname: "Please enter company name",
-                        companytitle: "Please enter company title",
+                        companyname: {required:"Please enter company name"},
+                        companytitle: {required:"Please enter company title"},
                         description: "Please enter description",
                         location: "Please enter location",
                         jobtype: "Please enter jobtype",
-                        salary: "Please enter salary",
+                        salary: {required:"Please enter salary"},
                         salarycat: "Please enter salary category",
                         closing_date:"Please enter a Closing Date"
                        

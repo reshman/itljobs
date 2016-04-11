@@ -1,19 +1,19 @@
 <?php
 require_once("db.php");
 session_start();
-$urlin="itljobs-changepassword.php?id=faq";
+$urlin="itljobs-changepassword.php";
 if(!empty($_SESSION['reclog'])){
     $id = trim($_SESSION['reclog']);
 }else if(!empty($_SESSION['log'])){
     $id = trim($_SESSION['log']);
 }
-
 $opassword= trim($_POST['opassword']); 
 if($opassword == ''){
     $_SESSION['addsucc']=2;
     echo "<script type='text/javascript'>
 location.href = '" . $urlin . "';
 </script>";
+    die();
 }
 //$oldpass=$_POST['txtpass'];
 $cpassword = trim($_POST['cpassword']);
@@ -24,8 +24,7 @@ $newpass = md5($npassword);
 
 $result=Db::query($q);
 $row=mysql_fetch_array($result);
-
-if(md5($row['password'])==$opassword)
+if($row['password']==md5($opassword))
 {
 			$query="UPDATE users SET password = '$newpass' WHERE id = '$id' AND role_id = '4'";  
 			Db::query($query);

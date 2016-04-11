@@ -171,7 +171,7 @@
         </div>
         
         <div class="col-md-4">
-           <input type='text' id="datepicker" name="dob" placeholder="DATE OF BIRTH (DD/MM/YYYY)" readonly/>
+           <input type='text' id="datepicker" name="dob" placeholder="DATE OF BIRTH (DD/MM/YYYY)"/>
         </div>
          
         </div> 
@@ -492,7 +492,7 @@
     $(function() {
         $('#datepicker').datepicker({
             format: 'dd/mm/yyyy',
-            endDate: '+0d',
+            endDate: '0',
             autoclose: true
         });
     });
