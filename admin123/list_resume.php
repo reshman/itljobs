@@ -108,7 +108,7 @@
                                           <?php 
                                           
                                            $i = 1;
-                                          $query = sprintf("SELECT r.id,r.experience,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name, r.del_status, u.name as name,u.email ,jc.name as jobcatname from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s'",'0');  
+                                          $query = sprintf("SELECT r.id,r.experience,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name,r.user_id, r.del_status, u.name as name,u.email ,jc.name as jobcatname from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s'",'0');  
                                           $result = Db::query($query);
                                           while ($row = mysql_fetch_array($result)) {
                                           
@@ -120,18 +120,13 @@
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['email']; ?></td>
-                                                    <!--<td><?php echo $row['specification']; ?></td>-->
                                                     <td><?php echo $row['experience']; ?></td>
-                                                    <!--<td><?php echo $row['current_location']; ?></td>
-                                                    <td><?php echo $row['date_of_birth']; ?></td>
-                                                    <td><?php echo $row['jobcatname']; ?></td>
-                                                    <td><?php echo $row['sub_category']; ?></td>-->
                                                     <td><a onclick="downloadfile('../uploads/<?php echo $row['file_name']?>')" href="../uploads/<?php echo $row['file_name']?>"   target="_blank" download=""><?php echo $row['file_name']; ?></a>
                                                     </td>
                                                    <!-- <td style="text-align: center;"><a onclick="downloadfile('../uploads/<?php echo $row['file_name']?>')" href="../uploads/<?php echo $row['file_name']?>"   target="_blank" download=""><img src="images/download_icon.png" alt="download" height="20" width="20"></a>
                                                     </td> -->
                                                      <td><a href="viewmore_resumes.php?id=<?php echo $row['id'] ?>">View More</a></td>
-                                                    <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_resume.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                                    <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_resume.php?delid=<?= $row['user_id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
                                                 <?php
                                                 $i = $i + 1;

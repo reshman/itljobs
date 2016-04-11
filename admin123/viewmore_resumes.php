@@ -66,7 +66,7 @@
                                          <?php
                                             $id = $_REQUEST['id'];
                                             $i = 1;
-                                             $query = sprintf("SELECT r.id,r.experience,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name, r.del_status, u.name as name,u.email ,jc.name as jobcatname from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s' AND r.id='%s'",'0',$id);  
+                                             $query = sprintf("SELECT r.id,r.experience,r.qualification,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name, r.del_status, u.name as name,u.email ,jc.name as jobcatname from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s' AND r.id='%s'",'0',$id);  
                                             $result = Db::query($query);
                                             while ($row = mysql_fetch_array($result)) {
                                                 ?>
@@ -78,7 +78,8 @@
                                                 <tr><th>E-mail</th><td><?php echo $row['email']; ?></td></tr>
                                                 <tr><th>Specification</th><td><?php echo $row['specification']; ?></td></tr>
                                                 <tr><th>Experience</th><td><?php echo $row['experience']; ?></td></tr>
-                                                 <tr><th>Current Location</th><td><?php echo $row['current_location']; ?></td></tr>
+                                                <tr><th>Qualification</th><td><?php echo $row['qualification']; ?></td></tr>
+                                                <tr><th>Current Location</th><td><?php echo $row['current_location']; ?></td></tr>
                                                 <tr><th>Date of Birth</th><td><?php echo $row['date_of_birth']; ?></td></tr>
                                                 <tr><th>Job Category</th><td><?php echo $row['jobcatname']; ?></td></tr>
                                                 <tr><th>Sub Category</th><td><?php echo $row['sub_category']; ?></td></tr>

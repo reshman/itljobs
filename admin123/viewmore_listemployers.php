@@ -85,7 +85,7 @@
                                                     </td> 
                                                 </tr>
                                                 <tr><th>Delete</th>
-                                                <td class="center"><a href="javascript:void(0)" onclick="deleteConfirm('delete_recruiter.php?delid=<?= $row['uid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>  
+                                                <td class="center"><a href="javascript:void(0)" onclick="deleteConfirm('delete_recruiter.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>  
                                                 </tr>
                                                 
                                         </thead>
@@ -331,13 +331,12 @@
                 type:'POST',
                 data:{id:rowId, status:status}
             }).done(function( data ) {
-                alert(data);
+//                alert(data);
             });
 
-        })
+        });
 
-
-    })
+    });
 </script>
     </body>
 </html>
