@@ -103,11 +103,11 @@
 
 
             if (empty($keyword) && !empty($location)) {
-                $query = sprintf("SELECT j.id,j.job_listing, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE  j.job_location LIKE '%s'  AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$location.'%',$date,'1','0');
+                $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE  j.job_location LIKE '%s'  AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$location.'%',$date,'1','0');
             } else if (empty($location) && !empty($keyword)) {
-                $query = sprintf("SELECT j.id,j.job_listing, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE jc.name LIKE '%s'  OR j.job_listing LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$keyword.'%','%'.$keyword.'%',$date,'1','0');
+                $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE jc.name LIKE '%s'  OR j.job_listing LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$keyword.'%','%'.$keyword.'%',$date,'1','0');
             } else {
-                $query = sprintf("SELECT j.id,j.job_listing, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE jc.name LIKE '%s' OR j.job_location LIKE '%s' OR j.job_listing LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$keyword.'%','%'.$location.'%','%'.$keyword.'%',$date,'1','0');
+                $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE jc.name LIKE '%s' OR j.job_location LIKE '%s' OR j.job_listing LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$keyword.'%','%'.$location.'%','%'.$keyword.'%',$date,'1','0');
             }
 
             $result = Db::query($query);
@@ -119,6 +119,9 @@
        <div class="col-md-12">
        <h3><?php echo $row['job_listing'];?></h3>
        <p><?php echo $row['job_description'];?></p>
+       <p><span style="color:#6495ED">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'].' year': $row['experience'].' years';?> ,
+           <span style="color:#6495ED">Location : </span><?php echo $row['job_location'];?>,
+           <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date']));?></p>
        <?php if (isset($_SESSION['log'])):?>
            <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id']?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsArray)) ? 'APPLIED' : 'APPLY'?>"></a></div>
            <?php if (!in_array($row['id'], $jobsArray)): ?>
