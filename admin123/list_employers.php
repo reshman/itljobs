@@ -104,8 +104,8 @@
                                           <?php 
                                          
                                            $i = 1;
-                                          $query = sprintf("SELECT u.id as uid,u.name,u.email,r.designation,u.active,r.designation from employers r LEFT JOIN  users u ON r.user_id = u.id  WHERE role_id='%s' AND u.del_status='%s'",'4','0');  
-                                          $result = Db::query($query);
+                                         $query = sprintf("SELECT u.id as uid,u.name,u.email,r.designation,u.active,r.designation,r.user_id from employers r LEFT JOIN  users u ON r.user_id = u.id  WHERE role_id='%s' AND u.del_status='%s'",'4','0');  
+                                         $result = Db::query($query);
                                           while ($row = mysql_fetch_array($result)) {
                                           ?>
                                            
@@ -114,13 +114,10 @@
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['designation']; ?></td>
                                                     <td><?php echo $row['email']; ?></td>
-                                                  <!-- <td><?php echo $row['enquiry_requirement']; ?></td>
-                                                    <td><?php echo $row['company_name']; ?></td>
-                                                    <td><?php echo $row['mobile']; ?></td> -->
                                                     <td>
                                                     <input <?php echo ($row['active']=='1') ? 'checked' : '';?> data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox" value="<?php echo $row['id']; ?>">                                
                                                     </td> 
-                                                    <td><a href="viewmore_listemployers.php?id=<?php echo $row['id'] ?>" target="_BLANK">View More</a></td>
+                                                    <td><a href="viewmore_listemployers.php?id=<?php echo $row['uid'] ?>" target="_BLANK">View More</a></td>
 
                                                     <td class="center"><a href="javascript:void(0)" onclick="deleteConfirm('delete_recruiter.php?delid=<?= $row['uid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
