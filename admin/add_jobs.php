@@ -60,9 +60,6 @@
 
         <script src="//code.jquery.com/jquery-1.9.1.js"></script>
 
-        <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-
-        <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
 
         <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
@@ -79,7 +76,9 @@
      <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
      <script src="js/jquery.geocomplete.js"></script>
 
-           <script>
+          
+         <script>
+
             // When the browser is ready...
 
             $(function () {
@@ -94,37 +93,41 @@
                         
                         title: {required: true,lettersonly: true},
                         job_description: "required",
+                        company: {required: true,lettersonly: true},
                         experience: {required: true,digits: true},
                         location: {required: true, lettersonly: true},
-                        create_date: {required:true, dateFormat: true},
+                        create_date: "required",
                         closing_date: "required",
-                        job_cat: "required"
+                        job_cat: "required",
+                        job_type: "required"
                     },
                     // Specify the validation error messages
 
                     messages: {
+
                         title: {required: "Please enter title",lettersonly: "Please enter letters only"},
                         job_description: "Please enter job description",
+                        company: {required:"Please enter company name",lettersonly:"Please enter letters only"},
                         experience: {required:"Please enter experience",digits:"Please enter number"},
                         location: {required:"Please enter location",lettersonly:"Please enter letters only"},
-                        create_date: {required: "Please enter create date",dateFormat: "Please enter a date in the format dd/mm/yyyy."},
+                        create_date: "Please enter create date",
                         closing_date:"Please enter closing date",
-                        job_cat: "Please enter job category"
+                        job_cat: "Please enter job category",
+                        job_type: "Please select job type"
                     },
-
+                    
                     submitHandler: function (form) {
 
                         form.submit();
                     }
-
+                    
                 });
-                 jQuery.validator.addMethod("lettersonly", function(value, element) {
+                jQuery.validator.addMethod("lettersonly", function(value, element) {
                     return this.optional(element) || /^[a-z\s]+$/i.test(value);
                   });
-                  
-              });
+            });
 
-        </script>    
+        </script> 
         
         <style>
          .error{
@@ -255,7 +258,7 @@
 
                                             <label for="exampleInputEmail1">Company Name</label>
 
-                                            <input type="text" class="form-control" id="title" placeholder="Company Name" name="company">
+                                            <input type="text" class="form-control" id="company" placeholder="Company Name" name="company">
 
                                         </div>
                                         
@@ -317,31 +320,7 @@
                                             <label for="exampleInputEmail1">Closing Date</label>
 
                                             <input type="text" class="form-control" id="datepicker1" name="closing_date" placeholder="Closing Date" data-format="yyyy-MM-dd"/>
-                                             <?php
-                                            if ($_SESSION['addsucc'] != '') {
-
-                                                if ($_SESSION['addsucc'] == '3') {
-                                                   
-                                                    ?>
-
-                                            <div style="color:#C80000; ">Closing date should be greater than todays date</div>
-
-                                                    <?php
-
-                                                }
-                                                
-                                            elseif ($_SESSION['addsucc']=='4'){
-                                                    
-                                                    ?>
-                                            <div style="color:#C80000; ">Closing date should be greater than created date</div>
-                                            <?php
-                                                }
-
-                                            }
-
-                                            unset($_SESSION['addsucc']);     
-                                            ?>
-
+                                             
                                         </div>
                                         
                                         <div class="form-group">

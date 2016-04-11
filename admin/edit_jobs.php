@@ -64,22 +64,12 @@
     <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
 
-
-    <!--<script src="js/jquery.Jcrop.min.js"></script>-->
-
     <link href="css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
-
-    <!--<script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>-->
-
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-
-    <!--<script src="js/jquery.Jcrop.min.js"></script>
-
-    <link href="css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />-->
 
     <script src="ckeditor/ckeditor.js"></script>
 
-    <script>
+     <script>
+
             // When the browser is ready...
 
             $(function () {
@@ -94,35 +84,39 @@
                         
                         title: {required: true,lettersonly: true},
                         job_description: "required",
+                        company: {required: true,lettersonly: true},
                         experience: {required: true,digits: true},
                         location: {required: true, lettersonly: true},
-                        create_date: {required:true, dateFormat: true},
+                        create_date: "required",
                         closing_date: "required",
-                        job_cat: "required"
+                        job_cat: "required",
+                        job_type: "required"
                     },
                     // Specify the validation error messages
 
                     messages: {
+
                         title: {required: "Please enter title",lettersonly: "Please enter letters only"},
                         job_description: "Please enter job description",
+                        company: {required:"Please enter company name",lettersonly:"Please enter letters only"},
                         experience: {required:"Please enter experience",digits:"Please enter number"},
                         location: {required:"Please enter location",lettersonly:"Please enter letters only"},
-                        create_date: {required: "Please enter create date",dateFormat: "Please enter a date in the format dd/mm/yyyy."},
+                        create_date: "Please enter create date",
                         closing_date:"Please enter closing date",
-                        job_cat: "Please enter job category"
+                        job_cat: "Please enter job category",
+                        job_type: "Please select job type"
                     },
-
+                    
                     submitHandler: function (form) {
 
                         form.submit();
                     }
-
+                    
                 });
-                 jQuery.validator.addMethod("lettersonly", function(value, element) {
+                jQuery.validator.addMethod("lettersonly", function(value, element) {
                     return this.optional(element) || /^[a-z\s]+$/i.test(value);
                   });
-                  
-              });
+            });
 
         </script>
   <style>
