@@ -213,7 +213,7 @@
 								</div>
                                     <div id="applied-affix">
                                         <?php
-                                        $qry = sprintf("SELECT j.id, j.job_description, j.experience, j.closing_date, j.job_listing FROM jobs j JOIN `jobs_applied` ja ON j.id = ja.job_id WHERE ja.user_id = '%s' AND ja.del_status = '%s'", $id, 0);
+                                        $qry = sprintf("SELECT j.id, j.job_description,j.job_location,  j.experience, j.closing_date, j.job_listing FROM jobs j JOIN `jobs_applied` ja ON j.id = ja.job_id WHERE ja.user_id = '%s' AND ja.del_status = '%s'", $id, 0);
                                         $res = Db::query($qry);
                                         if(mysql_num_rows($res) > 0){
                                         while ($rw = mysql_fetch_array($res)) {
