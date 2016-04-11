@@ -146,6 +146,9 @@
 								</div>
 								<div class="accord-content" style="display: none;">
 									<p><?php echo $row['job_description'];?></p>
+                                    <p><span style="color:#6495ED">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'].' year': $row['experience'].' years';?> ,
+                                        <span style="color:#6495ED">Location : </span><?php echo $row['job_location'];?>,
+                                        <span style="color:#6495ED">Closing date : </span><?php echo $row['closing_date'];?></p>
 
                                     <?php if (isset($_SESSION['log'])):?>
                                         <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id']?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsArray)) ? 'APPLIED' : 'APPLY'?>"></a></div>
