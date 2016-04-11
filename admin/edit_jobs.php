@@ -57,8 +57,6 @@
 
     <![endif]-->
 
-
-
     <script src="//code.jquery.com/jquery-1.9.1.js"></script>
 
     <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
@@ -67,58 +65,10 @@
     <link href="css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
 
     <script src="ckeditor/ckeditor.js"></script>
-
-     <script>
-
-            // When the browser is ready...
-
-            $(function () {
-
-                // Setup form validation on the #register-form element
-
-                $("#frm").validate({
-
-                    // Specify the validation rules
-
-                    rules: {
-                        
-                        title: {required: true,lettersonly: true},
-                        job_description: "required",
-                        company: {required: true,lettersonly: true},
-                        experience: {required: true,digits: true},
-                        location: {required: true, lettersonly: true},
-                        create_date: "required",
-                        closing_date: "required",
-                        job_cat: "required",
-                        job_type: "required"
-                    },
-                    // Specify the validation error messages
-
-                    messages: {
-
-                        title: {required: "Please enter title",lettersonly: "Please enter letters only"},
-                        job_description: "Please enter job description",
-                        company: {required:"Please enter company name",lettersonly:"Please enter letters only"},
-                        experience: {required:"Please enter experience",digits:"Please enter number"},
-                        location: {required:"Please enter location",lettersonly:"Please enter letters only"},
-                        create_date: "Please enter create date",
-                        closing_date:"Please enter closing date",
-                        job_cat: "Please enter job category",
-                        job_type: "Please select job type"
-                    },
-                    
-                    submitHandler: function (form) {
-
-                        form.submit();
-                    }
-                    
-                });
-                jQuery.validator.addMethod("lettersonly", function(value, element) {
-                    return this.optional(element) || /^[a-z\s]+$/i.test(value);
-                  });
-            });
-
-        </script>
+    
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+     
   <style>
          .error{
             color: #C80000 !important;
@@ -358,14 +308,63 @@
 
 <script src="dist/js/demo.js" type="text/javascript"></script>
 
-<script src="js/datepick.js"></script>
+<!--<script src="js/datepick.js"></script>
  <script src="js/bootstrap-datepicker.js"></script>
- <script src="js/bootstrap-datetimepicker.min.js"></script>
+ <script src="js/bootstrap-datetimepicker.min.js"></script>-->
 <script>
-    $(function() {
-        $("#datepicker1").datepicker({minDate:0});
-    });
- </script>
+
+            // When the browser is ready...
+
+            $(function () {
+                $('#datepicker1').datepicker({
+                    format:"dd/mm/yyyy",
+                    startDate: '11/04/2016'
+                });
+                // Setup form validation on the #register-form element
+
+                $("#frm").validate({
+
+                    // Specify the validation rules
+
+                    rules: {
+                        
+                        title: {required: true,lettersonly: true},
+                        job_description: "required",
+                        company: {required: true,lettersonly: true},
+                        experience: {required: true,digits: true},
+                        location: {required: true, lettersonly: true},
+                        create_date: "required",
+                        closing_date: "required",
+                        job_cat: "required",
+                        job_type: "required"
+                    },
+                    // Specify the validation error messages
+
+                    messages: {
+
+                        title: {required: "Please enter title",lettersonly: "Please enter letters only"},
+                        job_description: "Please enter job description",
+                        company: {required:"Please enter company name",lettersonly:"Please enter letters only"},
+                        experience: {required:"Please enter experience",digits:"Please enter number"},
+                        location: {required:"Please enter location",lettersonly:"Please enter letters only"},
+                        create_date: "Please enter create date",
+                        closing_date:"Please enter closing date",
+                        job_cat: "Please enter job category",
+                        job_type: "Please select job type"
+                    },
+                    
+                    submitHandler: function (form) {
+
+                        form.submit();
+                    }
+                    
+                });
+                jQuery.validator.addMethod("lettersonly", function(value, element) {
+                    return this.optional(element) || /^[a-z\s]+$/i.test(value);
+                  });
+            });
+
+        </script> 
   <script>
     $(function() {
         $("#location").geocomplete({

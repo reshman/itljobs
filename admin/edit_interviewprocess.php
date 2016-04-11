@@ -24,11 +24,7 @@ $converteddate   = date("Y-m-d", strtotime($date));
    $todaydate         = date("Y-m-d h:i:s"); 
    
    $urlin = "edit_interview.php?id=$id";
-   
-   if($converteddate<$todaydate){
-      $_SESSION['addsucc']=3;
-  }
- else {
+
  $sql    = sprintf("UPDATE interviews SET name = '%s',company_name = '%s',schedule_time = '%s', venue='%s', title = '%s', schedule_date = '%s', description = '%s', contact = '%s', interview = '%s' WHERE id = '%s'", $name, $company_name, $time,$venue, $title, $converteddate, $description,$contact,$interview,$id); 
 
 $resultedit = Db::query($sql);
@@ -43,7 +39,7 @@ else
 {
     $_SESSION['addsucc']=2;
 }
-}
+
 echo "<script type='text/javascript'>
 
 location.href = '" . $urlin . "';
