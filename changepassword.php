@@ -5,7 +5,7 @@ $urlin="myaccount.php";
 $opassword = $_POST['opassword'];
 $old = md5($opassword);
 $npassword = $_POST['npassword']; 
-$newpass=  MD5($password);
+$newpass=  md5($npassword);
 $cpassword = $_POST['cpassword']; 
 
 $q = sprintf("SELECT * from users  WHERE password='%s' AND role_id='%s'",$old,'3');  

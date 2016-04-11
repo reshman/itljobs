@@ -166,7 +166,7 @@
                                                                 ?>
                                                                 
                                                                 <div class="alert alert-danger">
-                                                                    Email id does not exists 
+                                                                    Incorrect Old password
                                                                 </div>
                                                                 <?php
                                                                 }
