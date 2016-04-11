@@ -60,7 +60,7 @@
                                 <div class="box-header">
                                     <h3 class="box-title"> Jobs</h3>
                                 </div><!-- /.box-header -->
-                                <div class="box-body">
+                                <div class="box-body" style="overflow-y: scroll;">
                                     
                                     <table id="example2" class="table table-bordered table-hover">
                                         <?php

@@ -12,20 +12,18 @@ $company_name = (trim($_POST['company_name']));
 $time         = (trim($_POST['time']));
 $venue        = (trim($_POST['venue']));
 $title        = (trim($_POST['title']));
-$date         = (trim($_POST['date']));
-$date1        = trim($_POST['closing_date']);
-$sdate   = explode('/', $date1);
+$date1         = (trim($_POST['date']));
+$sdate        = explode('/', $date1);
 $date         = $sdate[2].'-'.$sdate[1].'-'.$sdate[0];
 $description  = (trim($_POST['description']));
 $contact      = (trim($_POST['contact']));
 $interview    = (trim($_POST['interview']));
 
- $converteddate = date("Y-m-d", strtotime($date));
 
    date_default_timezone_set('Asia/Calcutta'); 
    $todaydate         = date("Y-m-d h:i:s"); 
 
-  $sql          = sprintf("INSERT INTO interviews(name,title,company_name,schedule_date,schedule_time,venue,description,interview,contact,user_id,active,del_status,date) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $name, $title, $company_name, $converteddate, $time, $venue, $description, $interview, $contact, $id,'0','0',$todaydate); 
+  $sql          = sprintf("INSERT INTO interviews(name,title,company_name,schedule_date,schedule_time,venue,description,interview,contact,user_id,active,del_status,date) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $name, $title, $company_name, $date, $time, $venue, $description, $interview, $contact, $id,'0','0',$todaydate); 
   $resultsql    = Db::query($sql);
 
 $inid = mysql_insert_id();

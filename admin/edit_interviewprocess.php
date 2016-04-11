@@ -14,20 +14,19 @@ $company_name    = (trim($_POST['company_name']));
 $time            = (trim($_POST['time']));
 $venue           = (trim($_POST['venue']));
 $title           = $_POST['title'];
- $date1          = trim($_POST['date']);
+$date1           = trim($_POST['date']);
 $sdate           = explode('/', $date1);
 $date            = $sdate[2].'-'.$sdate[1].'-'.$sdate[0]; 
 $description     = $_POST['description'];
 $contact         = (trim($_POST['contact']));
 $interview       = (trim($_POST['interview']));
-$converteddate   = date("Y-m-d", strtotime($date));
 
    date_default_timezone_set('Asia/Calcutta'); 
    $todaydate         = date("Y-m-d h:i:s"); 
    
    $urlin = "edit_interview.php?id=$id";
 
- $sql    = sprintf("UPDATE interviews SET name = '%s',company_name = '%s',schedule_time = '%s', venue='%s', title = '%s', schedule_date = '%s', description = '%s', contact = '%s', interview = '%s' WHERE id = '%s'", $name, $company_name, $time,$venue, $title, $converteddate, $description,$contact,$interview,$id); 
+ $sql    = sprintf("UPDATE interviews SET name = '%s',company_name = '%s',schedule_time = '%s', venue='%s', title = '%s', schedule_date = '%s', description = '%s', contact = '%s', interview = '%s' WHERE id = '%s'", $name, $company_name, $time,$venue, $title, $date, $description,$contact,$interview,$id); 
 
 $resultedit = Db::query($sql);
 
