@@ -77,11 +77,11 @@
                 <form id="contact-form" method="POST" action="search.php" enctype="multipart/form-data">
 
                     <div class="col-md-12"> 
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <span class="post-title">CATEGORY:</span>    
                         </div>
 
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <select name="category" id="category">
                                 <?php
                                 $qry = sprintf("SELECT * FROM `job_categories`");
@@ -98,26 +98,28 @@
                     </div>
 
                     <div class="col-md-12"> 
-                        <div class="col-md-2">
-                            <span class="post-title">SUBCATEGORY: </span>    
+                        <div class="col-md-3">
+                            <span class="post-title">SUB-CATEGORY(optional): </span>    
                         </div>
 
-                        <div class="col-md-9">
-                            <input name="subcategory" id="subcategory" type="text" placeholder="">    
+                        <div class="col-md-8">
+                            <select name="subcategory" id="subcategory" disabled>
+                                <option value="-1">Select Sub-category</option>
+                            </select>
                         </div>
                     </div> 
 
 
                     <div class="col-md-12"> 
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <span class="post-title">EXPERIENCE IN YEAR:</span>    
                         </div>
 
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <select name="experience" id="experience">
                                 <option value="-1">Select Experience</option>
                                 <?php
-                                $qry = sprintf("SELECT DISTINCT experience FROM `resume` ORDER BY experience");
+                                $qry = sprintf("SELECT DISTINCT experience FROM `resume` WHERE del_status='%s' ORDER BY experience",'0');
                                 $res = Db::query($qry);
                                 while ($row = mysql_fetch_array($res)) {
                                     ?>
@@ -143,26 +145,26 @@
                     -->
 
                     <div class="col-md-12"> 
-                        <div class="col-md-2">
-                            <span class="post-title">LOCATION:</span>    
+                        <div class="col-md-3">
+                            <span class="post-title">LOCATION(optional):</span>    
                         </div>
 
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <input name="location" id="location" type="text" placeholder="">    
                         </div>
 
                     </div> 
 
                     <div class="col-md-12"> 
-                        <div class="col-md-2">
-                            <span class="post-title">QUALIFICATION:</span>    
+                        <div class="col-md-3">
+                            <span class="post-title">QUALIFICATION(optional):</span>    
                         </div>
 
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <select name="qualification" id="experience">
                                 <option value="-1">Select Qualification</option>
                                 <?php
-                                $qry = sprintf("SELECT DISTINCT qualification FROM `resume` ORDER BY qualification");
+                                $qry = sprintf("SELECT DISTINCT qualification FROM `resume` WHERE del_status='%s' ORDER BY qualification",'0');
                                 $res = Db::query($qry);
                                 while ($row = mysql_fetch_array($res)) {
                                     ?>
@@ -212,27 +214,21 @@
             // When the browser is ready...
 
             $(function () {
+                
+                $('#category').on("change",function(){
+                    var cat = $(this).val();
+                    $.post("get_sub_category.php",
+                    {
+                        category:cat
+                    },
+                    function(response){
+                        $('#subcategory').html(response).prop("disabled", false) ;
+                        
+                    });
+                });
 
                 // Setup form validation on the #register-form element
-
-                //Function to check whether all input boxes are empty or not...
-                //In case all boxes are empty the function return false and produce an error message without submitting the form...
-                /*$.validator.addMethod("allempty", function () {
-                 var flag = 0;
-                 if ($("form #subcategory").val() == '') {
-                 if ($("form #location").val() == '') {
-                 if ($("form #qualification").val() == '') {
-                 flag = 1;
-                 }
-                 }
-                 }
-                 
-                 if (flag === 1) {
-                 return false;
-                 } else {
-                 return true;
-                 }
-                 }, 'Fill atleast one input for the Result!');*/
+                
                 jQuery.validator.addMethod("notEqual", function (value) {
                     var regex = new RegExp("-1");
                     var key = value;

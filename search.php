@@ -190,8 +190,19 @@
                                                   $experience    = $_POST['experience'];
                                                   $location      = $_POST['location'];
                                                   $qualification = $_POST['qualification'];
-                                                  $query = sprintf("SELECT * from resume r RIGHT JOIN users u ON u.id = r.user_id WHERE r.job_category_id='%s' AND (r.sub_category = '%s' OR r.experience >= '%s' OR r.current_location = '%s' OR r.qualification = '%s') AND u.del_status='0'",$category,$subcategory,$experience,$location,$qualification); 
-                                                  $result = Db::query($query);
+                                                  //$query = sprintf("SELECT * from resume r RIGHT JOIN users u ON u.id = r.user_id WHERE r.job_category_id='%s' AND (r.sub_category = '%s' OR r.experience >= '%s' OR r.current_location = '%s' OR r.qualification = '%s') AND u.del_status='0'",$category,$subcategory,$experience,$location,$qualification); 
+                                                  $query_st = "SELECT * from resume r RIGHT JOIN users u ON u.id = r.user_id WHERE r.job_category_id='$category' AND experience>='$experience' AND u.del_status=0";
+                                                  if($subcategory!=-1){
+                                                      $query_st = $query_st." AND sub_category='$subcategory'";
+                                                  }
+                                                  if($location!=''){
+                                                      $location = explode(',',$location);
+                                                      $query_st=$query_st." AND current_location LIKE '%$location[0]%'";
+                                                  }
+                                                  if($qualification!=-1){
+                                                      $query_st=$query_st." AND qualification='$qualification'";
+                                                  }
+                                                  $result = Db::query($query_st);
                                                   $countrow=mysql_num_rows($result);
                                                   if($countrow>0){
                                                       
@@ -219,7 +230,7 @@
                                                   </tbody> 
                                                   <?php $i++; } } else { ?>
                                               
-                                                  <div class="col-md-12"><h2 style="text-align: center; margin-bottom: 10px; font-size: 30px;">NO MATCHING RESUMES</h2></div>
+                                                  <div class="col-md-12"><h2 style="text-align: center; margin-bottom: 10px; font-size: 30px;">NO MATCHING RESUMES. TRY A BROADER SEARCH.</h2></div>
                                                
                                                  <?php } ?>
                                             
