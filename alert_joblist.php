@@ -157,10 +157,20 @@
        <h1>ALERT JOBS LIST</h1></div>
         <?php
             include 'db.php';
-            $jobcat=$_GET['jobcat'];
-            $location=$_GET['loc'];
-            
-            $query = sprintf("SELECT * FROM `jobs` WHERE active='%s'AND job_listing='%s' AND job_location='%s' AND del_status='%s'",1,$jobcat,$location,0); 
+            $date     = date('Y-m-d h:i:s');
+            $jobcat   = $_GET['jobcat'];
+            $location = $_GET['loc'];
+
+            if (empty($jobcat) && !empty($location)) {
+                $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE  j.job_location LIKE '%s'  AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$location.'%',$date,'1','0');
+            } else if (empty($location) && !empty($jobcat)) {
+                $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE jc.name LIKE '%s'  OR j.job_listing LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$jobcat.'%','%'.$jobcat.'%',$date,'1','0');
+            } else {
+                $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE jc.name LIKE '%s' OR j.job_location LIKE '%s' OR j.job_listing LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'",'%'.$jobcat.'%','%'.$location.'%','%'.$jobcat.'%',$date,'1','0');
+            }
+
+            //$query = sprintf("SELECT * FROM `jobs` WHERE active='%s'AND job_listing='%s' AND job_location='%s' AND del_status='%s'",1,$jobcat,$location,0);
+
             $result = Db::query($query);
             $count=mysql_num_rows($result);
             if($count>0){
