@@ -40,8 +40,51 @@
 	
 	     <link rel="stylesheet" href="css/jquery-ui.css">
           <script src="js/jquery-ui.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
 </head>
+
+<script>
+    $(function(){
+        $("#login-popup").validate({
+
+            // Specify the validation rules
+
+
+            rules: {
+
+                'popup-email':{required:true, email:true},
+                'popup-password':{required:true}
+            },
+            // Specify the validation error messages
+
+            messages: {
+
+
+            },
+
+            submitHandler: function (form) {
+                var email    = $.trim($('#popup-email').val());
+                var password = $.trim($('#popup-password').val());
+                if (email != '' && password != '') {
+                    $.ajax({
+                        url:'popup-login.php?email='+email+'&password='+password
+                    }).done(function(status){
+                        if (status == 'SUCCESS') {
+                            window.location.reload();
+                        } else {
+                            $('#errorMsg').html("<div class='alert alert-danger'>"+status+"</div>");
+                        }
+                    })
+                }
+                //form.submit();
+
+            }
+
+        });
+    })
+</script>
+
 <body>
 
 	<!-- Container -->
@@ -495,25 +538,29 @@ or a service you can do for others</p>
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">LOGIN/REGISTER</h4>
+                        <h3 class="modal-title" id="myModalLabel">LOGIN</h3>
                     </div>
                     <div class="modal-body">
-                        <form id="login-popup">
+                        <div id="errorMsg"></div>
+                        <form id="login-popup" action="#" novalidate>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="popup-email" placeholder="Email">
+                                <!--label for="exampleInputEmail1">Email address</label-->
+                                <input type="email" name="popup-email" class="form-control" id="popup-email" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="popup-password" placeholder="Password">
+                                <!--label for="exampleInputPassword1">Password</label-->
+                                <input type="password" name="popup-password" class="form-control" id="popup-password" placeholder="Password">
                             </div>
 
+                            <div id="log"><a href="javascript:void(0)" ><input type="submit" value="LOGIN"></a></div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <a href="itljobs-registration.php" class="btn btn-success pull-left">Register</a>
+                        <!--a href="itljobs-registration.php" class="btn btn-success pull-left">Register</a-->
                         <!--<button type="button" class="btn btn-success pull-left" data-dismiss="modal">Register</button>-->
-                        <button type="button" class="btn btn-primary" id="popup-login">Login</button>
+                        <!--button type="button" class="btn btn-primary" id="popup-login">Login</button-->
+                        <p class="text-center"><b>Don't have an account?</b></p>
+                        <p class="text-center"><a href="itljobs-registration.php"> Create Account</a></p>
                     </div>
                 </div>
             </div>

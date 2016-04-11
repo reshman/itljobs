@@ -38,8 +38,52 @@
         <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/notify.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
 </head>
+
+<script>
+    $(function(){
+        $("#login-popup").validate({
+
+            // Specify the validation rules
+
+
+            rules: {
+
+                'popup-email':{required:true, email:true},
+                'popup-password':{required:true}
+            },
+            // Specify the validation error messages
+
+            messages: {
+
+
+            },
+
+            submitHandler: function (form) {
+                var email    = $.trim($('#popup-email').val());
+                var password = $.trim($('#popup-password').val());
+                if (email != '' && password != '') {
+                    $.ajax({
+                        url:'popup-login.php?email='+email+'&password='+password
+                    }).done(function(status){
+                        if (status == 'SUCCESS') {
+                            window.location.reload();
+                        } else {
+                            $('#errorMsg').html("<div class='alert alert-danger'>"+status+"</div>");
+                        }
+                    })
+                }
+                //form.submit();
+
+            }
+
+        });
+    })
+</script>
+
+
 <body>
 
 		<!-- Header
@@ -135,6 +179,8 @@
 			================================================== -->
         
           <?php  include("footer.php");?>
+
+
 		
 		<!-- End footer -->
 
@@ -146,17 +192,18 @@
                         <h3 class="modal-title" id="myModalLabel">LOGIN</h3>
                     </div>
                     <div class="modal-body">
-                        <form id="login-popup">
+                        <div id="errorMsg"></div>
+                        <form id="login-popup" action="#" novalidate>
                             <div class="form-group">
                                 <!--label for="exampleInputEmail1">Email address</label-->
-                                <input type="email" class="form-control" id="popup-email" placeholder="Email">
+                                <input type="email" name="popup-email" class="form-control" id="popup-email" placeholder="Email">
                             </div>
                             <div class="form-group">
                                 <!--label for="exampleInputPassword1">Password</label-->
-                                <input type="password" class="form-control" id="popup-password" placeholder="Password">
+                                <input type="password" name="popup-password" class="form-control" id="popup-password" placeholder="Password">
                             </div>
 
-                            <div id="log"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><input type="submit" value="LOGIN"></a></div>
+                            <div id="log"><a href="javascript:void(0)" ><input type="submit" value="LOGIN"></a></div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -172,21 +219,6 @@
 
 
         <script>
-        $(function(){
-            $('#popup-login').on('click', function(){
-                var email    = $.trim($('#popup-email').val());
-                var password = $.trim($('#popup-password').val());
-                if (email != '' && password != '') {
-                    $.ajax({
-                        url:'popup-login.php?email='+email+'&password='+password
-                    }).done(function(status){
-                        if (status == 'SUCCESS') {
-                            window.location.reload();
-                        }
-                    })
-                }
-            });
-        });
 
         function view(job_id, $this) {
             var current = $this;

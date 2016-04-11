@@ -14,5 +14,5 @@ if (mysql_num_rows($result) > 0) {
     $_SESSION['logged_name'] = ucwords($userRow['name']);
     die('SUCCESS');
 } else {
-    die('ERROR');
+    die('Username or Password is incorrect!');
 }
