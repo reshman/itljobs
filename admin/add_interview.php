@@ -74,72 +74,13 @@
 
         <script src="ckeditor/ckeditor.js"></script>
         
-        
+     <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+     <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
         
      <link href="css/datepicker.css" rel="stylesheet" />
      <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
      <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.css" rel="stylesheet" />
-         <script>
-
-            // When the browser is ready...
-
-            $(function () {
-
-                // Setup form validation on the #register-form element
-
-                $("#frm").validate({
-
-                    // Specify the validation rules
-
-                    rules: {
-                        
-                        name: {required:true,lettersonly:true},
-                        title: "required",
-                        date: {required:true, dateFormat: true},
-                        description: "required",
-                        company_name: {required:true,lettersonly:true},
-                        time : "required",
-                        venue : {required:true,lettersonly:true},
-                        interview : "required",
-                        contact : {
-                        required: true,
-                        digits  :true,
-                        minlength: 10, //or look at the additional-methods.js to see available phone validations
-                        maxlength: 15
-                        }
-                    },
-                    // Specify the validation error messages
-
-                    messages: {
-
-                        name: {required:"Please enter name",lettersonly:"Please enter letters only"},
-                        title: "Please select job category",
-                        date: {required: "Please enter date",dateFormat: "Please enter a date in the format dd/mm/yyyy."},
-                        description: "Please enter description",
-                        company_name: {required:"Please enter company name",lettersonly:"Please enter letters only"},
-                        time: "Please enter time",
-                        venue: {required:"Please enter venue",lettersonly:"Please enter letters only"},
-                        interview: "please select interview",
-                        contact:{
-                        required: "Please enter your contact number.",
-                        digits: "Enter digits only",
-                        minlength: "Enter valid contact number",
-                        maxlength: "Enter valid contact number"
-                        }
-                    },
-                    
-                    submitHandler: function (form) {
-
-                        form.submit();
-                    }
-                    
-                });
-                jQuery.validator.addMethod("lettersonly", function(value, element) {
-                    return this.optional(element) || /^[a-z\s]+$/i.test(value);
-                  });
-            });
-
-        </script>   
+           
 
 	<style>
          .error{
@@ -407,14 +348,73 @@
 
 <script src="dist/js/demo.js" type="text/javascript"></script>
 
- <script src="js/datepick.js"></script>
+<!-- <script src="js/datepick.js"></script>
  <script src="js/bootstrap-datepicker.js"></script>
- <script src="js/bootstrap-datetimepicker.min.js"></script>
-  <script>
-    $(function() {
-        $("#datepicker").datepicker();
-    });
- </script> 
+ <script src="js/bootstrap-datetimepicker.min.js"></script>-->
+<script>
+
+            // When the browser is ready...
+
+            $(function () {
+                $('#datepicker').datepicker({
+                    format:"dd/mm/yyyy",
+                    startDate: '11/04/2016'
+                });
+                // Setup form validation on the #register-form element
+
+                $("#frm").validate({
+                    
+                    // Specify the validation rules
+
+                    rules: {
+                        
+                        name: {required:true,lettersonly:true},
+                        title: "required",
+                        date: {required:true, dateFormat: true},
+                        description: "required",
+                        company_name: {required:true,lettersonly:true},
+                        time : "required",
+                        venue : {required:true,lettersonly:true},
+                        interview : "required",
+                        contact : {
+                        required: true,
+                        digits  :true,
+                        minlength: 10, //or look at the additional-methods.js to see available phone validations
+                        maxlength: 15
+                        }
+                    },
+                    // Specify the validation error messages
+
+                    messages: {
+
+                        name: {required:"Please enter name",lettersonly:"Please enter letters only"},
+                        title: "Please select job category",
+                        date: {required: "Please enter date",dateFormat: "Please enter a date in the format dd/mm/yyyy."},
+                        description: "Please enter description",
+                        company_name: {required:"Please enter company name",lettersonly:"Please enter letters only"},
+                        time: "Please enter time",
+                        venue: {required:"Please enter venue",lettersonly:"Please enter letters only"},
+                        interview: "please select interview",
+                        contact:{
+                        required: "Please enter your contact number.",
+                        digits: "Enter digits only",
+                        minlength: "Enter valid contact number",
+                        maxlength: "Enter valid contact number"
+                        }
+                    },
+                    
+                    submitHandler: function (form) {
+
+                        form.submit();
+                    }
+                    
+                });
+                jQuery.validator.addMethod("lettersonly", function(value, element) {
+                    return this.optional(element) || /^[a-z\s]+$/i.test(value);
+                  });
+            });
+
+        </script> 
   <script type="text/javascript">
             $('#timepicker1').timepicker();
   </script>
