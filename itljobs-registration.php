@@ -181,7 +181,7 @@
         <div class="col-md-4">
            <!-- <input name="qualification" id="qualification" type="text" placeholder="QUALIFICATION ">    -->
            <select name="qualification">
-            <option disabled="" selected="">Select Qualification</option>   
+            <option disabled="" selected="">SELECT QUALIFICATION</option>   
             <option value="B.A">B.A</option>
             <option value="B.Arch">B.Arch</option>
             <option value="BCA">BCA</option>
@@ -309,7 +309,7 @@
             <div class="col-md-12">
 
             <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV" >
-            <label for="f02">UPLOAD YOUR CV (Pdf Only)</label>
+            <label for="f02">UPLOAD YOUR CV (PDF ONLY)</label>
 
             </div>
             
@@ -549,7 +549,7 @@
 
                     messages: {
                         title: "Please select title",
-                        name: "Please enter your full name",
+                        name: {required:"Please enter your full name"},
                         job_category_id: "Please select job applied for",
                         sub_category:"Please select job title",
                         india: "Please enter experience in India",
@@ -561,7 +561,7 @@
                         minlength: "Enter valid contact number",
                         maxlength: "Enter valid contact number"
                         },
-                        specification:"Please enter specification",
+                        specification:{required:"Please enter specification"},
                         qualification:"Please enter qualification",
                         current_location:"Please enter current location",
                         

@@ -1,8 +1,6 @@
 <?php
 
 require('db.php');
-// include("logincheck.php");
-session_start();
 $urlin = "edit-recruiterprofile.php";
 
 //$sResultFileName = "";
@@ -23,7 +21,7 @@ $countresultemail = Db::query($countemail);
 $countdtable=mysql_num_rows($countresultemail); 
 if($countdtable==1){
 
-  $sql    = sprintf("UPDATE employers SET company_name = '%s', designation = '%s', mobile = '%s', enquiry_requirement = '%s' WHERE user_id = '%s'", $companyname, $designation, $mobile,$enquiry,$id); 
+  $sql    = sprintf("UPDATE employers SET company_name = '%s', designation = '%s', mobile = '%s', enquiry_requirement = '%s',country='%s' WHERE user_id = '%s'", $companyname, $designation, $mobile,$enquiry,$country,$id); 
 $resultedit = Db::query($sql);
 
 $sql    = sprintf("UPDATE users SET name = '%s',email = '%s' WHERE id = '%s'", $name, $email,$id);
