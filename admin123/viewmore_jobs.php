@@ -83,14 +83,14 @@
                                                     <tr><th>Created date</th><td><?php echo $row['created_date']; ?></td></tr>
                                                     <tr><th>Closing date</th><td><?php echo $row['closing_date']; ?></td></tr>
                                                     <tr><th>Name</th><td><?php echo $row['name']; ?></td></tr>
-                                                    <tr><th>Order</th><td><input type="number" name="order" id="order" class="order" value="<?php echo $row['job_order'];?>"/>
+<!--                                                    <tr><th>Order</th><td><input type="number" name="order" id="order" class="order" value="<?php echo $row['job_order'];?>"/>
                                                         <a onclick="updatecheck(this)" class="btn btn-primary">update</a>
                                                         <input type="hidden" name="id" id="id" value="<?php echo $row['jobid'];?>"/>
-                                                    </td></tr>
+                                                    </td></tr>-->
                                                       
-                                                    <tr><th>Status</th><td>
+<!--                                                    <tr><th>Status</th><td>
                                                       <input <?php echo ($row['active']=='1') ? 'checked' : '';?> rowid="<?php echo $row['jobid'];?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
-                                                  </td> </tr>     
+                                                  </td> </tr>     -->
                                                    <tr><th>Delete</th><td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_jobs.php?delid=<?= $row['jobid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
                                                 <?php
@@ -145,6 +145,28 @@
                                                             });
                                                         });
         </script>
+        
+        <script>
+
+           $(function() {
+
+               $('.toggle-event').on("change",function() {
+//                   alert("asda");
+                   var status = $(this).prop('checked')===true?'1':'0';
+                   var rowId  = $(this).attr('rowid');
+       //            alert(status);
+                   url = "active_inactive.php";
+                   $.ajax({
+                       url:url,
+                       type:'POST',
+                       data:{id:rowId, status:status}
+                   }).done(function( data ) {
+                      // location.reload();
+                   });
+
+               });
+           });
+       </script>
         <script>
             function deleteConfirm(href) {
                 var ask = window.confirm("Are you sure you want to delete this item?");
@@ -158,29 +180,26 @@
                 });
             });
         </script>
-
- <script>
-
+       <script>
     $(function() {
-
+        
         $('.toggle-event').change(function() {
-            alert("asda");
-            var status = $(this).prop('checked')==true?'1':'0';
-            var rowId  = $(this).attr('rowid');
-//            alert(status);
-            url = "active_inactive.php";
+            //alert("asda");
+            var status = $(this).prop('checked')===true?'1':'0';
+            var rowId  = $(this).val();
+            url = "active_employer.php";
             $.ajax({
                 url:url,
                 type:'POST',
                 data:{id:rowId, status:status}
             }).done(function( data ) {
-               // location.reload();
+//                alert(data);
             });
 
         });
+
     });
 </script>
-
 <script>
 //    $(function(){
      function updatecheck($this) { 

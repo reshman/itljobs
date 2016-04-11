@@ -13,8 +13,9 @@ session_start();
    $location          = trim($_POST['location']);
    $create_date       = trim($_POST['create_date']);
    $create_date       = date("Y-m-d", strtotime($create_date));
-   $closing_date      = trim($_POST['closing_date']);
-   $closing_date      = date("Y-m-d", strtotime($closing_date));
+   $closing_date1     = trim($_POST['closing_date']);
+   $close_date        = explode('/', $closing_date1);
+   $closing_date      = $close_date[2].'-'.$close_date[1].'-'.$close_date[0]; 
    $job_cat           = trim($_POST['job_cat']);
    $user_id           = $_SESSION['id'];
    

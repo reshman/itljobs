@@ -69,7 +69,6 @@
                                                 <th>Title</th>
                                                 <th>Experience</th>
                                                 <th>Job Location</th>
-                                                <th>Created date</th>
                                                 <th>Closing date</th>
                                                 <th>Name</th>
                                                 <th>View more</th>
@@ -95,7 +94,6 @@
                                                     <td><?php echo $row['job_listing']; ?></td>
                                                     <td><?php echo $row['experience']; ?></td>
                                                     <td><?php echo $row['job_location']; ?></td>
-                                                    <td><?php echo $row['created_date']; ?></td>
                                                     <td><?php echo $row['closing_date']; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><a href="viewmore_jobs.php?id=<?php echo $row['jobid'];?>" target="_BLANK">view more</a></td>

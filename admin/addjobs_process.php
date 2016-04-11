@@ -11,20 +11,17 @@ session_start();
    $experience        = trim($_POST['experience']);
    $location          = trim($_POST['location']);
    $create_date1      = trim($_POST['create_date']);
-   $create_date       = date("Y-m-d", strtotime($create_date1));
+   $create_date       = date("Y-m-d", strtotime($create_date1)); 
    $closing_date1     = trim($_POST['closing_date']);
-   $closing_date      = date("Y-m-d", strtotime($closing_date1));
+  $close_date         = explode('/', $closing_date1);
+  $closing_date       = $close_date[2].'-'.$close_date[1].'-'.$close_date[0];
+
    $job_cat           = trim($_POST['job_cat']);
    $user_id           = $_SESSION['id'];
    
    date_default_timezone_set('Asia/Calcutta'); 
    $date         = date("Y-m-d h:i:s"); 
-   //echo $user_id; die;
 
-//   if($closing_date<$create_date){
-//      $_SESSION['addsucc']=3;
-//    }
-//   else {
    $sql = sprintf("INSERT INTO `jobs`(job_listing,job_description,experience,job_location,created_date,closing_date,company_name,job_type,job_category_id,user_id,date) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",$title,$job_description,$experience,$location,$create_date,$closing_date,$company,$job_type,$job_cat,$user_id,$date);
    $result = Db::query($sql);
    
@@ -43,7 +40,7 @@ session_start();
 		
 	}
 
-//}
+
  $urlin= "add_jobs.php";
 echo "<script type='text/javascript'>
 
