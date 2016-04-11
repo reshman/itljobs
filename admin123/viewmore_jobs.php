@@ -64,53 +64,37 @@
                          
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
-                                           <tr>
-                                                <th>Sl.No</th>
-                                                <th>Title</th>
-                                                <th>Experience</th>
-                                                <th>Job Location</th>
-                                                <th>Created date</th>
-                                                <th>Closing date</th>
-                                                <th>Name</th>
-                                                <th>View more</th>
-                                                <th>Order</th>
-                                                <th>Status</th>
-                                                <!--<th>Edit</th>-->
-                                                <th>Delete</th>
-                                            </tr>
                                         </thead>
                                        <tbody>
                                           <?php 
-                                          $i = 1;
+                                          $id = $_REQUEST['id'];
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d');
-                                          $query = sprintf("SELECT jc.id,jc.name,j.id as jobid,j.job_listing,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE del_status='%s' AND closing_date>='%s'",0,$today_date);
+                                          $query = sprintf("SELECT jc.id,jc.name,j.id as jobid,j.job_listing,j.job_description,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE j.del_status='%s' AND j.closing_date>='%s' AND j.id='%s'",0,$today_date,$id);
                                                
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {
                                           ?>
                                            
-                                                <tr>
-                                                    <td><?php echo $i; ?></td>
-                                                    <td><?php echo $row['job_listing']; ?></td>
-                                                    <td><?php echo $row['experience']; ?></td>
-                                                    <td><?php echo $row['job_location']; ?></td>
-                                                    <td><?php echo $row['created_date']; ?></td>
-                                                    <td><?php echo $row['closing_date']; ?></td>
-                                                    <td><?php echo $row['name']; ?></td>
-                                                    <td><a href="viewmore_jobs.php?id=<?php echo $row['jobid'];?>" target="_BLANK">view more</a></td>
-                                                    <td><input type="number" name="order" id="order" class="order" value="<?php echo $row['job_order'];?>"/>
+                                                    <tr><th>Title</th><td><?php echo $row['job_listing']; ?></td></tr>
+                                                    <tr><th>Job Description</th><td><?php echo $row['job_description']; ?></td></tr>
+                                                    <tr><th>Experience</th><td><?php echo $row['experience']; ?></td></tr>
+                                                    <tr><th>Job Location</th><td><?php echo $row['job_location']; ?></td></tr>
+                                                    <tr><th>Created date</th><td><?php echo $row['created_date']; ?></td></tr>
+                                                    <tr><th>Closing date</th><td><?php echo $row['closing_date']; ?></td></tr>
+                                                    <tr><th>Name</th><td><?php echo $row['name']; ?></td></tr>
+                                                    <tr><th>Order</th><td><input type="number" name="order" id="order" class="order" value="<?php echo $row['job_order'];?>"/>
                                                         <a onclick="updatecheck(this)" class="btn btn-primary">update</a>
                                                         <input type="hidden" name="id" id="id" value="<?php echo $row['jobid'];?>"/>
-                                                    </td>
+                                                    </td></tr>
                                                       
-                                                    <td>
+                                                    <tr><th>Status</th><td>
                                                       <input <?php echo ($row['active']=='1') ? 'checked' : '';?> rowid="<?php echo $row['jobid'];?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
-                                                  </td>      
-                                                   <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_jobs.php?delid=<?= $row['jobid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                                  </td> </tr>     
+                                                   <tr><th>Delete</th><td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_jobs.php?delid=<?= $row['jobid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
                                                 <?php
-                                                $i = $i + 1;
+                                                
                                             }
                                             ?>
                                         </tbody>
@@ -180,7 +164,7 @@
     $(function() {
 
         $('.toggle-event').change(function() {
-//            alert("asda");
+            alert("asda");
             var status = $(this).prop('checked')==true?'1':'0';
             var rowId  = $(this).attr('rowid');
 //            alert(status);
