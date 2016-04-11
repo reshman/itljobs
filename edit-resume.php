@@ -99,7 +99,7 @@ include 'header.php';
 <section class="register-section services-offer-section services-page-section">
 <div class="container">
 <div class="title-section">
-    <h1>EDIT MY PROFILE</h1>
+    <h1>EDIT RESUME</h1>
 </div>
 <?php include('myprofile-sidemenu.php');?>
 <div class="col-md-10">
@@ -303,7 +303,7 @@ if ($_SESSION['editsucc'] != '') {
     </div>
 
     <div class="col-md-4">
-        <input name="email" id="email" type="text" placeholder="EMAIL " value="<?php echo $rowresult['email']?>">
+        <input name="email" id="email" type="text" placeholder="EMAIL " value="<?php echo $rowresult['email']?>" readonly>
     </div>
 
     <div class="col-md-4">

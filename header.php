@@ -64,6 +64,10 @@
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="my-profile.php">My Profile</a></li>
+                                            <li><a href="edit-resume.php">Edit Resume</a></li>
+                                            <li><a href="my-jobs.php">My Jobs</a></li>
+                                            <li><a href="alerts.php">Alerts</a></li>
+                                            <li><a href="changepassword.php">Change Password</a></li>
                                             <li role="separator" class="divider"></li>
                                             <li><a href="itljobs-logout.php">Logout</a></li>
                                         </ul>
