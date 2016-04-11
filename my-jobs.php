@@ -155,18 +155,23 @@
     </div> -->   
         <!-- services-offer 
 			================================================== -->
-		<section class="services-offer-section">
+		<section class="services-offer-section services-page-section">
 		<div class="container">
+            <div class="title-section">
+                <h1>MY JOBS</h1>
+            </div>
 		<div class="services-box ser-box2">
-                
+               <?php include('myprofile-sidemenu.php');?>
 
-               <div class="col-md-12">
+               <div class="col-md-10">
 						<div class="accordion-box">
 							<div class="accord-elem">
 								<div class="accord-title">
 									<a class="accord-link" href="#"></a>
 									<h2>SAVED</h2>
 								</div>
+
+
                                                             <?php
                                                             include 'db.php';
                                                             $query = sprintf("SELECT j.job_listing, j.job_description,j.id, j.experience,j.job_location,j.closing_date  FROM jobs j JOIN  jobs_saved js ON j.id = js.job_id WHERE js.user_id = '%s' AND js.del_status = '%s'", $id, 0);

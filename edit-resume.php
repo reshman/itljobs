@@ -93,11 +93,16 @@ include 'header.php';
 
     </div>
 </section>
-<section class="register-section">
+
+
+
+<section class="register-section services-offer-section services-page-section">
 <div class="container">
 <div class="title-section">
     <h1>EDIT MY PROFILE</h1>
 </div>
+<?php include('myprofile-sidemenu.php');?>
+<div class="col-md-10">
 <form id="contact-form" method="POST" action="editresume-process.php" enctype="multipart/form-data">
 
 <?php
@@ -344,7 +349,7 @@ if ($_SESSION['editsucc'] != '') {
 
 </form>
 
-</div>
+</div> <!-- 00 -->
 </div>
 </section>
 <!-- End services-offer section -->

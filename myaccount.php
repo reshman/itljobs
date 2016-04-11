@@ -144,64 +144,70 @@
    
         <!-- services-offer 
 			================================================== -->
-	<section class="register-section">
+	<section class="register-section services-offer-section services-page-section">
         <div class="container">
         <div class="title-section">
         <h1>CHANGE PASSWORD</h1>
 		</div>
-                                         <?php
-                                         
-                                                    error_reporting(0);
-                                                    ?><div class="panel-body"><?php
-                                                    if (isset($_SESSION['invalid'])) {
-                                                        if ($_SESSION['invalid'] == '1') {
-                                                            ?>
-                                                                <div class="alert alert-success">
-                                                                    Your password is changed successfully.
-                                                                </div>
 
-                                                                <?php
-                                                            }
-                                                            else {
-                                                                ?>
-                                                                
-                                                                <div class="alert alert-danger">
-                                                                    Incorrect Old password
-                                                                </div>
-                                                                <?php
-                                                                }
-                                                                unset($_SESSION['invalid']);
-                                                            } 
-                                               ?>
-        <form id="contact-form" method="POST" action="changepassword.php" enctype="multipart/form-data">  
-            
-        <div class="col-md-12">
-            <div class="col-md-12">
-            <input name="opassword" id="opassword" type="password" placeholder="ENTER OLD PASSWORD">    
-            </div>
-  
+         <?php
+
+                    error_reporting(0);
+                    ?><div class="panel-body"><?php
+                    if (isset($_SESSION['invalid'])) {
+                        if ($_SESSION['invalid'] == '1') {
+                            ?>
+                                <div class="alert alert-success">
+                                    Your password is changed successfully.
+                                </div>
+
+                                <?php
+                            }
+                            else {
+                                ?>
+
+                                <div class="alert alert-danger">
+                                    Incorrect Old password
+                                </div>
+                                <?php
+                                }
+                                unset($_SESSION['invalid']);
+                            }
+               ?>
+
+        <?php include('myprofile-sidemenu.php');?>
+        <div class="col-md-10">
+            <form id="contact-form" method="POST" action="changepassword.php" enctype="multipart/form-data">
+
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <input name="opassword" id="opassword" type="password" placeholder="ENTER OLD PASSWORD">
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <input name="npassword" id="npassword" type="password" placeholder="ENTER NEW PASSWORD">
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <input name="cpassword" id="cpassword" type="password" placeholder="CONFIRM PASSWORD">
+                    </div>
+
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div id="job">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-            <div class="col-md-12">
-            <div class="col-md-12">
-            <input name="npassword" id="npassword" type="password" placeholder="ENTER NEW PASSWORD">
-            </div>
-  
-        </div>
-            <div class="col-md-12">
-            <div class="col-md-12">
-            <input name="cpassword" id="cpassword" type="password" placeholder="CONFIRM PASSWORD">    
-            </div>
-  
-        </div>
-        
-       <div class="col-md-12">
-            <div class="col-md-12">
-            <div id="job">
-                <input type="submit" value="Submit">
-		</div>
-            </div>
-	</div>
-        </form>    
+
             
         </div>
 		</section>

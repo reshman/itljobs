@@ -169,7 +169,7 @@
                                    ?>
            <input type="hidden" name="id" id="id" value="<?php echo $user_id; ?>"/>
 
-       	   <section class="tables-page-section">
+       	   <section class="tables-page-section services-offer-section services-page-section">
             
                 
 			<div class="container">
@@ -177,7 +177,8 @@
 				<!--<div class="title-section">
 					<h1>ALERTS</h1>
 				</div>-->
-                                   
+                <?php include('myprofile-sidemenu.php');?>
+                <div class="col-md-10">
 				<div class="table-responsive">
                                    <div id="dissearch"></div>
                                    <div id="oldtable">
@@ -214,6 +215,8 @@
 
 					
 				</div>
+
+                </div>
                             </div>
 		</section>
 
