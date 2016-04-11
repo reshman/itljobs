@@ -44,6 +44,9 @@
          <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
          <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+    <script src="js/jquery.geocomplete.js"></script>
+
 </head>
 <body>
 
@@ -266,6 +269,10 @@
             // When the browser is ready...
 
             $(function () {
+                $("#location").geocomplete({
+                    types: ["geocode", "establishment"],
+                });
+
                 $('#datepicker1').datepicker({
                     format:"dd/mm/yyyy",
                     startDate: '11/04/2016'

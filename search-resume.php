@@ -38,6 +38,9 @@
         <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
 
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+        <script src="js/jquery.geocomplete.js"></script>
+
     </head>
     <body>
 
@@ -238,6 +241,10 @@
                         return false;
                     }
                     return true;
+                });
+
+                $("#location").geocomplete({
+                    types: ["geocode", "establishment"],
                 });
 
 
