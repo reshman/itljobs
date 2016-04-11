@@ -106,76 +106,107 @@
 
                                 </div>
 
-        <?php
-    }
-}
+                                <?php
+                            }
+                        }
 
-unset($_SESSION['regsucc']);
-?>   
+                        unset($_SESSION['regsucc']);
+                        ?>   
 
                         <div class="col-md-12"> 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <span class="post-title">COMPANY NAME: </span>    
                             </div>
 
-                            <div class="col-md-9">
-                                <input name="companyname" id="companyname" type="text" placeholder="">    
+                            <div class="col-md-8">
+                                <input name="companyname" id="companyname" type="text" placeholder="COMPANY NAME">    
                             </div>
                         </div> 
 
 
                         <div class="col-md-12"> 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
+                                <span class="post-title">CATEGORY:</span>    
+                            </div>
+
+                            <div class="col-md-8">
+                                <select name="category" id="category">
+                                    <?php
+                                    $qry = sprintf("SELECT * FROM `job_categories`");
+                                    $res = Db::query($qry);
+                                    while ($row = mysql_fetch_array($res)) {
+                                        ?>
+                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
+
+                                    <?php } ?>
+
+                                </select>    
+                            </div>
+
+                        </div> 
+
+                        <div class="col-md-12"> 
+                            <div class="col-md-3">
                                 <span class="post-title">JOB TITLE:</span>    
                             </div>
 
-                            <div class="col-md-9">
-                                <input name="companytitle" id="companytitle" type="text" placeholder="">    
+                            <div class="col-md-8">
+                                <input name="companytitle" id="companytitle" type="text" placeholder="JOB TITLE">    
                             </div>
 
                         </div> 
 
 
                         <div class="col-md-12"> 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <span class="post-title">JOB DESCRIPTION:</span>    
                             </div>
 
-                            <div class="col-md-9">
-                                <textarea name="description" id="description" placeholder=""></textarea>    
+                            <div class="col-md-8">
+                                <textarea name="description" id="description" placeholder="DESCRIPTION"></textarea>    
                             </div>
 
                         </div>  
+                        <div class="col-md-12"> 
+                            <div class="col-md-3">
+                                <span class="post-title">EXPERIENCE(IN YEARS):</span>    
+                            </div>
+
+                            <div class="col-md-8">
+                                <input name="experience" id="experience" type="text" placeholder="EXPERIENCE">    
+                            </div>
+
+                        </div> 
 
 
                         <div class="col-md-12"> 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <span class="post-title">LOCATION:</span>    
                             </div>
 
-                            <div class="col-md-9">
-                                <input name="location" id="location" type="text" placeholder="">    
+                            <div class="col-md-8">
+                                <input name="location" id="location" type="text" placeholder="LOCATION">    
                             </div>
 
                         </div> 
 
                         <div class="col-md-12"> 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <span class="post-title">CREATED DATE:</span>    
                             </div>
 
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <input name="create_date" type="text" value="<?php echo date('d/m/Y'); ?>" readonly>    
                             </div>
 
                         </div>
 
                         <div class="col-md-12"> 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <span class="post-title">CLOSING DATE:</span>    
                             </div>
 
-                            <div class="col-md-9">        
+                            <div class="col-md-8">        
                                 <input id="datepicker1" name="closing_date" type="text" placeholder="Closing Date" readonly>    
                             </div>
 
@@ -183,11 +214,11 @@ unset($_SESSION['regsucc']);
 
 
                         <div class="col-md-12"> 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <span class="post-title">JOB TYPE:</span>    
                             </div>
 
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <select name="jobtype">
 
                                     <option>FULL TIME</option>
@@ -220,12 +251,12 @@ unset($_SESSION['regsucc']);
                                 </div>-->
 
                         <div class="col-md-12"> 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <span class="post-title">SALARY:</span>    
                             </div>
 
-                            <div class="col-md-7">
-                                <input name="salary" id="salary" type="text" placeholder="">      
+                            <div class="col-md-6">
+                                <input name="salary" id="salary" type="text" placeholder="SALARY (minimum - maximum)">      
                             </div>
 
                             <div class="col-md-2">
@@ -258,7 +289,7 @@ unset($_SESSION['regsucc']);
         <!-- footer 
                         ================================================== -->
 
-<?php include("footer.php"); ?>
+        <?php include("footer.php"); ?>
 
         <!-- End footer -->
 
@@ -304,7 +335,8 @@ unset($_SESSION['regsucc']);
                         jobtype: "required",
                         salary: {required: true, salrange: true},
                         salarycat: "required",
-                        closing_date: "required"
+                        closing_date: "required",
+                        experience:{required:true,digits:true}
 
                     },
                     // Specify the validation error messages
@@ -317,7 +349,8 @@ unset($_SESSION['regsucc']);
                         jobtype: "Please Enter Jobtype",
                         salary: {required: "Please Enter Salary"},
                         salarycat: "Please Enter Salary Category",
-                        closing_date: "Please Enter a Closing Date"
+                        closing_date: "Please Enter a Closing Date",
+                        experience:{required:"Please Enter Experience",digits:"Use only digits like 1,2.."}
 
                     },
                     submitHandler: function (form) {
@@ -369,7 +402,7 @@ unset($_SESSION['regsucc']);
                             stopAtSlide: -1,
                             shuffle: "off",
                             autoHeight: "off",
-            forceFullWidth: "off",
+                            forceFullWidth: "off",
                             hideThumbsOnMobile: "off",
                             hideNavDelayOnMobile: 1500,
                             hideBulletsOnMobile: "off",
