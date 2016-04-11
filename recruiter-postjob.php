@@ -310,14 +310,14 @@ unset($_SESSION['regsucc']);
                     // Specify the validation error messages
 
                     messages: {
-                        companyname: {required: "Please enter company name"},
-                        companytitle: {required: "Please enter company title"},
-                        description: "Please enter description",
-                        location: "Please enter location",
-                        jobtype: "Please enter jobtype",
-                        salary: {required: "Please enter salary"},
-                        salarycat: "Please enter salary category",
-                        closing_date: "Please enter a Closing Date"
+                        companyname: {required: "Please Enter company name"},
+                        companytitle: {required: "Please Enter Job title"},
+                        description: "Please Enter Description",
+                        location: "Please Enter Location",
+                        jobtype: "Please Enter Jobtype",
+                        salary: {required: "Please Enter Salary"},
+                        salarycat: "Please Enter Salary Category",
+                        closing_date: "Please Enter a Closing Date"
 
                     },
                     submitHandler: function (form) {

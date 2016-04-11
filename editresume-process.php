@@ -59,6 +59,8 @@ $indexp_year = "$india_exp year(s)";
 
 $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $test_file = basename($_FILES["fileToUpload"]["name"]);
+        if($test_file!=''){
       //  echo $target_file; exit;
         $uploadOk = 1;
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -90,7 +92,7 @@ $target_dir = "uploads/";
         }
 
        $filename = $sImage;
-
+        }
 
  if($filename != NULL)   {
 
