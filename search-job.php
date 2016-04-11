@@ -62,7 +62,7 @@
 <section class="page-banner-section">
 			<div class="container">
                 <div class="row">
-                    <div class="search-box">
+                    <div class="sea-box">
                         <form method="GET" action="search-job.php" enctype="multipart/form-data">
                             <input type="text" value="<?php echo $keyword;?>" placeholder="JOB TITLE,KEYWORDS" id="box1" name="q">
                             <input type="text" value="<?php echo $location;?>" placeholder="COUNTRY" id="box2" name="l">
