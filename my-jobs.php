@@ -39,6 +39,7 @@
         <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/jquery.blockui.js"></script>
+    <script type="text/javascript" src="js/notify.js"></script>
 
 </head>
 <body>
@@ -176,9 +177,9 @@
                                                             <div class="accord-content" style="display: none;" id="accord-saved-<?php echo $row['id'];?>">
                                                                 <h4><?php echo $row['job_listing'];?></h4>
                                                                 <p><?php echo $row['job_description'];?></p>
-                                                                <p><span style="color:#6495ED">Experience : </span><?php echo $row['experience'];?> years,
+                                                                <p><span style="color:#6495ED">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'].' year': $row['experience'].' years';?>,
                                                                 <span style="color:#6495ED">Location : </span><?php echo $row['job_location'];?>,
-                                                                <span style="color:#6495ED">Closing date : </span><?php echo $row['closing_date'];?></p> 
+                                                                <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date']));?></p>
                                                                 <input type="hidden" name="bid" id="bid" value="<?php echo $row['id'];?>"/>
                                                             
                                                                  <div class="dropdown">
@@ -215,9 +216,9 @@
                                             <div class="accord-content" style="display: none;">
                                                 <h4><?php echo $rw['job_listing'];?></h4>
                                                 <p><?php echo $rw['job_description'];?></p>
-                                                <p><span style="color:#6495ED">Experience : </span><?php echo $rw['experience'];?> years,
+                                                <p><span style="color:#6495ED">Experience : </span><?php echo ($rw['experience'] == 0) ? $rw['experience'].' year': $rw['experience'].' years';?>,
                                                 <span style="color:#6495ED">Location : </span><?php echo $rw['job_location'];?>,
-                                                <span style="color:#6495ED">Closing date : </span><?php echo $rw['closing_date'];?></p>
+                                                <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($rw['closing_date']));?></p>
                                                  <input type="hidden" name="jbid" id="jbid" value="<?php echo $rw['id'];?>"/>
 
                                             </div>
@@ -280,9 +281,9 @@
 								<div class="accord-content" style="" id="accord-offered-<?php echo $rwofr['id'];?>">
 								<h4><?php echo $rwofr['job_listing'];?></h4>
                                                                 <p><?php echo $rwofr['job_description'];?></p>
-                                                                <p><span style="color:#6495ED">Experience : </span><?php echo $rwofr['experience'];?> years,
+                                                                <p><span style="color:#6495ED">Experience : </span><?php echo ($rwofr['experience'] == 0) ? $rwofr['experience'].' year': $rwofr['experience'].' years';?>,
                                                                 <span style="color:#6495ED">Location : </span><?php echo $rwofr['job_location'];?>,
-                                                                <span style="color:#6495ED">Closing date : </span><?php echo $rwofr['closing_date'];?></p>
+                                                                <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($rwofr['closing_date']));?></p>
                                                                 <input type="submit" value="Apply Now" onclick="offered(<?php echo $rwofr['id'];?>, this)"/>
 								</div>
                                                             <?php
@@ -317,24 +318,14 @@
 
             function apply(job_id, $this) {
                 var current = $this;
-                /*$.blockUI({ css: {
-                    border: 'none',
-                    padding: '15px',
-                    backgroundColor: '#000',
-                    '-webkit-border-radius': '10px',
-                    '-moz-border-radius': '10px',
-                    opacity: .5,
-                    color: '#fff'
-                },
-                    message:'Loading'
-                });*/
                 $.ajax({
-                    url:'ajax-job-saved-appiled.php?jobid='+job_id
+                    url:'ajax-jobs-saved-appiled.php?jobid='+job_id
                 }).done(function(data) {
                     //$.unblockUI;
                     $('#applied-affix').append(data);
                     $('#accord-saved-'+job_id).empty();
-                    $.growlUI('SAVED JOBS', 'Job Applied Successfully');
+                    $.notify("Job Applied Successfully", "success");
+                    //$.growlUI('SAVED JOBS', 'Job Applied Successfully');
                     //if (data == 'SUCCESS') {
 
                         //$.unblockUI;
@@ -352,7 +343,8 @@
                 }).done(function(data){
                     $('#accord-offered-'+jobid).remove();
                     $('#applied-affix').append(data);
-                    $.growlUI('OFFERED JOBS', 'Offered Job Applied Successfully');
+                    $.notify("Offered Job Applied Successfully", "success");
+                    //$.growlUI('OFFERED JOBS', 'Offered Job Applied Successfully');
                 });
             }
 
