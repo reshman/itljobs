@@ -63,7 +63,7 @@
 
             </div>
         </section>
-        <section class="register-section">
+        <section class="register-section services-offer-section services-page-section">
             <div class="container">
                 <div class="title-section">
                     <h1>FILTER RESUMES</h1></div>
@@ -73,7 +73,8 @@
                 }
                 ?>
 
-
+                <div class="col-lg-2"><?php include('myprofile-sidemenu.php'); ?></div>
+                <div class="col-lg-10">
                 <form id="contact-form" method="POST" action="search.php" enctype="multipart/form-data">
 
                     <div class="col-md-12"> 
@@ -193,7 +194,7 @@
                     </div>    
 
                 </form>    
-
+                </div>
 
 
 

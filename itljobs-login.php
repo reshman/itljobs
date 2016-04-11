@@ -346,7 +346,7 @@
             data: {femail: femail},
               success: function (data) {
             if (data == '1') {
-                alert("Check your email for your new password.")
+                alert("Check your email for your new password.");
                 window.location = "itljobs-login.php";
                 return true;
             } else {

@@ -149,11 +149,14 @@
 
             <!-- services-offer 
                             ================================================== -->
-            <section class="register-section">
+            <section class="register-section services-offer-section services-page-section">
                 <div class="container">
+                    
                     <div class="title-section">
                         <h1>EDIT RECRUITER PROFILE</h1>
                     </div>
+                    <div class="col-lg-2"><?php include('myprofile-sidemenu.php');?></div>
+                    <div class="col-lg-10">
                     <form id="contact-form" method="POST" action="updaterecruiter-profile.php" enctype="multipart/form-data">  
                         <?php
                         if (isset($_SESSION['editsucc']) != '') {
@@ -487,7 +490,7 @@ unset($_SESSION['editsucc']);
                         </div>
 
                     </form>   
-
+                    </div>
                 </div>
 
 
