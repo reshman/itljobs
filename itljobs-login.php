@@ -199,7 +199,7 @@
                </div>
              
                 <div class="modal-footer">
-                  <button onclick="forgot()" type="button" class="btn btn-primary btn-lg" >Submit</button>
+                  <button type="button" class="btn btn-primary btn-lg" id="forgot-submit">Submit</button>
                 </div>
 
               </div>
@@ -337,8 +337,7 @@
 
         </script>
   <script>
-    function forgot() {
-        //alert("test");
+    $('#forgot-submit').click(function() {
         var femail = document.getElementById("field-forgotemail").value;
         
         $.ajax({ 
@@ -346,9 +345,8 @@
             url: 'forgot-password.php',
             data: {femail: femail},
               success: function (data) {
-            if (data == 1) {
-                //alert("New Password Sent Successfuly");
-                
+            if (data == '1') {
+                alert("Check your email for your new password.")
                 window.location = "itljobs-login.php";
                 return true;
             } else {
@@ -359,7 +357,7 @@
         }
         });
       
-    }
+    });
 </script>
 <!-- Revolution slider -->
 	<script type="text/javascript">

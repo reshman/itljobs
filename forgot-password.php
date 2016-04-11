@@ -26,11 +26,11 @@ function generateRandomString($length = 8) {
 $key = generateRandomString();
 $keymd = md5($key);
 //end random key generation
-$query =  sprintf("Update `users` set password='%s' where email='%s' AND del_status='%s' limit 1",$keymd,$femail,0);
+$query =  sprintf("Update `users` set password='%s' where email='%s' AND del_status='%s'",$keymd,$femail,0);
 Db::query($query);
 //send key
 
-    $row = mysql_fetch_assoc($result);
+    $row = mysql_fetch_array($result);
     $name = $row['name']; 
   //send activation mail
     $msg="Your password : ";
