@@ -173,7 +173,7 @@
     -moz-transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
-    padding: 40px 15px 38px;
+    padding: 30px 15px 25px;
 }
 .navbar-nav > li > a:hover,
 .navbar-nav > li > a.active {
@@ -1330,9 +1330,13 @@ button.mfp-arrow {
     color: #666666;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    line-height: 20px;
+
     margin: 0 0 10px;
     margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    /* padding: 15px; */
+    padding-top: 10px;
+    padding-bottom: 15px;
 }
 .accord-elem.active .accord-content {
     display: block;
@@ -1640,8 +1644,8 @@ button.mfp-arrow {
 /* =  about page
 /*-------------------------------------------------*/
 .page-banner-section {
-    margin-top: 190px;
-    padding: 70px 0;
+    margin-top: 170px;
+    padding: 50px 0;
     position: relative;
     background: url('../images/inner-banner.jpg') center;
     background-size: cover;
@@ -3948,7 +3952,7 @@ footer p.copyright {
     height: 98px;
     width: 100%;
     text-align: center;
-    z-index: 999;
+    z-index: 100;
     top: -50px;
     position: relative;
 }
@@ -4059,7 +4063,6 @@ footer p.copyright {
     box-shadow: 0 3px 9px rgba(0,0,0,.5);
     padding: 20px!important;
 }
-
 
 
 
