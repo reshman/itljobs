@@ -62,7 +62,9 @@
     <script src="//code.jquery.com/jquery-1.9.1.js"></script>
 
     <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-
+    
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+    <script src="js/jquery.geocomplete.js"></script>
 
     <script src="ckeditor/ckeditor.js"></script>
         
@@ -70,7 +72,7 @@
      <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
      <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.css" rel="stylesheet" />
 
-         <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
     <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
   
 
@@ -197,7 +199,7 @@
 
                             <?php
                             require_once("db.php");
-                            $sql    = sprintf("SELECT id,title,name,company_name,schedule_date,schedule_time,venue,interview,contact,description FROM interviews WHERE id = '%s'", $id); 
+                            $sql    = sprintf("SELECT id,title,name,company_name,country,salary,schedule_date,schedule_time,venue,interview,coordinator,contact,description FROM interviews WHERE id = '%s'", $id); 
                             $result = Db::query($sql);
                             $row    = array();
                             if (mysql_num_rows($result) > 0) {
@@ -210,12 +212,12 @@
                                              
                                 <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Name</label>
+                                            <label for="exampleInputEmail1">Position</label>
 
-                                            <input type="text" class="form-control" id="name" value="<?php echo $rowedit['name']?>" placeholder="Name" name="name">
+                                            <input type="text" class="form-control" id="name" value="<?php echo $rowedit['name']?>" placeholder="Position" name="name">
 
                                         </div>
-                                
+                                 
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail1">Job Category</label>
@@ -236,8 +238,22 @@
 
                                         </div>
                                         
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">Description</label>
+
+                                            <textarea  class="form-control" rows="3" placeholder="Enter ..." name="description"><?php echo $rowedit['description']?></textarea>
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">Salary Structure</label>
+
+                                            <input type="text" class="form-control" id="company_name" placeholder="Salary (minimum - maximum)" name="salary" value="<?php echo $rowedit['salary']?>">
+
+                                        </div>
                                          
-                                         <div class="form-group">
+                                        <div class="form-group">
 
                                             <label for="exampleInputEmail1">Company Name</label>
 
@@ -245,7 +261,12 @@
 
                                         </div>
                                         
-                                        
+                                        <div class="form-group">
+                                            <label>Country</label>
+
+                                            <input type="text" class="form-control" id="country" placeholder="Country" name="country" value="<?php echo $rowedit['country']?>">
+                                        </div>
+                               
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail1">Interview Date</label>
@@ -254,10 +275,10 @@
 
                                         </div>
                                
+                                        <div class="form-group">
                                         <label for="exampleInputEmail1">Interview Time</label>
-                                        <div class="input-group bootstrap-timepicker timepicker">
                                             <input id="timepicker1" type="text" class="form-control input-small" placeholder="Schedule Time" name="time" value="<?php echo $rowedit['schedule_time']?>"> 
-                                                <span class="input-group-addon"></span>
+                                              
                                         </div>
                                         
                                         <div class="form-group">
@@ -266,13 +287,13 @@
 
                                             <input type="text" class="form-control" id="venue" placeholder="Venue" name="venue" value="<?php echo $rowedit['venue']?>">
 
-                                        </div>   
-                                        
+                                        </div>  
+                               
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Description</label>
+                                            <label for="exampleInputEmail1">Name of co ordinator</label>
 
-                                            <textarea  class="form-control" rows="3" placeholder="Enter ..." name="description"><?php echo $rowedit['description']?></textarea>
+                                            <input type="text" class="form-control" id="coordinator" placeholder="Name of co ordinator" name="coordinator" value="<?php echo $rowedit['coordinator']?>">
 
                                         </div>
                                
@@ -363,8 +384,19 @@
             $(function () {
                 $('#datepicker').datepicker({
                     format:"dd/mm/yyyy",
-                    startDate: '11/04/2016'
+                    startDate: '0'
                 });
+                
+                 $("#country").geocomplete({
+                    types: ["geocode", "establishment"],
+                });
+                
+                $.validator.addMethod("dateFormat",
+                    function(value, element) {
+                        return value.match(/^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/);
+                    },
+                    "Please enter a date in the format dd/mm/yyyy."
+                );
                 // Setup form validation on the #register-form element
 
                 $("#frm").validate({

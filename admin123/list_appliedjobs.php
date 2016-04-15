@@ -71,12 +71,13 @@
                                                 <th>Candidate Name</th>
                                                 <th>Applied date</th>
                                                 <th>Job posted by</th>
+                                                <th>View more</th>
                                                 <th>Delete</th>
                                             </tr>
                                         </thead>
                                        <tbody>
                                           <?php
-                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id as jobuserid,ja.job_id,ja.user_id,ja.created_date,us.name FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id");
+                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id as jobuserid,ja.id as apid,ja.job_id,ja.user_id,ja.created_date,us.name FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id");
                                           $res = Db::query($qry);
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
@@ -101,6 +102,7 @@
                                                     $jpid =  $rowres['name'];
                                                     ?>
                                                     <td><?php echo $jpid;?></td>
+                                                    <td><a href="more-appliedjobs.php?param=<?php echo $row['apid'];?>">view more</a></td>
                                                     
                                                 <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>"/>
                                          

@@ -42,7 +42,7 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                         Job List 
+                         Interview List 
                         <small> ITL JOBS</small>
                     </h1>
                     <ol class="breadcrumb">
@@ -58,51 +58,73 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title"> Jobs</h3>
+                                    <h3 class="box-title"> Interviews</h3>
                                 </div><!-- /.box-header -->
-                                <div class="box-body">
+                                <div class="box-body" style="overflow-y: scroll;">
                                     
+                                       <?php
+                                           
+                                            if ($_SESSION['addsucc'] != '') {
+
+                                                if ($_SESSION['addsucc'] == '1') {
+
+                                                    ?>
+
+                                                    <div class="alert alert-success alert-dismissable">
+
+                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                        Interview Details Updated Successfully <a href="#" class="alert-link"></a>.
+
+                                                    </div>
+
+                                                    <?php
+
+                                                }
+
+                                            }
+
+                                            unset($_SESSION['addsucc']);
+
+                                            ?>
+                         
                                     <table id="example2" class="table table-bordered table-hover">
-                                    
-                                        <thead>
-                                           <tr>
-                                                <th>Sl.No</th>
-                                                <th>Job Title</th>
-                                                <th>Candidate Name</th>
-                                                <th>Applied date</th> 
-                                                <th>View more</th>
-                                                <th>Delete</th>
-                                            </tr>
-                                        </thead>
+                                                
+                                                
+                                            
                                        <tbody>
-                                          <?php
-                                          $uid = $_SESSION['id'];
-                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id,ja.id as apid,ja.job_id,ja.user_id,ja.created_date,us.name FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id WHERE js.user_id='$uid'");
-                                          $res = Db::query($qry);
+                                          <?php 
+                                          session_start();
+                                          $id= $_SESSION['id'];
+                                          $intid = $_REQUEST['id'];
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
-                                          $today_date = date('Y-m-d');
-                                           while ($row = mysql_fetch_array($res)) {
+                                          $today_date = date('Y-m-d h:m:s');
+                                          $query = sprintf("SELECT us.id,us.name,iv.id as intId,jc.name as job_title,iv.id,iv.schedule_date,iv.salary,iv.country,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact,iv.coordinator FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id INNER JOIN job_categories as jc ON iv.title=jc.id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' AND iv.user_id='%s' AND iv.id='$intid'",$today_date,0,$id); 
+                                               
+                                          $result = Db::query($query);
+                                           while ($row = mysql_fetch_array($result)) {
                                           ?>
-                                           <tr>
-                                                    <td><?php echo $i; ?></td>
-                                                    <td><?php echo $row['job_listing']; ?></td>
-                                                    <td><?php echo $row['name']; ?></td>
-                                                    <?php
-                                                        $date    = $row['created_date'];
-                                                        $regdate = date("d-m-Y", strtotime($date));
-                                                        $regtime = date("h:i:sa", strtotime($date));
-                                                    ?>
-                                                    <td><?php echo $regdate; ?> at <?php echo $regtime; ?></td>
-                                                    <td><a href="more-appliedjobs.php?param=<?php echo $row['apid'];?>">view more</a></td>
-                                                    
-                                                <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>"/>
-                                         
-                                                <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_appliedjobs.php?delid=<?= $row['apid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                           
+                                                <tr>
+                                                    <th>Name</th><td><?php echo $row['name']; ?></td></tr>
+                                                    <tr><th>Title</th><td><?php echo $row['job_title']; ?></td></tr>
+                                                    <tr><th>Description</th><td><?php echo $row['description']; ?></td></tr>
+                                                    <tr><th>Salary</th><td><?php echo $row['salary']; ?></td></tr>
+                                                    <tr><th>Company Name</th><td><?php echo $row['company_name']; ?></td></tr>
+                                                    <tr><th>Country</th><td><?php echo $row['country']; ?></td></tr>
+                                                    <tr><th>Schedule date</th><td><?php echo $row['schedule_date']; ?></td></tr>
+                                                    <tr><th>Time</th><td><?php echo $row['schedule_time']; ?></td></tr>
+                                                    <tr><th>Venue</th><td><?php echo $row['venue']; ?></td></tr>
+                                                    <tr><th>Interview</th><td><?php echo $row['interview']; ?></td></tr>
+                                                    <tr><th>Co ordinator</th><td><?php echo $row['coordinator'];?></td></tr>
+                                                    <tr><th>Contact</th><td><?php echo $row['contact']; ?></td></tr>
+                                                    <tr><th>Edit</th><td class=center><a type="button" href="edit_interview.php?id=<?= $row['intId'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td></tr>
+                                                <tr><th>Delete</th><td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_interviews.php?delid=<?= $row['intId'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
                                                 <?php
                                                 $i = $i + 1;
-                                            }
+                                           }
                                             ?>
                                         </tbody>
                                  
@@ -110,7 +132,6 @@
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
 
-                           
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </section><!-- /.content -->
@@ -154,7 +175,7 @@
         </script>
         <script>
             function deleteConfirm(href) {
-                var ask = window.confirm("Are you sure you want to delete this job application?");
+                var ask = window.confirm("Are you sure you want to delete this item?");
                 if (ask) {
                     document.location.href = href;
                 }
@@ -175,7 +196,7 @@
             var status = $(this).prop('checked')==true?'1':'0';
             var rowId  = $(this).attr('rowid');
 //            alert(status);
-            url = "active_inactive.php";
+            url = "interview_status.php";
             $.ajax({
                 url:url,
                 type:'POST',
@@ -188,25 +209,6 @@
     });
 </script>
 
-<script>
-//    $(function(){
-     function otpcheck() { 
-//         alert('jhgasd');
-//        $('.order').change(function(){
-            var order = document.getElementById("order").value;
-            var id = document.getElementById("id").value;
-            // alert(order);
-              url = "job-order.php";
-            $.ajax({
-                url:url,
-                type:'POST',
-                data:{id:id, order:order}
-            }).done(function( data ) {
-               location.reload();
-            });
-//        });
-    }
-    </script>
     
     </body>
 </html>

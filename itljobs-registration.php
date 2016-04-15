@@ -524,7 +524,7 @@
                         title: "required",
                         name: {required:true,nonNumeric:true},
                         job_category_id: "required",
-                        sub_category:"required",
+//                        sub_category:"required",
                         india: "required",
                         abroad:"required",
                         dob:{required:true, dateFormat: true},
@@ -534,12 +534,12 @@
                         minlength: 10, //or look at the additional-methods.js to see available phone validations
                         maxlength: 10
                         },
-                        specification:{required:true,nonNumeric:true},
-                        qualification:"required",
-                        current_location:"required",
+//                        specification:{nonNumeric:true},
+//                        qualification:"required",
+//                        current_location:"required",
                        
                         //day:"required",
-                        month:"required",
+//                        month:"required",
                         //year:"required",
                         captcha:"required",
                         fileToUpload:"required",
@@ -551,7 +551,7 @@
                         title: "Please select title",
                         name: {required:"Please enter your full name"},
                         job_category_id: "Please select job applied for",
-                        sub_category:"Please select job title",
+//                        sub_category:"Please select job title",
                         india: "Please enter experience in India",
                         abroad:"Please enter experience in abroad",
                         dob:{required: "Please enter date of birth", dateFormat: "Please enter a date in the format dd/mm/yyyy."},
@@ -561,9 +561,9 @@
                         minlength: "Enter valid contact number",
                         maxlength: "Enter valid contact number"
                         },
-                        specification:{required:"Please enter specification"},
-                        qualification:"Please enter qualification",
-                        current_location:"Please enter current location",
+//                        specification:{required:"Please enter specification"},
+//                        qualification:"Please enter qualification",
+//                        current_location:"Please enter current location",
                         
                         //day:"Please enter date of birth",
                         month:"Enter date of birth",

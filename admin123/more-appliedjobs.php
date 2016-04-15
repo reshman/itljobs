@@ -35,7 +35,7 @@
 
             <?php include 'menu.php'; ?>
             
-            <?php include 'db.php'; ?>
+            <?php //include 'db.php'; ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -63,47 +63,49 @@
                                 <div class="box-body">
                                     
                                     <table id="example2" class="table table-bordered table-hover">
-                                    
-                                        <thead>
-                                           <tr>
-                                                <th>Sl.No</th>
-                                                <th>Job Title</th>
-                                                <th>Candidate Name</th>
-                                                <th>Applied date</th> 
-                                                <th>View more</th>
-                                                <th>Delete</th>
-                                            </tr>
-                                        </thead>
                                        <tbody>
                                           <?php
-                                          $uid = $_SESSION['id'];
-                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id,ja.id as apid,ja.job_id,ja.user_id,ja.created_date,us.name FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id WHERE js.user_id='$uid'");
+                                          $applied_id = $_REQUEST['param'];
+                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id as jobuserid,ja.id as apid,ja.job_id,ja.user_id as userid,ja.created_date,us.name FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id WHERE ja.id='$applied_id'");
                                           $res = Db::query($qry);
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d');
-                                           while ($row = mysql_fetch_array($res)) {
+                                          $row = mysql_fetch_array($res);
+                                          
+                                          $user_id = $row['userid'];
+                                          $query = sprintf("SELECT experience,specification,current_location,mobile,qualification,date_of_birth,file_name FROM resume WHERE user_id='%s'",$user_id);
+                                          $result = Db::query($query); 
+                                          $rw = mysql_fetch_assoc($result);
                                           ?>
                                            <tr>
-                                                    <td><?php echo $i; ?></td>
-                                                    <td><?php echo $row['job_listing']; ?></td>
-                                                    <td><?php echo $row['name']; ?></td>
+                                                    <th>Job Title</th><td><?php echo $row['job_listing']; ?></td></tr>
+                                                    <tr><th>Candidate Name</th><td><?php echo $row['name']; ?></td></tr>
+                                                    <tr><th>Experience</th><td><?php echo $rw['experience']; ?></td> </tr>
+                                                    <tr><th>Specification</th><td><?php echo $rw['specification']; ?></td> </tr>
+                                                    <tr><th>Current Location</th><td><?php echo $rw['current_location']; ?></td> </tr>
+                                                    <tr><th>Mobile</th><td><?php echo $rw['mobile']; ?></td> </tr>
+                                                    <tr><th>Qualification</th><td><?php echo $rw['qualification']; ?></td> </tr>
+                                                    <tr><th>Date of Birth</th><td><?php echo $rw['date_of_birth']; ?></td> </tr>
+                                                    <tr><th>Resume</th><td><a onclick="downloadfile('../uploads/<?php echo $rw['file_name']?>')" href="../uploads/<?php echo $rw['file_name']?>"   target="_blank" download=""><?php echo $rw['file_name']; ?></a>
+                                                    </td></tr>
                                                     <?php
                                                         $date    = $row['created_date'];
                                                         $regdate = date("d-m-Y", strtotime($date));
                                                         $regtime = date("h:i:sa", strtotime($date));
                                                     ?>
-                                                    <td><?php echo $regdate; ?> at <?php echo $regtime; ?></td>
-                                                    <td><a href="more-appliedjobs.php?param=<?php echo $row['apid'];?>">view more</a></td>
-                                                    
-                                                <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>"/>
+                                                    <tr><th>Applied date</th><td><?php echo $regdate; ?> at <?php echo $regtime; ?></td></tr>
+                                                    <?php
+                                                    $admin_id = $row['jobuserid'];
+                                                    $query = sprintf("SELECT name FROM users WHERE id='%s'",$admin_id);
+                                                    $result = Db::query($query);
+                                                    $rowres = mysql_fetch_assoc($result);
+                                                    $jpid =  $rowres['name'];
+                                                    ?>
+                                                    <tr><th>Job posted by</th><td><?php echo $jpid;?></td></tr>
                                          
-                                                <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_appliedjobs.php?delid=<?= $row['apid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                                <tr><th>Delete</th><td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_appliedjobs.php?delid=<?= $row['ja.id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
-                                                <?php
-                                                $i = $i + 1;
-                                            }
-                                            ?>
                                         </tbody>
                                  
                                     </table>
@@ -154,7 +156,7 @@
         </script>
         <script>
             function deleteConfirm(href) {
-                var ask = window.confirm("Are you sure you want to delete this job application?");
+                var ask = window.confirm("Are you sure you want to delete this application?");
                 if (ask) {
                     document.location.href = href;
                 }

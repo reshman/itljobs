@@ -321,6 +321,11 @@
                     }
                     return true;
                 }, "Please Do not use Numbers or Special Characters");
+                
+                $.validator.addMethod('experience', function (value) {
+                    return /^[0-9 ]+((-){0,1}[0-9 ]+){0,1}$/.test(value);
+                
+                }, 'Please enter valid experience in years as digit or range as low-High.');
 
                 // Setup form validation on the #register-form element
 
@@ -336,7 +341,7 @@
                         salary: {required: true, salrange: true},
                         salarycat: "required",
                         closing_date: "required",
-                        experience:{required:true,digits:true}
+                        experience:{required:true,experience:true}
 
                     },
                     // Specify the validation error messages
@@ -350,7 +355,7 @@
                         salary: {required: "Please Enter Salary"},
                         salarycat: "Please Enter Salary Category",
                         closing_date: "Please Enter a Closing Date",
-                        experience:{required:"Please Enter Experience",digits:"Use only digits like 1,2.."}
+                        experience:{required:"Please Enter Experience"}
 
                     },
                     submitHandler: function (form) {

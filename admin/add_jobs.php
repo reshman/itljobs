@@ -199,9 +199,29 @@
                                         
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Title</label>
+                                            <label for="exampleInputEmail1">Job Title</label>
 
                                             <input type="text" class="form-control" id="title" placeholder="Title" name="title">
+
+                                        </div>
+                                        
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">Job Category</label>
+
+                                            <select class="form-control" name="job_cat">
+                                                <option disabled="" selected="">select</option>
+                                                <?php
+                                                $qry = sprintf("SELECT id,name FROM `job_categories`");
+                                                $res = Db::query($qry);
+                                                if(mysql_num_rows($res)){
+                                                while ($row = mysql_fetch_array($res)) {
+                                                ?>
+                                                <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
+                                                <?php
+                                                }  }
+                                                ?>
+                                            </select>
 
                                         </div>
                                         
@@ -219,6 +239,34 @@
 
                                             <textarea class="form-control" id="job_description" placeholder="Job Description" name="job_description"></textarea>
                                             
+                                        </div>
+                                        
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">Experience</label>
+
+                                            <input type="text" class="form-control" id="experience" placeholder="Experience" name="experience">
+
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <?php
+                                               date_default_timezone_set('Asia/Calcutta'); 
+                                               $todaydate         = date("d/m/Y"); 
+                                            ?>
+
+                                            <label for="exampleInputEmail1">Create Date</label>
+
+                                            <input type="text" class="form-control" name="create_date" placeholder="Create Date" value="<?php echo $todaydate;?>" readonly=""/>
+
+                                        </div>
+                                         
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">Closing Date</label>
+
+                                            <input type="text" class="form-control" id="datepicker1" name="closing_date" placeholder="Closing Date" data-format="yyyy-MM-dd"/>
+                                             
                                         </div>
                                         
                                         <div class="form-group">
@@ -240,57 +288,9 @@
                                         
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Experience</label>
-
-                                            <input type="text" class="form-control" id="experience" placeholder="Experience" name="experience">
-
-                                        </div>
-                                        
-                                        <div class="form-group">
-
                                             <label for="exampleInputEmail1">Job Location</label>
 
                                             <input type="text" class="form-control" id="location" placeholder="Job Location" name="location">
-
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <?php
-                                               date_default_timezone_set('Asia/Calcutta'); 
-                                               $todaydate         = date("m/d/Y"); 
-                                            ?>
-
-                                            <label for="exampleInputEmail1">Create Date</label>
-
-                                            <input type="text" class="form-control" name="create_date" placeholder="Create Date" value="<?php echo $todaydate;?>" readonly=""/>
-
-                                        </div>
-                                         
-                                        <div class="form-group">
-
-                                            <label for="exampleInputEmail1">Closing Date</label>
-
-                                            <input type="text" class="form-control" id="datepicker1" name="closing_date" placeholder="Closing Date" data-format="yyyy-MM-dd"/>
-                                             
-                                        </div>
-                                        
-                                        <div class="form-group">
-
-                                            <label for="exampleInputEmail1">Job Category</label>
-
-                                            <select class="form-control" name="job_cat">
-                                                <option disabled="" selected="">select</option>
-                                                <?php
-                                                $qry = sprintf("SELECT id,name FROM `job_categories`");
-                                                $res = Db::query($qry);
-                                                if(mysql_num_rows($res)){
-                                                while ($row = mysql_fetch_array($res)) {
-                                                ?>
-                                                <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
-                                                <?php
-                                                }  }
-                                                ?>
-                                            </select>
 
                                         </div>
 
@@ -351,8 +351,15 @@
             $(function () {
                 $('#datepicker1').datepicker({
                     format:"dd/mm/yyyy",
-                    startDate: '11/04/2016'
+                    startDate: '0'
                 });
+                 $("#location").geocomplete({
+                    types: ["geocode", "establishment"],
+                });
+                $.validator.addMethod('experience', function (value) {
+                    return /^[0-9 ]+((-){0,1}[0-9 ]+){0,1}$/.test(value);
+                
+                }, 'Please enter valid experience in years as digit or range as low-High.');
                 // Setup form validation on the #register-form element
 
                 $("#frm").validate({
@@ -364,8 +371,8 @@
                         title: {required: true,lettersonly: true},
                         job_description: "required",
                         company: {required: true,lettersonly: true},
-                        experience: {required: true,digits: true},
-                        location: {required: true, lettersonly: true},
+                        experience: {required: true, experience: true},
+                        location: "required",
                         create_date: "required",
                         closing_date: "required",
                         job_cat: "required",
@@ -378,8 +385,8 @@
                         title: {required: "Please enter title",lettersonly: "Please enter letters only"},
                         job_description: "Please enter job description",
                         company: {required:"Please enter company name",lettersonly:"Please enter letters only"},
-                        experience: {required:"Please enter experience",digits:"Please enter number"},
-                        location: {required:"Please enter location",lettersonly:"Please enter letters only"},
+                        experience: {required:"Please enter experience"},
+                        location: "Please enter location",
                         create_date: "Please enter create date",
                         closing_date:"Please enter closing date",
                         job_cat: "Please enter job category",
