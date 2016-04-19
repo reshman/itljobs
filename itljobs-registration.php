@@ -526,7 +526,7 @@
                         job_category_id: "required",
 //                        sub_category:"required",
                         india: "required",
-                        abroad:"required",
+//                        abroad:"required",
                         dob:{required:true, dateFormat: true},
                         mobile:{
                         required: true,
@@ -535,8 +535,8 @@
                         maxlength: 10
                         },
 //                        specification:{nonNumeric:true},
-//                        qualification:"required",
-//                        current_location:"required",
+                        qualification:"required",
+                        current_location:"required",
                        
                         //day:"required",
 //                        month:"required",
@@ -553,7 +553,7 @@
                         job_category_id: "Please select job applied for",
 //                        sub_category:"Please select job title",
                         india: "Please enter experience in India",
-                        abroad:"Please enter experience in abroad",
+//                        abroad:"Please enter experience in abroad",
                         dob:{required: "Please enter date of birth", dateFormat: "Please enter a date in the format dd/mm/yyyy."},
                         mobile:{
                         required: "Please enter your mobile number.",
@@ -562,8 +562,8 @@
                         maxlength: "Enter valid contact number"
                         },
 //                        specification:{required:"Please enter specification"},
-//                        qualification:"Please enter qualification",
-//                        current_location:"Please enter current location",
+                        qualification:"Please enter qualification",
+                        current_location:"Please enter current location",
                         
                         //day:"Please enter date of birth",
                         month:"Enter date of birth",

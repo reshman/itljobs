@@ -11,11 +11,14 @@ session_start();
    $job_type          = trim($_POST['job_type']);
    $experience        = trim($_POST['experience']);
    $location          = trim($_POST['location']);
-   $create_date       = trim($_POST['create_date']);
-   $create_date       = date("Y-m-d", strtotime($create_date));
+   $create_date1      = trim($_POST['create_date']);
+   $create_date       = explode('/', $create_date1);
+   $create_date       = array_reverse($create_date);
+   $create_date       = implode('-',$create_date);
    $closing_date1     = trim($_POST['closing_date']);
    $close_date        = explode('/', $closing_date1);
-   $closing_date      = $close_date[2].'-'.$close_date[1].'-'.$close_date[0]; 
+   $closing_date      = array_reverse($close_date);
+   $closing_date      = implode('-', $closing_date);
    $job_cat           = trim($_POST['job_cat']);
    $user_id           = $_SESSION['id'];
    

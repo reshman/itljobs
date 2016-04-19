@@ -68,7 +68,7 @@
                 include 'db.php';
                 date_default_timezone_set('Asia/Kolkata');
                 $today_date = date('Y-m-d');
-                $query = sprintf("SELECT name,company_name,description,schedule_date,schedule_time,venue,interview,contact,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s'",$today_date,1,0); 
+                $query = sprintf("SELECT name,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s'",$today_date,1,0); 
                // echo $query = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,js.experience,js.job_location,js.closing_date,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 AND inv.schedule_date>='$today_date'"); die; 
                 $result = Db::query($query);
                 while ($row = mysql_fetch_array($result)) {    
@@ -81,14 +81,23 @@
 								</div>
 								<div class="accord-content" style="display: none;">
 									<p><?php echo $row['description'];?></p>
-                                                                         <p>
-                                                                           <span style="color:#6495ED">Closing date : </span><?php echo $row['schedule_date'];?>
+                                                                        <p>
+                                                                           <span style="color:#6495ED">Salary Structure : </span><?php echo $row['salary'];?>
+                                                                         </p>
+                                                                        <p>
+                                                                           <span style="color:#6495ED">Company : </span><?php echo $row['company_name'];?>
                                                                          </p>
                                                                          <p>
-                                                                           <span style="color:#6495ED">Time : </span><?php echo $row['schedule_time'];?>
+                                                                           <span style="color:#6495ED">Country : </span><?php echo $row['country'];?>
                                                                          </p>
                                                                          <p>
-                                                                           <span style="color:#6495ED">Venue : </span><?php echo $row['venue'];?>
+                                                                           <span style="color:#6495ED">Interview date : </span><?php echo $row[schedule_date].' at '.$row[schedule_time];?>
+                                                                         </p>
+                                                                         <p>
+                                                                           <span style="color:#6495ED">Location : </span><?php echo $row['venue'];?>
+                                                                         </p>
+                                                                         <p>
+                                                                           <span style="color:#6495ED">Co ordinator : </span><?php echo $row['coordinator'];?>
                                                                          </p>
                                                                          <p>
                                                                            <span style="color:#6495ED">Contact : </span><?php echo $row['contact'];?>

@@ -199,6 +199,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>7th Floor, Housing Board Building , Manorama Junction, Panampilly Nagar, Cochin-682036</span></li>
 	<li><i class="fa fa-phone"></i><span> 0484 3015555 </span><span>+ 91 484 -2372050</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -227,6 +228,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>M.Y.Complex, Bypass Junction, Calicut Road, Malappuram, Kerala – 679322</span></li>
 	<li><i class="fa fa-phone"></i><span> +91 4933 232055</span><span>+91 4933 229655</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -241,6 +243,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>1st Floor, St.George Building, Bank Junction, Angamaly.</span></li>
 	<li><i class="fa fa-phone"></i><span>+91 484 2453111, 2619444, 2619333</span><span>+91 0484 2459111</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -317,6 +320,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>ITL Tourism & Travel LLC., Post Box No. 122358, Gargawi Building, Al Qusais, Dubai – UAE</span></li>
 	<li><i class="fa fa-phone"></i><span>+971 4 2986222   fax +971 4 2986333</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -329,6 +333,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>ITL Tourism & Travel LLC, Abu Dhabi, UAE</span></li>
 	<li><i class="fa fa-phone"></i><span>+971 2 6275 253   +971 2 6275 254</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -344,6 +349,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>ITL Tourism & Travel LLC, P B No.67286,Al Roba Street, Opp.K M Trading, AL Roba,Sharjah,U A E.</span></li>
 	<li><i class="fa fa-phone"></i><span>+971 65755166 Fax:+971 65755167</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -356,6 +362,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>ITL Tourism & Travels WLL, P.O.BOX 24642, Building No.169, Road 62, Block 203, Airport Avenue - Muharraq, Kingdom of Bahrain</span></li>
 	<li><i class="fa fa-phone"></i><span>+973 - 17325557</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -370,6 +377,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>ITL Tourism & Travel W.L.L., P.O.BOX 24642, Jumana Center, No.38, Wali Al Aahd Avenue - Manama Souq, Kingdom of Bahrain</span></li>
 	<li><i class="fa fa-phone"></i><span>+973 - 17 215526</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -382,6 +390,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>ITL Tours & Travels, PO Box No: 4658, AlKhobar, Saudi Arabia</span></li>
 	<li><i class="fa fa-phone"></i><span>+966 3 8983 222   +966 3 8988 997</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -397,6 +406,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>Opposite Ramez Market, TOYOTA Road, Dammam</span></li>
 	<li><i class="fa fa-phone"></i><span>+966 3 837 6222  +966 3 898 8997</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -409,6 +419,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>ITL Leisure  Tourism & Travel Company, Dawasir District,Dhahran Street, Dammam, KSA</span></li>
 	<li><i class="fa fa-phone"></i><span>+966 3 835 3832/830 1089</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -424,6 +435,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>ITL Leisure Tourism & Travel Co., Al Nakheel District,King Saud Street, Dammam, KSA</span></li>
 	<li><i class="fa fa-phone"></i><span> +966 3 8302065</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -436,6 +448,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>ITL Leisure Tourism & Travel Co., Post Box No. 4168, King Faisal Street (Wazeer Street), Riyadh 11491, KSA</span></li>
 	<li><i class="fa fa-phone"></i><span>+966 1 286 2016</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -451,6 +464,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>ITL Leisure Tourism & Travel Co., BATHA COMMERCIAL CENTER, FIRST FLOOR, SHOP NO:84, Riyadh, KSA</span></li>
 	<li><i class="fa fa-phone"></i><span>+966 1 2760985</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -463,6 +477,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>ITL Leisure Tourism & Travel Co., KING ABDUL AZIZ STREET, JUBAIL 31951, AL JUBAIL, KSA</span></li>
 	<li><i class="fa fa-phone"></i><span>+966 3 363 0982</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -478,6 +493,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>ITL Leisure Travel & Tourism Company L.L.C, P.B. No: 41180, Madinah Al Munawwarah Street, Oppo. Al Fitaihi Center, Baghdadiyah District (West), Jeddah 21521, KSA</span></li>
 	<li><i class="fa fa-phone"></i><span>+966 2 6147 222</span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -490,6 +506,7 @@
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>ITL Travel and Tourism, Opp. New Arrival Terminal, 29-Saeed Bin Al Aas Street, Um Guwalina (Mughlina), Doha-State of Qatar.</span></li>
 	<li><i class="fa fa-phone"></i><span>+974 4441 2525,Fax: +974 44354872 </span></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>
@@ -503,6 +520,8 @@
 	<h2>Bangladesh & Srilanka</h2>
 	<ul class="information-list">
 	<li><i class="fa fa-map-marker"></i><span>Also we have associates offices at Bangladesh & Srilanka</span></li>
+        <li><i class="fa fa-phone"></i></li>
+        <li><i class="fa fa-envelope-o"></i></li>
 	</ul>						
 	</div>
         </div>

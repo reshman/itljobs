@@ -66,13 +66,13 @@
                                          <?php
                                             $id = $_REQUEST['id'];
                                             $i = 1;
-                                            $query = sprintf("SELECT u.name,u.role_id,u.email,j.id,j.user_id,j.company_name,j.closing_date,j.job_listing,j.job_description,j.job_location,j.job_type,j.salary,j.del_status,j.active,j.date FROM jobs as j JOIN users u ON u.id=j.user_id WHERE j.del_status='%s' AND u.role_id='%s' AND j.closing_date>='%s' AND j.id='%s'",0,4,$today_date,$id);  
+                                            $query = sprintf("SELECT u.name,u.role_id,u.email,j.id,j.user_id,j.company_name,j.closing_date,j.job_listing,j.job_description,j.job_location,j.job_type,j.salary,j.del_status,j.active,j.date,j.ref_id FROM jobs as j JOIN users u ON u.id=j.user_id WHERE j.del_status='%s' AND u.role_id='%s' AND j.closing_date>='%s' AND j.id='%s'",0,4,$today_date,$id);  
                                             $result = Db::query($query);
                                             while ($row = mysql_fetch_array($result)) {
                                                 ?>
                                         <thead>
 
-
+                                                <tr><th>Reference Id</th><td><?php echo $row['ref_id']; ?></td></tr>
                                                 <tr><th>Name</th><td><?php echo $row['name']; ?></td></tr>
                                                 <tr><th>E-mail</th><td><?php echo $row['email']; ?></td></tr>
                                                 <tr><th>Company Name</th><td><?php echo $row['company_name']; ?></td></tr>

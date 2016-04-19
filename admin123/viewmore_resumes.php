@@ -71,12 +71,9 @@
                                             while ($row = mysql_fetch_array($result)) {
                                                 ?>
                                         <thead>
-                                               
-                                         
-
                                                 <tr><th>Name</th><td><?php echo $row['name']; ?></td></tr>
                                                 <tr><th>E-mail</th><td><?php echo $row['email']; ?></td></tr>
-                                                <tr><th>Specification</th><td><?php echo $row['specification']; ?></td></tr>
+                                                <tr><th>Specialization</th><td><?php echo $row['specification']; ?></td></tr>
                                                 <tr><th>Experience</th><td><?php echo $row['experience']; ?></td></tr>
                                                 <tr><th>Qualification</th><td><?php echo $row['qualification']; ?></td></tr>
                                                 <tr><th>Current Location</th><td><?php echo $row['current_location']; ?></td></tr>

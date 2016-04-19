@@ -89,7 +89,10 @@
                                         <thead>
                                            <tr>
                                                 <th>Sl.No</th>
+                                                <th>Reference Id</th>
                                                 <th>Title</th>
+                                                <th>Description</th>
+                                                <th>Company</th>
                                                 <th>Experience</th>
                                                 <th>Job Location</th>
                                                 <th>Created date</th>
@@ -106,23 +109,26 @@
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d');
-                                          $query = sprintf("SELECT jc.name,j.id,j.job_listing,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id JOIN users as u ON u.id = j.user_id WHERE j.del_status='%s' AND closing_date>='%s' AND u.id='%s'",0,$today_date,$_SESSION['id']);
+                                          $query = sprintf("SELECT jc.name,j.id,j.job_listing,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order,j.company_name,j.job_description,j.ref_id FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id JOIN users as u ON u.id = j.user_id WHERE j.del_status='%s' AND closing_date>='%s' AND u.id='%s'",0,$today_date,$_SESSION['id']);
                                                
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {
                                           ?>
                                            <tr>
                                                     <td><?php echo $i; ?></td>
+                                                    <td><?php echo $row['ref_id']; ?></td>
                                                     <td><?php echo $row['job_listing']; ?></td>
+                                                    <td><?php echo $row['job_description'];?></td>
+                                                    <td><?php echo $row['company_name'];?></td>
                                                     <td><?php echo $row['experience']; ?></td>
                                                     <td><?php echo $row['job_location']; ?></td>
                                                     <td><?php echo $row['created_date']; ?></td>
                                                     <td><?php echo $row['closing_date']; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <!--<td><input type="number" name="order" id="order" class="order" value="<?php echo $row['job_order'];?>"/><a onclick="otpcheck()" class="btn btn-primary">update</a></td>-->
-                                       <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>"/>
+                                         <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>"/>
                                                     <td>
-     <input <?php echo ($row['active']=='1') ? 'checked' : '';?> rowid="<?php echo $row['id'];?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
+                                         <input <?php echo ($row['active']=='1') ? 'checked' : '';?> rowid="<?php echo $row['id'];?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
                                          </td>   
                                                 <td class=center><a type="button" href="edit_jobs.php?id=<?= $row['id'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>
                                                 <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_jobs.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>

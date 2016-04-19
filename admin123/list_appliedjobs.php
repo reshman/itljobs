@@ -106,7 +106,7 @@
                                                     
                                                 <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>"/>
                                          
-                                                <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_appliedjobs.php?delid=<?= $row['ja.id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                                <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_appliedjobs.php?delid=<?= $row['apid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
                                                 <?php
                                                 $i = $i + 1;

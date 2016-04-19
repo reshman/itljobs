@@ -127,13 +127,13 @@ if (isset($_SESSION['log'])) {
         }
     }
 }
+
 $today_date = date('Y-m-d');
 $query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND job_order>0 ORDER BY job_order ", 1, 0, $today_date);
 $result = Db::query($query);
 while ($row = mysql_fetch_array($result)) {
-    ?>
-
-                                <div class="accord-elem">
+    ?><ol>
+                                <div class="accord-elem"><li>
                                     <div class="accord-title">
                                         <a class="accord-link" href="#"></a>
                                         <h2><?php echo strtoupper($row['job_listing']); ?></h2>
@@ -142,9 +142,7 @@ while ($row = mysql_fetch_array($result)) {
                                         <p><?php echo $row['job_description']; ?></p>
                                         <p><span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?> ,
                                             <span style="color:#007ac9">Location : </span><?php echo $row['job_location']; ?>,
-                                            <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
-                                            <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>
-                                        </p>
+                                            <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?></p>
 
     <?php if (isset($_SESSION['log'])): ?>
                                             <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsArray)) ? 'APPLIED' : 'APPLY' ?>"></a></div>
@@ -158,26 +156,25 @@ while ($row = mysql_fetch_array($result)) {
 
                                     </div>
                                 </div>
+</li>
                                 
     <?php 
 }
 $query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND job_order=0", 1, 0, $today_date);
 $result = Db::query($query);
 while ($row = mysql_fetch_array($result)) {
-    ?>
+    ?><li>
 
                                 <div class="accord-elem">
                                     <div class="accord-title">
                                         <a class="accord-link" href="#"></a>
-                                        <h2><?php echo strtoupper($row['job_listing']); ?></h2>
+                                        <h2><?php echo $i;?><?php echo strtoupper($row['job_listing']); ?></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
                                         <p><?php echo $row['job_description']; ?></p>
                                         <p><span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?> ,
                                             <span style="color:#007ac9">Location : </span><?php echo $row['job_location']; ?>,
-                                            <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
-                                            <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>
-                                        </p>
+                                            <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?></p>
 
     <?php if (isset($_SESSION['log'])): ?>
                                             <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsArray)) ? 'APPLIED' : 'APPLY' ?>"></a></div>
@@ -192,12 +189,16 @@ while ($row = mysql_fetch_array($result)) {
                                     </div>
                                 </div>
 
+</li>
+   
     <?php
 }
 ?>			
+ </ol>                        
 
                         </div>
                     </div>
+
 
 
                 </div>

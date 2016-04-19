@@ -66,6 +66,7 @@
                                         <thead>
                                            <tr>
                                                 <th>Sl.No</th>
+                                                <th>Reference Id</th>
                                                 <th>Name</th>
                                                <!-- <th>E-mail</th>
                                                 <th>Company Name</th>-->
@@ -83,7 +84,7 @@
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d');
-                                          $query = sprintf("SELECT u.name,u.role_id,u.email,j.id,j.user_id,j.company_name,j.closing_date,j.job_listing,j.job_description,j.job_location,j.job_type,j.salary,j.del_status,j.active,j.date FROM jobs as j JOIN users u ON u.id=j.user_id WHERE j.del_status='%s' AND u.role_id='%s' AND j.closing_date>='%s'",0,4,$today_date);
+                                          $query = sprintf("SELECT u.name,u.role_id,u.email,j.id,j.user_id,j.company_name,j.closing_date,j.job_listing,j.job_description,j.job_location,j.job_type,j.salary,j.del_status,j.active,j.date,j.ref_id FROM jobs as j JOIN users u ON u.id=j.user_id WHERE j.del_status='%s' AND u.role_id='%s' AND j.closing_date>='%s'",0,4,$today_date);
                                                
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {
@@ -91,18 +92,14 @@
                                            
                                                 <tr>
                                                     <td><?php echo $i; ?></td>
+                                                    <td><?php echo $row['ref_id']; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
-                                                   <!-- <td><?php echo $row['email']; ?></td>
-                                                    <td><?php echo $row['company_name']; ?></td> -->
                                                     <td><?php echo $row['job_listing']; ?></td>
-                                                    <!--<td><?php echo $row['job_description']; ?></td>-->
-                                                    <td><?php echo $row['closing_date']; ?></td>            
-                                                    <!--<td><?php echo $row['job_location']; ?></td> -->
+                                                    <td><?php echo $row['closing_date']; ?></td>         
                                                     <td>
                                                       <input <?php echo ($row['active']=='1') ? 'checked' : '';?> rowid="<?php echo $row['id'];?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
                                                   </td> 
                                                   <td><a href="viewmore_employersjob.php?id=<?php echo $row['id'] ?>">View More</a></td>
-                                                    <!--<td><?php echo $row['job_type']; ?></td>-->
                                                     
                                                 <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_recruiterjobs.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>

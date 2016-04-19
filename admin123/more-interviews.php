@@ -70,7 +70,7 @@
                                                
                                           $result = Db::query($query);
                                           $row = mysql_fetch_array($result);
-                                          ?>
+                                          ?> 
                                                 <tr>
                                                     <th>Job Title</th><td><?php echo $row['jobname']; ?></td></tr>
                                                     <tr><th>Schedule date</th><td><?php echo $row['schedule_date']; ?></td></tr>

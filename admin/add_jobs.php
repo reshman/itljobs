@@ -68,8 +68,6 @@
 
         <script src="ckeditor/ckeditor.js"></script>
         
-        
-        
      <link href="css/datepicker.css" rel="stylesheet" />
      <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 

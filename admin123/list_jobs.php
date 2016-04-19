@@ -66,6 +66,7 @@
                                         <thead>
                                            <tr>
                                                 <th>Sl.No</th>
+                                                <th>Reference Id</th>
                                                 <th>Title</th>
                                                 <th>Experience</th>
                                                 <th>Job Location</th>
@@ -83,7 +84,7 @@
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d');
-                                          $query = sprintf("SELECT jc.id,jc.name,j.id as jobid,j.job_listing,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE del_status='%s' AND closing_date>='%s'",0,$today_date);
+                                          $query = sprintf("SELECT jc.id,jc.name,j.id as jobid,j.job_listing,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order,j.ref_id FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE del_status='%s' AND closing_date>='%s'",0,$today_date);
                                                
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {
@@ -91,6 +92,7 @@
                                            
                                                 <tr>
                                                     <td><?php echo $i; ?></td>
+                                                    <td><?php echo $row['ref_id']; ?></td>
                                                     <td><?php echo $row['job_listing']; ?></td>
                                                     <td><?php echo $row['experience']; ?></td>
                                                     <td><?php echo $row['job_location']; ?></td>

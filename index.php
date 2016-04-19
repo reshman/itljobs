@@ -221,7 +221,10 @@ or a service you can do for others</p>
         <h1>HOT JOBS</h1></div>
         <?php
             include 'db.php';
-
+            
+            date_default_timezone_set('Asia/Kolkata');
+            $today_date = date('Y-m-d');
+            
             $jobsArray     = array();
             $jobsSaveArray = array();
             $sqlJobsApplied = sprintf("SELECT job_id FROM jobs_applied WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
@@ -232,7 +235,7 @@ or a service you can do for others</p>
                 }
             }
 
-            $query = sprintf("SELECT id, job_listing, job_description  FROM `jobs` WHERE active='%s'AND job_order!='%s' AND del_status='%s' ORDER BY job_order DESC limit 1",1,0,0);
+            $query = sprintf("SELECT id, job_listing, job_description  FROM `jobs` WHERE active='%s'AND job_order!='%s' AND del_status='%s' AND closing_date>='%s' ORDER BY job_order DESC limit 1",1,0,0,$today_date);
             $result = Db::query($query);
             while ($row = mysql_fetch_array($result)) {    
            ?>
@@ -266,8 +269,7 @@ or a service you can do for others</p>
         <h1>Upcoming Interviews</h1></div>
            <?php
             //$qry = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 limit 1");
-            date_default_timezone_set('Asia/Kolkata');
-            $today_date = date('Y-m-d');
+            
              $qry = sprintf("SELECT name,description,schedule_date,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' limit 1",$today_date,1,0); 
             $res = Db::query($qry);
             while ($rw = mysql_fetch_array($res)) {    

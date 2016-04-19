@@ -68,7 +68,7 @@
                                           <?php
                                           $applied_id = $_REQUEST['param'];
                                           $uid = $_SESSION['id'];
-                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id,ja.id as apid,ja.job_id,ja.user_id as userid,ja.created_date,us.name FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id WHERE js.user_id='$uid' AND ja.id='$applied_id'");
+                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id,ja.id as apid,ja.job_id,ja.user_id as userid,ja.created_date,us.name,us.email FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id WHERE js.user_id='$uid' AND ja.id='$applied_id'");
                                           $res = Db::query($qry);
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
@@ -76,19 +76,23 @@
                                           $row = mysql_fetch_assoc($res); 
                                           
                                           $user_id = $row['userid'];
-                                          $query = sprintf("SELECT experience,specification,current_location,mobile,qualification,date_of_birth,file_name FROM resume WHERE user_id='%s'",$user_id);
+                                          $query = sprintf("SELECT experience,specification,current_location,mobile,qualification,date_of_birth,file_name,sub_category,abroad_experience,india_experience FROM resume WHERE user_id='%s'",$user_id);
                                           $result = Db::query($query); 
                                           $rw = mysql_fetch_assoc($result);
                                           ?>
                                            <tr>
                                                     <th>Job Title</th><td><?php echo $row['job_listing']; ?></td> </tr>
                                                     <tr><th>Candidate Name</th><td><?php echo $row['name']; ?></td> </tr>
-                                                    <tr><th>Experience</th><td><?php echo $rw['experience']; ?></td> </tr>
-                                                    <tr><th>Specification</th><td><?php echo $rw['specification']; ?></td> </tr>
-                                                    <tr><th>Current Location</th><td><?php echo $rw['current_location']; ?></td> </tr>
-                                                    <tr><th>Mobile</th><td><?php echo $rw['mobile']; ?></td> </tr>
-                                                    <tr><th>Qualification</th><td><?php echo $rw['qualification']; ?></td> </tr>
                                                     <tr><th>Date of Birth</th><td><?php echo $rw['date_of_birth']; ?></td> </tr>
+                                                    <tr><th>Qualification</th><td><?php echo $rw['qualification']; ?></td> </tr>
+                                                    <tr><th>Industry</th><td><?php echo $rw['sub_category']; ?></td> </tr>
+                                                    <tr><th>Specialization</th><td><?php echo $rw['specification']; ?></td> </tr>
+                                                    <tr><th>Abroad experience</th><td><?php echo $rw['abroad_experience']; ?></td> </tr>
+                                                    <tr><th>Indian experience</th><td><?php echo $rw['india_experience']; ?></td> </tr>
+                                                    <tr><th>Experience</th><td><?php echo $rw['experience']; ?></td> </tr>
+                                                    <tr><th>Mobile</th><td><?php echo $rw['mobile']; ?></td> </tr>
+                                                    <tr><th>Email</th><td><?php echo $row['email']; ?></td> </tr>
+                                                    <tr><th>Current Location</th><td><?php echo $rw['current_location']; ?></td> </tr>
                                                     <tr><th>Resume</th><td><a onclick="downloadfile('../uploads/<?php echo $rw['file_name']?>')" href="../uploads/<?php echo $rw['file_name']?>"   target="_blank" download=""><?php echo $rw['file_name']; ?></a>
                                                     </td></tr>
                                                     <?php
