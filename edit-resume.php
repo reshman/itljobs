@@ -158,7 +158,10 @@ if ($_SESSION['editsucc'] != '') {
     $ab_exp  = filter_var($ab_exp, FILTER_SANITIZE_NUMBER_INT);
     $ind_exp = filter_var($ind_exp, FILTER_SANITIZE_NUMBER_INT);
 
-    $dob     = strtotime($rowresult['date_of_birth']);
+    $dob = explode('-',$rowresult['date_of_birth']);
+    $dob = array_reverse($dob);
+    $dob = implode('/',$dob);
+    
 ?>
 <div class="col-md-12">
     <div class="col-md-12">
@@ -198,7 +201,7 @@ if ($_SESSION['editsucc'] != '') {
     </div>
 
     <div class="col-md-4">
-        <input type='text' id="datepicker" name="dob" placeholder="DATE OF BIRTH (DD/MM/YYYY)" value="<?php echo date('d/m/Y', $dob)?>" readonly/>
+        <input type='text' id="datepicker" name="dob" placeholder="DATE OF BIRTH (DD/MM/YYYY)" value="<?php echo $dob; ?>"/>
     </div>
 
 </div>

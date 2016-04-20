@@ -259,7 +259,7 @@ while ($row = mysql_fetch_array($result)) {
                         //$(current).notify('Job Successfully Saved!', 'success');
 
                         $(current).children().notify(
-                                "Job Successfully Saved!",
+                                "Job Successfully Saved!","success",
                                 {position: "right"}
                         );
                     } else if (data == 'ALREADY SAVED') {

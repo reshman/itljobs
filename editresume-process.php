@@ -56,8 +56,8 @@ $titlename= "$title.$name";
 $abrexp_year = "$abr_exp year(s)";
 $indexp_year = "$india_exp year(s)";
 
-
-$target_dir = "uploads/";
+    if (isset($_FILES['fileToUpload']) && strlen($_FILES['fileToUpload']['name']) > 1) {
+        $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $test_file = basename($_FILES["fileToUpload"]["name"]);
         if($test_file!=''){
@@ -93,6 +93,7 @@ $target_dir = "uploads/";
 
        $filename = $sImage;
         }
+    }
 
  if($filename != NULL)   {
 

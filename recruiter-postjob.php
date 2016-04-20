@@ -305,7 +305,7 @@
 
                 $('#datepicker1').datepicker({
                     format: "dd/mm/yyyy",
-                    startDate: '11/04/2016'
+                    startDate: '0'
                 });
 
                 $.validator.addMethod('salrange', function (value) {

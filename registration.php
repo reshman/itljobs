@@ -3,7 +3,7 @@
 require('db.php');
 // include("logincheck.php");
 session_start();
-$urlin = "itljobs-registration.php";
+$urlin = "register.php";
 //echo 'dsgdfg';die;
 $flag = 0;
 /** Validate captcha */
