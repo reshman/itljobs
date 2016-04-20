@@ -221,7 +221,7 @@
 
                                             <label for="exampleInputEmail1">Description</label>
 
-                                            <textarea  class="form-control" rows="3" placeholder="Enter ..." name="description"></textarea>
+                                            <textarea  class="ckeditor" rows="3" placeholder="Enter ..." name="description" id="description"></textarea>
 
                                         </div>
                                         
@@ -511,9 +511,9 @@
                                         
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Venue</label>
+                                            <label for="exampleInputEmail1">Location</label>
 
-                                            <input type="text" class="form-control" id="venue" placeholder="Venue" name="venue">
+                                            <input type="text" class="form-control" id="venue" placeholder="Location" name="venue">
 
                                         </div>
                                         
@@ -652,13 +652,13 @@
                 $("#frm").validate({
                     
                     // Specify the validation rules
-
+                    ignore: [],
+                    debug: false,
                     rules: {
                         
                         name: {required:true,lettersonly:true},
                         title: "required",
                         date: {required:true, dateFormat: true},
-                        description: "required",
                         company_name: {required:true,lettersonly:true},
                         country : "required",
                         salary: {required: true, salrange: true},
@@ -671,7 +671,15 @@
                         digits  :true,
                         minlength: 10, //or look at the additional-methods.js to see available phone validations
                         maxlength: 15
-                        }
+                        },
+                        description:{
+                         required: function() 
+                        {
+                         CKEDITOR.instances.description.updateElement();
+                        },
+
+                         minlength:10
+                    }
                     },
                     // Specify the validation error messages
 
@@ -680,12 +688,11 @@
                         name: {required:"Please enter position",lettersonly:"Please enter letters only"},
                         title: "Please select job category",
                         date: {required: "Please enter date",dateFormat: "Please enter a date in the format dd/mm/yyyy."},
-                        description: "Please enter description",
                         company_name: {required:"Please enter company name",lettersonly:"Please enter letters only"},
                         country : "Please enter country",
                         salary: {required: "Please Enter Salary"},
                         time : "Please enter time",
-                        venue : {required:"Please enter venue",lettersonly:"Please enter letters only"},
+                        venue : {required:"Please enter location",lettersonly:"Please enter letters only"},
                         interview : "please select interview",
                         coordinator : {required:"Please enter name of coordinator",lettersonly:"Please enter letters only"},
                         contact:{
@@ -693,7 +700,11 @@
                         digits: "Enter digits only",
                         minlength: "Enter valid contact number",
                         maxlength: "Enter valid contact number"
-                        }
+                        },
+                        description: {
+                        required:"Please enter description",
+                        minlength:"Please enter 10 characters"
+                      }
                     },
                     
                     submitHandler: function (form) {

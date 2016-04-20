@@ -7,7 +7,7 @@ $email = $_POST['email'];
 $password = md5($_POST['password']);
 $jobid = $_POST['jid'];
 
-$query = sprintf("SELECT * FROM `users` WHERE email='%s' AND password='%s' AND role_id='%s' ",$email,$password,3);
+$query = sprintf("SELECT * FROM `users` WHERE email='%s' AND password='%s' AND role_id='%s' AND del_status='%s'",$email,$password,3,0);
 $result = Db::query($query);
 $name   = "";
 while ($row = mysql_fetch_array($result)) {

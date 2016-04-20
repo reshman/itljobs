@@ -231,7 +231,7 @@
         </div>
             
         <div class="col-md-4">
-            <input name="specification" id="specification" type="text" placeholder="SPECIALISATION/CERTIFICATION">    
+            <input name="specification" id="specification" type="text" placeholder="SPECIALIZATION/CERTIFICATION">    
         </div>
       
         
@@ -561,7 +561,7 @@
                         minlength: "Enter valid contact number",
                         maxlength: "Enter valid contact number"
                         },
-//                        specification:{required:"Please enter specification"},
+//                        specification:{required:"Please enter specialization"},
                         qualification:"Please enter qualification",
                         current_location:"Please enter current location",
                         

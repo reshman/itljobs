@@ -93,12 +93,7 @@
                                                 <th>Title</th>
                                                 <th>Description</th>
                                                 <th>Company</th>
-                                                <th>Experience</th>
-                                                <th>Job Location</th>
-                                                <th>Created date</th>
-                                                <th>Closing date</th>
-                                                <th>Name</th>
-                                               <!-- <th>Order</th> -->
+                                                <th>View more</th> 
                                                 <th>Status</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
@@ -118,13 +113,20 @@
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['ref_id']; ?></td>
                                                     <td><?php echo $row['job_listing']; ?></td>
+                                                    <?php
+                                                     $limit = 20;
+                                                     if (strlen($row['job_description']) > $limit){
+                                                     $description = substr($row['job_description'], 0, $limit) . '...';?>
+                                                     <td><?php echo $description;?></td>
+                                                   <?php
+                                                     }else{ ?>
                                                     <td><?php echo $row['job_description'];?></td>
+                                                    <?php
+                                                     }
+                                                     ?>
                                                     <td><?php echo $row['company_name'];?></td>
-                                                    <td><?php echo $row['experience']; ?></td>
-                                                    <td><?php echo $row['job_location']; ?></td>
-                                                    <td><?php echo $row['created_date']; ?></td>
-                                                    <td><?php echo $row['closing_date']; ?></td>
-                                                    <td><?php echo $row['name']; ?></td>
+                                                    
+                                                    <td><a href="more-jobs.php?param=<?php echo $row['id'];?>">view more</a></td>
                                                     <!--<td><input type="number" name="order" id="order" class="order" value="<?php echo $row['job_order'];?>"/><a onclick="otpcheck()" class="btn btn-primary">update</a></td>-->
                                          <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>"/>
                                                     <td>

@@ -1,5 +1,5 @@
 <!doctype html>
-<?php require 'check_session_rec.php'; ?>
+<?php //require 'check_session_rec.php'; ?>
 
 <html lang="en" class="no-js">
     <head>
@@ -40,6 +40,9 @@
 
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
         <script src="js/jquery.geocomplete.js"></script>
+        
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
 
     </head>
     <body>
@@ -91,7 +94,7 @@
                                     ?>
                                     <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
 
-<?php } ?>
+                                <?php } ?>
 
                             </select>     
                         </div>
@@ -116,19 +119,12 @@
                             <span class="post-title">EXPERIENCE IN YEAR:</span>    
                         </div>
 
-                        <div class="col-md-8">
-                            <select name="experience" id="experience">
-                                <option value="-1">Select Experience</option>
-                                <?php
-                                $qry = sprintf("SELECT DISTINCT experience FROM `resume` WHERE del_status='%s' ORDER BY experience",'0');
-                                $res = Db::query($qry);
-                                while ($row = mysql_fetch_array($res)) {
-                                    ?>
-                                    <option value="<?php echo $row['experience']; ?>"><?php echo $row['experience']; ?></option>
-                                    <?php
-                                }
-                                ?>
-                            </select>
+                        <div class="col-md-4">
+                            <input type="text" name="experiencemin" placeholder="Minimum">
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <input type="text" name="experiencemax" placeholder="Maximum">
                         </div>
                     </div> 
 
@@ -162,19 +158,20 @@
                         </div>
 
                         <div class="col-md-8">
-                            <select name="qualification" id="experience">
+                            <select class="js-data-example-ajax form-control" name="qualification[]" id="qualification" multiple style="width:293px;" required>
                                 <option value="-1">Select Qualification</option>
-                                <?php
-                                $qry = sprintf("SELECT DISTINCT qualification FROM `resume` WHERE del_status='%s' ORDER BY qualification",'0');
-                                $res = Db::query($qry);
-                                while ($row = mysql_fetch_array($res)) {
+                                 <?php
+                                $qryqualif = sprintf("SELECT * FROM `qualification`");
+                                $resqualif = Db::query($qryqualif);
+                                while ($rowq = mysql_fetch_array($resqualif)) {
                                     ?>
-                                    <option value="<?php echo $row['qualification']; ?>"><?php echo $row['qualification']; ?></option>
-                                    <?php
-                                }
-                                ?>
-                            </select>    
+                                    <option value="<?php echo $rowq['qualification']; ?>"><?php echo $rowq['qualification']; ?></option>
+                                    
+                                <?php } ?>
+                            </select>
                         </div>
+                        
+                        
 
                         <!--Dummy input created just for producing the error message....-->
                         <div class="col-md-10" style="float:right">
@@ -182,8 +179,6 @@
                         </div>
 
                     </div> 
-
-
 
                     <div class="col-md-12">
                         <div class="col-md-11"> 
@@ -210,6 +205,31 @@
         <!-- End footer -->
         <!-- Revolution slider -->
         <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+ 
+    <script>
+        $(function(){
+            $('#qualification').on('change', function(){
+//                var $this = $(this);
+//                console.log($this.val());
+//                arr = ['0', 'others'];
+//                m = new Array();
+//                m = ($this.val());
+//                if($.inArray('others', m) !== -1) {
+//                    
+//                }
+////                if($this.val() == 'others') {
+//                    alert('ss')
+//                }
+            })
+            
+        })
+    </script>
+        <script>
+        $(".js-data-example-ajax").select2({
+          tags: true
+      
+        });
+        </script>
         <script>
 
             // When the browser is ready...

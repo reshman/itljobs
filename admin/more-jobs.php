@@ -35,14 +35,14 @@
 
             <?php include 'menu.php'; ?>
             
-            <?php //include 'db.php'; ?>
+            <?php include 'db.php'; ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                         Job List of Admin 
+                         Job List 
                         <small> ITL JOBS</small>
                     </h1>
                     <ol class="breadcrumb">
@@ -61,57 +61,58 @@
                                     <h3 class="box-title"> Jobs</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body" style="overflow-y: scroll;">
-                         
+                                    
                                     <table id="example2" class="table table-bordered table-hover">
-                                        <thead>
-                                           <tr>
-                                                <th>Sl.No</th>
-                                                <th>Reference Id</th>
-                                                <th>Title</th>
-                                                <th>Experience</th>
-                                                <th>Job Location</th>
-                                                <th>Closing date</th>
-                                                <th>Name</th>
-                                                <th>View more</th>
-                                                <th>Order</th>
-                                                <th>Status</th>
-                                                <!--<th>Edit</th>-->
-                                                <th>Delete</th>
-                                            </tr>
-                                        </thead>
+                                        <?php
+                                            if ($_SESSION['addsucc'] != '') {
+
+                                                if ($_SESSION['addsucc'] == '1') {
+
+                                                    ?>
+
+                                                    <div class="alert alert-success alert-dismissable">
+
+                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                        Job Update Successfully <a href="#" class="alert-link"></a>.
+
+                                                    </div>
+
+                                                    <?php
+
+                                                }
+                                            }
+
+                                            unset($_SESSION['addsucc']);
+
+                                            ?>
                                        <tbody>
                                           <?php 
-                                          $i = 1;
+                                          $jid = $_REQUEST['param'];
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d');
-                                          $query = sprintf("SELECT jc.id,jc.name,j.id as jobid,j.job_listing,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order,j.ref_id FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE del_status='%s' AND closing_date>='%s'",0,$today_date);
+                                          $query = sprintf("SELECT jc.name,j.id,j.job_listing,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order,j.company_name,j.job_description,j.ref_id FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id JOIN users as u ON u.id = j.user_id WHERE j.del_status='%s' AND closing_date>='%s' AND u.id='%s' AND j.id = '%s'",0,$today_date,$_SESSION['id'],$jid);
                                                
                                           $result = Db::query($query);
-                                           while ($row = mysql_fetch_array($result)) {
+                                          $row = mysql_fetch_assoc($result);
                                           ?>
                                            <tr>
-                                                    <td><?php echo $i; ?></td>
-                                                    <td><?php echo $row['ref_id']; ?></td>
-                                                    <td><?php echo $row['job_listing']; ?></td>
-                                                    <td><?php echo $row['experience']; ?></td>
-                                                    <td><?php echo $row['job_location']; ?></td>
-                                                    <td><?php echo $row['closing_date']; ?></td>
-                                                    <td><?php echo $row['name']; ?></td>
-                                                    <td><a href="viewmore_jobs.php?id=<?php echo $row['jobid'];?>" target="_BLANK">view more</a></td>
-                                                    <td><input type="number" name="order" id="order" class="order" value="<?php echo $row['job_order'];?>"/>
-                                                        <a onclick="updatecheck(this)" class="btn btn-primary">update</a>
-                                                        <input type="hidden" name="id" id="id" value="<?php echo $row['jobid'];?>"/>
-                                                    </td>
-                                                      
-                                                    <td>
-                                                      <input <?php echo ($row['active']=='1') ? 'checked' : '';?> rowid="<?php echo $row['jobid'];?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
-                                                    </td>      
-                                                   <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_jobs.php?delid=<?= $row['jobid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                                    <th>Reference Id</th><td><?php echo $row['ref_id']; ?></td>
+                                                    <tr><th>Title</th><td><?php echo $row['job_listing']; ?></td>
+                                                    <tr><th>Description</th><td><?php echo $row['job_description'];?></td>
+                                                    <tr><th>Company</th><td><?php echo $row['company_name'];?></td>
+                                                    <tr><th>Experience</th><td><?php echo $row['experience']; ?></td>
+                                                    <tr><th>Job Location</th><td><?php echo $row['job_location']; ?></td>
+                                                    <tr><th>Created date</th><td><?php echo $row['created_date']; ?></td>
+                                                    <tr><th>Closing date</th><td><?php echo $row['closing_date']; ?></td>
+                                                    <tr><th>Job category</th><td><?php echo $row['name']; ?></td>
+                                                    
+                                         <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>"/>
+                                           
+                                                <tr><th>Edit</th><td class=center><a type="button" href="edit_jobs.php?id=<?= $row['id'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td></tr>
+                                                <tr><th>Delete</th><td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_jobs.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
-                                                <?php
-                                                $i = $i + 1;
-                                            }
-                                            ?>
+                                                
                                         </tbody>
                                  
                                     </table>
@@ -198,30 +199,21 @@
 
 <script>
 //    $(function(){
-     function updatecheck($this) { 
-//         var current_element = $this;
-
-         console.log($($this).prev().val());
-         //return false;
-
-            var order =$($this).prev().val();
-            var id =$($this).next().val();
-           // var id    = $('#id').val();
-   
+     function otpcheck() { 
+//         alert('jhgasd');
+//        $('.order').change(function(){
+            var order = document.getElementById("order").value;
+            var id = document.getElementById("id").value;
+            // alert(order);
               url = "job-order.php";
             $.ajax({
                 url:url,
                 type:'POST',
                 data:{id:id, order:order}
-            }).done(function(data) {
-                   if (data == 'SUCCESS') {
-                        alert('Job order updated successfully');
-                    } else if (data == 'ALREADY EXISTED JOB ORDER') {
-                        alert('Already existed job order,Please choose another');
-                        location.reload();
-                    }
+            }).done(function( data ) {
+               location.reload();
             });
-        
+//        });
     }
     </script>
     

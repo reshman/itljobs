@@ -205,7 +205,7 @@
 
                                             <label for="exampleInputEmail1">Job Description</label>
 
-                                            <textarea class="form-control" id="job_description" placeholder="Job Description" name="job_description"><?php echo $row['job_description']; ?></textarea>
+                                            <textarea class="ckeditor" id="job_description" placeholder="Job Description" name="job_description"><?php echo $row['job_description']; ?></textarea>
                                             
                                         </div>
                                  
@@ -324,7 +324,7 @@
                     format:"dd/mm/yyyy",
                     startDate: '0'
                 });
-                $("#location").geocomplete({
+                 $("#location").geocomplete({
                     types: ["geocode", "establishment"],
                 });
                 $.validator.addMethod('experience', function (value) {
@@ -336,32 +336,43 @@
                 $("#frm").validate({
 
                     // Specify the validation rules
-
+                    ignore: [],
+                    debug: false,
                     rules: {
                         
                         title: {required: true,lettersonly: true},
-                        job_description: "required",
                         company: {required: true,lettersonly: true},
-                        experience: {required: true,experience: true},
+                        experience: {required: true, experience: true},
                         location: "required",
                         create_date: "required",
                         closing_date: "required",
                         job_cat: "required",
-                        job_type: "required"
+                        job_type: "required",
+                        job_description:{
+                         required: function() 
+                        {
+                         CKEDITOR.instances.job_description.updateElement();
+                        },
+
+                         minlength:10
+                    }
                     },
                     // Specify the validation error messages
 
                     messages: {
 
                         title: {required: "Please enter title",lettersonly: "Please enter letters only"},
-                        job_description: "Please enter job description",
                         company: {required:"Please enter company name",lettersonly:"Please enter letters only"},
                         experience: {required:"Please enter experience"},
                         location: "Please enter location",
                         create_date: "Please enter create date",
                         closing_date:"Please enter closing date",
                         job_cat: "Please enter job category",
-                        job_type: "Please select job type"
+                        job_type: "Please select job type",
+                        job_description: {
+                        required:"Please enter job description",
+                        minlength:"Please enter 10 characters"
+                      }
                     },
                     
                     submitHandler: function (form) {
@@ -373,6 +384,7 @@
                 jQuery.validator.addMethod("lettersonly", function(value, element) {
                     return this.optional(element) || /^[a-z\s]+$/i.test(value);
                   });
+              
             });
 
         </script> 
