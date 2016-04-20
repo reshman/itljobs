@@ -78,7 +78,7 @@
 
                 <div class="col-lg-2"><?php include('myprofile-sidemenu.php'); ?></div>
                 <div class="col-lg-10">
-                <form id="contact-form" method="POST" action="search.php" enctype="multipart/form-data">
+                <form id="contact-form" method="GET" action="search.php" enctype="multipart/form-data">
 
                     <div class="col-md-12"> 
                         <div class="col-md-3">
@@ -107,7 +107,7 @@
                         </div>
 
                         <div class="col-md-8">
-                            <select name="subcategory" id="subcategory" disabled>
+                            <select name="subcategory" id="subcategory">
                                 <option value="-1">Select Sub-category</option>
                             </select>
                         </div>
@@ -158,8 +158,7 @@
                         </div>
 
                         <div class="col-md-8">
-                            <select class="js-data-example-ajax form-control" name="qualification[]" id="qualification" multiple style="width:293px;" required>
-                                <option value="-1">Select Qualification</option>
+                            <select class="js-data-example-ajax form-control" name="qualification[]" id="qualification" multiple style="width:293px;">
                                  <?php
                                 $qryqualif = sprintf("SELECT * FROM `qualification`");
                                 $resqualif = Db::query($qryqualif);
@@ -174,9 +173,9 @@
                         
 
                         <!--Dummy input created just for producing the error message....-->
-                        <div class="col-md-10" style="float:right">
+                        <!--<div class="col-md-10" style="float:right">
                             <input type="radio" name="check" style="width:0px;">
-                        </div>
+                        </div>-->
 
                     </div> 
 

@@ -9,7 +9,7 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen">	
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="css/magnific-popup.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css" media="screen">
@@ -22,7 +22,7 @@
 	<link rel="stylesheet" type="text/css" href="css/settings.css" media="screen"/>
 	<link rel="stylesheet" type="text/css" href="css/style.css" media="screen">
 
-	
+
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.migrate.js"></script>
 	<script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
@@ -40,7 +40,7 @@
          <link rel="stylesheet" href="css/jquery-ui.css">
 
           <script src="js/jquery-ui.js"></script>
-          
+
 
 </head>
 <body>
@@ -49,15 +49,15 @@
 	<div id="container">
 		<!-- Header
 		    ================================================== -->
-                
+
                  <?php  include("header.php");?>
-               
+
 		<!-- End Header -->
-        
-      <!-- home-section 
+
+      <!-- home-section
 			================================================== -->
 		<section id="home-section" class="slider2">
-	
+
 			<div class="tp-banner-container">
 				<div class="tp-banner" >
 					<ul>	<!-- SLIDE  -->
@@ -68,10 +68,10 @@
 							<!-- LAYERS -->
 
 							<!-- LAYER NR. 1 -->
-							
-                            <div class="tp-caption medium_thin_grey customin"     
+
+                            <div class="tp-caption medium_thin_grey customin"
 								data-x="310"
-								data-y="160" 
+								data-y="160"
 								data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
 								data-speed="1000"
 								data-start="1200"
@@ -86,7 +86,7 @@
 							<!-- LAYER NR. 1 -->
 							<div class="tp-caption finewide_medium_white lft tp-resizeme rs-parallaxlevel-0"
 								data-x="300"
-								data-y="230" 
+								data-y="230"
 								data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
 								data-speed="1000"
 								data-start="1600"
@@ -98,11 +98,11 @@
 								style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">Let's get to work
 							</div>
 
-							
-							<!-- LAYER NR. 3 
+
+							<!-- LAYER NR. 3
 							<div class="tp-caption lfb tp-resizeme rs-parallaxlevel-0"
 								data-x="0"
-								data-y="320" 
+								data-y="320"
 								data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
 								data-speed="1000"
 								data-start="2500"
@@ -118,7 +118,7 @@
 							<!-- LAYER NR. 4
 							<div class="tp-caption lfr tp-resizeme rs-parallaxlevel-0"
 								data-x="180"
-								data-y="320" 
+								data-y="320"
 								data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
 								data-speed="1000"
 								data-start="2600"
@@ -132,36 +132,36 @@
 							</div> -->
 
 						</li>
-					
+
 					</ul>
 					<div class="tp-bannertimer"></div>
 				</div>
 			</div>
 		</section>
 		<!-- End home section -->
-                
-		
+
+
 <!--    <div class="container">
-    <div class="row">    
+    <div class="row">
     <div class="search-box">
-         <form> 
+         <form>
              <input type="text" name="keyword" id="keyword"  tabindex="1" placeholder="JOB TITLE,KEYWORDS">
              <input type="text" name="location" id="location"  tabindex="1" placeholder="LOCATION">
              <input  type="button" value="Create Alert" id="btn-search">
-         </form> 
+         </form>
     </div>
     </div>
     </div>    -->
-        <!-- services-offer 
+        <!-- services-offer
 			================================================== -->
-		
+
 		<!-- End services-offer section -->
-        
-        
+
+
        <section class="page-section">
        <div class="container">
        <div class="row">
-      
+
                                  <?php
                                        if(isset($_SESSION['reclog'])){
                                         $user_id  = $_SESSION['reclog'];
@@ -170,49 +170,55 @@
            <input type="hidden" name="id" id="id" value="<?php echo $user_id; ?>"/>
 
        	   <section class="tables-page-section">
-            
-                
+
+
 			<div class="container">
-<!--                            
+<!--
 				<div class="title-section">
 					<h1>ALERTS</h1>
 				</div>-->
-                                   
+
 				<div class="table-responsive">
                                    <div id="dissearch"></div>
                                    <div id="oldtable">
                                    <table class="table">
-                                       <?php 
+                                       <?php
                                                   $i=1;
                                                   require 'db.php';
-                                                  $category      = $_POST['category'];
-                                                  $subcategory   = $_POST['subcategory'];
+                                                  $category      = $_GET['category'];
+                                                  $subcategory   = $_GET['subcategory'];
 //                                                  $experience    = $_POST['experience'];
-                                                  $experiencemin    = $_POST['experiencemin'];
-                                                  $experiencemax    = $_POST['experiencemax'];
-                                                  $location      = $_POST['location'];
-                                                  $qualificationArr = $_POST['qualification']; 
+                                                  $experiencemin    = isset($_GET['experiencemin']) ? trim($_GET['experiencemin']) : 0;
+                                                  $experiencemax    = isset($_GET['experiencemax']) ? trim($_GET['experiencemax']) : 0;
+
+                                                  $location      = $_GET['location'];
+                                                  $qualificationArr = isset($_GET['qualification']) ? $_GET['qualification'] : array();
                                                   $qualification = "('" . implode("','", $qualificationArr) . "')";
-//                                                  print_r($qualification);die;
-                                                  //$query = sprintf("SELECT * from resume r RIGHT JOIN users u ON u.id = r.user_id WHERE r.job_category_id='%s' AND (r.sub_category = '%s' OR r.experience >= '%s' OR r.current_location = '%s' OR r.qualification = '%s') AND u.del_status='0'",$category,$subcategory,$experience,$location,$qualification); 
-                                                 echo $query_st = "SELECT * from resume r RIGHT JOIN users u ON u.id = r.user_id WHERE r.job_category_id='$category' AND experience LIKE '$experiencemin-$experiencemax' AND u.del_status=0";
+
+                                                  //$query = sprintf("SELECT * from resume r RIGHT JOIN users u ON u.id = r.user_id WHERE r.job_category_id='%s' AND (r.sub_category = '%s' OR r.experience >= '%s' OR r.current_location = '%s' OR r.qualification = '%s') AND u.del_status='0'",$category,$subcategory,$experience,$location,$qualification);
+                                                  $query_st = "SELECT * from resume r RIGHT JOIN users u ON u.id = r.user_id WHERE r.job_category_id='$category' AND u.del_status=0";
                                                   if($subcategory!=-1){
                                                       $query_st = $query_st." AND sub_category='$subcategory'";
                                                   }
+
+                                                   $query_st = ($_GET['experiencemin'] > 0) ? $query_st." AND experience >= $experiencemin": $query_st;
+                                                   $query_st = ($experiencemax > 0) ? $query_st." AND experience <= $experiencemax": $query_st;
+
+
                                                   if($location!=''){
                                                       $location = explode(',',$location);
                                                       $query_st=$query_st." AND current_location LIKE '%$location[0]%'";
                                                   }
-                                                  if($qualification!=-1){
+                                                  if(!empty($qualificationArr)){
                                                       $query_st=$query_st." AND qualification IN $qualification";
-                                                  } 
-                                                  die;
+                                                  }
+
                                                   $result = Db::query($query_st);
-                                                  
+
                                                   $countrow=mysql_num_rows($result);
-                                                   
+
                                                   if($countrow>0){
-                                                      
+
                                             ?>
 						<thead>
 							<tr>
@@ -220,10 +226,10 @@
 						            <th>Name</th>
                                                             <th>E-mail</th>
                                                             <th>Resume Name</th>
-	
+
 							</tr>
 						</thead>
-                                                                                            
+
                                                 <tbody>
                                                 <?php
                                                    while ($row = mysql_fetch_array($result)) {
@@ -234,45 +240,45 @@
                                                     <td><?php echo $row['email']; ?></td>
                                                     <td><a href="uploads/<?php echo $row['file_name'] ?>" target="_blank"><?php $filename = "uploads/".$row['file_name']; if(file_exists($filename)){echo $row['file_name'];} else { echo 'File Doesnot exits'; } ?></a></td>
 			                       </tr>
-                                                  </tbody> 
+                                                  </tbody>
                                                        <?php $i++;  } }else{ ?>
-                                              
+
                                                   <div class="col-md-12"><h2 style="text-align: center; margin-bottom: 10px; font-size: 30px;">NO MATCHING RESUMES. TRY A BROADER SEARCH.</h2></div>
-                                               
+
                                                  <?php } ?>
-                                            
+
 					</table>
                                 </div>
 
-					
+
 				</div>
                             </div>
 		</section>
 
 
-     
+
        </div>
        </div>
        </section>
-               
-        
-       <!-- footer 
+
+
+       <!-- footer
 			================================================== -->
-        
+
           <?php  include("footer.php");?>
-		
+
 		<!-- End footer -->
-		
+
      </div>
 <!-- Revolution slider -->
-    
 
-    
+
+
 <script>
         $(function(){
-        
+
          $('#keyword').autocomplete({
-               
+
                                 source: function (request, response) {
                                     $.ajax({
                                         url: 'searchkeyword.php',
@@ -294,9 +300,9 @@
                                 autoFocus: true,
                                 minLength: 0
                             });
-                            
+
                             $('#location').autocomplete({
-               
+
                                 source: function (request, response) {
                                     $.ajax({
                                         url: 'searchlocation.php',
@@ -318,13 +324,13 @@
                                 autoFocus: true,
                                 minLength: 0
                             });
-                            
+
     });
     </script>
      <script>
-                            
+
                                $('#btn-search').on('click', function () {
-                                
+
                                 var keyword = $('#keyword').val();
                                 var location = $('#location').val();
                                 var id = $('#id').val();
@@ -339,14 +345,14 @@
                                         $('#oldtable').hide();
                                     }
                                 })
-                            
+
                                });
-          
+
         </script>
 	<script type="text/javascript">
 
 		jQuery(document).ready(function() {
-						
+
 			jQuery('.tp-banner').show().revolution(
 			{
 				dottedOverlay:"none",
@@ -354,60 +360,60 @@
 				startwidth:1140,
 				startheight:450,
 				hideThumbs:200,
-				
+
 				thumbWidth:100,
 				thumbHeight:50,
 				thumbAmount:5,
-				
+
 				navigationType:"bullet",
-				
+
 				touchenabled:"on",
 				onHoverStop:"off",
-				
+
 				swipe_velocity: 0.7,
 				swipe_min_touches: 1,
 				swipe_max_touches: 1,
 				drag_block_vertical: false,
-										
+
 										parallax:"mouse",
 				parallaxBgFreeze:"on",
 				parallaxLevels:[7,4,3,2,5,4,3,2,1,0],
-										
+
 				keyboardNavigation:"off",
-				
+
 				navigationHAlign:"center",
 				navigationVAlign:"bottom",
 				navigationHOffset:0,
 				navigationVOffset:"center",
-						
+
 				shadow:0,
 
 				spinner:"spinner4",
-				
+
 				stopLoop:"off",
 				stopAfterLoops:-1,
 				stopAtSlide:-1,
 
 				shuffle:"off",
-				
-				autoHeight:"off",						
-				forceFullWidth:"off",						
-										
-										
-										
+
+				autoHeight:"off",
+				forceFullWidth:"off",
+
+
+
 				hideThumbsOnMobile:"off",
-				hideNavDelayOnMobile:1500,						
+				hideNavDelayOnMobile:1500,
 				hideBulletsOnMobile:"off",
 				hideArrowsOnMobile:"off",
 				hideThumbsUnderResolution:0,
-				
+
 				hideSliderAtLimit:0,
 				hideCaptionAtLimit:0,
 				hideAllCaptionAtLilmit:0,
 				startWithSlide:0,
-				fullScreenOffsetContainer: ".header"	
+				fullScreenOffsetContainer: ".header"
 			});
-							
+
 		});	//ready
 
 		//isotope
@@ -420,8 +426,8 @@
 				masonry: {
 				    columnWidth: '.default-size'
 				}
-			});	
+			});
 		});	//ready
-	</script>		
+	</script>
 </body>
 </html>
