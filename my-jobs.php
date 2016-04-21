@@ -174,7 +174,7 @@
 
                                                             <?php
                                                             include 'db.php';
-                                                            $query = sprintf("SELECT j.job_listing, j.job_description,j.id, j.experience,j.job_location,j.closing_date  FROM jobs j JOIN  jobs_saved js ON j.id = js.job_id WHERE js.user_id = '%s' AND js.del_status = '%s'", $id, 0);
+                                                            $query = sprintf("SELECT j.job_listing, j.job_description,j.id, j.experience,j.job_location,j.closing_date,j.company_name  FROM jobs j JOIN  jobs_saved js ON j.id = js.job_id WHERE js.user_id = '%s' AND js.del_status = '%s'", $id, 0);
                                                             $result = Db::query($query);
                                                             if(mysql_num_rows($result) > 0){
                                                             while ($row = mysql_fetch_array($result)) {
@@ -182,7 +182,9 @@
                                                             <div class="accord-content" style="display: none;" id="accord-saved-<?php echo $row['id'];?>">
                                                                 <h4><?php echo $row['job_listing'];?></h4>
                                                                 <p><?php echo $row['job_description'];?></p>
-                                                                <p><span style="color:#6495ED">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'].' year': $row['experience'].' years';?>,
+                                                                <p>
+                                                                <span style="color:#6495ED">Company : </span><?php echo $row['company_name'];?>,    
+                                                                <span style="color:#6495ED">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'].' year': $row['experience'].' years';?>,
                                                                 <span style="color:#6495ED">Location : </span><?php echo $row['job_location'];?>,
                                                                 <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date']));?></p>
                                                                 <input type="hidden" name="bid" id="bid" value="<?php echo $row['id'];?>"/>
@@ -213,7 +215,7 @@
 								</div>
                                     <div id="applied-affix">
                                         <?php
-                                        $qry = sprintf("SELECT j.id, j.job_description,j.job_location,  j.experience, j.closing_date, j.job_listing FROM jobs j JOIN `jobs_applied` ja ON j.id = ja.job_id WHERE ja.user_id = '%s' AND ja.del_status = '%s'", $id, 0);
+                                        $qry = sprintf("SELECT j.id, j.job_description,j.job_location,  j.experience, j.closing_date, j.job_listing,j.company_name FROM jobs j JOIN `jobs_applied` ja ON j.id = ja.job_id WHERE ja.user_id = '%s' AND ja.del_status = '%s'", $id, 0);
                                         $res = Db::query($qry);
                                         if(mysql_num_rows($res) > 0){
                                         while ($rw = mysql_fetch_array($res)) {
@@ -221,7 +223,9 @@
                                             <div class="accord-content" style="display: none;">
                                                 <h4><?php echo $rw['job_listing'];?></h4>
                                                 <p><?php echo $rw['job_description'];?></p>
-                                                <p><span style="color:#6495ED">Experience : </span><?php echo ($rw['experience'] == 0) ? $rw['experience'].' year': $rw['experience'].' years';?>,
+                                                <p>
+                                                <span style="color:#6495ED">Company : </span><?php echo $rw['company_name'];?>,
+                                                <span style="color:#6495ED">Experience : </span><?php echo ($rw['experience'] == 0) ? $rw['experience'].' year': $rw['experience'].' years';?>,
                                                 <span style="color:#6495ED">Location : </span><?php echo $rw['job_location'];?>,
                                                 <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($rw['closing_date']));?></p>
                                                  <input type="hidden" name="jbid" id="jbid" value="<?php echo $rw['id'];?>"/>
@@ -297,7 +301,9 @@
 								<div class="accord-content" style="" id="accord-offered-<?php echo $rwofr['id'];?>">
 								<h4><?php echo $rwofr['job_listing'];?></h4>
                                                                 <p><?php echo $rwofr['job_description'];?></p>
-                                                                <p><span style="color:#6495ED">Experience : </span><?php echo ($rwofr['experience'] == 0) ? $rwofr['experience'].' year': $rwofr['experience'].' years';?>,
+                                                                <p>
+                                                                <span style="color:#6495ED">Company : </span><?php echo $rwofr['company_name'];?>,
+                                                                <span style="color:#6495ED">Experience : </span><?php echo ($rwofr['experience'] == 0) ? $rwofr['experience'].' year': $rwofr['experience'].' years';?>,
                                                                 <span style="color:#6495ED">Location : </span><?php echo $rwofr['job_location'];?>,
                                                                 <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($rwofr['closing_date']));?></p>
                                                                 <input type="submit" value="Apply Now" onclick="offered(<?php echo $rwofr['id'];?>, this)"/>

@@ -42,8 +42,8 @@ Db::query($sqlApply);
        $headers = "MIME-Version: 1.0" . "\r\n";
        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
        $headers.= "From:itljobs@webadmin.com" . "\r\n";
-       $to = 'jayalakshmivjvj@gmail.com';
-       $subject = "New Application";
+       $to = 'jubyraju89@gmail.com';
+       $subject = "Notification - Job Applied";
        mail($to, $subject, $email_template_apply, $headers); 
 
 $qry = sprintf("SELECT j.id, j.job_description, j.experience, j.closing_date, j.job_listing FROM jobs j JOIN `jobs_applied` ja ON j.id = ja.job_id WHERE ja.user_id = '%s' AND j.id = '%s' AND  ja.del_status = '%s'", $userId,$jobId, 0);

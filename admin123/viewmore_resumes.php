@@ -42,8 +42,8 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Admins 
-                        <small> List Of Admins </small>
+                        Resume 
+                        <small></small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -58,7 +58,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title"> Admins </h3>
+                                    <h3 class="box-title"> Resume </h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
                                    
@@ -66,7 +66,7 @@
                                          <?php
                                             $id = $_REQUEST['id'];
                                             $i = 1;
-                                             $query = sprintf("SELECT r.id,r.experience,r.qualification,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name, r.del_status, u.name as name,u.email ,jc.name as jobcatname from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s' AND r.id='%s'",'0',$id);  
+                                             $query = sprintf("SELECT r.id,r.experience,r.qualification,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name, r.del_status, u.name as name,u.email ,jc.name as jobcatname,r.abroad_experience,r.india_experience from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s' AND r.id='%s'",'0',$id);  
                                             $result = Db::query($query);
                                             while ($row = mysql_fetch_array($result)) {
                                                 ?>
@@ -74,7 +74,9 @@
                                                 <tr><th>Name</th><td><?php echo $row['name']; ?></td></tr>
                                                 <tr><th>E-mail</th><td><?php echo $row['email']; ?></td></tr>
                                                 <tr><th>Specialization</th><td><?php echo $row['specification']; ?></td></tr>
-                                                <tr><th>Experience</th><td><?php echo $row['experience']; ?></td></tr>
+                                                <tr><th>Abroad Experience</th><td><?php echo $row['abroad_experience']; ?></td></tr>
+                                                <tr><th>Indian Experience</th><td><?php echo $row['india_experience']; ?></td></tr>
+                                                <tr><th>Total Experience</th><td><?php echo $row['experience']; ?></td></tr>
                                                 <tr><th>Qualification</th><td><?php echo $row['qualification']; ?></td></tr>
                                                 <tr><th>Current Location</th><td><?php echo $row['current_location']; ?></td></tr>
                                                 <tr><th>Date of Birth</th><td><?php echo $row['date_of_birth']; ?></td></tr>
