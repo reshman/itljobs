@@ -98,7 +98,7 @@
                                                     <td><?php echo $row['closing_date']; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><a href="viewmore_jobs.php?id=<?php echo $row['jobid'];?>" target="_BLANK">view more</a></td>
-                                                    <td><input type="number" name="order" id="order" class="order" value="<?php echo $row['job_order'];?>"/>
+                                                    <td><input type="number" min="0" name="order" id="order" class="order" value="<?php echo $row['job_order'];?>"/>
                                                         <a onclick="updatecheck(this)" class="btn btn-primary">update</a>
                                                         <input type="hidden" name="id" id="id" value="<?php echo $row['jobid'];?>"/>
                                                     </td>

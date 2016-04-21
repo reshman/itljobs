@@ -235,7 +235,7 @@ or a service you can do for others</p>
                 }
             }
 
-            $query = sprintf("SELECT id, job_listing, job_description  FROM `jobs` WHERE active='%s'AND job_order!='%s' AND del_status='%s' AND closing_date>='%s' ORDER BY job_order DESC limit 1",1,0,0,$today_date);
+            $query = sprintf("SELECT id, job_listing, job_description  FROM `jobs` WHERE active='%s'AND job_order!='%s' AND del_status='%s' AND closing_date>='%s' ORDER BY job_order limit 1",1,0,0,$today_date);
             $result = Db::query($query);
             while ($row = mysql_fetch_array($result)) {    
            ?>
