@@ -563,9 +563,7 @@ include 'footer.php';
                 title: "required",
                 name: {required:true,nonNumeric:true},
                 job_category_id: "required",
-                sub_category:"required",
                 india: "required",
-                abroad:"required",
                 dob:{required:true, dateFormat: true},
                 mobile:{
                     required: true,
@@ -573,13 +571,8 @@ include 'footer.php';
                     minlength: 10, //or look at the additional-methods.js to see available phone validations
                     maxlength: 10
                 },
-                specification:{required:true,nonNumeric:true},
                 qualification:"required",
                 current_location:"required",
-
-                //day:"required",
-                month:"required",
-                //year:"required",
                 captcha:"required",
                 email: {required: true,email: true}
             },
@@ -589,9 +582,7 @@ include 'footer.php';
                 title: "Please select title",
                 name: "Please enter your full name",
                 job_category_id: "Please select job applied for",
-                sub_category:"Please select job title",
                 india: "Please enter experience in India",
-                abroad:"Please enter experience in abroad",
                 dob:{required: "Please enter date of birth", dateFormat: "Please enter a date in the format dd/mm/yyyy."},
                 mobile:{
                     required: "Please enter your mobile number.",
@@ -599,13 +590,8 @@ include 'footer.php';
                     minlength: "Enter valid contact number",
                     maxlength: "Enter valid contact number"
                 },
-                specification:"Please enter specification",
                 qualification:"Please enter qualification",
                 current_location:"Please enter current location",
-
-                //day:"Please enter date of birth",
-                month:"Enter date of birth",
-                //year:"Please enter date of birth",
                 captcha:"Please enter captcha",
                 email:{required: "Please enter email", email: "Please enter valid email!"}
 
