@@ -74,7 +74,8 @@
                                           $row = mysql_fetch_array($res);
                                           
                                           $user_id = $row['userid'];
-                                          $query = sprintf("SELECT experience,specification,current_location,mobile,qualification,date_of_birth,file_name,sub_category,abroad_experience,india_experience FROM resume WHERE user_id='%s'",$user_id);
+//                                          $query = sprintf("SELECT experience,specification,current_location,mobile,qualification,date_of_birth,file_name,sub_category,abroad_experience,india_experience FROM resume WHERE user_id='%s'",$user_id);
+                                          $query = sprintf("SELECT * FROM resume LEFT JOIN job_categories ON resume.job_category_id=job_categories.id");
                                           $result = Db::query($query); 
                                           $rw = mysql_fetch_assoc($result);
                                           ?>
@@ -83,6 +84,7 @@
                                                     <tr><th>Candidate Name</th><td><?php echo $row['name']; ?></td> </tr>
                                                     <tr><th>Date of Birth</th><td><?php echo $rw['date_of_birth']; ?></td> </tr>
                                                     <tr><th>Qualification</th><td><?php echo $rw['qualification']; ?></td> </tr>
+                                                    <tr><th>Job Category</th><td><?php echo $rw['name']; ?></td> </tr>
                                                     <tr><th>Industry</th><td><?php echo $rw['sub_category']; ?></td> </tr>
                                                     <tr><th>Specialization</th><td><?php echo $rw['specification']; ?></td> </tr>
                                                     <tr><th>Abroad experience</th><td><?php echo $rw['abroad_experience']; ?></td> </tr>

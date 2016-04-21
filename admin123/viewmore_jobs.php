@@ -200,7 +200,7 @@
 
     });
 </script>
-<script>
+<!--<script>
 //    $(function(){
      function updatecheck($this) { 
          //var current_element = $this;
@@ -222,7 +222,34 @@
             });
         
     }
+    </script>-->
+    <script>
+//    $(function(){
+     function updatecheck($this) { 
+//         var current_element = $this;
+
+         console.log($($this).prev().val());
+         //return false;
+
+            var order =$($this).prev().val();
+            var id =$($this).next().val();
+           // var id    = $('#id').val();
+   
+              url = "job-order.php";
+            $.ajax({
+                url:url,
+                type:'POST',
+                data:{id:id, order:order}
+            }).done(function(data) {
+                   if (data == 'SUCCESS') {
+                        alert('Job order updated successfully');
+                    } else if (data == 'ALREADY EXISTED JOB ORDER') {
+                        alert('Already existed job order,Please choose another');
+                        location.reload();
+                    }
+            });
+        
+    }
     </script>
-    
     </body>
 </html>

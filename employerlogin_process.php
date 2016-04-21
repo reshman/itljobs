@@ -7,7 +7,7 @@ require_once("db.php");
 $email = trim($_POST['loginemail']);
 $password = md5(trim($_POST['loginpassword']));
 
-$query = sprintf("SELECT * FROM `users` WHERE email='%s' AND password='%s' AND role_id='%s' AND active='%s'",$email,$password,4,1);
+$query = sprintf("SELECT * FROM `users` WHERE email='%s' AND password='%s' AND role_id='%s' AND active='%s' AND del_status='%s'",$email,$password,4,1,0);
 $result = Db::query($query);
 
 while ($row = mysql_fetch_array($result)) {

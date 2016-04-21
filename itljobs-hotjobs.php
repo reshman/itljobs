@@ -128,7 +128,7 @@ if (isset($_SESSION['log'])) {
     }
 }
 $today_date = date('Y-m-d');
-$query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND job_order>0 ORDER BY job_order ", 1, 0, $today_date);
+$query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND job_order>'%s' ORDER BY job_order DESC", 1, 0, $today_date,0);
 $result = Db::query($query);
 while ($row = mysql_fetch_array($result)) {
     ?>
@@ -162,7 +162,7 @@ while ($row = mysql_fetch_array($result)) {
                                 
     <?php 
 }
-$query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND job_order=0", 1, 0, $today_date);
+$query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND job_order='%s'", 1, 0, $today_date,0);
 $result = Db::query($query);
 while ($row = mysql_fetch_array($result)) {
     ?>

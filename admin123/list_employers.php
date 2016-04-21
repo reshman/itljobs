@@ -115,7 +115,7 @@
                                                     <td><?php echo $row['designation']; ?></td>
                                                     <td><?php echo $row['email']; ?></td>
                                                     <td>
-                                                    <input <?php echo ($row['active']=='1') ? 'checked' : '';?> data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox" value="<?php echo $row['id']; ?>">                                
+                                                    <input <?php echo ($row['active']=='1') ? 'checked' : '';?> data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox" value="<?php echo $row['uid']; ?>">                                
                                                     </td> 
                                                     <td><a href="viewmore_listemployers.php?id=<?php echo $row['uid'] ?>" target="_BLANK">View More</a></td>
 
@@ -352,7 +352,7 @@
         <script>
     $(function() {
         
-        $('.toggle-event').change(function() {
+     $('body').on('change', '.toggle-event', function() {
             //alert("asda");
             var status = $(this).prop('checked')===true?'1':'0';
             var rowId  = $(this).val();
@@ -365,10 +365,9 @@
                // alert(data);
             });
 
-        })
+        });
 
-
-    })
+    });
 </script>
     </body>
 </html>

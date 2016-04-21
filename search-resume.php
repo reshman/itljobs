@@ -120,11 +120,11 @@
                         </div>
 
                         <div class="col-md-4">
-                            <input type="text" name="experiencemin" placeholder="Minimum">
+                            <input type="text" name="experiencemin" id="experiencemin" placeholder="Minimum">
                         </div>
                         
                         <div class="col-md-4">
-                            <input type="text" name="experiencemax" placeholder="Maximum">
+                            <input type="text" name="experiencemax" id="experiencemax" placeholder="Maximum">
                         </div>
                     </div> 
 
@@ -225,7 +225,7 @@
     </script>
         <script>
         $(".js-data-example-ajax").select2({
-          tags: true
+         // tags: true
       
         });
         </script>
@@ -269,14 +269,16 @@
                     // Specify the validation rules
 
                     rules: {
-                        experience: {notEqual: true}
+//                        experience: {notEqual: true}
                         //check: "allempty" //Implementing above function
-
+                       experiencemin: {digits: true},
+                       experiencemax: {digits: true}
                     },
                     // Specify the validation error messages
 
                     messages: {
-                        experience: "Please Select Experience"
+                         experiencemin: {digits:"Enter a number"},
+                         experiencemax: {digits:"Enter a number"}
                     },
                     submitHandler: function (form) {
 

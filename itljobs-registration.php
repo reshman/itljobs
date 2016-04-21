@@ -148,6 +148,7 @@
                     <?php
                     }
                     ?>
+                    <option value="Others">Others</option>
                     </select>    
                 </div>
             </div>

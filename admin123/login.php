@@ -21,7 +21,7 @@ $countrow = mysql_num_rows($result);
 $urlinlogin="home.php";
 $urlinnotlogin="index.php";
 if ($countrow >0){
-$_SESSION['logged-in'] = true;
+$_SESSION['logged-in-super'] = true;
 echo "<script type='text/javascript'>
 location.href = '" . $urlinlogin . "';
 </script>";
