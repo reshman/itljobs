@@ -271,7 +271,18 @@
                                                                  $resultApplied  = Db::query($sqlJobsApplied);
                                                                  if (mysql_num_rows($resultApplied) > 0) {
                                                                      while ($rowApplied = mysql_fetch_assoc($resultApplied)) {
-                                                                         $jobsArray[] = $rowApplied['job_id'];
+                                                                         if (!in_array($rowApplied['job_id'], $jobsArray))
+                                                                             $jobsArray[] = $rowApplied['job_id'];
+                                                                     }
+                                                                 }
+
+                                                                 $sqlJobsSaved = sprintf("SELECT job_id FROM jobs_saved WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
+                                                                 $resultSaved  = Db::query($sqlJobsSaved);
+
+                                                                 if (mysql_num_rows($resultSaved) > 0) {
+                                                                     while ($rowSaved = mysql_fetch_assoc($resultSaved)) {
+                                                                         if (!in_array($rowSaved['job_id'], $jobsArray))
+                                                                            $jobsArray[] = $rowSaved['job_id'];
                                                                      }
                                                                  }
 
