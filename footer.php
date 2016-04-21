@@ -11,7 +11,7 @@
 			<li><a href="search-job-basis.php">Job Search Basics</a></li>
 			<li><a href="#">Job Applications</a></li>
 			<li><a href="#">Best Sites for Job Listings</a></li>
-			<li><a href="#">Cover Letter Tips</a></li>
+			<li><a href="cover-letter-tips.php">Cover Letter Tips</a></li>
 			</ul>
 			</div>
             </div>
