@@ -77,7 +77,7 @@
                     $user_id = $_SESSION['reclog'];
                 }
                 ?>
-                <div class="col-lg-2"><?php include('myprofile-sidemenu.php'); ?></div>
+                <?php include('myprofile-sidemenu.php'); ?>
                 <div class="col-lg-10">
                     <form id="contact-form" method="POST" action="recruiter-postjobprocess.php" enctype="multipart/form-data">  
                         <?php

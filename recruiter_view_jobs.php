@@ -1,5 +1,5 @@
 <!doctype html>
-<?php include 'check_session_js.php'; ?>
+<?php include 'check_session_rec.php'; ?>
 
 <html lang="en" class="no-js">
     <head>
@@ -37,10 +37,6 @@
         <script type="text/javascript" src="js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
-        <link rel="stylesheet" href="css/jquery-ui.css">
-
-        <script src="js/jquery-ui.js"></script>
-
 
     </head>
     <body>
@@ -51,6 +47,7 @@
                 ================================================== -->
 
             <?php include("header.php"); ?>
+
 
             <!-- End Header -->
 
@@ -139,26 +136,17 @@
                 </div>
             </section>
             <!-- End home section -->
-
-
-            <div class="container">
-                <div class="row">    
-                    <div class="search-box">
-                        <form> 
-                            <input type="text" name="keyword" id="keyword"  tabindex="1" placeholder="JOB TITLE,KEYWORDS">
-                            <input type="text" name="location" id="location"  tabindex="1" placeholder="LOCATION">
-                            <input  type="button" value="Create Alert" id="btn-search">
-                        </form> 
-                    </div>
-                </div>
-            </div>    
-            <!-- services-offer 
-                            ================================================== -->
-
-            <!-- End services-offer section -->
-
-
-
+            <!-- <div class="container">
+             <div class="row">    
+             <div class="search-box">
+          <form> 
+           <input type="text" placeholder="JOB TITLE,KEYWORDS" id="box1">
+           <input type="text" placeholder="COUNTRY" id="box2">
+            <input type="submit" value="SEARCH JOBS" id="btn-search">
+            </form> 
+             </div>
+             </div>
+             </div>     -->
 
 
             <section class="page-section">
@@ -167,8 +155,8 @@
 
 
                         <?php
-                        if (isset($_SESSION['log'])) {
-                            $user_id = $_SESSION['log'];
+                        if (isset($_SESSION['reclog'])) {
+                            $user_id = $_SESSION['reclog'];
                         }
                         ?>
                         <input type="hidden" name="id" id="id" value="<?php echo $user_id; ?>"/>
@@ -179,28 +167,69 @@
                             <div class="container">
 
                                 <div class="title-section">
-                                        <h1>ALERTS</h1>
+                                    <h1>Jobs List</h1>
                                 </div>
                                 <?php include('myprofile-sidemenu.php'); ?>
                                 <div class="col-md-10">
+                                    <script>
+                                        $('#status-message').fadeOut(5000);
+                                    </script>
                                     <?php
-                                    if ($_GET) {
-                                        $status = $_GET['status'];
-                                        if ($status == 0) {
+                                    if (isset($_SESSION['illegal'])) {
+                                        ?>
+                                        <div class="alert alert-danger alert-dismissable">
+
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                            Sorry You are not allowed to Modify this Job.
+
+                                        </div>
+                                        <?php
+                                        unset($_SESSION['illegal']);
+                                    }
+                                    if (isset($_SESSION['regsucc']) != '') {
+
+                                        if ($_SESSION['regsucc'] == '1') {
                                             ?>
-                                            <div class="bg-success text-center" id="status-message" style="padding: 10px; margin: 10px;">Alert Deleted Successfully</div>
+
+                                            <div class="alert alert-success alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Job Edited successfully <a href="#" class="alert-link"></a>.
+
+                                            </div>
+
+                                            <?php
+                                        }else if ($_SESSION['regsucc'] == '0') {
+                                            ?>
+
+                                            <div class="alert alert-success alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Job Deleted successfully <a href="#" class="alert-link"></a>.
+
+                                            </div>
+
                                             <?php
                                         } else {
                                             ?>
-                                            <div class="bg-danger text-center" id="status-message" style="padding: 10px; margin: 10px;">Alert Deletion Failed</div>
+
+                                            <div class="alert alert-danger alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Failed <a href="#" class="alert-link"></a>.
+
+                                            </div>
+
                                             <?php
                                         }
+                                        unset($_SESSION['regsucc']);
                                     }
                                     ?>
-                                            <script>
-                                                $('#status-message').fadeOut(5000);
-                                            </script>
-                                    <div class="bg-success text-center" id="success-message" style="padding: 10px; margin: 10px;"></div>
+
                                     <div class="table-responsive">
                                         <div id="dissearch"></div>
                                         <div id="oldtable">
@@ -208,7 +237,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Alerts</th>
+                                                        <th>Title</th>
+                                                        <th>Create Date</th>
+                                                        <th>Closing Date</th>
+                                                        <th>Edit</th>
                                                         <th>Delete</th>
 
                                                     </tr>
@@ -217,17 +249,26 @@
                                                 <?php
                                                 $i = 1;
                                                 require_once 'db.php';
-                                                $query = sprintf("SELECT id,a.user_id, a.jobcategory, a.location from alerts a WHERE user_id='%s'", $user_id);
+                                                $query = sprintf("SELECT * FROM jobs WHERE user_id='%s' ORDER BY closing_date", $user_id);
                                                 $result = Db::query($query);
                                                 while ($row = mysql_fetch_array($result)) {
-                                                    $jobcat = $row['jobcategory'];
-                                                    $location = $row['location'];
+
+                                                    $created = explode('-', $row['created_date']);
+                                                    $created = array_reverse($created);
+                                                    $created = implode('/', $created);
+
+                                                    $closing = explode('-', $row['closing_date']);
+                                                    $closing = array_reverse($closing);
+                                                    $closing = implode('/', $closing);
                                                     ?>
                                                     <tbody>
                                                         <tr>
                                                             <td><?php echo $i; ?></td>
-                                                            <td><a href="alert_joblist.php?jobcat=<?php echo $jobcat; ?>&loc=<?php echo $location; ?>"><?php echo $row['jobcategory']; ?> in <?php echo $row['location']; ?></a></td>
-                                                            <td><a href="delete_alert.php?id=<?php echo $row['id']; ?>" class="btn btn-danger"><span class="fa fa-times"></span></a></td>
+                                                            <td><a href="view_rec_job.php?id=<?php echo $row['id']; ?>"><?php echo $row['job_listing'] ?></a></td>
+                                                            <td><?php echo $created; ?></td>
+                                                            <td><?php echo $closing; ?></td>
+                                                            <td><a href="edit_rec_job.php?id=<?php echo $row['id']; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a></td>
+                                                            <td><a href="delete_rec_job.php?id=<?php echo $row['id']; ?>" class="btn btn-danger"><span class="fa fa-times"></span></a></td>
 
                                                         </tr>
                                                     </tbody>
@@ -248,9 +289,8 @@
                 </div>
             </section>
 
-
             <!-- footer 
-                             ================================================== -->
+                            ================================================== -->
 
             <?php include("footer.php"); ?>
 
@@ -258,84 +298,6 @@
 
         </div>
         <!-- Revolution slider -->
-
-
-
-        <script>
-            $(function () {
-
-                $('#keyword').autocomplete({
-                    source: function (request, response) {
-                        $.ajax({
-                            url: 'searchkeyword.php',
-                            dataType: "json",
-                            data: {
-                                query: $('#keyword').val(),
-                                type: 'search'
-                            },
-                            success: function (data) {
-                                response($.map(data, function (item) {
-                                    return {
-                                        label: item,
-                                        value: item
-                                    }
-                                }));
-                            }
-                        });
-                    },
-                    autoFocus: true,
-                    minLength: 0
-                });
-
-                $('#location').autocomplete({
-                    source: function (request, response) {
-                        $.ajax({
-                            url: 'searchlocation.php',
-                            dataType: "json",
-                            data: {
-                                query: $('#location').val(),
-                                type: 'search'
-                            },
-                            success: function (data) {
-                                response($.map(data, function (item) {
-                                    return {
-                                        label: item,
-                                        value: item
-                                    }
-                                }));
-                            }
-                        });
-                    },
-                    autoFocus: true,
-                    minLength: 0
-                });
-
-            });
-        </script>
-        <script>
-            $('#success-message').hide();
-
-
-            $('#btn-search').on('click', function () {
-
-                var keyword = $('#keyword').val();
-                var location = $('#location').val();
-                var id = $('#id').val();
-                $.ajax({
-                    url: 'searchprocessalert.php',
-                    type: 'POST',
-                    data: {keyword: keyword, location: location, id: id},
-                    success: function (data) {
-                        $('#dissearch').html(data);
-                        $('#oldtable').hide();
-                        $('#success-message').fadeIn(1000).html("Alert Succesfully Added");
-                        $('#success-message').fadeOut(5000);
-                    }
-                })
-
-            });
-
-        </script>
         <script type="text/javascript">
 
             jQuery(document).ready(function () {

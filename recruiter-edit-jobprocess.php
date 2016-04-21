@@ -3,7 +3,7 @@
 require('db.php');
 // include("logincheck.php");
 session_start();
-$urlin = "recruiter-postjob.php";
+$urlin = "recruiter_view_jobs.php";
 
 $id = (trim($_POST['id']));
 $category_id = trim($_POST['category']);
@@ -32,18 +32,7 @@ $closing_date1 = array_reverse($closing_date1);
 $closing_date = implode('-', $closing_date1);
 
 
-function generateRandomString($length = 8) {
-    $characters = 'ITL0123456789';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-    }
-    $ref_id = generateRandomString();
-
-$sql = sprintf("INSERT INTO jobs SET company_name = '%s', user_id = '%s', job_listing = '%s', job_description = '%s', job_location = '%s', job_type = '%s', salary = '%s', created_date = '%s', closing_date = '%s', date = '%s', active = '%s', del_status = '%s', job_category_id='%s',experience='%s',ref_id='%s'", $companyname, $id, $companytitle, $description, $location, $jobtype, $salary, $create_date, $closing_date, $date, '0', '0', $category_id, $experience,$ref_id);
+$sql = sprintf("UPDATE jobs SET company_name = '%s', job_listing = '%s', job_description = '%s', job_location = '%s', job_type = '%s', salary = '%s', created_date = '%s', closing_date = '%s', date = '%s', active = '%s', del_status = '%s', job_category_id='%s',experience='%s' WHERE id=%d", $companyname, $companytitle, $description, $location, $jobtype, $salary, $create_date, $closing_date, $date, '0', '0', $category_id, $experience, $id);
 $resultsql = Db::query($sql);
 
 

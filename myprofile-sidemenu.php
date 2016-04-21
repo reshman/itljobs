@@ -18,6 +18,7 @@ if (isset($_SESSION['log'])) {
     <?php
 } else if (isset($_SESSION['reclog'])) {
     ?>
+    <div class="col-md-2">
         <div class="side-navigation">
             <ul class="side-navigation-list">
                 <li><a href="edit-recruiterprofile.php" class="<?php echo ($link == 'edit-recruiterprofile.php') ? 'active' : '' ?>">EDIT MY PROFILE</a></li>
@@ -27,5 +28,6 @@ if (isset($_SESSION['log'])) {
 
             </ul>
         </div>
+    </div>
     <?php
 }
