@@ -414,6 +414,32 @@ p {
     margin-bottom: 45px;
     text-align: center;
 }
+
+
+.title-section h2 {
+    color: #fff;
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    margin: 0 0 30px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+}
+.title-section h2:after {
+    position: absolute;
+    content: '';
+    width: 30px;
+    height: 3px;
+    bottom: -1px;
+    left: 50%;
+    margin-left: -15px;
+    background: #ed1c24;
+}
+
+
+
 .title-section h1 {
     color: #222222;
     font-size: 24px;
@@ -2439,6 +2465,10 @@ button.mfp-arrow {
 .contact-section .contact-info {
     margin-bottom: 30px;
     margin-top: 10px;
+    background-color: #fff;
+    padding: 15px;
+    opacity: .7;
+    border-radius: 10px;
 }
 .contact-section h2 {
     color: #222222;
@@ -2473,7 +2503,7 @@ button.mfp-arrow {
 }
 .contact-section ul.information-list li span {
     display: block;
-    font-size: 13px;
+    font-size: 14px;
     color: #666666;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -2484,7 +2514,7 @@ button.mfp-arrow {
     color: #222222;
 }
 .contact-section ul.information-list li a {
-    font-size: 13px;
+    font-size: 14px;
     color: #666666;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -4034,7 +4064,19 @@ footer p.copyright {
 
 .register-section {
 
-    margin-top: 120px;
+    padding-top: 120px;
+
+
+}
+
+.register-cont-section {
+
+    padding-top: 120px;
+    background: url(../images/map.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 
 }
 
@@ -4063,8 +4105,6 @@ footer p.copyright {
     box-shadow: 0 3px 9px rgba(0,0,0,.5);
     padding: 20px!important;
 }
-
-
 
 
 
