@@ -9,8 +9,9 @@ $id       = $_REQUEST['id'];
                             <table class="table">
 						<thead>
 							<tr>
-                                                               <!--<th>#</th>-->
+                                                                <th>#</th>
 								<th>Alerts</th>
+                                                                <th>Delete</th>
 	
 							</tr>
 						</thead>
@@ -22,7 +23,7 @@ $id       = $_REQUEST['id'];
                                                   $resultsql    = Db::query($sql);
                                                   $i=1;
                                                  
-                                                  $query = sprintf("SELECT a.user_id, a.jobcategory, a.location from alerts a WHERE user_id='%s'",$id);   
+                                                  $query = sprintf("SELECT id,a.user_id, a.jobcategory, a.location from alerts a WHERE user_id='%s'",$id);   
                                                   $result = Db::query($query);
                                                    while ($row = mysql_fetch_array($result)) {
                                                     $jobcat=$row['jobcategory'];
@@ -30,8 +31,9 @@ $id       = $_REQUEST['id'];
                                                 ?>
                                                 <tbody>
 						<tr>
-                                                       <!--<td><?php echo $i; ?></td>-->
+                                                       <td><?php echo $i; ?></td>
                                                        <td><a href="alert_joblist.php?jobcat=<?php echo $jobcat; ?>&loc=<?php echo $location; ?>"><?php echo $row['jobcategory']; ?> in <?php echo $row['location']; ?></a></td>
+                                                       <td><a href="delete_alert.php?id=<?php echo $row['id']; ?>" class="btn btn-danger"><span class="fa fa-times"></span></a></td>
 
 						</tr>
                                                 </tbody>
