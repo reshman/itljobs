@@ -1,5 +1,5 @@
 <!doctype html>
-<?php //require 'check_session_rec.php'; ?>
+<?php require 'check_session_rec.php'; ?>
 
 <html lang="en" class="no-js">
     <head>
@@ -162,7 +162,7 @@
                                  <?php
                                 $qryqualif = sprintf("SELECT * FROM `qualification`");
                                 $resqualif = Db::query($qryqualif);
-                                while ($rowq = mysql_fetch_array($resqualif)) {
+                                while ($rowq = mysql_fetch_assoc($resqualif)) {
                                     ?>
                                     <option value="<?php echo $rowq['qualification']; ?>"><?php echo $rowq['qualification']; ?></option>
                                     

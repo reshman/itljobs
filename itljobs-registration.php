@@ -83,6 +83,7 @@
 		<?php
                 session_start();
                     include 'header.php';
+                     include 'db.php';
                 ?>
         
          <!-- home-section 
@@ -139,7 +140,6 @@
                     <select name="job_category_id" class="job">
                     <option disabled="" selected="">JOB APPLIED FOR</option>   
                     <?php
-                    include 'db.php';
                     $qry = sprintf("SELECT * FROM `job_categories`");
                     $res = Db::query($qry);
                     while ($row = mysql_fetch_array($res)) {
@@ -181,44 +181,14 @@
         <div class="col-md-4">
            <!-- <input name="qualification" id="qualification" type="text" placeholder="QUALIFICATION ">    -->
            <select name="qualification">
-            <option disabled="" selected="">SELECT QUALIFICATION</option>   
-            <option value="B.A">B.A</option>
-            <option value="B.Arch">B.Arch</option>
-            <option value="BCA">BCA</option>
-            <option value="BBA">BBA</option>
-            <option value="B.Com">B.Com</option>
-            <option value="B.Ed">B.Ed</option>
-            <option value="BDS">BDS</option>
-            <option value="BHM">BHM</option>
-            <option value="B.Pharma">B.Pharma</option>
-            <option value="B.Sc">B.Sc</option>
-            <option value="B.Tech / B.E">B.Tech / B.E</option>
-            <option value="LLB">LLB</option>
-            <option value="MBBS">MBBS</option>
-            <option value="Diploma">Diploma</option>
-            <option value="BVSC">BVSC</option>
-            <option value="CA">CA</option>
-            <option value="CS">CS</option>
-            <option value="ICWA (CMA)">ICWA (CMA)</option>
-            <option value="Integrated PG">Integrated PG</option>
-            <option value="LLM">LLM</option>
-            <option value="M.A">M.A</option>
-            <option value="M.Arch">M.Arch</option>
-            <option value="M.Com">M.Com</option>
-            <option value="M.Ed">M.Ed</option>
-            <option value="M.Pharma">M.Pharma</option>
-            <option value="MSc">MSc</option>
-            <option value="M.Tech">M.Tech</option>
-            <option value="MBA/PGDM">MBA/PGDM</option>
-            <option value="MCA">MCA</option>
-            <option value="MS">MS</option>
-            <option value="PG Diploma">PG Diploma</option>
-            <option value="MVSC">MVSC</option>
-            <option value="MCM">MCM</option>
-            <option value="Ph.D/Doctorate">Ph.D/Doctorate</option>
-            <option value="M.Phil">M.Phil</option>
-            <option value="Other">Other</option>
-            
+            <option disabled="" selected="">SELECT QUALIFICATION</option>
+            <?php
+            $qryqa = sprintf("SELECT * FROM `qualification`");
+            $resqua = Db::query($qryqa);
+            while ($rowq = mysql_fetch_assoc($resqua)) { ?>
+            <option value="<?php echo $rowq['qualification'];?>"><?php echo $rowq['qualification'];?></option>
+            <?php }
+            ?>
           </select>  
         </div> 
             
