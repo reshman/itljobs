@@ -19,6 +19,16 @@ $salary = $salaryamount . ' ' . $salarycategory;
 date_default_timezone_set('Asia/Calcutta');
 $date = date("Y-m-d h:i:s");
 
+$sal = explode('-', $salaryamount);
+$minsal = (int)$sal[0];
+$maxsal = (int)$sal[1];
+
+if ($minsal > $maxsal) {
+    $_SESSION['regsucc'] = 3;
+    echo "<script type='text/javascript'> window.location.href = '" . $urlin . "'; </script>";
+    die();
+}
+
 $create_date1 = trim($_POST['create_date']);
 
 $create_date1 = explode('/', $create_date1);

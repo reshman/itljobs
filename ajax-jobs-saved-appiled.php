@@ -21,6 +21,28 @@ if(Db::query($sqlSavedJobsDel)) {
         del_status = '%s'", $userId, $jobId, $date, 0
     );
     Db::query($sqlAppliedJobsDel);
+    
+    $query = sprintf("SELECT job.ref_id,user.name FROM jobs as job JOIN users as user ON user.id=job.user_id WHERE job.id='%s'",$jobId);
+    $result = Db::query($query);
+    $row = mysql_fetch_assoc($result);
+    $ref_id = $row['ref_id'];
+    $adminname = $row['name'];
+    
+    $qryuser = sprintf("SELECT name FROM users WHERE id = '%s'",$userId);
+    $resuser = Db::query($qryuser);
+    $user = mysql_fetch_assoc($resuser);
+    $username = $user['name'];
+    
+       $txt = "$username has applied for a job with reference id $ref_id that posted by $adminname";
+//       $txt = "Dear  " .$name. ", <br/>" . $msg;
+       $email_template_apply = file_get_contents("email_template_apply.html");
+       $email_template_apply = str_replace("{{content}}", $txt, $email_template_apply);
+       $headers = "MIME-Version: 1.0" . "\r\n";
+       $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+       $headers.= "From:itljobs@webadmin.com" . "\r\n";
+       $to = 'recruitement@itljobs.com';
+       $subject = "Notification - Job Applied";
+       mail($to, $subject, $email_template_apply, $headers); 
 
     ?>
 

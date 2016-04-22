@@ -235,7 +235,7 @@
 
                                             <label for="exampleInputEmail1">Job Description</label>
 
-                                            <textarea class="ckeditor" id="job_description" placeholder="Job Description" name="job_description"></textarea>
+                                            <textarea class="ckeditor" id="job_description" name="job_description"></textarea>
                                             
                                         </div>
                                         
@@ -304,16 +304,9 @@
 
                             </div><!-- /.box -->
 
-                        </div><!--/.col (left) 
-
-
                         <!--/.box-body  -->
 
                     </div><!-- /.box -->
-
-            </div><!-- /.col (right) -->
-
-        </div>  <!--  /.row -->
 
     </section> <!-- /.content -->
 
@@ -398,7 +391,7 @@
                         job_type: "Please select job type",
                         job_description: {
                         required:"Please enter job description",
-                        minlength:"Please enter 10 characters"
+                        minlength:"Please enter atleast 10 characters"
                       }
                     },
                     

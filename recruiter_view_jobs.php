@@ -213,6 +213,18 @@
                                             </div>
 
                                             <?php
+                                        }else if ($_SESSION['regsucc'] == '3') {
+                                            ?>
+
+                                            <div class="alert alert-danger alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Salary Range invalid <a href="#" class="alert-link"></a>.
+
+                                            </div>
+
+                                            <?php
                                         } else {
                                             ?>
 

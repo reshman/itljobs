@@ -47,6 +47,8 @@
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
         <script src="js/jquery.geocomplete.js"></script>
 
+        <script src="admin/ckeditor/ckeditor.js"></script>
+
     </head>
     <body>
 
@@ -107,6 +109,18 @@
                                 </div>
 
                                 <?php
+                            } else if ($_SESSION['regsucc'] == '3') {
+                                ?>
+
+                                <div class="alert alert-danger alert-dismissable">
+
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                    Incorrect salary Range <a href="#" class="alert-link"></a>.
+
+                                </div>
+
+                                <?php
                             }
                         }
 
@@ -163,7 +177,7 @@
                             </div>
 
                             <div class="col-md-8">
-                                <textarea name="description" id="description" placeholder="DESCRIPTION"></textarea>    
+                                <textarea class="ckeditor" id="job_description" placeholder="Job Description" name="job_description"></textarea><br>
                             </div>
 
                         </div>  
@@ -299,75 +313,72 @@
             // When the browser is ready...
 
             $(function () {
-                $("#location").geocomplete({
-                    types: ["geocode", "establishment"],
-                });
-
-                $('#datepicker1').datepicker({
-                    format: "dd/mm/yyyy",
+            $("#location").geocomplete({
+            types: ["geocode", "establishment"],
+            });
+            $('#datepicker1').datepicker({
+            format: "dd/mm/yyyy",
                     startDate: '0'
-                });
+            });
+            $.validator.addMethod('salrange', function (value) {
+            return /^[0-9 ]+(-[0-9 ]+)+$/.test(value);
+            }, 'Please enter a valid Salary Range like: lowest Salary - Highest Salary. If salary is Fixed give Both side the same salary.');
+            jQuery.validator.addMethod("nonNumeric", function (value) {
+            var regex = new RegExp("^[a-zA-Z ]+$");
+            var key = value;
+            if (!regex.test(key)) {
+            return false;
+            }
+            return true;
+            }, "Please Do not use Numbers or Special Characters");
+            $.validator.addMethod('experience', function (value) {
+            return /^[0-9 ]+((-){0,1}[0-9 ]+){0,1}$/.test(value);
+            }, 'Please enter valid experience in years as digit or range as low-High.');
+            // Setup form validation on the #register-form element
 
-                $.validator.addMethod('salrange', function (value) {
-                    return /^[0-9 ]+(-[0-9 ]+)+$/.test(value);
-                }, 'Please enter a valid Salary Range like: lowest Salary - Highest Salary. If salary is Fixed give Both side the same salary.');
+            $("#contact-form").validate({
+            // Specify the validation rules
 
-                jQuery.validator.addMethod("nonNumeric", function (value) {
-                    var regex = new RegExp("^[a-zA-Z ]+$");
-                    var key = value;
-
-                    if (!regex.test(key)) {
-                        return false;
-                    }
-                    return true;
-                }, "Please Do not use Numbers or Special Characters");
-                
-                $.validator.addMethod('experience', function (value) {
-                    return /^[0-9 ]+((-){0,1}[0-9 ]+){0,1}$/.test(value);
-                
-                }, 'Please enter valid experience in years as digit or range as low-High.');
-
-                // Setup form validation on the #register-form element
-
-                $("#contact-form").validate({
-                    // Specify the validation rules
-
-                    rules: {
-                        companyname: {required: true, nonNumeric: true},
-                        companytitle: {required: true, nonNumeric: true},
-                        description: "required",
-                        location: "required",
-                        jobtype: "required",
-                        salary: {required: true, salrange: true},
-                        salarycat: "required",
-                        closing_date: "required",
-                        experience:{required:true,experience:true}
-
+            rules: {
+            companyname: {required: true, nonNumeric: true},
+                    companytitle: {required: true, nonNumeric: true},
+                    description: "required",
+                    location: "required",
+                    jobtype: "required",
+                    job_description:{
+                    required: function()
+                    {
+                    CKEDITOR.instances.job_description.updateElement();
                     },
+                            minlength:10
+                    },
+                    salary: {required: true, salrange: true},
+                    salarycat: "required",
+                    closing_date: "required",
+                    experience:{required:true, experience:true}
+
+            },
                     // Specify the validation error messages
 
                     messages: {
-                        companyname: {required: "Please Enter company name"},
-                        companytitle: {required: "Please Enter Job title"},
-                        description: "Please Enter Description",
-                        location: "Please Enter Location",
-                        jobtype: "Please Enter Jobtype",
-                        salary: {required: "Please Enter Salary"},
-                        salarycat: "Please Enter Salary Category",
-                        closing_date: "Please Enter a Closing Date",
-                        experience:{required:"Please Enter Experience"}
+                    companyname: {required: "Please Enter company name"},
+                            companytitle: {required: "Please Enter Job title"},
+                            description: "Please Enter Description",
+                            location: "Please Enter Location",
+                            jobtype: "Please Enter Jobtype",
+                            salary: {required: "Please Enter Salary"},
+                            salarycat: "Please Enter Salary Category",
+                            closing_date: "Please Enter a Closing Date",
+                            experience:{required:"Please Enter Experience"}
 
                     },
                     submitHandler: function (form) {
 
-                        form.submit();
-
+                    form.submit();
                     }
 
-                });
-
             });
-
+            });
         </script>
 
         <!-- Revolution slider -->
@@ -375,65 +386,64 @@
 
             jQuery(document).ready(function () {
 
-                jQuery('.tp-banner').show().revolution(
-                        {
-                            dottedOverlay: "none",
-                            delay: 10000,
-                            startwidth: 1140,
-                            startheight: 450,
-                            hideThumbs: 200,
-                            thumbWidth: 100,
-                            thumbHeight: 50,
-                            thumbAmount: 5,
-                            navigationType: "bullet",
-                            touchenabled: "on",
-                            onHoverStop: "off",
-                            swipe_velocity: 0.7,
-                            swipe_min_touches: 1,
-                            swipe_max_touches: 1,
-                            drag_block_vertical: false,
-                            parallax: "mouse",
-                            parallaxBgFreeze: "on",
-                            parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
-                            keyboardNavigation: "off",
-                            navigationHAlign: "center",
-                            navigationVAlign: "bottom",
-                            navigationHOffset: 0,
-                            navigationVOffset: "center",
-                            shadow: 0,
-                            spinner: "spinner4",
-                            stopLoop: "off",
-                            stopAfterLoops: -1,
-                            stopAtSlide: -1,
-                            shuffle: "off",
-                            autoHeight: "off",
-                            forceFullWidth: "off",
-                            hideThumbsOnMobile: "off",
-                            hideNavDelayOnMobile: 1500,
-                            hideBulletsOnMobile: "off",
-                            hideArrowsOnMobile: "off",
-                            hideThumbsUnderResolution: 0,
-                            hideSliderAtLimit: 0,
-                            hideCaptionAtLimit: 0,
-                            hideAllCaptionAtLilmit: 0,
-                            startWithSlide: 0,
-                            fullScreenOffsetContainer: ".header"
-                        });
-
-            });	//ready
+            jQuery('.tp-banner').show().revolution(
+            {
+            dottedOverlay: "none",
+                    delay: 10000,
+                    startwidth: 1140,
+                    startheight: 450,
+                    hideThumbs: 200,
+                    thumbWidth: 100,
+                    thumbHeight: 50,
+                    thumbAmount: 5,
+                    navigationType: "bullet",
+                    touchenabled: "on",
+                    onHoverStop: "off",
+                    swipe_velocity: 0.7,
+                    swipe_min_touches: 1,
+                    swipe_max_touches: 1,
+                    drag_block_vertical: false,
+                    parallax: "mouse",
+                    parallaxBgFreeze: "on",
+                    parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
+                    keyboardNavigation: "off",
+                    navigationHAlign: "center",
+                    navigationVAlign: "bottom",
+                    navigationHOffset: 0,
+                    navigationVOffset: "center",
+                    shadow: 0,
+                    spinner: "spinner4",
+                    stopLoop: "off",
+                    stopAfterLoops: - 1,
+                    stopAtSlide: - 1,
+                    shuffle: "off",
+                    autoHeight: "off",
+                    forceFullWidth: "off",
+                    hideThumbsOnMobile: "off",
+                    hideNavDelayOnMobile: 1500,
+                    hideBulletsOnMobile: "off",
+                    hideArrowsOnMobile: "off",
+                    hideThumbsUnderResolution: 0,
+                    hideSliderAtLimit: 0,
+                    hideCaptionAtLimit: 0,
+                    hideAllCaptionAtLilmit: 0,
+                    startWithSlide: 0,
+                    fullScreenOffsetContainer: ".header"
+            });
+            }); //ready
 
             //isotope
             jQuery(document).ready(function () {
-                var $container = $('.iso-call');
-                // init
-                $container.isotope({
-                    // options
-                    itemSelector: '.services-project, .project-post',
+            var $container = $('.iso-call');
+            // init
+            $container.isotope({
+            // options
+            itemSelector: '.services-project, .project-post',
                     masonry: {
-                        columnWidth: '.default-size'
+                    columnWidth: '.default-size'
                     }
-                });
-            });	//ready
+            });
+            }); //ready
         </script>		
     </body>
 </html>

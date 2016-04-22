@@ -42,7 +42,7 @@ Db::query($sqlApply);
        $headers = "MIME-Version: 1.0" . "\r\n";
        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
        $headers.= "From:itljobs@webadmin.com" . "\r\n";
-       $to = 'jubyraju89@gmail.com';
+       $to = 'recruitement@itljobs.com';
        $subject = "Notification - Job Applied";
        mail($to, $subject, $email_template_apply, $headers); 
 
