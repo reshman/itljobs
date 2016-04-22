@@ -181,7 +181,7 @@
 
                                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-                                            Sorry You are not allowed to Modify this Job.
+                                            Sorry You are not allowed to Modify or View this Job.
 
                                         </div>
                                         <?php

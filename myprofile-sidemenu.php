@@ -23,6 +23,7 @@ if (isset($_SESSION['log'])) {
             <ul class="side-navigation-list">
                 <li><a href="edit-recruiterprofile.php" class="<?php echo ($link == 'edit-recruiterprofile.php') ? 'active' : '' ?>">EDIT MY PROFILE</a></li>
                 <li><a href="recruiter-postjob.php" class="<?php echo ($link == 'recruiter-postjob.php') ? 'active' : '' ?>">POST JOBS</a></li>
+                <li><a href="recruiter_view_jobs.php" class="<?php echo ($link == 'recruiter-postjob.php') ? 'active' : '' ?>">VIEW JOBS</a></li>
                 <li><a href="search-resume.php" class="<?php echo ($link == 'search-resume.php') ? 'active' : '' ?>">SEARCH RESUME</a></li>
                 <li><a href="itljobs-changepassword.php" class="<?php echo ($link == 'itljobs-changepassword.php') ? 'active' : '' ?>">Change Password</a></li>
 

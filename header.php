@@ -83,6 +83,7 @@
                                             <li><a href="recruiter.php">My Profile</a></li>
                                             <li><a href="edit-recruiterprofile.php">Edit My Profile</a></li>
                                             <li><a href="recruiter-postjob.php">Post Jobs</a></li>
+                                            <li><a href="recruiter_view_jobs.php">View Jobs</a></li>
                                             <li><a href="search-resume.php">Search Resume</a></li>
                                             <li><a href="itljobs-changepassword.php">Change Password</a></li>
                                             <li role="separator" class="divider"></li>
