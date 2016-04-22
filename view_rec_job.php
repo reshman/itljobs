@@ -184,24 +184,24 @@ if ($_GET) {
                                 <div class="container">
 
                                     <div class="title-section">
-                                        <h1>Jobs List</h1>
+                                        <h1>Job Details</h1>
                                     </div>
                                     <?php include('myprofile-sidemenu.php'); ?>
-                                    <div class="col-md-10">
-                                        <div>JOB TITLE</div>
-                                        <div><?php echo $row['job_listing']; ?></div>
-                                        <div>JOB DESCRIPTION</div>
-                                        <div><?php echo $row['job_description']; ?></div>
-                                        <div>EXPERIENCE</div>
-                                        <div><?php echo $row['experience']; ?></div>
-                                        <div>JOB LOCATION</div>
-                                        <div><?php echo $row['job_location']; ?></div>
-                                        <div>CREATED DATE</div>
-                                        <div><?php echo $created; ?></div>
-                                        <div>CLOSING DATE</div>
-                                        <div><?php echo $closing; ?></div>
-                                        <div>NAME</div>
-                                        <div><?php echo $row['name']; ?></div>
+                                    <div class="col-md-10 jobs-m-listing">
+                                        <h3>JOB TITLE</h3>
+                                        <p><?php echo $row['job_listing']; ?></p>
+                                        <h3>JOB DESCRIPTION</h3>
+                                        <p><?php echo $row['job_description']; ?></p>
+                                        <h3>EXPERIENCE</h3>
+                                        <p><?php echo $row['experience']; ?></p>
+                                        <h3>JOB LOCATION</h3>
+                                        <p><?php echo $row['job_location']; ?></p>
+                                        <h3>CREATED DATE</h3>
+                                        <p><?php echo $created; ?></p>
+                                        <h3>CLOSING DATE</h3>
+                                        <p><?php echo $closing; ?></p>
+                                        <h3>NAME</h3>
+                                        <p><?php echo $row['name']; ?></p>
 
                                     </div>
                                 </div>
