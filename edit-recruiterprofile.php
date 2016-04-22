@@ -155,7 +155,7 @@
                     <div class="title-section">
                         <h1>EDIT RECRUITER PROFILE</h1>
                     </div>
-                    <div class="col-lg-2"><?php include('myprofile-sidemenu.php');?></div>
+                    <?php include('myprofile-sidemenu.php');?>
                     <div class="col-lg-10">
                     <form id="contact-form" method="POST" action="updaterecruiter-profile.php" enctype="multipart/form-data">  
                         <?php

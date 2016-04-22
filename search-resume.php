@@ -76,7 +76,7 @@
                 }
                 ?>
 
-                <div class="col-lg-2"><?php include('myprofile-sidemenu.php'); ?></div>
+                <?php include('myprofile-sidemenu.php'); ?>
                 <div class="col-lg-10">
                 <form id="contact-form" method="GET" action="search.php" enctype="multipart/form-data">
 
