@@ -44,6 +44,9 @@
             .readcontent li{
                 margin: 15px;
             }
+            p {
+                text-indent: 50px;
+            }
         </style>
 
         <!-- Container -->

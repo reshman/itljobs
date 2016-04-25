@@ -66,35 +66,74 @@
                 <div class="container">
 
                     <div class="title-section">
-                        <h1>How to Resign From a Job</h1>
+                        <h1>Safety Policy</h1>
                     </div>
                     <p>
-                        You just accepted a new job. Congratulations! Way to go! You’re so excited, you feel as if you could fly. Then it hits you… now you have to quit your current job. Ugh.
+                        <span class="text-danger"><strong>itljobs.com</strong></span> is committed to ensure the safety of its users. 
+                        To provide the safest possible environment, we recommend our users to take care of few simple security precautions for a safe career.
                     </p>
-
-                    <p>Don’t worry, just follow these steps to exit your current job in a manner that is professional and will leave your reputation intact:</p>
-
-                    <ol class="readcontent">
-                        <li>Make sure you’ve finalized the details with your new employer. Don’t quit your current job until everything about your new job is negotiated and ready to go. Signed offer letter or employment contract? Check. Benefits package? Check. Start date? Check. You get the idea.</li>
-                        <li>Plan how you’ll transfer your responsibilities. Don’t leave your boss inundated with unfinished work. Determine a transition plan for your responsibilities and any unfinished projects. Create a list with your recommendations on how your work can be shifted to others in the department until your position is filled.</li>
-                        <li>Write your resignation letter. I like to think of a resignation letter more like a brief thank you note. Your resignation letter should explain your gratitude for having had the opportunity to work at XYZ company and with your boss, and include the date of your last day on the job.</li>
-                        <li>Determine your “story.” Think through how you will explain your departure to your manager and coworkers. Whatever reasons you provide, keep your story consistent and keep your reasons positive, not negative.</li>
-                        <li>Tell your manager before anyone else. Your manager deserves to be told first, so refrain from saying anything to coworkers until you’ve met with your boss. Also, consider how you’ll handle the situation if your boss makes you a counteroffer to stay in your job.</li>
-                        <li>Quit in person and bring your resignation letter with you. It’s always best and most respectful if you resign in person and can provide closure. But if your boss works in a different geographic location, make a telephone appointment and then follow up with a brief email, attaching your resignation letter.</li>
-                        <li>Give adequate notice. Providing a two-week notice is a global norm. However, if your job is complex and will be difficult to fill or if you are in a higher-level management position, be prepared to provide additional time for your employer to find your replacement and offer to train the person.</li>
-                        <li>Reach agreement with your boss on how others will be told. Ask your manager how he or she would like others to be told. Suggest that you tell coworkers individually and volunteer to write a short email your boss can then distribute within the department.</li>
-                        <li>Meet individually with mentors and sponsors within the company. Beyond your own department, if you have mentors or anyone within the company who has acted as your sponsor, quickly schedule time to let them know you’re leaving and why.</li>
-                        <li>Remain professional throughout the process. Be on your best behavior so you’ll leave the company on a positive note, leaving the door open for future employment and ensuring a good job reference.</li>
-                        <li>Remove personal items from your work area. Wait until after you’ve notified your boss and coworkers to clean out your workspace. Take personal items home and ensure you leave your office looking neat and clean for the next person.</li>
-                        <li>Be prepared for the exit interview. Speaking as a former hiring manager and employer, don’t be afraid if you’re asked into an exit interview. It’s usually HR personnel who conduct the exit interviews with the purpose of uncovering areas where the company can improve or identifying when there may be issues with a specific manager.</li>
-                        <li>Be prepared to be escorted out by security. If your new employer happens to be a direct competitor of the company where you currently work, you may be asked to leave immediately upon your resignation. So don’t be surprised if security personnel are assigned to watch you while you clean out your workspace and then escort you to your vehicle.</li>
-                        <li>Work as hard as you can, all the way up until the final minute on your last day. The best way to ensure you leave on a positive note is to work hard at your job and at ensuring a smooth transition right up until the time you’re walking out the door.</li>
-                    </ol>
-
-
-
-
-
+                    <p>
+                        There may be instances that users may receive fraudulent job opportunities via email/ publication or phone call that appear as if it came from <span class="text-danger"><strong>itljobs.com</strong></span>
+                    </p>
+                    <p>
+                        Such activities are a violation of <span class="text-danger"><strong>itljobs.com</strong></span> Term and conditions and may be a criminal violation of state law.
+                    </p>
+                    <p>
+                        We strongly recommend the following Do’s and Don’ts to avoid frauds.
+                    </p>
+                    <span class="text-danger"><strong><h3>Don'ts:</h3></strong></span>
+                    <ul class="readcontent">
+                        <li>Do not communicate; reveal any personal information pertaining to your bank account, address, phone numbers etc.</li>
+                        <li>Do not send any money/ fee.</li>
+                    </ul>
+                    <span class="text-danger"><strong><h3>Do's:</h3></strong></span>
+                    <ul class="readcontent">
+                        <li>Verify the content of the mail/ publications sent by the employers/ recruiters.</li>
+                        <li>Make appropriate/ thorough enquiries before acting upon any unsolicited mails/ publications/ phone calls.</li>
+                        <li>In case of any such instance, it is recommended to report the matter at <a href="mailto:queries@itljobs.com"><strong>queries@itljobs.com</strong></a>.</li>
+                        <li>We've gathered the following security-related information. Users are advised to familiarize themselves with this information to manage a better career.</li>
+                    </ul>
+                    <span class="text-danger"><strong><u><h4>Misrepresentation of itljobs.com and other companies:</h4></u></strong></span>
+                    <ul class="readcontent">
+                        <li><strong>What is misrepresentation?</strong>
+                            <p>
+                                Users can be contacted by someone via deceptive phone calls or e-mails posing as the Company's HRD personnel or consultant or misrepresenting/ claiming a job assurance in an organization by paying some fee/ money.
+                            </p>
+                        </li>
+                        <li><strong>Examples:</strong>
+                            <p>
+                            <ul>
+                                <li>Misleading phone calls from other countries like UK or Gulf.</li>
+                                <li>Fraudulent e-mails.</li>
+                            </ul>
+                            </p>
+                        </li>
+                    </ul>
+                    <span class="text-danger"><strong><u><h4>Email Scams:</h4></u></strong></span>
+                    <ul class="readcontent">
+                        <li><strong>What is E-mail Scams?</strong>
+                            <p>
+                                Users can be contacted via e-mails and or publications in the internet claiming to be recruitment agents, consultants or otherwise and are using individual names in bogus, fictitious and imaginary transactions, to solicit advance fees or other favors in exchange for which they purport to confer non-existent benefits (employment, contracts, lottery etc) in various companies. 
+                                These e-mails are usually sent from someone posing as the Company's HRD personnel or consultant claiming that itljobs.com has been retained as their labor consultants. The sender of the mail would request the target to co-operate with them with the aim of benefiting in getting a job.
+                            </p>
+                        </li>
+                        <li><strong>Examples:</strong>
+                            <ul>
+                                <li> Nigerian Scams or 419 Scams: <a href="http://en.wikipedia.org/wiki/Advance_fee_fraud"><strong>View Here</strong></a></li>
+                                <li>Lottery Scams: <a href="http://en.wikipedia.org/wiki/Lottery_scam"><strong>View Here</strong></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h4 class="text-danger"><u><strong>Protect Login Information:</strong></u></h4>
+                    <ul>
+                        <li>Users are strongly advised to keep your login information private and safe to avoid misuse of your personal information.</li>
+                    </ul>
+                    <p>
+                         We believe these guidelines are helpful to protect your trust in itljobs.com. We are working on various aspects to ensure a safe and effective environment, and will continue to share information about the enhancements.
+                    </p>
+                    <p>
+                        Any abuse mail or breach of contract reported the same complaint shall lodge at <a href="mailto:queries@itljobs.com"><strong>queries@itljobs.com</strong></a>.
+                    </p>
                 </div>
             </section>
             <section>
