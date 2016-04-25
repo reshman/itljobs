@@ -83,6 +83,9 @@
      <link href="css/datepicker.css" rel="stylesheet" />
      <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
      <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.css" rel="stylesheet" />
+     
+     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+        <script src="js/jquery.geocomplete.js"></script>
            
 
 	<style>
@@ -519,7 +522,7 @@
                                         
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Name of co ordinator</label>
+                                            <label for="exampleInputEmail1">Name of coordinator</label>
 
                                             <input type="text" class="form-control" id="coordinator" placeholder="Name of co ordinator" name="coordinator">
 
@@ -632,6 +635,12 @@
             // When the browser is ready...
 
             $(function () {
+                
+                $("#venue").geocomplete({
+                    types: ["geocode", "establishment"],
+                });
+                
+                
                 $('#datepicker').datepicker({
                     format:"dd/mm/yyyy",
                     startDate: '0'
