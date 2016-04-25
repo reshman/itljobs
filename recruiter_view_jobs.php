@@ -280,7 +280,7 @@
                                                             <td><?php echo $created; ?></td>
                                                             <td><?php echo $closing; ?></td>
                                                             <td><a href="edit_rec_job.php?id=<?php echo $row['id']; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a></td>
-                                                            <td><a href="delete_rec_job.php?id=<?php echo $row['id']; ?>" class="btn btn-danger"><span class="fa fa-times"></span></a></td>
+                                                            <td><a onclick="deleteConfirm('delete_rec_job.php?id=<?php echo $row['id']; ?>')" class="btn btn-danger"><span class="fa fa-times"></span></a></td>
 
                                                         </tr>
                                                     </tbody>
@@ -309,6 +309,14 @@
             <!-- End footer -->
 
         </div>
+         <script>
+            function deleteConfirm(href) {
+                var ask = window.confirm("Are you sure you want to delete this item?");
+                if (ask) {
+                    document.location.href = href;
+                }
+            }
+        </script>
         <!-- Revolution slider -->
         <script type="text/javascript">
 
