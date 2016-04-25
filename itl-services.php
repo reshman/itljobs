@@ -161,7 +161,7 @@
 		<div class="service-post">
 		<img src="images/itl-air.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.travels.com/">AIR TICKETING</a></h2>
+		<h2><a href="http://www.itlworld.com/">AIR TICKETING</a></h2>
 		</div>
 		</div>
 		</div>
@@ -171,7 +171,7 @@
 		<div class="service-post">
 		<img src="images/itl-holiday.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.travels.com/">HOLIDAY</a></h2>
+		<h2><a href="http://www.itlworld.com/">HOLIDAY</a></h2>
 		</div>
 		</div>
 		</div>
@@ -189,7 +189,7 @@
 		<div class="service-post">
 		<img src="images/itl-forex.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.travels.com/">FOREX</a></h2>
+		<h2><a href="http://www.itlworld.com/">FOREX</a></h2>
 		</div>
 		</div>
 		</div>
@@ -198,7 +198,7 @@
 		<div class="service-post">
 		<img src="images/itl-visa.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.travels.com/">VISA SERVICE</a></h2>
+		<h2><a href="http://www.itlworld.com/">VISA SERVICE</a></h2>
 		</div>
 		</div>
 		</div>
@@ -207,7 +207,7 @@
 		<div class="service-post">
 		<img src="images/itl-emi.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.travels.com/">EMIGRATION CLEARANCE</a></h2>
+		<h2><a href="http://www.itlworld.com/">EMIGRATION CLEARANCE</a></h2>
 		</div>
 		</div>
 		</div>
@@ -216,7 +216,7 @@
 		<div class="service-post">
 		<img src="images/itl-cert.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.travels.com/">CERTIFICATE ATTESTATION</a></h2>
+		<h2><a href="http://www.itlworld.com/">CERTIFICATE ATTESTATION</a></h2>
 		</div>
 		</div>
 		</div>
