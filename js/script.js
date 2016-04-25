@@ -100,7 +100,7 @@ $(document).ready(function($) {
 	/*-------------------------------------------------*/
 	try {
 		var owl = $("#owl-demo").owlCarousel({
-			autoPlay: 10000,
+			autoPlay: 2000,
 			items : 7,
 			itemsDesktop : [1199,2],
 			itemsDesktopSmall : [979,2]

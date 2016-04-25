@@ -77,7 +77,7 @@
 								data-splitout="none"
 								data-elementdelay="0.1"
 								data-endelementdelay="0.1"
-								style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">NEED NOT SEARCH ... JUST CHOOSE</span>
+								style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;"><span>NEED NOT SEARCH ... JUST CHOOSE</span>
 							</div>
 
 							<!-- LAYER NR. 1 -->
@@ -158,7 +158,7 @@
 		<section class="services-offer-section">
 		<div class="container">
 		<div class="services-box ser-box2">
-                <div class="col-md-3">
+                <div class="col-md-2">
 		<div class="service-post">
 		<img src="images/itl-resume.png" alt="ITL JOBS">
 		<div class="service-content">
@@ -168,7 +168,7 @@
 		</div>
 
                 
-                <div class="col-md-3">
+                <div class="col-md-2">
 		<div class="service-post">
 		<img src="images/itl-jobs.png" alt="ITL JOBS">
 		<div class="service-content">
@@ -176,8 +176,18 @@
 		</div>
 		</div>
 		</div>
+                    
+                    <div class="col-md-2">
+		<div class="service-post">
+		<img src="images/view-resume.png" alt="ITL JOBS">
+		<div class="service-content">
+		<h2><a href="recruiter_view_jobs.php">VIEW JOBS</a></h2>
+		</div>
+		</div>
+		</div>
 
-                <div class="col-md-3">
+
+                <div class="col-md-2">
 		<div class="service-post">
 		<img src="images/itl-alert.png" alt="ITL JOBS">
 		<div class="service-content">
@@ -185,8 +195,8 @@
 		</div>
 		</div>
 		</div>
-
-                <div class="col-md-3">
+                    
+                <div class="col-md-2">
 		<div class="service-post">
 		<img src="images/itl-account.png" alt="ITL JOBS">
 		<div class="service-content">
