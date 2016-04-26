@@ -4,7 +4,7 @@ if ($_GET) {
     require 'check_session_rec.php';
     include 'db.php';
     $id = $_GET['id'];
-    
+
     mysql_real_escape_string($id);
 
     $csql = sprintf("SELECT * FROM jobs WHERE id=%d and user_id=%d", $id, $_SESSION['reclog']);
@@ -127,7 +127,7 @@ if ($_GET) {
                         ?>
                         <form id="contact-form" method="POST" action="recruiter-edit-jobprocess.php" enctype="multipart/form-data">
                             <input id="id" name="id" value="<?php echo $id; ?>" hidden>
-                            
+
                             <div class="col-md-12"> 
                                 <div class="col-md-3">
                                     <span class="post-title">COMPANY NAME: </span>    
@@ -339,8 +339,8 @@ if ($_GET) {
                     });
 
                     $.validator.addMethod('salrange', function (value) {
-                        return /^[0-9 ]+(-[0-9 ]+)+$/.test(value);
-                    }, 'Please enter a valid Salary Range like: lowest Salary - Highest Salary. If salary is Fixed give Both side the same salary.');
+                        return /^[0-9 ]+(-[0-9 ]+)+\s*[A-Z]{3}\s*$/.test(value);
+                    }, 'Please enter a valid Salary Range like: lowest Salary - Highest Salary followed by ISO currency code || Example:100000-150000 INR ||. If salary is Fixed give Both side the same salary.');
 
                     jQuery.validator.addMethod("nonNumeric", function (value) {
                         var regex = new RegExp("^[a-zA-Z ]+$");

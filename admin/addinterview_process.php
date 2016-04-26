@@ -9,7 +9,6 @@ $urlin = "add_interview.php";
 $id           = (trim($_POST['id']));
 $name         = (trim($_POST['name']));
 $company_name = (trim($_POST['company_name']));
-$country      = (trim($_POST['country']));
 $salary       = (trim($_POST['salary']));
 $time         = (trim($_POST['time']));
 $venue        = (trim($_POST['venue']));
@@ -27,7 +26,7 @@ $interview    = (trim($_POST['interview']));
    date_default_timezone_set('Asia/Calcutta'); 
    $todaydate         = date("Y-m-d h:i:s"); 
 
-  $sql          = sprintf("INSERT INTO interviews(name,title,company_name,country,salary,schedule_date,schedule_time,venue,description,interview,coordinator,contact,user_id,active,del_status,date) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $name, $title, $company_name, $country, $salary, $date, $time, $venue, $description, $interview, $coordinator, $contact, $id,'0','0',$todaydate); 
+  $sql          = sprintf("INSERT INTO interviews(name,title,company_name,salary,schedule_date,schedule_time,venue,description,interview,coordinator,contact,user_id,active,del_status,date) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $name, $title, $company_name, $salary, $date, $time, $venue, $description, $interview, $coordinator, $contact, $id,'0','0',$todaydate); 
   $resultsql    = Db::query($sql);
 
   $inid = mysql_insert_id();
