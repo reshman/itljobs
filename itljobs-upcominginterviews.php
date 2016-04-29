@@ -88,9 +88,6 @@
                                                                            <span style="color:#6495ED">Company : </span><?php echo $row['company_name'];?>
                                                                          </p>
                                                                          <p>
-                                                                           <span style="color:#6495ED">Country : </span><?php echo $row['country'];?>
-                                                                         </p>
-                                                                         <p>
                                                                            <span style="color:#6495ED">Interview date : </span><?php echo $row[schedule_date].' at '.$row[schedule_time];?>
                                                                          </p>
                                                                          <p>

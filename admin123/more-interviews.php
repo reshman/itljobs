@@ -76,7 +76,6 @@
                                                     <tr><th>Schedule date</th><td><?php echo $row['schedule_date']; ?></td></tr>
                                                     <tr><th>Name</th><td><?php echo $row['name']; ?></td></tr>
                                                     <tr><th>Company Name</th><td><?php echo $row['company_name']; ?></td></tr>
-                                                    <tr><th>Country</th><td><?php echo $row['country']; ?></td></tr>
                                                     <tr><th>Salary</th><td><?php echo $row['salary']; ?></td></tr>
                                                     <tr><th>Time</th><td><?php echo $row['schedule_time']; ?></td></tr>
                                                     <tr><th>Venue</th><td><?php echo $row['venue']; ?></td></tr>
