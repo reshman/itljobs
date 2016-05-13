@@ -91,13 +91,16 @@
                 </ul>
             </li>
             
-	<li class="treeview">
+	<li <?php if($filename == 'list_appliedjobs.php' || $filename == 'list_appliedinterviews.php'){ ?> class="active" <?php }else{ ?> class="treeview"<?php } ?>>
                 <a href="#">
-                    <i class="fa fa-edit"></i> <span>Jobs Applied </span>
+                    <i class="fa fa-edit"></i> <span>Jobs/Interviews Applied </span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="list_appliedjobs.php"><i class="fa fa-circle-o"></i>List of Applied Job</a></li>  
+                </ul>
+            <ul class="treeview-menu">
+                    <li><a href="list_appliedinterviews.php"><i class="fa fa-circle-o"></i>List of Applied Interviews</a></li>  
                 </ul>
             </li>
 
