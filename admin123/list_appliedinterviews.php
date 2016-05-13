@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <?php  include("logincheck.php");?>
+    <?php include("logincheck.php"); ?>
     <head>
         <meta charset="UTF-8">
         <title>Admin | ITL JOBS</title>
@@ -34,7 +34,7 @@
             <?php include 'header.php'; ?>
 
             <?php include 'menu.php'; ?>
-            
+
             <?php //include 'db.php'; ?>
 
             <!-- Content Wrapper. Contains page content -->
@@ -42,13 +42,13 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                         Job List 
+                        Job List 
                         <small> ITL JOBS</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-<!--                        <li><a href="#">Tables</a></li>
-                        <li class="active">Data tables</li>-->
+                        <!--                        <li><a href="#">Tables</a></li>
+                                                <li class="active">Data tables</li>-->
                     </ol>
                 </section>
 
@@ -61,11 +61,11 @@
                                     <h3 class="box-title"> Jobs</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    
+
                                     <table id="example2" class="table table-bordered table-hover">
-                                    
+
                                         <thead>
-                                           <tr>
+                                            <tr>
                                                 <th>Sl.No</th>
                                                 <th>Job Title</th>
                                                 <th>Candidate Name</th>
@@ -75,56 +75,56 @@
                                                 <th>Delete</th>
                                             </tr>
                                         </thead>
-                                       <tbody>
-                                          <?php
-                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id as jobuserid,ja.id as apid,ja.job_id,ja.user_id,ja.created_date,us.name FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id");
-                                          $res = Db::query($qry);
-                                          $i = 1;
-                                          date_default_timezone_set('Asia/Kolkata');
-                                          $today_date = date('Y-m-d');
-                                           while ($row = mysql_fetch_array($res)) {
-                                          ?>
-                                           <tr>
+                                        <tbody>
+                                            <?php
+                                            $qry = sprintf("SELECT i.id,i.name as title,i.user_id as postid,ia.interview_id,ia.id as apid,ia.created_date,u.name FROM interviews_applied ia LEFT JOIN interviews i ON ia.interview_id=i.id LEFT JOIN users u ON ia.user_id = u.id");
+                                            $res = Db::query($qry);
+                                            $i = 1;
+                                            date_default_timezone_set('Asia/Kolkata');
+                                            $today_date = date('Y-m-d');
+                                            while ($row = mysql_fetch_array($res)) {
+                                                ?>
+                                                <tr>
                                                     <td><?php echo $i; ?></td>
-                                                    <td><?php echo $row['job_listing']; ?></td>
+                                                    <td><?php echo $row['title']; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <?php
-                                                        $date    = $row['created_date'];
-                                                        $regdate = date("d-m-Y", strtotime($date));
-                                                        $regtime = date("h:i:sa", strtotime($date));
+                                                    $date = $row['created_date'];
+                                                    $regdate = date("d-m-Y", strtotime($date));
+                                                    $regtime = date("h:i:sa", strtotime($date));
                                                     ?>
                                                     <td><?php echo $regdate; ?> at <?php echo $regtime; ?></td>
                                                     <?php
-                                                    $admin_id = $row['jobuserid'];
-                                                    $query = sprintf("SELECT name FROM users WHERE id='%s'",$admin_id);
+                                                    $admin_id = $row['postid'];
+                                                    $query = sprintf("SELECT name FROM users WHERE id='%s'", $admin_id);
                                                     $result = Db::query($query);
                                                     $rowres = mysql_fetch_assoc($result);
-                                                    $jpid =  $rowres['name'];
+                                                    $jpid = $rowres['name'];
                                                     ?>
-                                                    <td><?php echo $jpid;?></td>
-                                                    <td><a href="more-appliedjobs.php?param=<?php echo $row['apid'];?>">view more</a></td>
-                                                    
-                                                <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>"/>
-                                         
-                                                <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_appliedjobs.php?delid=<?= $row['apid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
-                                                </tr>
-                                                <?php
-                                                $i = $i + 1;
-                                            }
-                                            ?>
+                                                    <td><?php echo $jpid; ?></td>
+                                                    <td><a href="more-appliedinterviews.php?param=<?php echo $row['apid']; ?>">view more</a></td>
+
+                                            <input type="hidden" name="id" id="id" value="<?php echo $row['id']; ?>"/>
+
+                                            <td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_appliedinterviews.php?delid=<?= $row['apid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                            </tr>
+                                            <?php
+                                            $i = $i + 1;
+                                        }
+                                        ?>
                                         </tbody>
-                                 
+
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
 
-                           
+
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
-<!--            
-
+            <!--            
+            
             <!-- Add the sidebar's background. This div must be placed
                  immediately after the control sidebar -->
             <div class='control-sidebar-bg'></div>
@@ -147,18 +147,18 @@
         <script src="dist/js/demo.js" type="text/javascript"></script>
         <!-- page script -->
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
-        <script type="text/javascript">
-                                                        $(function () {
-                                                            $("#example1").dataTable();
-                                                            $('#example2').dataTable({
-                                                                "bPaginate": true,
-                                                                "bLengthChange": false,
-                                                                "bFilter": true,
-                                                                "bSort": true,
-                                                                "bInfo": true,
-                                                                "bAutoWidth": false
-                                                            });
-                                                        });
+        <script>
+                                                $(function () {
+                                                    $("#example1").dataTable();
+                                                    $('#example2').dataTable({
+                                                        "bPaginate": true,
+                                                        "bLengthChange": false,
+                                                        "bFilter": true,
+                                                        "bSort": true,
+                                                        "bInfo": true,
+                                                        "bAutoWidth": false
+                                                    });
+                                                });
         </script>
         <script>
             function deleteConfirm(href) {

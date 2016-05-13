@@ -63,37 +63,44 @@
                                 <div class="box-body">
                                     
                                     <table id="example2" class="table table-bordered table-hover">
-                                    
-                                        <thead>
-                                           <tr>
-                                                <th>Sl.No</th>
-                                                <th>Job Title</th>
-                                                <th>Candidate Name</th>
-                                                <th>Applied date</th>
-                                                <th>Job posted by</th>
-                                                <th>View more</th>
-                                                <th>Delete</th>
-                                            </tr>
-                                        </thead>
                                        <tbody>
                                           <?php
-                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id as jobuserid,ja.id as apid,ja.job_id,ja.user_id,ja.created_date,us.name FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id");
+                                          $applied_id = $_REQUEST['param'];
+                                          $qry = sprintf("SELECT i.id,i.name as job_listing,i.user_id as jobuserid,i.id as apid,ia.interview_id,ia.user_id as userid,ia.created_date,us.name,us.email FROM interviews as i JOIN interviews_applied as ia ON i.id = ia.interview_id JOIN users as us ON ia.user_id = us.id WHERE ia.id='$applied_id'");
                                           $res = Db::query($qry);
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d');
-                                           while ($row = mysql_fetch_array($res)) {
+                                          $row = mysql_fetch_array($res);
+                                          
+                                          $user_id = $row['userid'];
+//                                          $query = sprintf("SELECT experience,specification,current_location,mobile,qualification,date_of_birth,file_name,sub_category,abroad_experience,india_experience FROM resume WHERE user_id='%s'",$user_id);
+                                          $query = sprintf("SELECT * FROM resume LEFT JOIN job_categories ON resume.job_category_id=job_categories.id");
+                                          $result = Db::query($query); 
+                                          $rw = mysql_fetch_assoc($result);
                                           ?>
                                            <tr>
-                                                    <td><?php echo $i; ?></td>
-                                                    <td><?php echo $row['job_listing']; ?></td>
-                                                    <td><?php echo $row['name']; ?></td>
+                                                    <th>Job Title</th><td><?php echo $row['job_listing']; ?></td> </tr>
+                                                    <tr><th>Candidate Name</th><td><?php echo $row['name']; ?></td> </tr>
+                                                    <tr><th>Date of Birth</th><td><?php echo $rw['date_of_birth']; ?></td> </tr>
+                                                    <tr><th>Qualification</th><td><?php echo $rw['qualification']; ?></td> </tr>
+                                                    <tr><th>Job Category</th><td><?php echo $rw['name']; ?></td> </tr>
+                                                    <tr><th>Industry</th><td><?php echo $rw['sub_category']; ?></td> </tr>
+                                                    <tr><th>Specialization</th><td><?php echo $rw['specification']; ?></td> </tr>
+                                                    <tr><th>Abroad experience</th><td><?php echo $rw['abroad_experience']; ?></td> </tr>
+                                                    <tr><th>Indian experience</th><td><?php echo $rw['india_experience']; ?></td> </tr>
+                                                    <tr><th>Total Experience</th><td><?php echo $rw['experience']; ?></td> </tr>
+                                                    <tr><th>Mobile</th><td><?php echo $rw['mobile']; ?></td> </tr>
+                                                    <tr><th>Email</th><td><?php echo $row['email']; ?></td> </tr>
+                                                    <tr><th>Current Location</th><td><?php echo $rw['current_location']; ?></td> </tr>
+                                                    <tr><th>Resume</th><td><a onclick="downloadfile('../uploads/<?php echo $rw['file_name']?>')" href="../uploads/<?php echo $rw['file_name']?>"   target="_blank" download=""><?php echo $rw['file_name']; ?></a>
+                                                    </td></tr>
                                                     <?php
                                                         $date    = $row['created_date'];
                                                         $regdate = date("d-m-Y", strtotime($date));
                                                         $regtime = date("h:i:sa", strtotime($date));
                                                     ?>
-                                                    <td><?php echo $regdate; ?> at <?php echo $regtime; ?></td>
+                                                    <tr><th>Applied date</th><td><?php echo $regdate; ?> at <?php echo $regtime; ?></td></tr>
                                                     <?php
                                                     $admin_id = $row['jobuserid'];
                                                     $query = sprintf("SELECT name FROM users WHERE id='%s'",$admin_id);
@@ -101,17 +108,10 @@
                                                     $rowres = mysql_fetch_assoc($result);
                                                     $jpid =  $rowres['name'];
                                                     ?>
-                                                    <td><?php echo $jpid;?></td>
-                                                    <td><a href="more-appliedjobs.php?param=<?php echo $row['apid'];?>">view more</a></td>
-                                                    
-                                                <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>"/>
+                                                    <tr><th>Job posted by</th><td><?php echo $jpid;?></td></tr>
                                          
-                                                <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_appliedjobs.php?delid=<?= $row['apid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                                <tr><th>Delete</th><td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_appliedinterviews.php?delid=<?= $row['ja.id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
-                                                <?php
-                                                $i = $i + 1;
-                                            }
-                                            ?>
                                         </tbody>
                                  
                                     </table>
@@ -153,7 +153,7 @@
                                                             $('#example2').dataTable({
                                                                 "bPaginate": true,
                                                                 "bLengthChange": false,
-                                                                "bFilter": true,
+                                                                "bFilter": false,
                                                                 "bSort": true,
                                                                 "bInfo": true,
                                                                 "bAutoWidth": false
@@ -173,5 +173,48 @@
                 });
             });
         </script>
+
+ <script>
+
+    $(function() {
+
+        $('.toggle-event').change(function() {
+//            alert("asda");
+            var status = $(this).prop('checked')==true?'1':'0';
+            var rowId  = $(this).attr('rowid');
+//            alert(status);
+            url = "active_inactive.php";
+            $.ajax({
+                url:url,
+                type:'POST',
+                data:{id:rowId, status:status}
+            }).done(function( data ) {
+               // location.reload();
+            });
+
+        });
+    });
+</script>
+
+<script>
+//    $(function(){
+     function otpcheck() { 
+//         alert('jhgasd');
+//        $('.order').change(function(){
+            var order = document.getElementById("order").value;
+            var id = document.getElementById("id").value;
+            // alert(order);
+              url = "job-order.php";
+            $.ajax({
+                url:url,
+                type:'POST',
+                data:{id:id, order:order}
+            }).done(function( data ) {
+               location.reload();
+            });
+//        });
+    }
+    </script>
+    
     </body>
 </html>
