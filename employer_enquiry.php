@@ -59,6 +59,79 @@
 
                 </div>
             </section>
+            
+            <section class="login-section" style="margin-top: 20px;">
+                <div class="container">
+
+                    <div class="title-section">
+                        <h1>ALREADY REGISTERED ? LOGIN HERE</h1>
+                    </div>
+
+                    <form id="contact-form" method="POST" action="employerlogin_process.php" enctype="multipart/form-data">  
+                        <div id="log">
+<?php
+error_reporting(0);
+session_start();
+if ($_SESSION['in'] == 1) {
+    ?>
+                                <div class="alert alert-danger alert-dismissable">
+                                <?php echo "<span style='color:red'/><b>Invalid email or password</b></span><br/><br/>"; ?>
+                                </div>                                          
+                                <?php
+                                }
+                                unset($_SESSION['in']);
+                                ?>
+                        </div>                 
+
+                        <div class="col-md-12">
+                            <input  id="loginemail" name="loginemail" type="text" placeholder="EMAIL ">    
+
+                        </div>
+                        <div class="col-md-12">
+                            <input id="loginpassword" name="loginpassword" type="password" placeholder="PASSWORD">    
+
+                        </div>
+
+                        <div class="col-md-6">          
+                            <input type="submit" value="LOGIN">
+                        </div>
+                        <a class="forgot" data-toggle="modal" data-target="#myModal" href="javascript:void(0)" style="float:right; margin-right: 20px;">Forgot Password?</a>
+
+                    </form>
+                </div>
+
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Forgot Password</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group add-on">    
+                                    <input type="email" class="form-control" required name="forgotemail" id="field-forgotemail" value="" placeholder="ENTER YOUR EMAIL ID" />
+                                </div>
+
+                                <div class="row">
+                                    <div id="error" style="display:none; color:#C80000; margin-left: 20px; font-size:16px;"><b>Invalid Email</b></div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn-lg" id="forgot-submit">Submit</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </section>
+            
+            
             <section class="register-section">
                 <div class="container">
                     <div class="title-section">
@@ -145,79 +218,6 @@ unset($_SESSION['regsucc']);
 
                 </div>
             </section>
-
-
-            <section class="login-section" style="margin-top: 20px;">
-                <div class="container">
-
-                    <div class="title-section">
-                        <h1>ALREADY REGISTERED ? LOGIN HERE</h1>
-                    </div>
-
-                    <form id="contact-form" method="POST" action="employerlogin_process.php" enctype="multipart/form-data">  
-                        <div id="log">
-<?php
-error_reporting(0);
-session_start();
-if ($_SESSION['in'] == 1) {
-    ?>
-                                <div class="alert alert-danger alert-dismissable">
-                                <?php echo "<span style='color:red'/><b>Invalid email or password</b></span><br/><br/>"; ?>
-                                </div>                                          
-                                <?php
-                                }
-                                unset($_SESSION['in']);
-                                ?>
-                        </div>                 
-
-                        <div class="col-md-12">
-                            <input  id="loginemail" name="loginemail" type="text" placeholder="EMAIL ">    
-
-                        </div>
-                        <div class="col-md-12">
-                            <input id="loginpassword" name="loginpassword" type="password" placeholder="PASSWORD">    
-
-                        </div>
-
-                        <div class="col-md-6">          
-                            <input type="submit" value="LOGIN">
-                        </div>
-                        <a class="forgot" data-toggle="modal" data-target="#myModal" href="javascript:void(0)" style="float:right; margin-right: 20px;">Forgot Password?</a>
-
-                    </form>
-                </div>
-
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Forgot Password</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="input-group add-on">    
-                                    <input type="email" class="form-control" required name="forgotemail" id="field-forgotemail" value="" placeholder="ENTER YOUR EMAIL ID" />
-                                </div>
-
-                                <div class="row">
-                                    <div id="error" style="display:none; color:#C80000; margin-left: 20px; font-size:16px;"><b>Invalid Email</b></div>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary btn-lg" id="forgot-submit">Submit</button>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-            </section>
-
 
             <!-- End services-offer section -->
 

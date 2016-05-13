@@ -39,10 +39,7 @@
         <script type="text/javascript" src="js/script.js"></script>
         <script type="text/javascript" src="js/notify.js"></script>
         <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-
-    </head>
-
-    <script>
+        <script>
         $(function () {
             $("#login-popup").validate({
                 // Specify the validation rules
@@ -78,13 +75,13 @@
         })
     </script>
 
-
+    </head>
     <body>
 
         <!-- Header
             ================================================== -->
 
-<?php include("header.php"); ?>
+        <?php include("header.php"); ?>
 
         <!-- End Header -->
 
@@ -103,35 +100,69 @@
                     <div class="col-md-12">
                         <div class="accordion-box">
 
-<?php
-include 'db.php';
-date_default_timezone_set('Asia/Kolkata');
+                            <?php
+                            include 'db.php';
+                            date_default_timezone_set('Asia/Kolkata');
 
-if (isset($_SESSION['log'])) {
+                            if (isset($_SESSION['log'])) {
 
-    $jobsArray = array();
-    $jobsSaveArray = array();
-    $sqlJobsApplied = sprintf("SELECT job_id FROM jobs_applied WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
-    $resultApplied = Db::query($sqlJobsApplied);
-    if (mysql_num_rows($resultApplied) > 0) {
-        while ($rowApplied = mysql_fetch_assoc($resultApplied)) {
-            $jobsArray[] = $rowApplied['job_id'];
-        }
-    }
+                                $jobsArray = array();
+                                $jobsSaveArray = array();
+                                $sqlJobsApplied = sprintf("SELECT job_id FROM jobs_applied WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
+                                $resultApplied = Db::query($sqlJobsApplied);
+                                if (mysql_num_rows($resultApplied) > 0) {
+                                    while ($rowApplied = mysql_fetch_assoc($resultApplied)) {
+                                        $jobsArray[] = $rowApplied['job_id'];
+                                    }
+                                }
 
-    $sqlJobsSaved = sprintf("SELECT job_id FROM jobs_saved WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
-    $resultJobsSaved = Db::query($sqlJobsSaved);
-    if (mysql_num_rows($resultJobsSaved) > 0) {
-        while ($rowSave = mysql_fetch_assoc($resultJobsSaved)) {
-            $jobsSaveArray[] = $rowSave['job_id'];
-        }
-    }
-}
-$today_date = date('Y-m-d');
-$query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND job_order>'%s' ORDER BY job_order DESC", 1, 0, $today_date,0);
-$result = Db::query($query);
-while ($row = mysql_fetch_array($result)) {
-    ?>
+                                $sqlJobsSaved = sprintf("SELECT job_id FROM jobs_saved WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
+                                $resultJobsSaved = Db::query($sqlJobsSaved);
+                                if (mysql_num_rows($resultJobsSaved) > 0) {
+                                    while ($rowSave = mysql_fetch_assoc($resultJobsSaved)) {
+                                        $jobsSaveArray[] = $rowSave['job_id'];
+                                    }
+                                }
+                            }
+                            $today_date = date('Y-m-d');
+                            $query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND job_order>'%s' ORDER BY job_order DESC", 1, 0, $today_date, 0);
+                            $result = Db::query($query);
+                            while ($row = mysql_fetch_array($result)) {
+                                ?>
+
+                                <div class="accord-elem">
+                                    <div class="accord-title">
+                                        <a class="accord-link" href="#"></a>
+                                        <h2><?php echo strtoupper($row['job_listing']); ?></h2>
+                                    </div>
+                                    <div class="accord-content" style="display: none;">
+                                        <p><?php echo $row['job_description']; ?></p>
+                                        <p><span style="color:#007ac9">Company Name: </span><?php echo $row['company_name']; ?>,
+                                            <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?> ,
+                                            <span style="color:#007ac9">Location : </span><?php echo $row['job_location']; ?>,
+                                            <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
+                                            <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>
+                                        </p>
+
+                                        <?php if (isset($_SESSION['log'])): ?>
+                                            <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsArray)) ? 'APPLIED' : 'APPLY' ?>"></a></div>
+                                            <?php if (!in_array($row['id'], $jobsArray)): ?>
+                                                <div id="view"><a href="javascript:void(0)" onclick="view(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsSaveArray)) ? 'SAVED' : 'SAVE' ?>"></a></div>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            <div id="apply"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" ><input type="submit" value="APPLY"></a></div>
+                                            <div id="view"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><input type="submit" value="SAVE"></a></div>
+                                        <?php endif; ?>
+
+                                    </div>
+                                </div>
+
+                                <?php
+                            }
+                            $query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND job_order='%s'", 1, 0, $today_date, 0);
+                            $result = Db::query($query);
+                            while ($row = mysql_fetch_array($result)) {
+                                ?>
 
                                 <div class="accord-elem">
                                     <div class="accord-title">
@@ -147,43 +178,9 @@ while ($row = mysql_fetch_array($result)) {
                                             <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>
                                         </p>
 
-    <?php if (isset($_SESSION['log'])): ?>
+                                        <?php if (isset($_SESSION['log'])): ?>
                                             <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsArray)) ? 'APPLIED' : 'APPLY' ?>"></a></div>
-        <?php if (!in_array($row['id'], $jobsArray)): ?>
-                                                <div id="view"><a href="javascript:void(0)" onclick="view(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsSaveArray)) ? 'SAVED' : 'SAVE' ?>"></a></div>
-                                            <?php endif; ?>
-                                        <?php else: ?>
-                                            <div id="apply"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" ><input type="submit" value="APPLY"></a></div>
-                                            <div id="view"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><input type="submit" value="SAVE"></a></div>
-                                        <?php endif; ?>
-
-                                    </div>
-                                </div>
-                                
-    <?php 
-}
-$query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND job_order='%s'", 1, 0, $today_date,0);
-$result = Db::query($query);
-while ($row = mysql_fetch_array($result)) {
-    ?>
-
-                                <div class="accord-elem">
-                                    <div class="accord-title">
-                                        <a class="accord-link" href="#"></a>
-                                        <h2><?php echo strtoupper($row['job_listing']); ?></h2>
-                                    </div>
-                                    <div class="accord-content" style="display: none;">
-                                        <p><?php echo $row['job_description']; ?></p>
-                                        <p><span style="color:#007ac9">Company : </span><?php echo $row['company_name']; ?>,
-                                            <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?> ,
-                                            <span style="color:#007ac9">Location : </span><?php echo $row['job_location']; ?>,
-                                            <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
-                                            <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>
-                                        </p>
-
-    <?php if (isset($_SESSION['log'])): ?>
-                                            <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsArray)) ? 'APPLIED' : 'APPLY' ?>"></a></div>
-        <?php if (!in_array($row['id'], $jobsArray)): ?>
+                                            <?php if (!in_array($row['id'], $jobsArray)): ?>
                                                 <div id="view"><a href="javascript:void(0)" onclick="view(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsSaveArray)) ? 'SAVED' : 'SAVE' ?>"></a></div>
                                             <?php endif; ?>
                                         <?php else: ?>
@@ -194,9 +191,9 @@ while ($row = mysql_fetch_array($result)) {
                                     </div>
                                 </div>
 
-    <?php
-}
-?>			
+                                <?php
+                            }
+                            ?>			
 
                         </div>
                     </div>
@@ -209,7 +206,7 @@ while ($row = mysql_fetch_array($result)) {
         <!-- footer 
                         ================================================== -->
 
-<?php include("footer.php"); ?>
+        <?php include("footer.php"); ?>
 
 
 
@@ -261,7 +258,7 @@ while ($row = mysql_fetch_array($result)) {
                         //$(current).notify('Job Successfully Saved!', 'success');
 
                         $(current).children().notify(
-                                "Job Successfully Saved!","success",
+                                "Job Successfully Saved!", "success",
                                 {position: "right"}
                         );
                     } else if (data == 'ALREADY SAVED') {
@@ -328,7 +325,7 @@ while ($row = mysql_fetch_array($result)) {
                             stopAtSlide: -1,
                             shuffle: "off",
                             autoHeight: "off",
-            forceFullWidth: "off",
+                            forceFullWidth: "off",
                             hideThumbsOnMobile: "off",
                             hideNavDelayOnMobile: 1500,
                             hideBulletsOnMobile: "off",

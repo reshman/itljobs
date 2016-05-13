@@ -184,7 +184,7 @@
            <select name="qualification">
             <option disabled="" selected="">SELECT QUALIFICATION</option>
             <?php
-            $qryqa = sprintf("SELECT * FROM `qualification`");
+            $qryqa = sprintf("SELECT * FROM `qualification` ORDER BY qualification");
             $resqua = Db::query($qryqa);
             while ($rowq = mysql_fetch_assoc($resqua)) { ?>
             <option value="<?php echo $rowq['qualification'];?>"><?php echo $rowq['qualification'];?></option>
