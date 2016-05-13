@@ -34,7 +34,7 @@
             <?php include 'header.php'; ?>
 
             <?php include 'menu.php'; ?>
-
+            
             <?php include 'db.php'; ?>
 
             <!-- Content Wrapper. Contains page content -->
