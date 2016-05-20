@@ -35,7 +35,7 @@ $india_exp           = trim($_POST['india']);
 $abr_exp             = trim($_POST['abroad']);
 
 $specification       = trim($_POST['specification']);
-$mobile              = trim($_POST['mobile']);
+$mobile              = "+".trim($_POST['phoneCode']).trim($_POST['mobile']);
 $qualification       = trim($_POST['qualification']);
 //$abroad_experience   = trim($_POST['abroad_experience']);
 $current_location    = trim($_POST['current_location']);

@@ -62,6 +62,30 @@ if ($_GET) {
             <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
             <script src="js/jquery.geocomplete.js"></script>
 
+            <script src="admin/ckeditor/ckeditor.js"></script>
+
+            <style>
+                /* Hide the file input using
+        opacity */
+                [type=file] {
+                    position: absolute;
+                    filter: alpha(opacity=0);
+                    opacity: 0;
+                }
+                input, [type="file"] + label {
+                    border: 1px solid #ccc;
+                    border-radius: 0;
+                    font-size: 13px;
+                    left: 0;
+                    margin: 0;
+                    padding: 14px;
+                    position: relative;
+                    text-align: left;
+                    width: 100%;
+                }
+            </style>
+
+
         </head>
         <body>
 
@@ -107,27 +131,13 @@ if ($_GET) {
                             $closing = array_reverse($closing);
                             $closing = implode('/', $closing);
 
-                            $salary = explode('-', $jrow['salary']);
-
-                            $salary[1] = str_split($salary[1]);
-                            $esalary = array();
-                            $perc = array();
-                            foreach ($salary[1] as $char) {
-                                if (is_numeric($char)) {
-                                    array_push($esalary, $char);
-                                } else {
-                                    array_push($perc, $char);
-                                }
-                            }
-                            $salary[1] = implode('', $esalary);
-                            $salary[1] = trim($salary[1]);
-                            $per = implode('', $perc);
-                            $per = trim($per);
+                            $salary = preg_split("/[a-zA-Z]{3} [a-zA-Z]+$/", $jrow['salary']);
+                            $per = preg_split("/[0-9]+[ -]{0,3}[0-9]+ [a-zA-Z]{3}( )*/", $jrow['salary']);
                         }
                         ?>
                         <form id="contact-form" method="POST" action="recruiter-edit-jobprocess.php" enctype="multipart/form-data">
                             <input id="id" name="id" value="<?php echo $id; ?>" hidden>
-
+                            <input id="id" name="ref_id" value="<?php echo $jrow['ref_id']; ?>" hidden>
                             <div class="col-md-12"> 
                                 <div class="col-md-3">
                                     <span class="post-title">COMPANY NAME: </span>    
@@ -176,16 +186,39 @@ if ($_GET) {
                             </div> 
 
 
-                            <div class="col-md-12"> 
+                            <div class="col-md-12">
                                 <div class="col-md-3">
-                                    <span class="post-title">JOB DESCRIPTION:</span>    
+                                    <span class="post-title">JOB DESCRIPTION:</span>
                                 </div>
+                                <div class="col-md-8 jdchoice">
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <input type="radio" id="jdeditorc" name="jdchoice" value="editor" <?php if ($jrow['job_description'] != 'PDF Attached') { ?>checked<?php } ?>>
+                                    </div>
+                                    <div class="col-md-5 col-sm-5 col-xs-5">
+                                        Enter by Text Editor
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <input type="radio" id="jdfilec" name="jdchoice" value="file" <?php if ($jrow['job_description'] == 'PDF Attached') { ?>checked<?php } ?>>
+                                    </div>
+                                    <div class="col-md-5 col-sm-5 col-xs-5">
+                                        Replace PDF File
+                                    </div>
 
-                                <div class="col-md-8">
-                                    <textarea name="description" id="description" placeholder="DESCRIPTION"><?php echo $jrow['job_description']; ?></textarea>    
                                 </div>
-
-                            </div>  
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-8 jdeditor">
+                                    <textarea class="ckeditor" id="job_description" placeholder="Job Description" name="job_description"> <?= $jrow['job_description'] ?></textarea><br>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-8 jdfile">
+                                    <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="CHOOSE FILE (Only PDF)">
+                                    <label for="f02">CHOOSE FILE (Only PDF)</label>
+                                </div>
+                            </div> 
                             <div class="col-md-12"> 
                                 <div class="col-md-3">
                                     <span class="post-title">EXPERIENCE(IN YEARS):</span>    
@@ -275,26 +308,30 @@ if ($_GET) {
                                 </div>
 
                                 <div class="col-md-6">
-                                    <input name="salary" id="salary" type="text" placeholder="SALARY (minimum - maximum)" value="<?php echo $salary[0] . ' - ' . $salary[1]; ?>">      
+                                    <input name="salary" id="salary" type="text" placeholder="SALARY (minimum - maximum)" value="<?= $salary[0] ?>">      
                                 </div>
 
                                 <div class="col-md-2">
                                     <select name="salarycat">
                                         <option <?php
-                                        if ($per == "PER YEAR") {
-                                            echo 'selected';
-                                        }
-                                        ?>>PER YEAR</option>    
+                                        if ($per[1] == "PER YEAR") {
+                                            ?>
+                                                selected
+                                                <?php
+                                            }
+                                            ?>>PER YEAR</option>    
                                         <option<?php
-                                        if ($per == "PER MONTH") {
-                                            echo 'selected';
-                                        }
-                                        ?>>PER MONTH</option>
-                                        <option <?php
-                                        if ($per == "PER DAY") {
-                                            echo 'selected';
-                                        }
-                                        ?>>PER DAY</option>
+                                        if ($per[1] == "PER MONTH") {
+                                            ?>
+                                                selected
+                                                <?php
+                                            }
+                                            ?>>PER MONTH</option>
+                                        <option <?php if ($per[1] == "PER DAY") { ?>
+                                                selected
+                                                <?php
+                                            }
+                                            ?>>PER DAY</option>
                                     </select>         
                                 </div>
 
@@ -394,6 +431,24 @@ if ($_GET) {
 
                         }
 
+                    });
+
+                    var choice = $('[name = "jdchoice"]:checked').val();
+                    if (choice == 'file') {
+                        $('.jdeditor').hide();
+                    } else if (choice == 'editor') {
+                        $('.jdfile').hide();
+                    }
+
+                    $('[name = "jdchoice"]').change(function () {
+                        var choice = $(this).val();
+                        if (choice == "file") {
+                            $('.jdfile').slideDown();
+                            $('.jdeditor').slideUp();
+                        } else if (choice == "editor") {
+                            $('.jdfile').slideUp();
+                            $('.jdeditor').slideDown();
+                        }
                     });
 
                 });

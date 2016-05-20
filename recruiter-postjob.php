@@ -49,6 +49,27 @@
 
         <script src="admin/ckeditor/ckeditor.js"></script>
 
+        <style>
+            /* Hide the file input using
+    opacity */
+            [type=file] {
+                position: absolute;
+                filter: alpha(opacity=0);
+                opacity: 0;
+            }
+            input, [type="file"] + label {
+                border: 1px solid #ccc;
+                border-radius: 0;
+                font-size: 13px;
+                left: 0;
+                margin: 0;
+                padding: 14px;
+                position: relative;
+                text-align: left;
+                width: 100%;
+            }
+        </style>
+
     </head>
     <body>
 
@@ -83,7 +104,7 @@
                 <div class="col-lg-10">
                     <form id="contact-form" method="POST" action="recruiter-postjobprocess.php" enctype="multipart/form-data">  
                         <?php
-                        if (isset($_SESSION['regsucc']) != '') {
+                        if (isset($_SESSION['regsucc'])) {
 
                             if ($_SESSION['regsucc'] == '1') {
                                 ?>
@@ -104,7 +125,7 @@
 
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-                                    Failed <a href="#" class="alert-link"></a>.
+                                    Failed <a href="#" class="alert-link"></a>
 
                                 </div>
 
@@ -121,10 +142,26 @@
                                 </div>
 
                                 <?php
-                            }
-                        }
+                            } else if ($_SESSION['regsucc'] == '4') {
+                                ?>
 
-                        unset($_SESSION['regsucc']);
+                                <div class="alert alert-danger alert-dismissable">
+
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    File upload failed because of one of the following reasons
+                                    <ol>
+                                        <li>Incorrect File type</li>
+                                        <li>Size of file exceeds 10 MB</li>
+                                        <li>Server Error</li>
+                                    </ol>
+                                    <a href="#" class="alert-link"></a>.
+
+                                </div>
+
+                                <?php
+                            }
+                            unset($_SESSION['regsucc']);
+                        }
                         ?>   
 
                         <div class="col-md-12"> 
@@ -169,18 +206,40 @@
                             </div>
 
                         </div> 
-
-
-                        <div class="col-md-12"> 
+                        <div class="col-md-12">
                             <div class="col-md-3">
-                                <span class="post-title">JOB DESCRIPTION:</span>    
+                                <span class="post-title">JOB DESCRIPTION:</span>
                             </div>
+                            <div class="col-md-8 jdchoice">
+                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                    <input type="radio" id="jdeditorc" name="jdchoice" value="editor" checked>
+                                </div>
+                                <div class="col-md-5 col-sm-5 col-xs-5">
+                                    Enter by Text Editor
+                                </div>
+                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                    <input type="radio" id="jdfilec" name="jdchoice" value="file">
+                                </div>
+                                <div class="col-md-5 col-sm-5 col-xs-5">
+                                    Upload a PDF File
+                                </div>
 
-                            <div class="col-md-8">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-8 jdeditor">
                                 <textarea class="ckeditor" id="job_description" placeholder="Job Description" name="job_description"></textarea><br>
                             </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-8 jdfile">
+                                <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="CHOOSE FILE (Only PDF)">
+                                <label for="f02">CHOOSE FILE (Only PDF)</label>
+                            </div>
+                        </div>
 
-                        </div>  
                         <div class="col-md-12"> 
                             <div class="col-md-3">
                                 <span class="post-title">EXPERIENCE(IN YEARS):</span>    
@@ -379,9 +438,38 @@
                     }
 
                 });
+
+                var choice = $('[name = "jdchoice"]').val();
+                if (choice == 'file') {
+                    $('.jdeditor').hide();
+                } else if (choice == 'editor') {
+                    $('.jdfile').hide();
+                }
+
+                $('[name = "jdchoice"]').change(function () {
+                    var choice = $(this).val();
+                    if (choice == "file") {
+                        $('.jdfile').slideDown();
+                        $('.jdeditor').slideUp();
+                    } else if (choice == "editor") {
+                        $('.jdfile').slideUp();
+                        $('.jdeditor').slideDown();
+                    }
+                });
             });
         </script>
-
+        <script>
+            $("[type=file]").on("change", function () {
+                // Name of file and placeholder
+                var file = this.files[0].name;
+                var dflt = $(this).attr("placeholder");
+                if ($(this).val() != "") {
+                    $(this).next().text(file);
+                } else {
+                    $(this).next().text(dflt);
+                }
+            });
+        </script>
         <!-- Revolution slider -->
         <script type="text/javascript">
 

@@ -34,7 +34,7 @@ $name                = "$title.$fullname";
 $email               = trim($_POST['email']);
 $specification       = trim($_POST['specification']);
 $qualification       = trim($_POST['qualification']);
-$mobile              = trim($_POST['mobile']);
+$mobile              = '+'.trim($_POST['phoneCode']).trim($_POST['mobile']);
 $current_location    = trim($_POST['current_location']);
 $date_of_birth       = trim($_POST['dob']);
 $date_of_birth = explode('/', $date_of_birth);
@@ -48,8 +48,9 @@ $india_exp           = trim($_POST['india']);
 $abr_exp             = trim($_POST['abroad']);
 $experience = $india_exp + $abr_exp;
 
+$timestamp = date("Ymdhisa");
  $target_dir = "uploads/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $target_file = $target_dir . $timestamp;
       //  echo $target_file; exit;
         $uploadOk = 1;
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -66,8 +67,7 @@ $experience = $india_exp + $abr_exp;
         // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                basename( $_FILES["fileToUpload"]["name"]);
-                $sImage=$_FILES["fileToUpload"]["name"];
+                $sImage=$timestamp;
 
             } else {
                 echo "Sorry, there was an error uploading your file.";

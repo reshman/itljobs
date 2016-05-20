@@ -21,7 +21,7 @@ $email        = (trim($_POST['email']));
 $companyname  = (trim($_POST['companyname']));
 $designation  = (trim($_POST['designation']));
 $country      = (trim($_POST['country']));
-$mobile       = (trim($_POST['mobile']));
+$mobile       = '+'.trim($_POST['phoneCode']).trim($_POST['mobile']);
 $enquiry      = (trim($_POST['enquiry']));
 $password     = MD5($key);   
 

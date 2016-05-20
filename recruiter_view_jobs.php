@@ -201,7 +201,7 @@
                                             </div>
 
                                             <?php
-                                        }else if ($_SESSION['regsucc'] == '0') {
+                                        } else if ($_SESSION['regsucc'] == '0') {
                                             ?>
 
                                             <div class="alert alert-success alert-dismissable">
@@ -213,7 +213,7 @@
                                             </div>
 
                                             <?php
-                                        }else if ($_SESSION['regsucc'] == '3') {
+                                        } else if ($_SESSION['regsucc'] == '3') {
                                             ?>
 
                                             <div class="alert alert-danger alert-dismissable">
@@ -221,6 +221,23 @@
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
                                                 Salary Range invalid <a href="#" class="alert-link"></a>.
+
+                                            </div>
+
+                                            <?php
+                                        } else if ($_SESSION['regsucc'] == '4') {
+                                            ?>
+
+                                            <div class="alert alert-danger alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                File upload failed because of one of the following reasons
+                                                <ol>
+                                                    <li>Incorrect File type</li>
+                                                    <li>Size of file exceeds 10 MB</li>
+                                                    <li>Server Error</li>
+                                                </ol>
+                                                <a href="#" class="alert-link"></a>.
 
                                             </div>
 
@@ -309,7 +326,7 @@
             <!-- End footer -->
 
         </div>
-         <script>
+        <script>
             function deleteConfirm(href) {
                 var ask = window.confirm("Are you sure you want to delete this item?");
                 if (ask) {
