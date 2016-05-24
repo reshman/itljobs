@@ -224,7 +224,9 @@
 							<tr>
                                                             <th>Sl.No</th>
 						            <th>Name</th>
-                                                            <th>E-mail</th>
+                                                            <th>Experience in India</th>
+                                                            <th>Experience abroad</th>
+                                                            <th>Specification/Certification</th>
                                                             <th>Resume Name</th>
 
 							</tr>
@@ -237,7 +239,9 @@
 						<tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
-                                                    <td><?php echo $row['email']; ?></td>
+                                                    <td><?php echo $row['india_experience']; ?></td>
+                                                    <td><?php echo $row['abroad_experience']; ?></td>
+                                                    <td><?php echo $row['specification']; ?></td>
                                                     <td><a href="uploads/<?php echo $row['file_name'] ?>" target="_blank"><?php $filename = "uploads/".$row['file_name']; if(file_exists($filename)){echo $row['file_name'];} else { echo 'File Doesnot exits'; } ?></a></td>
 			                       </tr>
                                                   </tbody>
