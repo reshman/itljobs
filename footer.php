@@ -62,7 +62,7 @@
             </div>	
         </div>
         <p class="copyright">
-            Copyright	&copy; 2016. ITL JOBS. Designed by Imrokraft Solutions. All rights reserved.
+            Copyright	&copy; 2016. ITL JOBS. Designed by<a href="https://www.imrokraft.com" target="_BLANK"> Imrokraft Solutions</a>. All rights reserved.
         </p>
     </div>    
 </footer>
