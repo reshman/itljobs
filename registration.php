@@ -57,7 +57,7 @@ if ($flag == 1) {
     
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
-    if ($imageFileType != "docx" || $imageFileType != "doc") {
+    if ($imageFileType != "docx" && $imageFileType != "doc") {
         $_SESSION['regsucc'] = 4;
         $uploadOk = 0;
     }

@@ -128,7 +128,7 @@
                                 } else if ($_SESSION['editsucc'] == '4') {
                                     ?>
                                     <div class="alert alert-danger">
-                                        <?php echo "<span style='color:red'/><b>Please upload only PDF Files!</b></span><br/><br/>"; ?>
+                                        <?php echo "<span style='color:red'/><b>Please upload only DOC or DOCX Files!</b></span><br/><br/>"; ?>
                                     </div>
                                     <?php
                                 } else {
@@ -561,7 +561,7 @@
                                 <div class="col-md-12">
 
                                     <input type="file"  class="resume" name="fileToUpload" id="f02">
-                                    <label for="f02"><?php echo isset($rowresult['file_name']) ? $rowresult['file_name'] : 'UPLOAD YOUR CV (Pdf Only)' ?></label>
+                                    <label for="f02"><?php echo isset($rowresult['file_name']) ? $rowresult['file_name'] : 'UPLOAD YOUR CV (DOC or DOCX Only)' ?></label>
 
                                 </div>
 
