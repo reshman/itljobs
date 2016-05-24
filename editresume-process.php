@@ -58,17 +58,15 @@ $indexp_year = "$india_exp year(s)";
 
     if (isset($_FILES['fileToUpload']) && strlen($_FILES['fileToUpload']['name']) > 1) {
         $target_dir = "uploads/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $timestamp = date("YmdHis");
         $test_file = basename($_FILES["fileToUpload"]["name"]);
-        if($test_file!=''){
-      //  echo $target_file; exit;
+            
         $uploadOk = 1;
-        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
-            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        $imageFileType = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
         
-        $file = explode('.', $target_file);
-        if($file[1]!='pdf') {
+        $target_file = $target_dir . $timestamp.$imageFileType;
+            
+        if($imageFileType!='docx' && $imageFileType!='doc') {
            $_SESSION['editsucc']=4;
            echo "<script type='text/javascript'>
 
@@ -83,7 +81,6 @@ $indexp_year = "$india_exp year(s)";
         // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                basename( $_FILES["fileToUpload"]["name"]);
                 $sImage=$_FILES["fileToUpload"]["name"];
 
             } else {
@@ -92,12 +89,11 @@ $indexp_year = "$india_exp year(s)";
         }
 
        $filename = $sImage;
-        }
     }
 
  if($filename != NULL)   {
 
- $sql    = sprintf("UPDATE resume SET experience = '%s', specification = '%s', abroad_experience = '%s',india_experience = '%s', mobile = '%s', date_of_birth = '%s', qualification = '%s' ,file_name = '%s',job_category_id = '%s', sub_category = '%s',current_location = '%s' WHERE user_id = '%s'", $experience, $specification, $abrexp_year, $indexp_year, $mobile,$dob,$qualification,$filename,$job_category_id,$sub_category,$current_location,$id); 
+ $sql    = sprintf("UPDATE resume SET experience = '%s', specification = '%s', abroad_experience = '%s',india_experience = '%s', mobile = '%s', date_of_birth = '%s', qualification = '%s' ,file_name = '%s',job_category_id = '%s', sub_category = '%s',current_location = '%s' WHERE user_id = '%s'", $experience, $specification, $abrexp_year, $indexp_year, $mobile,$date_of_birth,$qualification,$filename,$job_category_id,$sub_category,$current_location,$id); 
 
 $resultedit = Db::query($sql);
 
