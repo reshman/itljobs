@@ -32,53 +32,16 @@
         <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 
 
-        <!--<script src="//code.jquery.com/jquery-1.9.1.js"></script>-->
+        <script src="//code.jquery.com/jquery-1.9.1.js"></script> 
 
-        <!--<script> jQuery.noConflict();</script>-->
-
-       <!-- <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>-->
-
-<!--        <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>-->
-
-        <link href="plugins/datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
-
-
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-
-        <!--[if lt IE 9]>
-
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
-        <![endif]-->
-
-
-
-        <!--<script src="//code.jquery.com/jquery-1.9.1.js"></script> -->
-
-        <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-
-
-
-   
         <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
 
-      
 
-      <script src="js/jquery.Jcrop.min.js"></script>
-        <link href="css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
+     
+      <!--<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>-->
 
-        <script src="ckeditor/ckeditor.js"></script>
-        
-        
-        
-     <link href="css/datepicker.css" rel="stylesheet" />
-     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+    
          
 
        <!-- <style>
@@ -100,7 +63,7 @@
 
 
             <?php include 'menu.php'; 
-                  //include 'db.php'; 
+                 // include 'db.php'; 
 
             session_start();
     
@@ -188,12 +151,23 @@
                                         
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Title</label>
+                                            <label for="exampleInputEmail1">Job Category</label>
 
-                                            <input type="text" class="form-control" id="title" placeholder="Title" name="title">
+                                            <input type="text" class="form-control" id="title" placeholder="Job Category" name="title">
 
                                         </div>
+                                         <label for="exampleInputEmail1">Industry</label>
+                                         <select class="js-data-example-ajax form-control" name="industry[]" id="industry" multiple="" placeholder="Industry" required="">
+                                            <?php
+                                           
+                                           $qryind = sprintf("SELECT * FROM `industries`");
+                                           $resind = Db::query($qryind);
+                                           while ($rowind = mysql_fetch_assoc($resind)) {
+                                               ?>
+                                               <option value="<?php echo $rowind['industry_name']; ?>"><?php echo $rowind['industry_name']; ?></option>
 
+                                           <?php } ?>
+                                        </select>
                                         <div class="box-footer">
 
                                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -222,11 +196,32 @@
 </div>  <!--/.content-wrapper -->
 
 
-
 <!-- Bootstrap 3.3.2 JS -->
 
-  <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-  
+ <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+
+<!-- FastClick -->
+
+<script src='plugins/fastclick/fastclick.min.js'></script>
+
+<!-- AdminLTE App -->
+
+<script src="dist/js/app.min.js" type="text/javascript"></script>
+
+<!-- AdminLTE for demo purposes -->
+
+<script src="dist/js/demo.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+
+
+<script>
+        $('.js-data-example-ajax').select2({
+          tags: true
+
+        });
+        </script>
+ <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
   <script>
             // When the browser is ready...
 
@@ -240,13 +235,14 @@
 
                     rules: {
                         
-                        title: {required: true,lettersonly: true}
+                        title: {required: true,lettersonly: true},
+                        industry:"required"
                     },
                     // Specify the validation error messages
 
                     messages: {
-                        title: {required: "Please enter title",lettersonly: "Please enter letters only"}
-
+                        title: {required: "Please enter title",lettersonly: "Please enter letters only"},
+                        industry:"Please enter industry"
                     },
 
                     submitHandler: function (form) {
@@ -262,38 +258,7 @@
 
             });
 
-        </script> 
-
-
-<script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="plugins/datetimepicker/moment.js" type="text/javascript"></script>
-<script src="plugins/datetimepicker/bootstrap-datetimepicker.js" type="text/javascript"></script>
-
-<!-- FastClick -->
-
-<script src='plugins/fastclick/fastclick.min.js'></script>
-
-<!-- AdminLTE App -->
-
-<script src="dist/js/app.min.js" type="text/javascript"></script>
-
-<!-- AdminLTE for demo purposes -->
-
-<script src="dist/js/demo.js" type="text/javascript"></script>
-
- <script src="js/datepick.js"></script>
- <script src="js/bootstrap-datepicker.js"></script>
- <script src="js/bootstrap-datetimepicker.min.js"></script>
-  <script>
-    $(function() {
-        $("#datepicker").datepicker();
-    });
- </script> 
-  <script>
-    $(function() {
-        $("#datepicker1").datepicker();
-    });
- </script> 
+        </script>
 </body>
   
 

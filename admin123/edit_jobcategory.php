@@ -62,22 +62,12 @@
     <script src="//code.jquery.com/jquery-1.9.1.js"></script>
 
     <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-
-
-
-    <!--<script src="js/jquery.Jcrop.min.js"></script>-->
-
-    <link href="css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
 
     <!--<script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>-->
 
     <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
-    <!--<script src="js/jquery.Jcrop.min.js"></script>
-
-    <link href="css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />-->
-
-    <script src="ckeditor/ckeditor.js"></script>
  <script>
             // When the browser is ready...
 
@@ -195,7 +185,9 @@
                             
                             <?php
                             require_once("db.php");
-                            $query = sprintf("SELECT * FROM `job_categories` WHERE id='%s'",$id);
+                            //echo "SELECT ind.industry_name as industry_name,jc.name FROM industries ind JOIN industry_category ic JOIN job_categories jc ON ind.id = ic.industry_id WHERE ic.category_id = '$id'";die;
+                            //$query = sprintf("SELECT * FROM `job_categories` WHERE id='%s'",$id);
+                            $query = sprintf("SELECT ind.industry_name as industry_name,jc.name FROM industries ind JOIN industry_category ic JOIN job_categories jc ON ind.id = ic.industry_id WHERE ic.category_id = '$id'");
                             $result = Db::query($query);
                             if (mysql_num_rows($result) > 0) {
                                 $row = mysql_fetch_assoc($result);
@@ -210,6 +202,18 @@
                                             <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="<?php echo $row['name']; ?>">
 
                                         </div>
+                                 <label for="exampleInputEmail1">Industry</label>
+                                         <select class="js-data-example-ajax form-control" name="industry[]" id="industry" multiple="" placeholder="Industry" required="">
+                                            <?php
+                                           
+                                           $qryind = sprintf("SELECT * FROM `industries`");
+                                           $resind = Db::query($qryind);
+                                           while ($rowind = mysql_fetch_assoc($resind)) {
+                                               ?>
+                                               <option <?php echo ($rowind['industry_name'] == $row['industry_name'])? 'selected == selected' : '';?> value="<?php echo $rowind['industry_name']; ?>"><?php echo $rowind['industry_name']; ?></option>
+
+                                           <?php } ?>
+                                        </select>
                                
                                     <input type="hidden"  name="id" value="<?php echo $row['id'];?>"/>
                                       <?php } ?>
@@ -241,8 +245,6 @@
 
 
 <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="plugins/datetimepicker/moment.js" type="text/javascript"></script>
-<script src="plugins/datetimepicker/bootstrap-datetimepicker.js" type="text/javascript"></script>
 
 <!-- FastClick -->
 
@@ -256,22 +258,17 @@
 
 <script src="dist/js/demo.js" type="text/javascript"></script>
 
-<script src="js/datepick.js"></script>
- <script src="js/bootstrap-datepicker.js"></script>
- <script src="js/bootstrap-datetimepicker.min.js"></script>
-  <script>
-    $(function() {
-        $("#datepicker").datepicker();
-    });
- </script> 
-  <script>
-    $(function() {
-        $("#datepicker1").datepicker();
-    });
- </script> 
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
 
+
+<script>
+        $('.js-data-example-ajax').select2({
+          tags: true
+
+        });
+        </script>
 <!--<script type="text/javascript">
     $(function () {
      
