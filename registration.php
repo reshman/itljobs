@@ -53,7 +53,7 @@ if ($flag == 1) {
     $uploadOk = 1;
     $imageFileType = pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION);
     
-    $target_file = $target_dir . $timestamp.$imageFileType;
+    $target_file = $target_dir . $timestamp.'.'.$imageFileType;
     
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
@@ -77,7 +77,7 @@ if ($flag == 1) {
         }
     }
 
-    $filename = $sImage;
+    $filename = $timestamp.'.'.$imageFileType;
 
     $countemail = sprintf("SELECT * FROM `users` WHERE email='%s' AND del_status='%s'", $email, '0');
     $countresultemail = Db::query($countemail);

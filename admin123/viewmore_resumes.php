@@ -66,7 +66,7 @@
                                          <?php
                                             $id = $_REQUEST['id'];
                                             $i = 1;
-                                             $query = sprintf("SELECT r.id,r.experience,r.qualification,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name, r.del_status, u.name as name,u.email ,jc.name as jobcatname,r.abroad_experience,r.india_experience from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s' AND r.id='%s'",'0',$id);  
+                                             $query = sprintf("SELECT r.user_id,r.id,r.experience,r.qualification,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name, r.del_status, u.name as name,u.email ,jc.name as jobcatname,r.abroad_experience,r.india_experience from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s' AND r.id='%s'",'0',$id);  
                                             $result = Db::query($query);
                                             while ($row = mysql_fetch_array($result)) {
                                                 ?>
@@ -88,7 +88,7 @@
                                                 </tr>
                                              
                                                 <tr><th>Delete</th>
-                                                <td><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_resume.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>  
+                                                <td><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_resume.php?delid=<?= $row['user_id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>  
                                                 </tr>
                                                 
                                         </thead>

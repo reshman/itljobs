@@ -64,7 +64,7 @@ $indexp_year = "$india_exp year(s)";
         $uploadOk = 1;
         $imageFileType = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
         
-        $target_file = $target_dir . $timestamp.$imageFileType;
+        $target_file = $target_dir . $timestamp.'.'.$imageFileType;
             
         if($imageFileType!='docx' && $imageFileType!='doc') {
            $_SESSION['editsucc']=4;
@@ -88,7 +88,7 @@ $indexp_year = "$india_exp year(s)";
             }
         }
 
-       $filename = $sImage;
+       $filename = $timestamp.'.'.$imageFileType;
     }
 
  if($filename != NULL)   {

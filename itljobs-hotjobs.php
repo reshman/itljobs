@@ -250,6 +250,7 @@
 
             function view(job_id, $this) {
                 var current = $this;
+                $(current).children().val('SAVING...');
                 $.ajax({
                     url: 'ajax-jobs-saved.php?jobid=' + job_id
                 }).done(function (data) {
@@ -272,6 +273,7 @@
 
             function apply(job_id, $this) {
                 var current = $this;
+                $(current).children().val('APPLYING...');
                 $.ajax({
                     url: 'ajax-jobs-applied.php?jobid=' + job_id
                 }).done(function (data) {

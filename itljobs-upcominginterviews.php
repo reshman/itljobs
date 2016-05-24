@@ -206,6 +206,7 @@
         <script>
             function apply(job_id, $this) {
                 var current = $this;
+                $(current).children().val('APPLYING...');
                 $.ajax({
                     url: 'ajax-interviews-applied.php?jobid=' + job_id
                 }).done(function (data) {
