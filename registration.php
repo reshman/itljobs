@@ -49,7 +49,6 @@ if ($flag == 1) {
 
     $timestamp = date("YmdHis");
     $target_dir = "uploads/";
-    
     //  echo $target_file; exit;
     $uploadOk = 1;
     $imageFileType = pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION);
