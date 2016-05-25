@@ -710,6 +710,16 @@
             }
             return true;
         }, "Please Do not use Numbers or Special Characters");
+        
+        jQuery.validator.addMethod("checkEmail", function (value) {
+            var regex = new RegExp(".+@[a-z]+(\\.)[a-z]+$");
+            var key = value;
+
+            if (!regex.test(key)) {
+                return false;
+            }
+            return true;
+        }, "Please Enter Valid Email");
 
         $("#contact-form").validate({
             // Specify the validation rules
@@ -739,7 +749,7 @@
                 //year:"required",
                 captcha: "required",
                 fileToUpload: "required",
-                email: {required: true, email: true}
+                email: {required: true, checkEmail: true}
             },
             // Specify the validation error messages
 
@@ -765,7 +775,7 @@
                 //year:"Please enter date of birth",
                 captcha: "Please enter captcha",
                 fileToUpload: "Please upload your resume",
-                email: {required: "Please enter email", email: "Please enter valid email!"}
+                email: {required: "Please enter email"}
 
             },
             submitHandler: function (form) {
