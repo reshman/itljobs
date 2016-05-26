@@ -103,12 +103,12 @@
 
                     <div class="col-md-12"> 
                         <div class="col-md-3">
-                            <span class="post-title">SUB-CATEGORY(optional): </span>    
+                            <span class="post-title">INDUSTRY(optional): </span>    
                         </div>
 
                         <div class="col-md-8">
                             <select name="subcategory" id="subcategory">
-                                <option value="-1">Select Sub-category</option>
+                                <option value="-1">Select Industry</option>
                             </select>
                         </div>
                     </div> 
