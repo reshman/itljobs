@@ -52,13 +52,13 @@ if ($flag == 1) {
     //  echo $target_file; exit;
     $uploadOk = 1;
     $imageFileType = pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION);
-    
-    $target_file = $target_dir . $timestamp.'.'.$imageFileType;
-    
+
+    $target_file = $target_dir . $timestamp . '.' . $imageFileType;
+
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
     if ($imageFileType != "docx" && $imageFileType != "doc") {
-        $_SESSION['regsucc'] = 4;
+        
         $uploadOk = 0;
     }
 
@@ -73,11 +73,15 @@ if ($flag == 1) {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             $sImage = $timestamp;
         } else {
-            echo "Sorry, there was an error uploading your file.";
+            $_SESSION['regsucc'] = 2;
+            echo "<script type='text/javascript'>
+        location.href = '" . $urlin . "';
+        </script>";
+            die();
         }
     }
 
-    $filename = $timestamp.'.'.$imageFileType;
+    $filename = $timestamp . '.' . $imageFileType;
 
     $countemail = sprintf("SELECT * FROM `users` WHERE email='%s' AND del_status='%s'", $email, '0');
     $countresultemail = Db::query($countemail);
@@ -85,6 +89,10 @@ if ($flag == 1) {
     if ($countdtable == 1) {
         // echo "hi"; exit;
         $_SESSION['regsucc'] = 3;
+        echo "<script type='text/javascript'>
+        location.href = '" . $urlin . "';
+        </script>";
+        die();
     } else if ($countdtable != 1 AND $filename != NULL) {
 
         //generate random key

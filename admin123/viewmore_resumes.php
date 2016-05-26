@@ -81,7 +81,7 @@
                                                 <tr><th>Current Location</th><td><?php echo $row['current_location']; ?></td></tr>
                                                 <tr><th>Date of Birth</th><td><?php echo $row['date_of_birth']; ?></td></tr>
                                                 <tr><th>Job Category</th><td><?php echo $row['jobcatname']; ?></td></tr>
-                                                <tr><th>Sub Category</th><td><?php echo $row['sub_category']; ?></td></tr>
+                                                <tr><th>Industry</th><td><?php echo $row['sub_category']; ?></td></tr>
                                                 <tr><th>Resume</th>
                                                 <td><a onclick="downloadfile('../uploads/<?php echo $row['file_name']?>')" href="../uploads/<?php echo $row['file_name']?>"   target="_blank" download=""><?php echo $row['file_name']; ?></a>
                                                 </td>

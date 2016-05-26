@@ -67,11 +67,11 @@
                                            <tr>
                                                 <th>Sl.No</th>
                                                 <th>Reference Id</th>
-                                                <th>Title</th>
+                                                <th>Category</th>
+                                                <th>Industry</th>
                                                 <th>Experience</th>
                                                 <th>Job Location</th>
                                                 <th>Closing date</th>
-                                                <th>Name</th>
                                                 <th>View more</th>
                                                 <th>Order</th>
                                                 <th>Status</th>
@@ -92,11 +92,11 @@
                                            <tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['ref_id']; ?></td>
+                                                    <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['job_listing']; ?></td>
                                                     <td><?php echo $row['experience']; ?></td>
                                                     <td><?php echo $row['job_location']; ?></td>
                                                     <td><?php echo $row['closing_date']; ?></td>
-                                                    <td><?php echo $row['name']; ?></td>
                                                     <td><a href="viewmore_jobs.php?id=<?php echo $row['jobid'];?>" target="_BLANK">view more</a></td>
                                                     <td><input type="number" min="0" name="order" id="order" class="order" value="<?php echo $row['job_order'];?>"/>
                                                         <a onclick="updatecheck(this)" class="btn btn-primary">update</a>
