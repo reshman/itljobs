@@ -13,7 +13,10 @@ $delId = isset($_GET['delid']) ? $_GET['delid'] : 0;
 if ($delId) {
     $sqlDelFile       = sprintf("DELETE  FROM `job_categories` WHERE id = '%s'", $delId);
     $resultDelFile    = Db::query($sqlDelFile);
-	
+    
+    //Deleting existing records of job_category from industry_category table
+    $query = sprintf("DELETE FROM industry_category WHERE category_id=%d", $delId);
+    $res = Db::query($query);
 }
 
 echo "<script type='text/javascript'>

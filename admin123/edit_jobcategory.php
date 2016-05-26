@@ -185,12 +185,19 @@
                             
                             <?php
                             require_once("db.php");
-                            //echo "SELECT ind.industry_name as industry_name,jc.name FROM industries ind JOIN industry_category ic JOIN job_categories jc ON ind.id = ic.industry_id WHERE ic.category_id = '$id'";die;
-                            //$query = sprintf("SELECT * FROM `job_categories` WHERE id='%s'",$id);
-                            $query = sprintf("SELECT ind.industry_name as industry_name,jc.name FROM industries ind JOIN industry_category ic JOIN job_categories jc ON ind.id = ic.industry_id WHERE ic.category_id = '$id'");
-                            $result = Db::query($query);
-                            if (mysql_num_rows($result) > 0) {
-                                $row = mysql_fetch_assoc($result);
+                             //select category
+                            $querycat = sprintf("SELECT * FROM `job_categories` WHERE id='%s'",$id);
+                            $resultcat = Db::query($querycat);
+                            //select existing industries
+                             $query = sprintf("SELECT ind.industry_name as industry_name FROM industries ind JOIN industry_category ic ON ind.id = ic.industry_id WHERE ic.category_id = '$id'");
+                                           $result = Db::query($query);
+                                           while($row = mysql_fetch_assoc($result)) {
+                                               $rowArr[] = $row['industry_name'];
+                                                }
+                                                
+                            
+                            if (mysql_num_rows($resultcat) > 0) {
+                                $rowcat = mysql_fetch_assoc($resultcat);
                         
                             ?>
                              <div class="box-body">
@@ -199,23 +206,30 @@
 
                                             <label for="exampleInputEmail1">Title</label>
 
-                                            <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="<?php echo $row['name']; ?>">
+                                            <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="<?php echo $rowcat['name']; ?>">
 
                                         </div>
                                  <label for="exampleInputEmail1">Industry</label>
                                          <select class="js-data-example-ajax form-control" name="industry[]" id="industry" multiple="" placeholder="Industry" required="">
                                             <?php
-                                           
+                                           //select all industries
                                            $qryind = sprintf("SELECT * FROM `industries`");
                                            $resind = Db::query($qryind);
-                                           while ($rowind = mysql_fetch_assoc($resind)) {
+                                           
+                                           while ($rowind= mysql_fetch_assoc($resind)) {
+//                                        
                                                ?>
-                                               <option <?php echo ($rowind['industry_name'] == $row['industry_name'])? 'selected == selected' : '';?> value="<?php echo $rowind['industry_name']; ?>"><?php echo $rowind['industry_name']; ?></option>
+                                             
+                                               <option <?php echo (in_array($rowind['industry_name'] ,$rowArr))? 'selected == selected' : '';?> value="<?php echo $rowind['industry_name']; ?>"><?php echo $rowind['industry_name']; ?></option>
 
-                                           <?php } ?>
+                                            <?php 
+                                            
+//                                            } 
+                                            
+                                            } ?>
                                         </select>
                                
-                                    <input type="hidden"  name="id" value="<?php echo $row['id'];?>"/>
+                                    <input type="hidden"  name="id" value="<?php echo $rowcat['id'];?>"/>
                                       <?php } ?>
                                 <div class="box-footer">
 
