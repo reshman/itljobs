@@ -105,8 +105,8 @@
                                            <tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['name']; ?></td>  
-                                                <td class=center><a type="button" href="edit_jobcategory.php?id=<?= $row['id'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>
-                                                <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_jobcategory.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                                <td class=center><a href="edit_jobcategory.php?id=<?= $row['id'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>
+                                                <td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_jobcategory.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
                                                 <?php
                                                 $i = $i + 1;

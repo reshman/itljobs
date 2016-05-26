@@ -4,17 +4,23 @@ require_once("db.php");
 session_start();
 //posted values
 //if(isset($_POST['submit'])){
-   $title        = trim($_POST['title']);
+   $title        = strtoupper(trim($_POST['title']));
    $industry     = $_POST['industry'];
-
-      $sql = sprintf("INSERT INTO `job_categories`(name) VALUES('%s')",$title);
-      $result = Db::query($sql);
    
-      $catg_id = mysql_insert_id();
-   
+      $tsql = sprintf("SELECT * FROM job_categories WHERE name='%s'",$title);
+      $tresult = Db::query($tsql);
+      if (mysql_num_rows($tresult) > 0) {
+            $trow = mysql_fetch_assoc($tresult);
+            $catg_id = $trow['id'];
+      } else {
+            $sql = sprintf("INSERT INTO `job_categories`(name) VALUES('%s')",$title);
+            $result = Db::query($sql);
+            $catg_id = mysql_insert_id();
+      }   
            //Adding new industry if not already present
         foreach ($industry as $each_industry) {
-            if (!is_numeric($each_industry)) {
+            
+                $each_industry = strtoupper($each_industry);
 
                 $query = sprintf("SELECT * FROM industries WHERE industry_name='%s'", $each_industry);
                 $result = Db::query($query);
@@ -26,9 +32,6 @@ session_start();
                     Db::query($query);
                     $industry_id = mysql_insert_id();
                 }
-            } else {
-                $industry_id = $each_industry;
-            }
             //Updating industry_category Table
             $query = sprintf("INSERT INTO industry_category SET industry_id=%d,category_id=%d", $industry_id, $catg_id);
             $resultInd = Db::query($query);

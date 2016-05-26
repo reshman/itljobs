@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
-<?php  include("logincheck.php");?>
+    <?php include("logincheck.php"); ?>
     <head>
 
         <meta charset="UTF-8">
@@ -67,21 +67,21 @@
         <link href="css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
 
         <script src="ckeditor/ckeditor.js"></script>
-        
-     <link href="css/datepicker.css" rel="stylesheet" />
-     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 
-     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-     <script src="js/jquery.geocomplete.js"></script>
-     
-     <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
-     <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+        <link href="css/datepicker.css" rel="stylesheet" />
+        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+        <script src="js/jquery.geocomplete.js"></script>
+
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
 
         <style>
-         .error{
-            color: #C80000 !important;
-        
+            .error{
+                color: #C80000 !important;
+
             }
         </style>
     </head>
@@ -89,15 +89,14 @@
     <body class="skin-blue sidebar-mini">
 
         <div class="wrapper">
-            
+
             <?php include 'header.php'; ?>
 
-            <?php include 'menu.php'; 
-                  include 'db.php'; 
+            <?php
+            include 'menu.php';
+            include 'db.php';
 
             session_start();
-    
-
             ?>
 
             <!-- Content Wrapper. Contains page content -->
@@ -110,7 +109,7 @@
 
                     <h1>
 
-                         Jobs |
+                        Jobs |
 
                         <small>ITL JOBS</small>
 
@@ -120,9 +119,9 @@
 
                         <li><a href="home.php"><i class="fa fa-dashboard"></i>Home</a></li>
 
-<!--                        <li><a href="#">Forms</a></li>
-
-                        <li class="active">Add Packages </li>-->
+                        <!--                        <li><a href="#">Forms</a></li>
+                        
+                                                <li class="active">Add Packages </li>-->
 
                     </ol>
 
@@ -153,76 +152,77 @@
                                 <form  role="form" name="frm" id="frm" method="POST" action="addjobs_process.php" enctype="multipart/form-data">
 
                                     <?php
-                                            if ($_SESSION['addsucc'] != '') {
+                                    if ($_SESSION['addsucc'] != '') {
 
-                                                if ($_SESSION['addsucc'] == '1') {
-
-                                                    ?>
-
-                                                    <div class="alert alert-success alert-dismissable">
-
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                                                        Job Added Successfully <a href="#" class="alert-link"></a>.
-
-                                                    </div>
-
-                                                    <?php
-
-                                                }else if ($_SESSION['addsucc'] == '2') { ?>
-                                                    <div class="alert alert-danger alert-dismissable">
-
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                                                        Unable to add job<a href="#" class="alert-link"></a>.
-
-                                                    </div>
-                                            <?php
-                                                }else if ($_SESSION['addsucc'] == '3') { ?>
-                                                    <div class="alert alert-danger alert-dismissable">
-
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                                                        Job create date should be lesser than closing date!<a href="#" class="alert-link"></a>.
-
-                                                    </div>
-                                            <?php
-                                                }
-                                                unset($_SESSION['addsucc']);
-                                            }
-
+                                        if ($_SESSION['addsucc'] == '1') {
                                             ?>
 
+                                            <div class="alert alert-success alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Job Added Successfully <a href="#" class="alert-link"></a>.
+
+                                            </div>
+
+        <?php } else if ($_SESSION['addsucc'] == '2') {
+        ?>
+                                            <div class="alert alert-danger alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Unable to add job<a href="#" class="alert-link"></a>.
+
+                                            </div>
+        <?php } else if ($_SESSION['addsucc'] == '3') {
+        ?>
+                                            <div class="alert alert-danger alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Job create date should be lesser than closing date!<a href="#" class="alert-link"></a>.
+
+                                            </div>
+        <?php
+    }
+    unset($_SESSION['addsucc']);
+}
+?>
+
                                     <div class="box-body">
-                                        
-                                        <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Job Title</label>
-
-                                            <input type="text" class="form-control" id="title" placeholder="Title" name="title">
-
-                                        </div>
-                                        
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail1">Job Category</label>
 
-                                            <select class="form-control" name="job_cat">
-                                                <option disabled="" selected="">select</option>
-                                                <?php
-                                                $qry = sprintf("SELECT id,name FROM `job_categories`");
-                                                $res = Db::query($qry);
-                                                if(mysql_num_rows($res)){
-                                                while ($row = mysql_fetch_array($res)) {
-                                                ?>
-                                                <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
-                                                <?php
-                                                }  }
+                                            <select class="form-control" name="job_cat" id="job_cat">
+                                                <option disabled="" selected="">Select a Category</option>
+<?php
+$qry = sprintf("SELECT id,name FROM `job_categories`");
+$res = Db::query($qry);
+if (mysql_num_rows($res)) {
+    while ($row = mysql_fetch_array($res)) {
+        ?>
+                                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
+                                                        <?php
+                                                    }
+                                                }
                                                 ?>
                                             </select>
 
                                         </div>
-                                        
+
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">Industry</label>
+
+                                            <select class="form-control" name="title" id="title">
+                                                <option disabled="" selected="">Select a Category to Populate</option>
+                                            </select>
+
+                                        </div>
+
+
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail1">Company Name</label>
@@ -230,15 +230,15 @@
                                             <input type="text" class="form-control" id="company" placeholder="Company Name" name="company">
 
                                         </div>
-                                        
+
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail1">Job Description</label>
 
                                             <textarea class="ckeditor" id="job_description" name="job_description"></textarea>
-                                            
+
                                         </div>
-                                        
+
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail1">Experience</label>
@@ -246,29 +246,29 @@
                                             <input type="text" class="form-control" id="experience" placeholder="Experience" name="experience">
 
                                         </div>
-                                        
+
                                         <div class="form-group">
-                                            <?php
-                                               date_default_timezone_set('Asia/Calcutta'); 
-                                               $todaydate         = date("d/m/Y"); 
-                                            ?>
+<?php
+date_default_timezone_set('Asia/Calcutta');
+$todaydate = date("d/m/Y");
+?>
 
                                             <label for="exampleInputEmail1">Create Date</label>
 
-                                            <input type="text" class="form-control" name="create_date" placeholder="Create Date" value="<?php echo $todaydate;?>" readonly=""/>
+                                            <input type="text" class="form-control" name="create_date" placeholder="Create Date" value="<?php echo $todaydate; ?>" readonly=""/>
 
                                         </div>
-                                         
+
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail1">Closing Date</label>
 
                                             <input type="text" class="form-control" id="datepicker1" name="closing_date" placeholder="Closing Date" data-format="yyyy-MM-dd"/>
-                                             
+
                                         </div>
-                                        
+
                                         <div class="form-group">
-                                            
+
                                             <label for="exampleInputEmail1">Job Type</label>
 
                                             <select class="form-control" name="job_type">
@@ -283,7 +283,7 @@
                                             </select>
 
                                         </div>
-                                        
+
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail1">Job Location</label>
@@ -304,113 +304,126 @@
 
                             </div><!-- /.box -->
 
-                        <!--/.box-body  -->
+                            <!--/.box-body  -->
 
-                    </div><!-- /.box -->
+                        </div><!-- /.box -->
 
-    </section> <!-- /.content -->
+                </section> <!-- /.content -->
 
-</div>  <!--/.content-wrapper -->
+            </div>  <!--/.content-wrapper -->
 
-<!-- Bootstrap 3.3.2 JS -->
+            <!-- Bootstrap 3.3.2 JS -->
 
-<script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="plugins/datetimepicker/moment.js" type="text/javascript"></script>
-<script src="plugins/datetimepicker/bootstrap-datetimepicker.js" type="text/javascript"></script>
+            <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+            <script src="plugins/datetimepicker/moment.js" type="text/javascript"></script>
+            <script src="plugins/datetimepicker/bootstrap-datetimepicker.js" type="text/javascript"></script>
 
-<!-- FastClick -->
+            <!-- FastClick -->
 
-<script src='plugins/fastclick/fastclick.min.js'></script>
+            <script src='plugins/fastclick/fastclick.min.js'></script>
 
-<!-- AdminLTE App -->
+            <!-- AdminLTE App -->
 
-<script src="dist/js/app.min.js" type="text/javascript"></script>
+            <script src="dist/js/app.min.js" type="text/javascript"></script>
 
-<!-- AdminLTE for demo purposes -->
+            <!-- AdminLTE for demo purposes -->
 
-<script src="dist/js/demo.js" type="text/javascript"></script>
+            <script src="dist/js/demo.js" type="text/javascript"></script>
 
  <!--<script src="js/datepick.js"></script>-->
 <!-- <script src="js/bootstrap-datepicker.js"></script>
  <script src="js/bootstrap-datetimepicker.min.js"></script>-->
 
-          
-         <script>
 
-            // When the browser is ready...
+            <script>
 
-            $(function () {
-                $('#datepicker1').datepicker({
-                    format:"dd/mm/yyyy",
-                    startDate: '0'
-                });
-                 $("#location").geocomplete({
-                    types: ["geocode", "establishment"],
-                });
-                $.validator.addMethod('experience', function (value) {
-                    return /^[0-9 ]+((-){0,1}[0-9 ]+){0,1}$/.test(value);
-                
-                }, 'Please enter valid experience in years as digit or range as low-High.');
-                // Setup form validation on the #register-form element
+                // When the browser is ready...
 
-                $("#frm").validate({
+                $(function () {
 
-                    // Specify the validation rules
-                    ignore: [],
-                    debug: false,
-                    rules: {
-                        
-                        title: {required: true,lettersonly: true},
-                        company: {required: true,lettersonly: true},
-                        experience: {required: true, experience: true},
-                        location: "required",
-                        create_date: "required",
-                        closing_date: "required",
-                        job_cat: "required",
-                        job_type: "required",
-                        job_description:{
-                         required: function() 
-                        {
-                         CKEDITOR.instances.job_description.updateElement();
+                    $('#title').attr("disabled", "disabled");
+                    $('#job_cat').change(function () {
+                        var id = $('#job_cat').val();
+                        $.post("get_industry.php", {
+                            id: id
                         },
+                                function (response) {
+                                    if (response != '<option selected disabled>Select Industry</option>') {
+                                        $('#title').html(response);
+                                        $('#title').removeAttr("disabled");
+                                    } else {
+                                        var msg = "<option value=\"Unavailable\" selected>No Industry Available for the selected Category</option>";
+                                        $('#title').html(msg);
+                                    }
+                                });
+                    });
 
-                         minlength:10
-                    }
-                    },
-                    // Specify the validation error messages
+                    $('#datepicker1').datepicker({
+                        format: "dd/mm/yyyy",
+                        startDate: '0'
+                    });
+                    $("#location").geocomplete({
+                        types: ["geocode", "establishment"],
+                    });
+                    $.validator.addMethod('experience', function (value) {
+                        return /^[0-9 ]+((-){0,1}[0-9 ]+){0,1}$/.test(value);
 
-                    messages: {
+                    }, 'Please enter valid experience in years as digit or range as low-High.');
+                    // Setup form validation on the #register-form element
 
-                        title: {required: "Please enter title",lettersonly: "Please enter letters only"},
-                        company: {required:"Please enter company name",lettersonly:"Please enter letters only"},
-                        experience: {required:"Please enter experience"},
-                        location: "Please enter location",
-                        create_date: "Please enter create date",
-                        closing_date:"Please enter closing date",
-                        job_cat: "Please enter job category",
-                        job_type: "Please select job type",
-                        job_description: {
-                        required:"Please enter job description",
-                        minlength:"Please enter atleast 10 characters"
-                      }
-                    },
-                    
-                    submitHandler: function (form) {
+                    $("#frm").validate({
+                        // Specify the validation rules
+                        ignore: [],
+                        debug: false,
+                        rules: {
+                            title: {required: true},
+                            company: {required: true, lettersonly: true},
+                            experience: {required: true, experience: true},
+                            location: "required",
+                            create_date: "required",
+                            closing_date: "required",
+                            job_cat: "required",
+                            job_type: "required",
+                            job_description: {
+                                required: function ()
+                                {
+                                    CKEDITOR.instances.job_description.updateElement();
+                                },
+                                minlength: 10
+                            }
+                        },
+                        // Specify the validation error messages
 
-                        form.submit();
-                    }
-                    
+                        messages: {
+                            title: {required: "Please enter title"},
+                            company: {required: "Please enter company name", lettersonly: "Please enter letters only"},
+                            experience: {required: "Please enter experience"},
+                            location: "Please enter location",
+                            create_date: "Please enter create date",
+                            closing_date: "Please enter closing date",
+                            job_cat: "Please enter job category",
+                            job_type: "Please select job type",
+                            job_description: {
+                                required: "Please enter job description",
+                                minlength: "Please enter atleast 10 characters"
+                            }
+                        },
+                        submitHandler: function (form) {
+
+                            form.submit();
+                        }
+
+                    });
+                    jQuery.validator.addMethod("lettersonly", function (value, element) {
+                        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+                    });
+
                 });
-                jQuery.validator.addMethod("lettersonly", function(value, element) {
-                    return this.optional(element) || /^[a-z\s]+$/i.test(value);
-                  });
-              
-            });
 
-        </script> 
-        
-</body>
-  
+            </script> 
+
+    </body>
+
 
 </html>
 

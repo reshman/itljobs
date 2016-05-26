@@ -90,7 +90,7 @@
                                            <tr>
                                                 <th>Sl.No</th>
                                                 <th>Reference Id</th>
-                                                <th>Title</th>
+                                                <th>Category</th>
                                                 <th>Description</th>
                                                 <th>Company</th>
                                                 <th>View more</th> 
@@ -108,11 +108,15 @@
                                                
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {
+                                                   $sql = sprintf("SELECT name FROM job_categories WHERE id=%d",$row['job_category_id']);
+                                                   $result2 = Db::query($sql);
+                                                   $row2 = mysql_fetch_array($result2);
+                                                   $category = $row2['name'];
                                           ?>
                                            <tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['ref_id']; ?></td>
-                                                    <td><?php echo $row['job_listing']; ?></td>
+                                                    <td><?php echo $category; ?></td>
                                                     <?php
                                                      $limit = 20;
                                                      if (strlen($row['job_description']) > $limit){

@@ -51,14 +51,15 @@
           
                 </ul>
             </li>
-            <li <?php if($filename == 'list_jobcategory.php' || $filename == 'add_jobcategory.php'){ ?> class="active" <?php }else{ ?> class="treeview"<?php } ?>>
+            <li <?php if($filename == 'list_jobcategory.php' || $filename == 'add_jobcategory.php' || $filename == 'list_industry.php'){ ?> class="active" <?php }else{ ?> class="treeview"<?php } ?>>
                 <a href="#">
                     <i class="fa fa-edit"></i> <span>Job Category </span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="list_jobcategory.php"><i class="fa fa-circle-o"></i>List Job Category</a></li>  
                     <li><a href="add_jobcategory.php"><i class="fa fa-circle-o"></i>Add Job Category</a></li>
+                    <li><a href="list_jobcategory.php"><i class="fa fa-circle-o"></i>List Job Category</a></li>                      
+                    <li><a href="list_industry.php"><i class="fa fa-circle-o"></i>List Industry</a></li>
                 </ul>
             </li>
               <li <?php if($filename == 'list_jobs.php'){ ?> class="active" <?php }else{ ?>class="treeview"<?php } ?>>

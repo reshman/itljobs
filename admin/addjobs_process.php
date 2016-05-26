@@ -8,6 +8,7 @@ session_start();
    $company           = trim($_POST['company']);
    $job_description   = trim($_POST['job_description']);
    $job_type          = trim($_POST['job_type']);
+   $job_cat           = trim($_POST['job_cat']);
    $experience        = trim($_POST['experience']);
    $location          = trim($_POST['location']);
    $create_date1      = trim($_POST['create_date']);
@@ -18,8 +19,6 @@ session_start();
    $close_date        = explode('/', $closing_date1);
    $closing_date      = array_reverse($close_date);
    $closing_date      = implode('-', $closing_date);
-
-   $job_cat           = trim($_POST['job_cat']);
    $user_id           = $_SESSION['id'];
    
    date_default_timezone_set('Asia/Calcutta'); 
