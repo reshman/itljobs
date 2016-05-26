@@ -155,7 +155,7 @@ if ($_GET) {
                                 </div>
 
                                 <div class="col-md-8">
-                                    <select name="category" id="category">
+                                    <select name="category" class="category">
                                         <?php
                                         $qry = sprintf("SELECT * FROM `job_categories`");
                                         $res = Db::query($qry);
@@ -179,9 +179,18 @@ if ($_GET) {
                                     <span class="post-title">JOB TITLE:</span>    
                                 </div>
 
-                                <div class="col-md-8">
-                                    <input name="companytitle" id="companytitle" type="text" placeholder="JOB TITLE" value="<?php echo $jrow['job_listing']; ?>">    
-                                </div>
+<!--                                <div class="col-md-8">
+                                    <input name="companytitle" id="companytitle" type="text" placeholder="JOB TITLE" value="<?php //echo $jrow['job_listing']; ?>">    
+                                </div>-->
+                                <div class="col-md-8" id="industry">
+                                <select name="sub_category" id="sub_category">
+                                    <option disabled="" selected="" value="<?php echo $jrow['job_listing']; ?>"><?php echo $jrow['job_listing']; ?></option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-8" id="response">
+                                
+                            </div>
 
                             </div> 
 
@@ -361,6 +370,24 @@ if ($_GET) {
             <!-- End footer -->
 
             <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+            
+            <script type="text/javascript">
+    $(document).ready(function () {
+      
+        $("select.category").change(function () {
+            var jobcat = $(".category option:selected").val();
+            $.ajax({
+                type: "POST",
+                url: "category.php",
+                data: {jobcat: jobcat}
+            }).done(function (data) {
+                $("#response").html(data);
+                $("#industry").hide();
+            });
+        });
+     });
+    </script>
+    
             <script>
 
                 // When the browser is ready...

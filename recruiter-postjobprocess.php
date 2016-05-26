@@ -8,7 +8,7 @@ $id = (trim($_POST['id']));
 $category_id = trim($_POST['category']);
 $experience = TRIM($_POST['experience']);
 $companyname = (trim($_POST['companyname']));
-$companytitle = (trim($_POST['companytitle']));
+$companytitle = (trim($_POST['sub_category']));
 $description = (trim(html_entity_decode($_POST['job_description'])));
 $location = (trim($_POST['location']));
 $jobtype = (trim($_POST['jobtype']));
@@ -80,7 +80,7 @@ $ref_id = date('ymdHms');
         }
     }
 
-
+    
 $sql = sprintf("INSERT INTO jobs SET company_name = '%s', user_id = '%s', job_listing = '%s', job_description = '%s', job_location = '%s', job_type = '%s', salary = '%s',"
         . " created_date = '%s', closing_date = '%s', date = '%s', active = '%s', del_status = '%s', job_category_id='%s',experience='%s',ref_id='%s'",
         $companyname, $id, $companytitle, $description, $location, $jobtype, $salary, $create_date, $closing_date, $date, '0', '0', $category_id, $experience, $ref_id);

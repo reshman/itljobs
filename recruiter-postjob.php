@@ -1,5 +1,5 @@
 <!doctype html>
-<?php require 'check_session_rec.php'; ?>
+<?php //require 'check_session_rec.php'; ?>
 
 <html lang="en" class="no-js">
     <head>
@@ -181,7 +181,7 @@
                             </div>
 
                             <div class="col-md-8">
-                                <select name="category" id="category">
+                                <select name="category" class="category">
                                     <?php
                                     $qry = sprintf("SELECT * FROM `job_categories`");
                                     $res = Db::query($qry);
@@ -198,11 +198,17 @@
 
                         <div class="col-md-12"> 
                             <div class="col-md-3">
-                                <span class="post-title">JOB TITLE:</span>    
+                                <span class="post-title">INDUSTRY:</span>    
                             </div>
 
-                            <div class="col-md-8">
-                                <input name="companytitle" id="companytitle" type="text" placeholder="JOB TITLE">    
+                            <div class="col-md-8" id="industry">
+                                <select name="sub_category" id="sub_category">
+                                    <option disabled="" selected="">Industry</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-8" id="response">
+                                
                             </div>
 
                         </div> 
@@ -367,6 +373,24 @@
         <!-- End footer -->
 
         <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+        
+    <script type="text/javascript">
+    $(document).ready(function () {
+      
+        $("select.category").change(function () {
+            var jobcat = $(".category option:selected").val();
+            $.ajax({
+                type: "POST",
+                url: "category.php",
+                data: {jobcat: jobcat}
+            }).done(function (data) {
+                $("#response").html(data);
+                $("#industry").hide();
+            });
+        });
+     });
+    </script>
+        
         <script>
 
             // When the browser is ready...
@@ -401,7 +425,7 @@
 
                     rules: {
                         companyname: {required: true, nonNumeric: true},
-                        companytitle: {required: true, nonNumeric: true},
+                        sub_category: {required: true, nonNumeric: true},
                         description: "required",
                         location: "required",
                         jobtype: "required",
@@ -422,7 +446,7 @@
 
                     messages: {
                         companyname: {required: "Please Enter company name"},
-                        companytitle: {required: "Please Enter Job title"},
+                        sub_category: {required: "Please Enter Industry"},
                         description: "Please Enter Description",
                         location: "Please Enter Location",
                         jobtype: "Please Enter Jobtype",
