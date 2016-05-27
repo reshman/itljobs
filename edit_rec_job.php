@@ -176,7 +176,7 @@ if ($_GET) {
 
                             <div class="col-md-12"> 
                                 <div class="col-md-3">
-                                    <span class="post-title">JOB TITLE:</span>    
+                                    <span class="post-title">INDUSTRY:</span>    
                                 </div>
 
 <!--                                <div class="col-md-8">
@@ -184,7 +184,20 @@ if ($_GET) {
                                 </div>-->
                                 <div class="col-md-8" id="industry">
                                 <select name="sub_category" id="sub_category">
-                                    <option disabled="" selected="" value="<?php echo $jrow['job_listing']; ?>"><?php echo $jrow['job_listing']; ?></option>
+                                    <option></option>
+                                        <?php
+                                        $qry = sprintf("SELECT i.id as id,i.industry_name as name FROM industries i LEFT JOIN industry_category ic ON i.id=ic.industry_id WHERE category_id=%d",$jrow['job_category_id']);
+                                        $res = Db::query($qry);
+                                        while ($row = mysql_fetch_array($res)) {
+                                            ?>
+                                            <option<?php
+                                            if ($jrow['job_listing'] == $row['name']) {
+                                                echo ' selected';
+                                            }
+                                            ?> value="<?php echo $row['name']; ?>"><?php echo $row['name']; ?></option>
+
+                                        <?php } ?>
+
                                 </select>
                             </div>
                             
