@@ -1,6 +1,6 @@
 <?php 
 
-//session_start();
+session_start();
 
 //include("logincheck.php");
 
@@ -16,6 +16,11 @@ if ($delId) {
 	
 }
 
+if($resultDelFile){
+    $_SESSION['delsucc'] = TRUE;
+}else{
+    $_SESSION['delsucc'] = FALSE;
+}
 
 echo "<script type='text/javascript'>
 

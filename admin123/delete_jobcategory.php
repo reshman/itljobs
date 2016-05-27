@@ -20,9 +20,9 @@ if ($delId) {
 }
 
 if($res){
-     $_SESSION['delsucc']=1;
+     $_SESSION['delsucc']= TRUE;
 }else{
-     $_SESSION['delsucc']=2;
+     $_SESSION['delsucc']= FALSE;
 }
 
 echo "<script type='text/javascript'>

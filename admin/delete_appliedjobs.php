@@ -16,6 +16,12 @@ if ($delId) {
 	
 }
 
+if ($resultDelFile) {
+    $_SESSION['delsucc'] = true;
+} else {
+    $_SESSION['delsucc'] = false;
+}
+
 
 echo "<script type='text/javascript'>
 

@@ -81,12 +81,37 @@
                                                     <?php
 
                                                 }
-
+                                               unset($_SESSION['addsucc']);
                                             }
+ 
+                                            if (isset($_SESSION['delsucc'])) {
 
-                                            unset($_SESSION['addsucc']);
+                                            if ($_SESSION['delsucc']) {
+                                                ?>
+                                                <br>
+                                                <div class="alert alert-success alert-dismissable">
 
-                                            ?>
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                    Interview Deleted Successfully <a href="#" class="alert-link"></a>.
+
+                                                </div>
+
+                                            <?php } else {
+                                                ?>
+                                                <br>
+                                                <div class="alert alert-danger alert-dismissable">
+
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                    Interview Deletion Failed <a href="#" class="alert-link"></a>.
+
+                                                </div>
+                                                <?php
+                                            }
+                                            unset($_SESSION['delsucc']);
+                                        }
+                                        ?>
                          
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
