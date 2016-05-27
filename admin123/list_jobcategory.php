@@ -89,7 +89,7 @@
                                            <tr>
                                                 <th>Sl.No</th>
                                                 <th>Title</th>
-                                                <!--<th>Status</th>-->
+                                                <th>Industries</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
@@ -104,7 +104,17 @@
                                           ?>
                                            <tr>
                                                     <td><?php echo $i; ?></td>
-                                                    <td><?php echo $row['name']; ?></td>  
+                                                    <td><?php echo $row['name']; ?></td> 
+                                                    <td>
+                                                    <?php
+                                                    $jc = $row['id'];
+                                                    $qry = sprintf("SELECT ind.industry_name FROM industries ind JOIN industry_category ic ON ind.id = ic.industry_id WHERE ic.category_id = '$jc'"); 
+                                                    $res = Db::query($qry);
+                                                    while ($row1 = mysql_fetch_assoc($res)) { ?>
+                                                           <li><?php echo $row1['industry_name'];?></li>
+                                                    <?php }
+                                                    ?>
+                                                    </td>
                                                 <td class=center><a href="edit_jobcategory.php?id=<?= $row['id'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>
                                                 <td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_jobcategory.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
