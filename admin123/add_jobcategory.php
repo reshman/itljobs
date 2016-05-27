@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
-    <?php  include("logincheck.php");?>
+    <?php include("logincheck.php"); ?>
     <head>
 
         <meta charset="UTF-8">
@@ -37,12 +37,12 @@
         <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
 
 
-     
-      <!--<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>-->
 
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
-    
-         
+ <!--<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>-->
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+
+
 
        <!-- <style>
          .error{
@@ -62,12 +62,11 @@
 
 
 
-            <?php include 'menu.php'; 
-                 // include 'db.php'; 
+            <?php
+            include 'menu.php';
+            // include 'db.php'; 
 
             session_start();
-    
-
             ?>
 
             <!-- Content Wrapper. Contains page content -->
@@ -80,7 +79,7 @@
 
                     <h1>
 
-                         Job Categories |
+                        Job Categories |
 
                         <small>ITL JOBS</small>
 
@@ -90,9 +89,9 @@
 
                         <li><a href="home.php"><i class="fa fa-dashboard"></i>Home</a></li>
 
-<!--                        <li><a href="#">Forms</a></li>
-
-                        <li class="active">Add Packages </li>-->
+                        <!--                        <li><a href="#">Forms</a></li>
+                        
+                                                <li class="active">Add Packages </li>-->
 
                     </ol>
 
@@ -123,32 +122,28 @@
                                 <form  role="form" name="frm" id="frm" method="POST" action="addjobcat_process.php" enctype="multipart/form-data">
 
                                     <?php
-                                            if ($_SESSION['addsucc'] != '') {
+                                    if ($_SESSION['addsucc'] != '') {
 
-                                                if ($_SESSION['addsucc'] == '1') {
-
-                                                    ?>
-
-                                                    <div class="alert alert-success alert-dismissable">
-
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                                                        Job Category Added Successfully <a href="#" class="alert-link"></a>.
-
-                                                    </div>
-
-                                                    <?php
-
-                                                }
-
-                                            }
-
-                                            unset($_SESSION['addsucc']);
-
+                                        if ($_SESSION['addsucc'] == '1') {
                                             ?>
 
+                                            <div class="alert alert-success alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Job Category Added Successfully <a href="#" class="alert-link"></a>.
+
+                                            </div>
+
+                                            <?php
+                                        }
+                                    }
+
+                                    unset($_SESSION['addsucc']);
+                                    ?>
+
                                     <div class="box-body">
-                                        
+
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail1">Job Category</label>
@@ -156,18 +151,18 @@
                                             <input type="text" class="form-control" id="title" placeholder="Job Category" name="title">
 
                                         </div>
-                                         <label for="exampleInputEmail1">Industry</label>
-                                         <select class="js-data-example-ajax form-control" name="industry[]" id="industry" multiple="" placeholder="Industry" required="">
+                                        <label>Industry</label>
+                                        <select class="js-data-example-ajax form-control" name="industry[]" id="industry" multiple="" placeholder="Industry">
                                             <?php
-                                           
-                                           $qryind = sprintf("SELECT * FROM `industries`");
-                                           $resind = Db::query($qryind);
-                                           while ($rowind = mysql_fetch_assoc($resind)) {
-                                               ?>
-                                               <option value="<?php echo $rowind['industry_name']; ?>"><?php echo $rowind['industry_name']; ?></option>
+                                            $qryind = sprintf("SELECT * FROM `industries`");
+                                            $resind = Db::query($qryind);
+                                            while ($rowind = mysql_fetch_assoc($resind)) {
+                                                ?>
+                                                <option value="<?php echo $rowind['industry_name']; ?>"><?php echo $rowind['industry_name']; ?></option>
 
-                                           <?php } ?>
+                                            <?php } ?>
                                         </select>
+                                        <span id="errMsg"></span>
                                         <div class="box-footer">
 
                                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -198,7 +193,7 @@
 
 <!-- Bootstrap 3.3.2 JS -->
 
- <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
 
 <!-- FastClick -->
@@ -216,51 +211,89 @@
 
 
 <script>
-        $('.js-data-example-ajax').select2({
-          tags: true
+    $('.js-data-example-ajax').select2({
+        tags: true
+
+    });
+</script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+<script>
+    // When the browser is ready...
+
+    $(function () {
+
+        // Setup form validation on the #register-form element
+
+        $("#frm").validate({
+            // Specify the validation rules
+            errorPlacement: function (error, element) {
+                switch (element.attr("name")) {
+                    case 'industry[]':
+                        error.insertAfter($("#errMsg"));
+                        break;
+                    default:
+                        error.insertAfter(element);
+                }
+            },
+            ignore: 'input[type=hidden]',
+            rules: {
+                title: {required: true, lettersonly: true},
+                'industry[]': {letters: true}
+            },
+            // Specify the validation error messages
+
+            messages: {
+                title: {required: "Please enter title", lettersonly: "Please enter letters only"}
+            },
+            submitHandler: function (form) {
+
+                form.submit();
+            }
 
         });
-        </script>
- <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-  <script>
-            // When the browser is ready...
+        
+        $('#industry').change(function(){
+           $('[name="industry[]"]').valid(); 
+        });
 
-            $(function () {
+        jQuery.validator.addMethod("lettersonly", function (value, element) {
+            console.log(value);
+            return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        }, "Letters only please");
 
-                // Setup form validation on the #register-form element
-
-                $("#frm").validate({
-
-                    // Specify the validation rules
-
-                    rules: {
-                        
-                        title: {required: true,lettersonly: true},
-                        industry:"required"
-                    },
-                    // Specify the validation error messages
-
-                    messages: {
-                        title: {required: "Please enter title",lettersonly: "Please enter letters only"},
-                        industry:"Please enter industry"
-                    },
-
-                    submitHandler: function (form) {
-
-                        form.submit();
+        $.validator.addMethod("letters", function (value, element) {
+            var flag = true, i, count=0;
+            
+            var val = $('.select2-selection__choice').map(function () {
+                return $(this).attr('title');
+            }).get();
+            
+            if (val.length > 0) {
+                for (i = 0; i < val.length; i++) {
+                    var test = /^[a-z\.\+\-\&\:\/\s]+$/i.test(val[i]);
+                    if (!test) {
+                        count++;
+                        flag=false;
                     }
+                }
+                if (flag) {
+                    $('#errMsg').html("");
+                    return true;
+                } else {
+                    $('#errMsg').html("<strong>"+count+" Number of Industrie(s) are Invalid. Allowed Special Charecters are - (.,+,-,&,:,/)</strong>");
+                    return false;
+                }
 
-                });
-                
-                   jQuery.validator.addMethod("lettersonly", function(value, element) {
-                    return this.optional(element) || /^[a-z\s]+$/i.test(value);
-                  }, "Letters only please");
+            } else {
+                $('#errMsg').html("<strong>Industry required</strong>");
+                return false;
+            }
+        }, "");
+    });
 
-            });
-
-        </script>
+</script>
 </body>
-  
+
 
 </html>
 

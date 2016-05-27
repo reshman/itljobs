@@ -119,7 +119,7 @@
                                     <select name="category_list" id="category_list" class="form-control">
                                         <option value="">Choose Category to List Industries</option>
                                         <?php
-                                        $sql = sprintf("SELECT * FROM job_categories");
+                                        $sql = sprintf("SELECT * FROM job_categories ORDER BY name");
                                         $result = Db::query($sql);
                                         while ($row = mysql_fetch_array($result)) {
                                             ?>

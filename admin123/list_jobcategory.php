@@ -142,23 +142,25 @@
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['name']; ?></td> 
                                                     <td>
-                                                        <?php
-                                                        $jc = $row['id'];
-                                                        $qry = sprintf("SELECT ind.industry_name FROM industries ind JOIN industry_category ic ON ind.id = ic.industry_id WHERE ic.category_id = '$jc'");
-                                                        $res = Db::query($qry);
-                                                        while ($row1 = mysql_fetch_assoc($res)) {
+                                                        <ul>
+                                                            <?php
+                                                            $jc = $row['id'];
+                                                            $qry = sprintf("SELECT ind.industry_name FROM industries ind JOIN industry_category ic ON ind.id = ic.industry_id WHERE ic.category_id = '$jc'");
+                                                            $res = Db::query($qry);
+                                                            while ($row1 = mysql_fetch_assoc($res)) {
+                                                                ?>
+                                                                <li><?php echo $row1['industry_name']; ?></li>
+                                                            <?php }
                                                             ?>
-                                                <li><?php echo $row1['industry_name']; ?></li>
-                                            <?php }
+                                                        </ul>
+                                                    </td>
+                                                    <td class=center><a href="edit_jobcategory.php?id=<?= $row['id'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>
+                                                    <td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_jobcategory.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                                </tr>
+                                                <?php
+                                                $i = $i + 1;
+                                            }
                                             ?>
-                                            </td>
-                                            <td class=center><a href="edit_jobcategory.php?id=<?= $row['id'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>
-                                            <td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_jobcategory.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
-                                            </tr>
-                                            <?php
-                                            $i = $i + 1;
-                                        }
-                                        ?>
                                         </tbody>
 
                                     </table>
@@ -194,72 +196,71 @@
         <!-- page script -->
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
         <script type="text/javascript">
-                                            $(function () {
-                                                $("#example1").dataTable();
-                                                $('#example2').dataTable({
-                                                    "bPaginate": true,
-                                                    "bLengthChange": false,
-                                                    "bFilter": false,
-                                                    "bSort": true,
-                                                    "bInfo": true,
-                                                    "bAutoWidth": false
-                                                });
-                                            });
+                                                            $(function () {
+                                                            $("#example1").dataTable();
+                                                                    $('#example2').dataTable({
+                                                            "bPaginate": true,
+                                                                    "bLengthChange": false,
+                                                                    "bFilter": true,
+                                                                    "bSort": true,
+                                                                    "bInfo": true,
+                                                                    "bAutoWidth": false
+                                                            });
+                                                            });
         </script>
         <script>
-            function deleteConfirm(href) {
-                var ask = window.confirm("Are you sure you want to delete this item?");
-                if (ask) {
+                    function deleteConfirm(href) {
+                    var ask = window.confirm("Are you sure you want to delete this item?");
+                            if (ask) {
                     document.location.href = href;
-                }
-            }
+                    }
+                    }
             $(document).ready(function () {
-                $('#dataTables-example').DataTable({
-                    responsive: true
-                });
+            $('#dataTables-example').DataTable({
+            responsive: true
+            });
             });
         </script>
 
         <script>
 
-            $(function () {
+                    $(function () {
 
-                $('.toggle-event').change(function () {
+                    $('.toggle-event').change(function () {
                     //            alert("asda");
                     var status = $(this).prop('checked') == true ? '1' : '0';
-                    var rowId = $(this).attr('rowid');
-                    //            alert(status);
-                    url = "active_inactive.php";
-                    $.ajax({
-                        url: url,
-                        type: 'POST',
-                        data: {id: rowId, status: status}
-                    }).done(function (data) {
-                        // location.reload();
+                            var rowId = $(this).attr('rowid');
+                            //            alert(status);
+                            url = "active_inactive.php";
+                            $.ajax({
+                            url: url,
+                                    type: 'POST',
+                                    data: {id: rowId, status: status}
+                            }).done(function (data) {
+                    // location.reload();
                     });
-
-                });
-            });
+                    });
+                    });
         </script>
 
         <script>
-            //    $(function(){
-            function otpcheck() {
-                //         alert('jhgasd');
-                //        $('.order').change(function(){
-                var order = document.getElementById("order").value;
-                var id = document.getElementById("id").value;
-                // alert(order);
-                url = "job-order.php";
-                $.ajax({
-                    url: url,
-                    type: 'POST',
-                    data: {id: id, order: order}
-                }).done(function (data) {
-                    location.reload();
-                });
-                //        });
-            }
+                    //    $(function(){
+                            function otpcheck() {
+                            //         alert('jhgasd');
+                            //        $('.order').change(function(){
+                            var order = document.getElementById("order").value;
+                                    var id = document.getElementById("id").value;
+                                    // alert(order);
+                                    url = "job-order.php";
+                                    $.ajax({
+                                    url: url,
+                                            type: 'POST',
+                                            data: {id: id, order: order}
+                                    }).done(function (data) {
+                            location.reload();
+                            });
+                                    //        });
+                            }
         </script>
 
     </body>

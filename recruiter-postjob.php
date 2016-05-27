@@ -184,7 +184,7 @@
                                 <select name="category" class="category">
                                     <option selected disabled>CATEGORY</option>
                                     <?php
-                                    $qry = sprintf("SELECT * FROM `job_categories`");
+                                    $qry = sprintf("SELECT * FROM `job_categories` ORDER BY name");
                                     $res = Db::query($qry);
                                     while ($row = mysql_fetch_array($res)) {
                                         ?>

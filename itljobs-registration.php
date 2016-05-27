@@ -138,9 +138,9 @@
                             <div class="col-md-12">
 
                                 <select name="job_category_id" class="job">
-                                    <option disabled="" selected="">JOB APPLIED FOR</option>   
+                                    <option disabled="" selected="">JOB APPLYING FOR</option>   
                                     <?php
-                                    $qry = sprintf("SELECT * FROM `job_categories`");
+                                    $qry = sprintf("SELECT * FROM `job_categories` ORDER BY name");
                                     $res = Db::query($qry);
                                     while ($row = mysql_fetch_array($res)) {
                                         ?>
