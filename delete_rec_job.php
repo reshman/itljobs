@@ -12,7 +12,7 @@ if($_GET){
         echo '<script> window.location.href="recruiter_view_jobs.php";</script>';
         die();
     }else{
-        $sql = sprintf("DELETE FROM jobs WHERE id=%d",$id);
+        $sql = sprintf("UPDATE jobs SET del_status=1 WHERE id=%d",$id);
         $cr = Db::query($sql);
         
         if($cr){

@@ -188,10 +188,17 @@ if ($_GET) {
                                     </div>
                                     <?php include('myprofile-sidemenu.php'); ?>
                                     <div class="col-md-10 jobs-m-listing">
-                                        <h3>JOB TITLE</h3>
+
+                                        <h3>JOB CATEGORY</h3>
+                                        <p><?php echo $row['name']; ?></p>
+                                        <h3>INDUSTRY</h3>
                                         <p><?php echo $row['job_listing']; ?></p>
                                         <h3>JOB DESCRIPTION</h3>
-                                        <p><?php echo $row['job_description']; ?></p>
+                                        <p><?php echo $row['job_description']; ?>
+                                            <?php if ($row['job_description'] == "PDF Attached") { ?>
+                                                <a href="jobdescriptions/<?= $row['ref_id'] ?>.pdf"> - View Here</a>
+                                            <?php } ?>
+                                        </p>
                                         <h3>EXPERIENCE</h3>
                                         <p><?php echo $row['experience']; ?></p>
                                         <h3>JOB LOCATION</h3>
@@ -200,8 +207,6 @@ if ($_GET) {
                                         <p><?php echo $created; ?></p>
                                         <h3>CLOSING DATE</h3>
                                         <p><?php echo $closing; ?></p>
-                                        <h3>NAME</h3>
-                                        <p><?php echo $row['name']; ?></p>
 
                                     </div>
                                 </div>

@@ -278,8 +278,15 @@
                                                 <?php
                                                 $i = 1;
                                                 require_once 'db.php';
-                                                $query = sprintf("SELECT * FROM jobs WHERE user_id='%s' ORDER BY closing_date", $user_id);
+                                                $query = sprintf("SELECT * FROM jobs WHERE user_id='%s' AND del_status=0 ORDER BY closing_date", $user_id);
                                                 $result = Db::query($query);
+                                                if(mysql_num_rows($result)<1){ ?>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="6">NO JOBS FOUND</td>
+                                                        </tr>
+                                                    </tbody>
+                                                <?php } else {
                                                 while ($row = mysql_fetch_array($result)) {
 
                                                     $created = explode('-', $row['created_date']);
@@ -304,7 +311,7 @@
 
                                                     <?php
                                                     $i++;
-                                                }
+                                                } }
                                                 ?>
 
                                             </table>

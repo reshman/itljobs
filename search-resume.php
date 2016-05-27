@@ -87,6 +87,7 @@
 
                         <div class="col-md-8">
                             <select name="category" id="category">
+                                <option selected disabled>CATEGORY</option>
                                 <?php
                                 $qry = sprintf("SELECT * FROM `job_categories`");
                                 $res = Db::query($qry);
@@ -108,7 +109,7 @@
 
                         <div class="col-md-8">
                             <select name="subcategory" id="subcategory">
-                                <option value="-1">Select Industry</option>
+                                <option value="-1">SELECT INDUSTRY</option>
                             </select>
                         </div>
                     </div> 
@@ -158,7 +159,7 @@
                         </div>
 
                         <div class="col-md-8">
-                            <select class="js-data-example-ajax form-control" name="qualification[]" id="qualification" multiple style="width:293px;">
+                            <select class="js-data-example-ajax" name="qualification[]" id="qualification" multiple>
                                  <?php
                                 $qryqualif = sprintf("SELECT * FROM `qualification`");
                                 $resqualif = Db::query($qryqualif);

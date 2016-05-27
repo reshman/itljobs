@@ -182,6 +182,7 @@
 
                             <div class="col-md-8">
                                 <select name="category" class="category">
+                                    <option selected disabled>CATEGORY</option>
                                     <?php
                                     $qry = sprintf("SELECT * FROM `job_categories`");
                                     $res = Db::query($qry);
@@ -203,7 +204,7 @@
 
                             <div class="col-md-8" id="industry">
                                 <select name="sub_category" id="sub_category">
-                                    <option disabled="" selected="">Industry</option>
+                                    <option disabled="" selected="">INDUSTRY</option>
                                 </select>
                             </div>
                             
@@ -425,7 +426,7 @@
 
                     rules: {
                         companyname: {required: true, nonNumeric: true},
-                        sub_category: {required: true, nonNumeric: true},
+                        sub_category: {required: true},
                         description: "required",
                         location: "required",
                         jobtype: "required",
