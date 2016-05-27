@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <?php  include("logincheck.php");?>
+    <?php include("logincheck.php"); ?>
     <head>
         <meta charset="UTF-8">
         <title>Admin | ITL JOBS</title>
@@ -31,10 +31,10 @@
         <div class="wrapper">
             <?php // include 'db.php'; ?>
 
-             <?php include 'header.php'; ?>
+            <?php include 'header.php'; ?>
 
             <?php include 'menu.php'; ?>
-            
+
             <?php include_once 'db.php'; ?>
 
             <!-- Content Wrapper. Contains page content -->
@@ -47,8 +47,8 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-<!--                        <li><a href="#">Tables</a></li>
-                        <li class="active">Data tables</li>-->
+                        <!--                        <li><a href="#">Tables</a></li>
+                                                <li class="active">Data tables</li>-->
                     </ol>
                 </section>
 
@@ -62,33 +62,38 @@
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
                                     <?php
-                                            session_start();
-                                            if ($_SESSION['addsucc'] != '') {
+                                    session_start();
+                                    if (isset($_SESSION['delsucc'])) {
 
-                                                if ($_SESSION['addsucc'] == '1') {
-
-                                                    ?>
-
-                                                    <div class="alert alert-success alert-dismissable">
-
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                                                        Admin Details Updated Successfully <a href="#" class="alert-link"></a>.
-
-                                                    </div>
-
-                                                    <?php
-
-                                                }
-
-                                            }
-
-                                            unset($_SESSION['addsucc']);
-
+                                        if ($_SESSION['delsucc']) {
                                             ?>
+                                            <br>
+                                            <div class="alert alert-success alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Resume Deleted Successfully <a href="#" class="alert-link"></a>.
+
+                                            </div>
+
+                                        <?php } else {
+                                            ?>
+                                            <br>
+                                            <div class="alert alert-danger alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Resume Deletion Failed <a href="#" class="alert-link"></a>.
+
+                                            </div>
+                                            <?php
+                                        }
+                                        unset($_SESSION['delsucc']);
+                                    }
+                                    ?>
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
-                                           <tr>
+                                            <tr>
                                                 <th>Sl.No</th>
                                                 <th>Name</th>
                                                 <th>E-mail</th>
@@ -99,33 +104,29 @@
                                                 <th>Job Category</th>
                                                 <th>Sub Category</th>-->
                                                 <th>Resume</th>
-                                                 <th>View More</th>
-                                            <!--<th>Download</th>-->
+                                                <th>View More</th>
+                                           <!--<th>Download</th>-->
                                                 <th>Delete</th>
                                             </tr>
                                         </thead>
-                                       <tbody>
-                                          <?php 
-                                          
-                                           $i = 1;
-                                          $query = sprintf("SELECT r.id,r.experience,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name,r.user_id, r.del_status, u.name as name,u.email ,jc.name as jobcatname from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s'",'0');  
-                                          $result = Db::query($query);
-                                          while ($row = mysql_fetch_array($result)) {
-                                          
-                                        
-                                             
-                                          ?>
-                                           
+                                        <tbody>
+                                            <?php
+                                            $i = 1;
+                                            $query = sprintf("SELECT r.id,r.experience,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name,r.user_id, r.del_status, u.name as name,u.email ,jc.name as jobcatname from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s'", '0');
+                                            $result = Db::query($query);
+                                            while ($row = mysql_fetch_array($result)) {
+                                                ?>
+
                                                 <tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['email']; ?></td>
                                                     <td><?php echo $row['experience']; ?></td>
-                                                    <td><a onclick="downloadfile('../uploads/<?php echo $row['file_name']?>')" href="../uploads/<?php echo $row['file_name']?>"   target="_blank" download=""><?php echo $row['file_name']; ?></a>
+                                                    <td><a onclick="downloadfile('../uploads/<?php echo $row['file_name'] ?>')" href="../uploads/<?php echo $row['file_name'] ?>"   target="_blank" download=""><?php echo $row['file_name']; ?></a>
                                                     </td>
-                                                   <!-- <td style="text-align: center;"><a onclick="downloadfile('../uploads/<?php echo $row['file_name']?>')" href="../uploads/<?php echo $row['file_name']?>"   target="_blank" download=""><img src="images/download_icon.png" alt="download" height="20" width="20"></a>
+                                                   <!-- <td style="text-align: center;"><a onclick="downloadfile('../uploads/<?php echo $row['file_name'] ?>')" href="../uploads/<?php echo $row['file_name'] ?>"   target="_blank" download=""><img src="images/download_icon.png" alt="download" height="20" width="20"></a>
                                                     </td> -->
-                                                     <td><a href="viewmore_resumes.php?id=<?php echo $row['id'] ?>">View More</a></td>
+                                                    <td><a href="viewmore_resumes.php?id=<?php echo $row['id'] ?>">View More</a></td>
                                                     <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_resume.php?delid=<?= $row['user_id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
                                                 <?php
@@ -133,18 +134,18 @@
                                             }
                                             ?>
                                         </tbody>
-                                 
+
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
 
-                           
+
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
-<!--            
-
+            <!--            
+            
             <!-- Control Sidebar -->      
             <aside class="control-sidebar control-sidebar-dark">                
                 <!-- Create the tabs -->
@@ -331,17 +332,17 @@
         <!-- page script -->
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
         <script type="text/javascript">
-                                                        $(function () {
-                                                            $("#example1").dataTable();
-                                                            $('#example2').dataTable({
-                                                                "bPaginate": true,
-                                                                "bLengthChange": false,
-                                                                "bFilter": false,
-                                                                "bSort": true,
-                                                                "bInfo": true,
-                                                                "bAutoWidth": false
-                                                            });
+                                                    $(function () {
+                                                        $("#example1").dataTable();
+                                                        $('#example2').dataTable({
+                                                            "bPaginate": true,
+                                                            "bLengthChange": false,
+                                                            "bFilter": false,
+                                                            "bSort": true,
+                                                            "bInfo": true,
+                                                            "bAutoWidth": false
                                                         });
+                                                    });
         </script>
         <script>
             function deleteConfirm(href) {
@@ -357,29 +358,29 @@
             });
         </script>
         <script>
-    $(function() {
+            $(function () {
 //        
 //         $('.toggle-event').bootstrapToggle({
 //            on: 'Hold',
 //            off: 'Unhold'
 //         });
-        $('.toggle-event').change(function() {
-            //alert("asda");
-            var status = $(this).prop('checked')==true?'1':'0';
-            var rowId  = $(this).attr('rowid');
-            url = "active_admins.php";
-            $.ajax({
-                url:url,
-                type:'POST',
-                data:{id:rowId, status:status}
-            }).done(function( data ) {
-                //location.reload();
-            });
+                $('.toggle-event').change(function () {
+                    //alert("asda");
+                    var status = $(this).prop('checked') == true ? '1' : '0';
+                    var rowId = $(this).attr('rowid');
+                    url = "active_admins.php";
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {id: rowId, status: status}
+                    }).done(function (data) {
+                        //location.reload();
+                    });
 
-        })
+                })
 
 
-    })
-</script>
+            })
+        </script>
     </body>
 </html>

@@ -65,45 +65,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
 
     <!--<script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>-->
-
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-
- <script>
-            // When the browser is ready...
-
-            $(function () {
-
-                // Setup form validation on the #register-form element
-
-                $("#frm").validate({
-
-                    // Specify the validation rules
-
-                    rules: {
-                        
-                        title: {required: true,lettersonly: true}
-                    },
-                    // Specify the validation error messages
-
-                    messages: {
-                        title: {required: "Please enter title",lettersonly: "Please enter letters only"}
-
-                    },
-
-                    submitHandler: function (form) {
-
-                        form.submit();
-                    }
-
-                });
-                
-                   jQuery.validator.addMethod("lettersonly", function(value, element) {
-                    return this.optional(element) || /^[a-z\s]+$/i.test(value);
-                  }, "Letters only please");
-
-            });
-
-        </script> 
  <!-- <style>
          .error{
             color: #C80000 !important;
@@ -283,6 +244,44 @@
 
         });
         </script>
+            <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+
+ <script>
+            // When the browser is ready...
+
+            $(function () {
+
+                // Setup form validation on the #register-form element
+
+                $("#frm").validate({
+
+                    // Specify the validation rules
+
+                    rules: {
+                        
+                        title: {required: true,lettersonly: true}
+                    },
+                    // Specify the validation error messages
+
+                    messages: {
+                        title: {required: "Please enter job category",lettersonly: "Please enter letters only"}
+
+                    },
+
+                    submitHandler: function (form) {
+
+                        form.submit();
+                    }
+
+                });
+                
+                   jQuery.validator.addMethod("lettersonly", function(value, element) {
+                    return this.optional(element) || /^[a-z\s]+$/i.test(value);
+                  }, "Letters only please");
+
+            });
+
+        </script> 
 <!--<script type="text/javascript">
     $(function () {
      

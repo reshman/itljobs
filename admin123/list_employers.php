@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <?php  include("logincheck.php");?>
+    <?php include("logincheck.php"); ?>
     <head>
         <meta charset="UTF-8">
         <title>Admin | ITL JOBS</title>
@@ -31,7 +31,7 @@
         <div class="wrapper">
             <?php include 'db.php'; ?>
 
-             <?php include 'header.php'; ?>
+            <?php include 'header.php'; ?>
 
             <?php include 'menu.php'; ?>
 
@@ -45,8 +45,8 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-<!--                        <li><a href="#">Tables</a></li>
-                        <li class="active">Data tables</li>-->
+                        <!--                        <li><a href="#">Tables</a></li>
+                                                <li class="active">Data tables</li>-->
                     </ol>
                 </section>
 
@@ -58,35 +58,40 @@
                                 <div class="box-header">
                                     <h3 class="box-title"> Recruiters </h3>
                                 </div><!-- /.box-header -->
-                                <div class="box-body">
+                                <div class="box-body" style="overflow-y: scroll">
                                     <?php
-                                            session_start();
-                                            if ($_SESSION['addsucc'] != '') {
+                                    session_start();
+                                    if (isset($_SESSION['delsucc'])) {
 
-                                                if ($_SESSION['addsucc'] == '1') {
-
-                                                    ?>
-
-                                                    <div class="alert alert-success alert-dismissable">
-
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                                                        Admin Details Updated Successfully <a href="#" class="alert-link"></a>.
-
-                                                    </div>
-
-                                                    <?php
-
-                                                }
-
-                                            }
-
-                                            unset($_SESSION['addsucc']);
-
+                                        if ($_SESSION['delsucc']) {
                                             ?>
+                                            <br>
+                                            <div class="alert alert-success alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Recruiter Deleted Successfully <a href="#" class="alert-link"></a>.
+
+                                            </div>
+
+                                        <?php } else {
+                                            ?>
+                                            <br>
+                                            <div class="alert alert-danger alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Recruiter Deletion Failed <a href="#" class="alert-link"></a>.
+
+                                            </div>
+                                            <?php
+                                        }
+                                        unset($_SESSION['delsucc']);
+                                    }
+                                    ?>
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
-                                           <tr>
+                                            <tr>
                                                 <th>Sl.No</th>
                                                 <th>Name</th>
                                                 <th>Designation</th>
@@ -95,27 +100,26 @@
                                                 <th>Company Name</th>
                                                 <th>Mobile</th>-->
                                                 <th>Status</th>
-                                                 <th>View More</th>
+                                                <th>View More</th>
                                                 <th>Delete</th>
 
                                             </tr>
                                         </thead>
-                                       <tbody>
-                                          <?php 
-                                         
-                                           $i = 1;
-                                         $query = sprintf("SELECT u.id as uid,u.name,u.email,r.designation,u.active,r.designation,r.user_id from employers r LEFT JOIN  users u ON r.user_id = u.id  WHERE role_id='%s' AND u.del_status='%s'",'4','0');  
-                                         $result = Db::query($query);
-                                          while ($row = mysql_fetch_array($result)) {
-                                          ?>
-                                           
+                                        <tbody>
+                                            <?php
+                                            $i = 1;
+                                            $query = sprintf("SELECT u.id as uid,u.name,u.email,r.designation,u.active,r.designation,r.user_id from employers r LEFT JOIN  users u ON r.user_id = u.id  WHERE role_id='%s' AND u.del_status='%s'", '4', '0');
+                                            $result = Db::query($query);
+                                            while ($row = mysql_fetch_array($result)) {
+                                                ?>
+
                                                 <tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['designation']; ?></td>
                                                     <td><?php echo $row['email']; ?></td>
                                                     <td>
-                                                    <input <?php echo ($row['active']=='1') ? 'checked' : '';?> data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox" value="<?php echo $row['uid']; ?>">                                
+                                                        <input <?php echo ($row['active'] == '1') ? 'checked' : ''; ?> data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox" value="<?php echo $row['uid']; ?>">                                
                                                     </td> 
                                                     <td><a href="viewmore_listemployers.php?id=<?php echo $row['uid'] ?>" target="_BLANK">View More</a></td>
 
@@ -126,18 +130,18 @@
                                             }
                                             ?>
                                         </tbody>
-                                 
+
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
 
-                           
+
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
-<!--            
-
+            <!--            
+            
             <!-- Control Sidebar -->      
             <aside class="control-sidebar control-sidebar-dark">                
                 <!-- Create the tabs -->
@@ -324,17 +328,17 @@
         <!-- page script -->
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
         <script type="text/javascript">
-                                                        $(function () {
-                                                            $("#example1").dataTable();
-                                                            $('#example2').dataTable({
-                                                                "bPaginate": true,
-                                                                "bLengthChange": false,
-                                                                "bFilter": false,
-                                                                "bSort": true,
-                                                                "bInfo": true,
-                                                                "bAutoWidth": false
-                                                            });
+                                                    $(function () {
+                                                        $("#example1").dataTable();
+                                                        $('#example2').dataTable({
+                                                            "bPaginate": true,
+                                                            "bLengthChange": false,
+                                                            "bFilter": false,
+                                                            "bSort": true,
+                                                            "bInfo": true,
+                                                            "bAutoWidth": false
                                                         });
+                                                    });
         </script>
         <script>
             function deleteConfirm(href) {
@@ -350,24 +354,24 @@
             });
         </script>
         <script>
-    $(function() {
-        
-     $('body').on('change', '.toggle-event', function() {
-            //alert("asda");
-            var status = $(this).prop('checked')===true?'1':'0';
-            var rowId  = $(this).val();
-            url = "active_employer.php";
-            $.ajax({
-                url:url,
-                type:'POST',
-                data:{id:rowId, status:status}
-            }).done(function( data ) {
-               // alert(data);
+            $(function () {
+
+                $('body').on('change', '.toggle-event', function () {
+                    //alert("asda");
+                    var status = $(this).prop('checked') === true ? '1' : '0';
+                    var rowId = $(this).val();
+                    url = "active_employer.php";
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {id: rowId, status: status}
+                    }).done(function (data) {
+                        // alert(data);
+                    });
+
+                });
+
             });
-
-        });
-
-    });
-</script>
+        </script>
     </body>
 </html>

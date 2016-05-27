@@ -1,6 +1,6 @@
 <?php 
 
-//session_start();
+session_start();
 
 //include("logincheck.php");
 
@@ -17,6 +17,12 @@ if ($delId) {
     //Deleting existing records of job_category from industry_category table
     $query = sprintf("DELETE FROM industry_category WHERE category_id=%d", $delId);
     $res = Db::query($query);
+}
+
+if($res){
+     $_SESSION['delsucc']=1;
+}else{
+     $_SESSION['delsucc']=2;
 }
 
 echo "<script type='text/javascript'>

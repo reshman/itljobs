@@ -60,8 +60,37 @@
                                 <div class="box-header">
                                     <h3 class="box-title"> Recruiter Jobs</h3>
                                 </div><!-- /.box-header -->
-                                <div class="box-body">
-                         
+                                <div class="box-body" style="overflow-y: scroll">
+                                   <?php
+                                    session_start();
+                                    if (isset($_SESSION['delsucc'])) {
+
+                                        if ($_SESSION['delsucc']) {
+                                            ?>
+                                            <br>
+                                            <div class="alert alert-success alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Recruiter's Job Deleted Successfully <a href="#" class="alert-link"></a>.
+
+                                            </div>
+
+                                        <?php } else {
+                                            ?>
+                                            <br>
+                                            <div class="alert alert-danger alert-dismissable">
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                Recruiter's Job Deletion Failed <a href="#" class="alert-link"></a>.
+
+                                            </div>
+                                            <?php
+                                        }
+                                        unset($_SESSION['delsucc']);
+                                    }
+                                    ?>
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                            <tr>

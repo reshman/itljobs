@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <?php  include("logincheck.php");?>
+    <?php include("logincheck.php"); ?>
     <head>
         <meta charset="UTF-8">
         <title>Admin | ITL JOBS</title>
@@ -33,7 +33,7 @@
             <?php include 'header.php'; ?>
 
             <?php include 'menu.php'; ?>
-            
+
             <?php //include 'db.php'; ?>
 
             <!-- Content Wrapper. Contains page content -->
@@ -41,13 +41,13 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                         Job Category List 
+                        Job Category List 
                         <small> ITL JOBS</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-<!--                        <li><a href="#">Tables</a></li>
-                        <li class="active">Data tables</li>-->
+                        <!--                        <li><a href="#">Tables</a></li>
+                                                <li class="active">Data tables</li>-->
                     </ol>
                 </section>
 
@@ -60,33 +60,69 @@
                                     <h3 class="box-title"> Job Categories</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    
+
                                     <table id="example2" class="table table-bordered table-hover">
                                         <?php
-                                            if ($_SESSION['addsucc'] != '') {
+                                        if ($_SESSION['addsucc'] != '') {
 
-                                                if ($_SESSION['addsucc'] == '1') {
+                                            if ($_SESSION['addsucc'] == '1') {
+                                                ?>
 
-                                                    ?>
+                                                <div class="alert alert-success alert-dismissable">
 
-                                                    <div class="alert alert-success alert-dismissable">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                    Job Category Updated Successfully <a href="#" class="alert-link"></a>.
 
-                                                        Job Category Update Successfully <a href="#" class="alert-link"></a>.
+                                                </div>
 
-                                                    </div>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <br>
+                                                <div class="alert alert-danger alert-dismissable">
 
-                                                    <?php
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-                                                }
+                                                    Job Category Updation Failed <a href="#" class="alert-link"></a>.
+
+                                                </div>
+                                                <?php
                                             }
-
                                             unset($_SESSION['addsucc']);
+                                        }
 
-                                            ?>
+                                        if ($_SESSION['delsucc'] != '') {
+
+                                            if ($_SESSION['delsucc'] == '1') {
+                                                ?>
+
+                                                <div class="alert alert-success alert-dismissable">
+
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                    Job Category Deleted Successfully <a href="#" class="alert-link"></a>.
+
+                                                </div>
+
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <br>
+                                                <div class="alert alert-danger alert-dismissable">
+
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                                    Job Category Deletion Failed <a href="#" class="alert-link"></a>.
+
+                                                </div>
+                                                <?php
+                                            }
+                                            unset($_SESSION['delsucc']);
+                                        }
+                                        ?>
                                         <thead>
-                                           <tr>
+                                            <tr>
                                                 <th>Sl.No</th>
                                                 <th>Title</th>
                                                 <th>Industries</th>
@@ -94,41 +130,42 @@
                                                 <th>Delete</th>
                                             </tr>
                                         </thead>
-                                       <tbody>
-                                          <?php 
-                                             $i = 1;
-                                          $query = sprintf("SELECT *FROM `job_categories`");
-                                               
-                                          $result = Db::query($query);
-                                           while ($row = mysql_fetch_array($result)) {
-                                          ?>
-                                           <tr>
+                                        <tbody>
+                                            <?php
+                                            $i = 1;
+                                            $query = sprintf("SELECT *FROM `job_categories` ORDER BY id DESC");
+
+                                            $result = Db::query($query);
+                                            while ($row = mysql_fetch_array($result)) {
+                                                ?>
+                                                <tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['name']; ?></td> 
                                                     <td>
-                                                    <?php
-                                                    $jc = $row['id'];
-                                                    $qry = sprintf("SELECT ind.industry_name FROM industries ind JOIN industry_category ic ON ind.id = ic.industry_id WHERE ic.category_id = '$jc'"); 
-                                                    $res = Db::query($qry);
-                                                    while ($row1 = mysql_fetch_assoc($res)) { ?>
-                                                           <li><?php echo $row1['industry_name'];?></li>
-                                                    <?php }
-                                                    ?>
-                                                    </td>
-                                                <td class=center><a href="edit_jobcategory.php?id=<?= $row['id'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>
-                                                <td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_jobcategory.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
-                                                </tr>
-                                                <?php
-                                                $i = $i + 1;
-                                            }
+                                                        <?php
+                                                        $jc = $row['id'];
+                                                        $qry = sprintf("SELECT ind.industry_name FROM industries ind JOIN industry_category ic ON ind.id = ic.industry_id WHERE ic.category_id = '$jc'");
+                                                        $res = Db::query($qry);
+                                                        while ($row1 = mysql_fetch_assoc($res)) {
+                                                            ?>
+                                                <li><?php echo $row1['industry_name']; ?></li>
+                                            <?php }
                                             ?>
+                                            </td>
+                                            <td class=center><a href="edit_jobcategory.php?id=<?= $row['id'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>
+                                            <td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_jobcategory.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                            </tr>
+                                            <?php
+                                            $i = $i + 1;
+                                        }
+                                        ?>
                                         </tbody>
-                                 
+
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
 
-                           
+
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </section><!-- /.content -->
@@ -157,17 +194,17 @@
         <!-- page script -->
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
         <script type="text/javascript">
-                                                        $(function () {
-                                                            $("#example1").dataTable();
-                                                            $('#example2').dataTable({
-                                                                "bPaginate": true,
-                                                                "bLengthChange": false,
-                                                                "bFilter": false,
-                                                                "bSort": true,
-                                                                "bInfo": true,
-                                                                "bAutoWidth": false
-                                                            });
-                                                        });
+                                            $(function () {
+                                                $("#example1").dataTable();
+                                                $('#example2').dataTable({
+                                                    "bPaginate": true,
+                                                    "bLengthChange": false,
+                                                    "bFilter": false,
+                                                    "bSort": true,
+                                                    "bInfo": true,
+                                                    "bAutoWidth": false
+                                                });
+                                            });
         </script>
         <script>
             function deleteConfirm(href) {
@@ -183,47 +220,47 @@
             });
         </script>
 
- <script>
+        <script>
 
-    $(function() {
+            $(function () {
 
-        $('.toggle-event').change(function() {
-//            alert("asda");
-            var status = $(this).prop('checked')==true?'1':'0';
-            var rowId  = $(this).attr('rowid');
-//            alert(status);
-            url = "active_inactive.php";
-            $.ajax({
-                url:url,
-                type:'POST',
-                data:{id:rowId, status:status}
-            }).done(function( data ) {
-               // location.reload();
+                $('.toggle-event').change(function () {
+                    //            alert("asda");
+                    var status = $(this).prop('checked') == true ? '1' : '0';
+                    var rowId = $(this).attr('rowid');
+                    //            alert(status);
+                    url = "active_inactive.php";
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {id: rowId, status: status}
+                    }).done(function (data) {
+                        // location.reload();
+                    });
+
+                });
             });
+        </script>
 
-        });
-    });
-</script>
+        <script>
+            //    $(function(){
+            function otpcheck() {
+                //         alert('jhgasd');
+                //        $('.order').change(function(){
+                var order = document.getElementById("order").value;
+                var id = document.getElementById("id").value;
+                // alert(order);
+                url = "job-order.php";
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {id: id, order: order}
+                }).done(function (data) {
+                    location.reload();
+                });
+                //        });
+            }
+        </script>
 
-<script>
-//    $(function(){
-     function otpcheck() { 
-//         alert('jhgasd');
-//        $('.order').change(function(){
-            var order = document.getElementById("order").value;
-            var id = document.getElementById("id").value;
-            // alert(order);
-              url = "job-order.php";
-            $.ajax({
-                url:url,
-                type:'POST',
-                data:{id:id, order:order}
-            }).done(function( data ) {
-               location.reload();
-            });
-//        });
-    }
-    </script>
-    
     </body>
 </html>
