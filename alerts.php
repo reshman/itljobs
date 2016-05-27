@@ -179,7 +179,7 @@
                             <div class="container">
 
                                 <div class="title-section">
-                                        <h1>ALERTS</h1>
+                                    <h1>ALERTS</h1>
                                 </div>
                                 <?php include('myprofile-sidemenu.php'); ?>
                                 <div class="col-md-10">
@@ -197,9 +197,9 @@
                                         }
                                     }
                                     ?>
-                                            <script>
-                                                $('#status-message').fadeOut(5000);
-                                            </script>
+                                    <script>
+                                        $('#status-message').fadeOut(5000);
+                                    </script>
                                     <div class="bg-success text-center" id="success-message" style="padding: 10px; margin: 10px;"></div>
                                     <div class="table-responsive">
                                         <div id="dissearch"></div>
@@ -227,7 +227,7 @@
                                                         <tr>
                                                             <td><?php echo $i; ?></td>
                                                             <td><a href="alert_joblist.php?jobcat=<?php echo $jobcat; ?>&loc=<?php echo $location; ?>"><?php echo $row['jobcategory']; ?> in <?php echo $row['location']; ?></a></td>
-                                                            <td><a href="delete_alert.php?id=<?php echo $row['id']; ?>" class="btn btn-danger"><span class="fa fa-times"></span></a></td>
+                                                            <td><a onclick="deleteConfirm('delete_alert.php?id=<?php echo $row['id']; ?>');" class="btn btn-danger"><span class="fa fa-times"></span></a></td>
 
                                                         </tr>
                                                     </tbody>
@@ -263,6 +263,12 @@
 
         <script>
             $(function () {
+                function deleteConfirm(href) {
+                    var ask = window.confirm("Are you sure you want to delete this item?");
+                    if (ask) {
+                        document.location.href = href;
+                    }
+                }
 
                 $('#keyword').autocomplete({
                     source: function (request, response) {
