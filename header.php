@@ -80,7 +80,7 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="recruiter.php">My Profile</a></li>
+                                            <!--<li><a href="recruiter.php">My Profile</a></li>-->
                                             <li><a href="edit-recruiterprofile.php">Edit My Profile</a></li>
                                             <li><a href="recruiter-postjob.php">Post Jobs</a></li>
                                             <li><a href="recruiter_view_jobs.php">View Jobs</a></li>

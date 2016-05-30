@@ -165,8 +165,8 @@
 
                                             </div>
 
-        <?php } else if ($_SESSION['addsucc'] == '2') {
-        ?>
+                                        <?php } else if ($_SESSION['addsucc'] == '2') {
+                                            ?>
                                             <div class="alert alert-danger alert-dismissable">
 
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -174,8 +174,8 @@
                                                 Unable to add job<a href="#" class="alert-link"></a>.
 
                                             </div>
-        <?php } else if ($_SESSION['addsucc'] == '3') {
-        ?>
+                                        <?php } else if ($_SESSION['addsucc'] == '3') {
+                                            ?>
                                             <div class="alert alert-danger alert-dismissable">
 
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -183,11 +183,11 @@
                                                 Job create date should be lesser than closing date!<a href="#" class="alert-link"></a>.
 
                                             </div>
-        <?php
-    }
-    unset($_SESSION['addsucc']);
-}
-?>
+                                            <?php
+                                        }
+                                        unset($_SESSION['addsucc']);
+                                    }
+                                    ?>
 
                                     <div class="box-body">
 
@@ -197,12 +197,12 @@
 
                                             <select class="form-control" name="job_cat" id="job_cat">
                                                 <option disabled="" selected="">Select a Category</option>
-<?php
-$qry = sprintf("SELECT id,name FROM `job_categories`");
-$res = Db::query($qry);
-if (mysql_num_rows($res)) {
-    while ($row = mysql_fetch_array($res)) {
-        ?>
+                                                <?php
+                                                $qry = sprintf("SELECT id,name FROM `job_categories` ORDER BY name");
+                                                $res = Db::query($qry);
+                                                if (mysql_num_rows($res)) {
+                                                    while ($row = mysql_fetch_array($res)) {
+                                                        ?>
                                                         <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
                                                         <?php
                                                     }
@@ -248,10 +248,10 @@ if (mysql_num_rows($res)) {
                                         </div>
 
                                         <div class="form-group">
-<?php
-date_default_timezone_set('Asia/Calcutta');
-$todaydate = date("d/m/Y");
-?>
+                                            <?php
+                                            date_default_timezone_set('Asia/Calcutta');
+                                            $todaydate = date("d/m/Y");
+                                            ?>
 
                                             <label for="exampleInputEmail1">Create Date</label>
 
@@ -347,15 +347,15 @@ $todaydate = date("d/m/Y");
                         $.post("get_industry.php", {
                             id: id
                         },
-                                function (response) {
-                                    if (response != '<option selected disabled>Select Industry</option>') {
-                                        $('#title').html(response);
-                                        $('#title').removeAttr("disabled");
-                                    } else {
-                                        var msg = "<option value=\"Unavailable\" selected>No Industry Available for the selected Category</option>";
-                                        $('#title').html(msg);
-                                    }
-                                });
+                        function (response) {
+                            if (response != '<option selected disabled>Select Industry</option>') {
+                                $('#title').html(response);
+                                $('#title').removeAttr("disabled");
+                            } else {
+                                var msg = "<option value=\"Unavailable\" selected>No Industry Available for the selected Category</option>";
+                                $('#title').html(msg);
+                            }
+                        });
                     });
 
                     $('#datepicker1').datepicker({
@@ -366,7 +366,8 @@ $todaydate = date("d/m/Y");
                         types: ["geocode", "establishment"],
                     });
                     $.validator.addMethod('experience', function (value) {
-                        return /^[0-9 ]+((-){0,1}[0-9 ]+){0,1}$/.test(value);
+//                        return /^[0-9 ]+((-){0,1}[0-9 ]+){0,1}$/.test(value);
+                        return /^[0-9 a-z]+((-){0,1}[0-9 a-z]+){0,1}$/.test(value);
 
                     }, 'Please enter valid experience in years as digit or range as low-High.');
                     // Setup form validation on the #register-form element
@@ -395,7 +396,7 @@ $todaydate = date("d/m/Y");
                         // Specify the validation error messages
 
                         messages: {
-                            title: {required: "Please enter title"},
+                            title: {required: "Please enter industry"},
                             company: {required: "Please enter company name", lettersonly: "Please enter letters only"},
                             experience: {required: "Please enter experience"},
                             location: "Please enter location",

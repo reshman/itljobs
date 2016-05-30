@@ -161,7 +161,7 @@
 		<div class="service-post">
 		<img src="images/itl-resume.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="edit-resume.php">EDIT MY PROFILE</a></h2>
+		<h2><a href="edit-resume.php">EDIT MY RESUME</a></h2>
 		</div>
 		</div>
 		</div>

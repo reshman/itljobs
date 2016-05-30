@@ -167,7 +167,7 @@
                                             <select class="js-data-example-ajax form-control" name="industry[]" id="industry" multiple="" placeholder="Industry" required="">
                                                 <?php
                                                 //select all industries
-                                                $qryind = sprintf("SELECT * FROM `industries`");
+                                                $qryind = sprintf("SELECT * FROM `industries` ORDER BY industry_name");
                                                 $resind = Db::query($qryind);
 
                                                 while ($rowind = mysql_fetch_assoc($resind)) {
@@ -176,8 +176,7 @@
 
                                                     <option <?php echo (in_array($rowind['industry_name'], $rowArr)) ? 'selected == selected' : ''; ?> value="<?php echo $rowind['industry_name']; ?>"><?php echo $rowind['industry_name']; ?></option>
 
-                                                    <?php
-//                                            } 
+                                                    <?php 
                                                 }
                                                 ?>
                                             </select>

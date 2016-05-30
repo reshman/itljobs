@@ -154,7 +154,7 @@
                                         <label>Industry</label>
                                         <select class="js-data-example-ajax form-control" name="industry[]" id="industry" multiple="" placeholder="Industry">
                                             <?php
-                                            $qryind = sprintf("SELECT * FROM `industries`");
+                                            $qryind = sprintf("SELECT * FROM `industries` ORDER BY industry_name");
                                             $resind = Db::query($qryind);
                                             while ($rowind = mysql_fetch_assoc($resind)) {
                                                 ?>

@@ -41,7 +41,7 @@
 
     <!--        <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>-->
 
-        <link href="plugins/datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
+        <!--<link href="plugins/datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />-->
 
 
 
@@ -196,7 +196,7 @@
                                                         $qry = sprintf("SELECT i.industry_name as name FROM industries i LEFT JOIN industry_category ic ON i.id=ic.industry_id WHERE ic.category_id=%d", $row['cid']);
                                                         $res = Db::query($qry);
                                                         if (mysql_num_rows($res)) {
-                                                            while ($row1 = mysql_fetch_array($res)) {
+                                                            while ($row1 = mysql_fetch_assoc($res)) {
                                                                 ?>
                                                                 <option <?php if ($row['title'] == $row1['name']) { ?> selected="" <?php } ?> value="<?php echo $row1['id']; ?>"><?php echo $row1['name']; ?></option>
                                                                 <?php
@@ -314,8 +314,8 @@
 
 
 <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="plugins/datetimepicker/moment.js" type="text/javascript"></script>
-<script src="plugins/datetimepicker/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<!--<script src="plugins/datetimepicker/moment.js" type="text/javascript"></script>
+<script src="plugins/datetimepicker/bootstrap-datetimepicker.js" type="text/javascript"></script>-->
 
 <!-- FastClick -->
 
@@ -346,7 +346,7 @@
                     function (response) {
                         if (response != '<option selected disabled>Select Industry</option>') {
                             $('#title').html(response);
-                            $('#title').removeAttr("disabled");
+                           // $('#title').removeAttr("disabled");
                         } else {
                             var msg = "<option value=\"Unavailable\" selected>No Industry Available for the selected Category</option>";
                             $('#title').html(msg);
@@ -362,7 +362,8 @@
             types: ["geocode", "establishment"],
         });
         $.validator.addMethod('experience', function (value) {
-            return /^[0-9 ]+((-){0,1}[0-9 ]+){0,1}$/.test(value);
+//            return /^[0-9 ]+((-){0,1}[0-9 ]+){0,1}$/.test(value);
+            return /^[0-9 a-z]+((-){0,1}[0-9 a-z]+){0,1}$/.test(value);
 
         }, 'Please enter valid experience in years as digit or range as low-High.');
         // Setup form validation on the #register-form element
@@ -372,7 +373,7 @@
             ignore: [],
             debug: false,
             rules: {
-                title: {required: true},
+//                title: {required: true},
                 company: {required: true, lettersonly: true},
                 experience: {required: true, experience: true},
                 location: "required",
@@ -391,7 +392,7 @@
             // Specify the validation error messages
 
             messages: {
-                title: {required: "Please enter title"},
+//                title: {required: "Please enter industry"},
                 company: {required: "Please enter company name", lettersonly: "Please enter letters only"},
                 experience: {required: "Please enter experience"},
                 location: "Please enter location",
