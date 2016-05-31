@@ -20,6 +20,14 @@ $cpassword = trim($_POST['cpassword']);
 $npassword = trim($_POST['npassword']);
 $newpass = md5($npassword);
 
+if($opassword == $npassword){
+    $_SESSION['addsucc']=4;
+    echo "<script type='text/javascript'>
+location.href = '" . $urlin . "';
+</script>";
+    die();
+}
+
   $q = "SELECT password FROM users where id = '$id'";
 
 $result=Db::query($q);

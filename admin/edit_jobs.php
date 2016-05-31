@@ -363,9 +363,9 @@
         });
         $.validator.addMethod('experience', function (value) {
 //            return /^[0-9 ]+((-){0,1}[0-9 ]+){0,1}$/.test(value);
-            return /^[0-9 a-z]+((-){0,1}[0-9 a-z]+){0,1}$/.test(value);
+            return /^[0-9 a-zA-Z]+((-){0,1}[0-9 a-zA-Z]+){0,1}$/.test(value);
 
-        }, 'Please enter valid experience in years as digit or range as low-High.');
+        }, 'Please enter valid experience in years or months or range as low-High.');
         // Setup form validation on the #register-form element
 
         $("#frm").validate({
@@ -393,7 +393,7 @@
 
             messages: {
 //                title: {required: "Please enter industry"},
-                company: {required: "Please enter company name", lettersonly: "Please enter letters only"},
+                company: {required: "Please enter company name", lettersonly: "Please enter letters , '&' and '-' only"},
                 experience: {required: "Please enter experience"},
                 location: "Please enter location",
                 create_date: "Please enter create date",
@@ -412,7 +412,7 @@
 
         });
         jQuery.validator.addMethod("lettersonly", function (value, element) {
-            return this.optional(element) || /^[a-z\s]+$/i.test(value);
+            return this.optional(element) || /^[a-zA-Z\-\&\s]+$/i.test(value);
         });
 
     });

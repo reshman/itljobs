@@ -161,7 +161,7 @@
                                 if ($_SESSION['addsucc'] == '3') {
                                     ?>
                                         <div class="alert alert-danger">
-                                            Given Password is Incorrect!  
+                                            Given Old Password is Incorrect!  
                                         </div>
 
                                         <?php
@@ -175,6 +175,12 @@
                                         ?>
                                         <div class="alert alert-danger">
                                             Please enter old password.
+                                        </div>
+                                        <?php
+                                    } else if ($_SESSION['addsucc'] == '4') {
+                                        ?>
+                                        <div class="alert alert-danger">
+                                            Your new password is same as old password!
                                         </div>
                                         <?php
                                     } else {

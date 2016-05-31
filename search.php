@@ -1,6 +1,14 @@
 <!doctype html>
-<?php include 'check_session_rec.php'; ?>
-
+<?php include 'check_session_rec.php'; 
+if($_GET['subcategory']=='-1' && $_GET['experiencemin']==NULL && $_GET['experiencemax']==NULL && $_GET['location']==NULL){
+    if(!isset($_GET['category'])  && !isset($_GET['qualification'])){
+    $_SESSION['subsucc'] = 1;
+    echo "<script type='text/javascript'>
+location.href = 'search-resume.php';
+</script>";
+    die();
+} }
+?>
 <html lang="en" class="no-js">
 <head>
 	<title>ITL JOBS</title>

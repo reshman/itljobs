@@ -112,10 +112,38 @@
                                             $i = 1;
                                             date_default_timezone_set('Asia/Kolkata');
                                             $today_date = date('Y-m-d');
-                                            $query = sprintf("SELECT jc.id,jc.name,j.id as jobid,j.job_listing,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order,j.ref_id FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE del_status='%s' AND closing_date>='%s'", 0, $today_date);
+                                            $query = sprintf("SELECT jc.id,jc.name,j.id as jobid,j.job_listing,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order,j.ref_id FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE del_status='%s' AND closing_date>='%s' AND j.job_order!='%d' ORDER BY job_order", 0, $today_date, 0);
 
                                             $result = Db::query($query);
                                             while ($row = mysql_fetch_array($result)) {
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $i; ?></td>
+                                                    <td><?php echo $row['ref_id']; ?></td>
+                                                    <td><?php echo $row['name']; ?></td>
+                                                    <td><?php echo $row['job_listing']; ?></td>
+                                                    <td><?php echo $row['experience']; ?></td>
+                                                    <td><?php echo $row['job_location']; ?></td>
+                                                    <td><?php echo $row['closing_date']; ?></td>
+                                                    <td><a href="viewmore_jobs.php?id=<?php echo $row['jobid']; ?>" target="_BLANK">view more</a></td>
+                                                    <td><input type="number" min="0" name="order" id="order" class="order" value="<?php echo $row['job_order']; ?>"/>
+                                                        <a onclick="updatecheck(this)" class="btn btn-primary">update</a>
+                                                        <input type="hidden" name="id" id="id" value="<?php echo $row['jobid']; ?>"/>
+                                                    </td>
+
+                                                    <td>
+                                                        <input <?php echo ($row['active'] == '1') ? 'checked' : ''; ?> rowid="<?php echo $row['jobid']; ?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
+                                                    </td>      
+                                                    <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_jobs.php?delid=<?= $row['jobid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                                </tr>
+                                                <?php
+                                                $i = $i + 1;
+                                            }
+                                            //jobs with order id zero
+                                            $qry = sprintf("SELECT jc.id,jc.name,j.id as jobid,j.job_listing,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order,j.ref_id FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE del_status='%s' AND closing_date>='%s' AND j.job_order='%d' ORDER BY id DESC", 0, $today_date, 0);
+
+                                            $res = Db::query($qry);
+                                            while ($row = mysql_fetch_array($res)) {
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $i; ?></td>

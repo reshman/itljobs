@@ -237,7 +237,7 @@ if ($_GET) {
                             <div class="col-md-12">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-8 jdfile">
-                                    <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="CHOOSE FILE (Only PDF)">
+                                    <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="CHOOSE FILE (Only PDF)" >
                                     <label for="f02">CHOOSE FILE (Only PDF)</label>
                                 </div>
                             </div> 
@@ -420,19 +420,19 @@ if ($_GET) {
                     }, 'Please enter a valid Salary Range like: lowest Salary - Highest Salary followed by ISO currency code || Example:100000-150000 INR ||. If salary is Fixed give Both side the same salary.');
 
                     jQuery.validator.addMethod("nonNumeric", function (value) {
-                        var regex = new RegExp("^[a-zA-Z ]+$");
+                        var regex = new RegExp("^[a-zA-Z\-\&\s ]+$");
                         var key = value;
 
                         if (!regex.test(key)) {
                             return false;
                         }
                         return true;
-                    }, "Please Do not use Numbers or Special Characters");
+                    }, "Please use letters, '&' and '-' only");
 
                     $.validator.addMethod('experience', function (value) {
-                        return /^[0-9 ]+((-){0,1}[0-9 ]+){0,1}$/.test(value);
+                        return /^[0-9 A-Za-z]+((-){0,1}[0-9 A-Za-z]+){0,1}$/.test(value);
 
-                    }, 'Please enter valid experience in years as digit or range as low-High.');
+                    }, 'Please enter valid experience in years or months or range as low-High.');
 
                     // Setup form validation on the #register-form element
 
@@ -441,7 +441,7 @@ if ($_GET) {
 
                         rules: {
                             companyname: {required: true, nonNumeric: true},
-                            companytitle: {required: true, nonNumeric: true},
+                            sub_category: {required: true},
                             description: "required",
                             location: "required",
                             jobtype: "required",
@@ -455,7 +455,7 @@ if ($_GET) {
 
                         messages: {
                             companyname: {required: "Please Enter company name"},
-                            companytitle: {required: "Please Enter Job title"},
+                            sub_category: {required: "Please Enter Industry"},
                             description: "Please Enter Description",
                             location: "Please Enter Location",
                             jobtype: "Please Enter Jobtype",

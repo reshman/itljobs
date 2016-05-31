@@ -79,7 +79,24 @@
                 <?php include('myprofile-sidemenu.php'); ?>
                 <div class="col-lg-10">
                 <form id="contact-form" method="GET" action="search.php" enctype="multipart/form-data">
+                    <?php
+                    if (isset($_SESSION['subsucc'])) {
+                    if ($_SESSION['subsucc'] == '1') {
+                                ?>
 
+                                <div class="alert alert-danger alert-dismissable">
+
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                    Fill out at least one field to search! <a href="#" class="alert-link"></a>
+
+                                </div>
+
+                                <?php
+                            }
+                            unset($_SESSION['subsucc']);
+                    }
+                    ?>
                     <div class="col-md-12"> 
                         <div class="col-md-3">
                             <span class="post-title">CATEGORY:</span>    
@@ -89,7 +106,7 @@
                             <select name="category" id="category">
                                 <option selected disabled>CATEGORY</option>
                                 <?php
-                                $qry = sprintf("SELECT * FROM `job_categories`");
+                                $qry = sprintf("SELECT * FROM `job_categories` ORDER BY name");
                                 $res = Db::query($qry);
                                 while ($row = mysql_fetch_array($res)) {
                                     ?>
