@@ -36,6 +36,7 @@
         <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
         <script type="text/javascript" src="js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
+<<<<<<< Updated upstream
         <script type="text/javascript" src="js/script.js"></script>
 
     </head>

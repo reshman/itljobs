@@ -151,6 +151,7 @@
                         </form> 
                     </div>
                 </div>
+                 <div class="bg-danger text-center" id="error-message" style="padding: 10px; margin: 10px;"></div>
             </div>    
             <!-- services-offer 
                             ================================================== -->
@@ -226,9 +227,10 @@
                                                     <tbody>
                                                         <tr>
                                                             <td><?php echo $i; ?></td>
-                                                            <td><a href="alert_joblist.php?jobcat=<?php echo $jobcat; ?>&loc=<?php echo $location; ?>"><?php echo $row['jobcategory']; ?> in <?php echo $row['location']; ?></a></td>
-                                                            <td><a onclick="deleteConfirm('delete_alert.php?id=<?php echo $row['id']; ?>');" class="btn btn-danger"><span class="fa fa-times"></span></a></td>
-
+                                                            <td><a href="alert_joblist.php?jobcat=<?php echo $jobcat; ?>&loc=<?php echo $location; ?>"><?php if($row['jobcategory'] && empty($row['location'])){ echo $row['jobcategory']; }
+                                                             if($row['location'] && $row['jobcategory']){ echo $row['jobcategory'].' in '.$row['location']; }
+                                                             if(empty($row['jobcategory']) && $row['location']){ echo 'Jobs in '.$row['location']; }?></a></td>
+                                                            <td><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_alert.php?id=<?php echo $row['id']; ?>')" class="btn btn-danger"><li class="fa fa-times"></li></a></td>
                                                         </tr>
                                                     </tbody>
 
@@ -262,14 +264,14 @@
 
 
         <script>
-            $(function () {
-                function deleteConfirm(href) {
+            function deleteConfirm(href) {
                     var ask = window.confirm("Are you sure you want to delete this item?");
                     if (ask) {
                         document.location.href = href;
                     }
                 }
-
+            $(function () {
+                
                 $('#keyword').autocomplete({
                     source: function (request, response) {
                         $.ajax({
@@ -320,12 +322,16 @@
         </script>
         <script>
             $('#success-message').hide();
-
+            $('#error-message').hide();
 
             $('#btn-search').on('click', function () {
 
                 var keyword = $('#keyword').val();
                 var location = $('#location').val();
+                if(!keyword && !location){
+                  $('#error-message').fadeIn(1000).html("Please fill out at least one field");
+                  $('#error-message').fadeOut(5000);  
+                }else{
                 var id = $('#id').val();
                 $.ajax({
                     url: 'searchprocessalert.php',
@@ -335,9 +341,10 @@
                         $('#dissearch').html(data);
                         $('#oldtable').hide();
                         $('#success-message').fadeIn(1000).html("Alert Succesfully Added");
-                        $('#success-message').fadeOut(5000);
+                        $('#success-message').fadeOut(5000);  
                     }
                 })
+            }
 
             });
 

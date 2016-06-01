@@ -106,7 +106,7 @@
                                         </thead>
                                        <tbody>
                                           <?php
-                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id as jobuserid,ja.id as apid,ja.job_id,ja.user_id,ja.created_date,us.name FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id");
+                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id as jobuserid,ja.id as apid,ja.job_id,ja.user_id,ja.created_date,us.name FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id ORDER BY ja.id DESC");
                                           $res = Db::query($qry);
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');

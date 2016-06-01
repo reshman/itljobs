@@ -38,13 +38,13 @@ session_start();
    $sql = sprintf("INSERT INTO `jobs`(job_listing,job_description,experience,job_location,created_date,closing_date,company_name,job_type,job_category_id,user_id,date,ref_id) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",$title,$job_description,$experience,$location,$create_date,$closing_date,$company,$job_type,$job_cat,$user_id,$date,$ref_id);
    $result = Db::query($sql);
    
-   $inid = mysql_insert_id();
-   //insert jon seeker to notification table
-       $sqlqry = sprintf("INSERT INTO notification(ref_id,type_id,created_date) VALUES('%s','%s','%s')",$inid,1,$date);
-       $resultqry = Db::query($sqlqry);
     
     if($result)
         {
+        $inid = mysql_insert_id();
+        //insert jon seeker to notification table
+        $sqlqry = sprintf("INSERT INTO notification(ref_id,type_id,created_date) VALUES('%s','%s','%s')",$inid,1,$date);
+        $resultqry = Db::query($sqlqry);
          $_SESSION['addsucc']=1;
         }
     else 

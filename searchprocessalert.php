@@ -18,21 +18,25 @@ $id       = $_REQUEST['id'];
                                                 
                                                 <?php 
                                             
-                                                  
+                                                  if($location != NULL || $keyword != NULL){
                                                   $sql          = sprintf("INSERT INTO alerts SET user_id = '%s', jobcategory = '%s', location = '%s'", $id, $keyword, $location);  
                                                   $resultsql    = Db::query($sql);
+                                                  }
                                                   $i=1;
-                                                 
+                                                  
                                                   $query = sprintf("SELECT id,a.user_id, a.jobcategory, a.location from alerts a WHERE user_id='%s'",$id);   
                                                   $result = Db::query($query);
                                                    while ($row = mysql_fetch_array($result)) {
                                                     $jobcat=$row['jobcategory'];
-                                                       $location=$row['location'];
+                                                    $location=$row['location'];
                                                 ?>
                                                 <tbody>
 						<tr>
                                                        <td><?php echo $i; ?></td>
-                                                       <td><a href="alert_joblist.php?jobcat=<?php echo $jobcat; ?>&loc=<?php echo $location; ?>"><?php echo $row['jobcategory']; ?> in <?php echo $row['location']; ?></a></td>
+                                                       <td><a href="alert_joblist.php?jobcat=<?php echo $jobcat; ?>&loc=<?php echo $location; ?>">
+                                                           <?php if($row['jobcategory'] && empty($row['location'])){ echo $row['jobcategory']; }
+                                                             if($row['location'] && $row['jobcategory']){ echo $row['jobcategory'].' in '.$row['location']; }
+                                                             if(empty($row['jobcategory']) && $row['location']){ echo 'Jobs in '.$row['location']; }?></a></td>
                                                        <td><a href="delete_alert.php?id=<?php echo $row['id']; ?>" class="btn btn-danger"><span class="fa fa-times"></span></a></td>
 
 						</tr>

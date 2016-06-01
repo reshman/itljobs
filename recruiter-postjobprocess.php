@@ -89,7 +89,10 @@ $resultsql = Db::query($sql);
 
 
 if ($resultsql) {
-
+    $inid = mysql_insert_id();
+   //insert jon seeker to notification table
+    $sqlqry = sprintf("INSERT INTO notification(ref_id,type_id,created_date) VALUES('%s','%s','%s')",$inid,1,$date);
+    $resultqry = Db::query($sqlqry);
     $_SESSION['regsucc'] = 1;
 } else {
 
