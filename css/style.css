@@ -1359,13 +1359,18 @@ button.mfp-arrow {
 
     margin: 0 0 10px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #ddd;
+    /*border-bottom: 1px solid #ddd;*/
     /* padding: 15px; */
     padding-top: 10px;
     padding-bottom: 15px;
 }
 .accord-elem.active .accord-content {
     display: block;
+}
+.c_b_t_border
+{
+border-bottom: 1px solid #ddd;
+border-top: 1px solid #ddd;
 }
 /*-------------------------------------------------*/
 /* =  home 2

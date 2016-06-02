@@ -137,7 +137,7 @@
                                     </div>
                                     <div class="accord-content" style="display: none;">
                                         <p><?php echo $row['job_description']; ?></p>
-                                        <p><span style="color:#007ac9">Company Name: </span><?php echo $row['company_name']; ?>,
+                                        <p class="c_b_t_border"><span style="color:#007ac9">Company Name: </span><?php echo $row['company_name']; ?>,
                                             <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?> ,
                                             <span style="color:#007ac9">Location : </span><?php echo $row['job_location']; ?>,
                                             <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
@@ -171,7 +171,7 @@
                                     </div>
                                     <div class="accord-content" style="display: none;">
                                         <p><?php echo $row['job_description']; ?></p>
-                                        <p><span style="color:#007ac9">Company : </span><?php echo $row['company_name']; ?>,
+                                        <p class="c_b_t_border"><span style="color:#007ac9">Company : </span><?php echo $row['company_name']; ?>,
                                             <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?> ,
                                             <span style="color:#007ac9">Location : </span><?php echo $row['job_location']; ?>,
                                             <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
