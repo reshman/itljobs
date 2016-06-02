@@ -23,17 +23,7 @@ session_start();
    
    date_default_timezone_set('Asia/Calcutta'); 
    $date         = date("Y-m-d h:i:s");
-   
-   function generateRandomString($length = 8) {
-    $characters = 'ITL0123456789';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-    }
-    $ref_id = generateRandomString();
+   $ref_id = date('ymdHms');
 
    $sql = sprintf("INSERT INTO `jobs`(job_listing,job_description,experience,job_location,created_date,closing_date,company_name,job_type,job_category_id,user_id,date,ref_id) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",$title,$job_description,$experience,$location,$create_date,$closing_date,$company,$job_type,$job_cat,$user_id,$date,$ref_id);
    $result = Db::query($sql);

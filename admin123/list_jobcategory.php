@@ -196,71 +196,71 @@
         <!-- page script -->
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
         <script type="text/javascript">
-                                                            $(function () {
+                                                        $(function () {
                                                             $("#example1").dataTable();
-                                                                    $('#example2').dataTable({
-                                                            "bPaginate": true,
-                                                                    "bLengthChange": false,
-                                                                    "bFilter": true,
-                                                                    "bSort": true,
-                                                                    "bInfo": true,
-                                                                    "bAutoWidth": false
+                                                            $('#example2').dataTable({
+                                                                "bPaginate": true,
+                                                                "bLengthChange": false,
+                                                                "bFilter": true,
+                                                                "bSort": true,
+                                                                "bInfo": true,
+                                                                "bAutoWidth": false
                                                             });
-                                                            });
+                                                        });
         </script>
         <script>
-                    function deleteConfirm(href) {
-                    var ask = window.confirm("Are you sure you want to delete this item?");
-                            if (ask) {
+            function deleteConfirm(href) {
+                var ask = window.confirm("Are you sure you want to delete this item?");
+                if (ask) {
                     document.location.href = href;
-                    }
-                    }
+                }
+            }
             $(document).ready(function () {
-            $('#dataTables-example').DataTable({
-            responsive: true
-            });
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
             });
         </script>
 
         <script>
 
-                    $(function () {
+            $(function () {
 
-                    $('.toggle-event').change(function () {
+                $('.toggle-event').change(function () {
                     //            alert("asda");
                     var status = $(this).prop('checked') == true ? '1' : '0';
-                            var rowId = $(this).attr('rowid');
-                            //            alert(status);
-                            url = "active_inactive.php";
-                            $.ajax({
-                            url: url,
-                                    type: 'POST',
-                                    data: {id: rowId, status: status}
-                            }).done(function (data) {
-                    // location.reload();
+                    var rowId = $(this).attr('rowid');
+                    //            alert(status);
+                    url = "active_inactive.php";
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {id: rowId, status: status}
+                    }).done(function (data) {
+                        // location.reload();
                     });
-                    });
-                    });
+                });
+            });
         </script>
 
         <script>
-                    //    $(function(){
-                            function otpcheck() {
-                            //         alert('jhgasd');
-                            //        $('.order').change(function(){
-                            var order = document.getElementById("order").value;
-                                    var id = document.getElementById("id").value;
-                                    // alert(order);
-                                    url = "job-order.php";
-                                    $.ajax({
-                                    url: url,
-                                            type: 'POST',
-                                            data: {id: id, order: order}
-                                    }).done(function (data) {
-                            location.reload();
-                            });
-                                    //        });
-                            }
+            //    $(function(){
+            function otpcheck() {
+                //         alert('jhgasd');
+                //        $('.order').change(function(){
+                var order = document.getElementById("order").value;
+                var id = document.getElementById("id").value;
+                // alert(order);
+                url = "job-order.php";
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {id: id, order: order}
+                }).done(function (data) {
+                    location.reload();
+                });
+                //        });
+            }
         </script>
 
     </body>
