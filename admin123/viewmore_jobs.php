@@ -75,8 +75,8 @@
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {
                                           ?>
-                                           
-                                                    <tr><th>Title</th><td><?php echo $row['job_listing']; ?></td></tr>
+
+                                                    <tr><th>Job Applied For</th><td><?php echo $row['job_listing']; ?></td></tr>
                                                     <tr><th>Job Description</th>
                                                         <td>
                                                         <?php 

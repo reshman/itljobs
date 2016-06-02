@@ -66,7 +66,7 @@
                                        <tbody>
                                           <?php
                                           $applied_id = $_REQUEST['param'];
-                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id as jobuserid,ja.id as apid,ja.job_id,ja.user_id as userid,ja.created_date,us.name,us.email FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id WHERE ja.id='$applied_id'");
+                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id as jobuserid,js.job_category_id,ja.id as apid,ja.job_id,ja.user_id as userid,ja.created_date,us.name,us.email FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id WHERE ja.id='$applied_id'");
                                           $res = Db::query($qry);
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
@@ -75,7 +75,7 @@
                                           
                                           $user_id = $row['userid'];
 //                                          $query = sprintf("SELECT experience,specification,current_location,mobile,qualification,date_of_birth,file_name,sub_category,abroad_experience,india_experience FROM resume WHERE user_id='%s'",$user_id);
-                                          $query = sprintf("SELECT * FROM resume LEFT JOIN job_categories ON resume.job_category_id=job_categories.id");
+                                          $query = sprintf("SELECT * FROM resume LEFT JOIN job_categories ON resume.job_category_id=job_categories.id WHERE resume.user_id='%s'",$user_id); 
                                           $result = Db::query($query); 
                                           $rw = mysql_fetch_assoc($result);
                                           ?>

@@ -120,7 +120,7 @@
                                                     <?php
                                                         $date    = $row['created_date'];
                                                         $regdate = date("d-m-Y", strtotime($date));
-                                                        $regtime = date("h:i:sa", strtotime($date));
+                                                        $regtime = date("h:i:s a", strtotime($date));
                                                     ?>
                                                     <td><?php echo $regdate; ?> at <?php echo $regtime; ?></td>
                                                     <?php

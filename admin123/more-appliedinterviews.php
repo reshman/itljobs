@@ -75,9 +75,9 @@
                                           
                                           $user_id = $row['userid'];
 //                                          $query = sprintf("SELECT experience,specification,current_location,mobile,qualification,date_of_birth,file_name,sub_category,abroad_experience,india_experience FROM resume WHERE user_id='%s'",$user_id);
-                                          $query = sprintf("SELECT * FROM resume LEFT JOIN job_categories ON resume.job_category_id=job_categories.id");
+                                          $query = sprintf("SELECT * FROM resume LEFT JOIN job_categories ON resume.job_category_id=job_categories.id WHERE resume.user_id='%s'",$user_id);
                                           $result = Db::query($query); 
-                                          $rw = mysql_fetch_assoc($result);
+                                          $rw = mysql_fetch_array($result);
                                           ?>
                                            <tr>
                                                     <th>Job Title</th><td><?php echo $row['job_listing']; ?></td> </tr>

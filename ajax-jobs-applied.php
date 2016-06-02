@@ -3,7 +3,7 @@ require_once 'db.php';
 (!isset($_SESSION))? session_start():null;
 date_default_timezone_set('Asia/Kolkata');
 
-$date   = date('Y-m-d h:i:s');
+$date   = date('Y-m-d h:i:s A');
 $userId = $_SESSION['log'];
 $jobId  = isset($_GET['jobid'])? $_GET['jobid'] : 0;
 
