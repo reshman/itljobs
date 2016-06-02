@@ -40,40 +40,40 @@
         <script type="text/javascript" src="js/notify.js"></script>
         <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
         <script>
-        $(function () {
-            $("#login-popup").validate({
-                // Specify the validation rules
+            $(function () {
+                $("#login-popup").validate({
+                    // Specify the validation rules
 
 
-                rules: {
-                    'popup-email': {required: true, email: true},
-                    'popup-password': {required: true}
-                },
-                // Specify the validation error messages
+                    rules: {
+                        'popup-email': {required: true, email: true},
+                        'popup-password': {required: true}
+                    },
+                    // Specify the validation error messages
 
-                messages: {
-                },
-                submitHandler: function (form) {
-                    var email = $.trim($('#popup-email').val());
-                    var password = $.trim($('#popup-password').val());
-                    if (email != '' && password != '') {
-                        $.ajax({
-                            url: 'popup-login.php?email=' + email + '&password=' + password
-                        }).done(function (status) {
-                            if (status == 'SUCCESS') {
-                                window.location.reload();
-                            } else {
-                                $('#errorMsg').html("<div class='alert alert-danger'>" + status + "</div>");
-                            }
-                        })
+                    messages: {
+                    },
+                    submitHandler: function (form) {
+                        var email = $.trim($('#popup-email').val());
+                        var password = $.trim($('#popup-password').val());
+                        if (email != '' && password != '') {
+                            $.ajax({
+                                url: 'popup-login.php?email=' + email + '&password=' + password
+                            }).done(function (status) {
+                                if (status == 'SUCCESS') {
+                                    window.location.reload();
+                                } else {
+                                    $('#errorMsg').html("<div class='alert alert-danger'>" + status + "</div>");
+                                }
+                            })
+                        }
+                        //form.submit();
+
                     }
-                    //form.submit();
 
-                }
-
-            });
-        })
-    </script>
+                });
+            })
+        </script>
 
     </head>
     <body>
@@ -136,7 +136,15 @@
                                         <h2><?php echo strtoupper($row['job_listing']); ?></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
-                                        <p><?php echo $row['job_description']; ?></p>
+                                        <p>
+                                            <?php
+                                            if ($row['job_description']=="PDF Attached") {
+                                                echo $row['job_description'].' - <a href="jobdescriptions/'.$row['ref_id'].'.pdf" target="_BLANK">View Here</a>';
+                                            } else {
+                                                echo $row['job_description'];
+                                            }
+                                            ?>
+                                        </p>
                                         <p class="c_b_t_border"><span style="color:#007ac9">Company Name: </span><?php echo $row['company_name']; ?>,
                                             <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?> ,
                                             <span style="color:#007ac9">Location : </span><?php echo $row['job_location']; ?>,

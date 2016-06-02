@@ -70,14 +70,24 @@
                                           $id = $_REQUEST['id'];
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d');
-                                          $query = sprintf("SELECT jc.id,jc.name,j.id as jobid,j.job_listing,j.job_description,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE j.del_status='%s' AND j.closing_date>='%s' AND j.id='%s'",0,$today_date,$id);
+                                          $query = sprintf("SELECT jc.id,jc.name,j.id as jobid,j.job_listing,j.ref_id,j.job_description,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE j.del_status='%s' AND j.closing_date>='%s' AND j.id='%s'",0,$today_date,$id);
                                                
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {
                                           ?>
                                            
                                                     <tr><th>Title</th><td><?php echo $row['job_listing']; ?></td></tr>
-                                                    <tr><th>Job Description</th><td><?php echo $row['job_description']; ?></td></tr>
+                                                    <tr><th>Job Description</th>
+                                                        <td>
+                                                        <?php 
+                                                        if($row['job_description']=='PDF Attached'){
+                                                            echo $row['job_description'].' - <a href="../jobdescriptions/'.$row['ref_id'].'.pdf" target="_BLANK">View Here</a>'; 
+                                                        } else {
+                                                        echo $row['job_description']; 
+                                                        }
+                                                        ?>
+                                                        </td>
+                                                    </tr>
                                                     <tr><th>Experience</th><td><?php echo $row['experience']; ?></td></tr>
                                                     <tr><th>Job Location</th><td><?php echo $row['job_location']; ?></td></tr>
                                                     <tr><th>Created date</th><td><?php echo $row['created_date']; ?></td></tr>

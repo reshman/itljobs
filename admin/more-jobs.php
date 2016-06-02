@@ -88,7 +88,7 @@
                                         $jid = $_REQUEST['param'];
                                         date_default_timezone_set('Asia/Kolkata');
                                         $today_date = date('Y-m-d');
-                                        $query = sprintf("SELECT jc.name as name,j.id,j.job_listing,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order,j.company_name,j.job_description,j.ref_id FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id JOIN users as u ON u.id = j.user_id WHERE j.del_status='%s' AND closing_date>='%s' AND u.id='%s' AND j.id = '%s'", 0, $today_date, $_SESSION['id'], $jid);
+                                        $query = sprintf("SELECT jc.name as name,j.id,j.job_listing,j.ref_id,j.experience,j.job_location,j.created_date,j.closing_date,j.job_category_id,j.active,j.job_order,j.company_name,j.job_description,j.ref_id FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id JOIN users as u ON u.id = j.user_id WHERE j.del_status='%s' AND closing_date>='%s' AND u.id='%s' AND j.id = '%s'", 0, $today_date, $_SESSION['id'], $jid);
 
                                         $result = Db::query($query);
                                         $row = mysql_fetch_assoc($result);
@@ -97,7 +97,16 @@
                                                 <th>Reference Id</th><td><?php echo $row['ref_id']; ?></td>
                                             <tr><th>Category</th><td><?php echo $row['name']; ?></td></tr>
                                             <tr><th>Industry</th><td><?php echo $row['job_listing']; ?></td>
-                                            <tr><th>Description</th><td><?php echo $row['job_description']; ?></td>
+                                            <tr><th>Description</th>
+                                                <td>
+                                                    <?php 
+                                                    if($row['job_description']=="PDF Attached"){
+                                                        echo $row['job_description'].' - <a href="../jobdescriptions/'.$row['ref_id'].'.pdf" target="_BLANK">View Here</a>'; 
+                                                    } else {
+                                                    echo $row['job_description']; 
+                                                    }
+                                                    ?>
+                                                </td>
                                             <tr><th>Company</th><td><?php echo $row['company_name']; ?></td>
                                             <tr><th>Experience</th><td><?php echo $row['experience']; ?></td>
                                             <tr><th>Job Location</th><td><?php echo $row['job_location']; ?></td>
