@@ -275,12 +275,12 @@
                                         
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Job Category</label>
+                                            <label for="exampleInputEmail1">Job Applied For</label>
 
                                             <select class="form-control" name="title">
                                                 <option disabled="" selected="">select</option>
                                                 <?php
-                                                $qry = sprintf("SELECT id,name FROM `job_categories`");
+                                                $qry = sprintf("SELECT id,name FROM `job_categories` ORDER BY name");
                                                 $res = Db::query($qry);
                                                 if(mysql_num_rows($res)){
                                                 while ($row = mysql_fetch_array($res)) {
@@ -386,7 +386,7 @@
                 $.validator.addMethod('salrange', function (value) {
                     return /^[0-9 ]+(-[0-9 ]+)+\s*[A-Z]{3}\s*$/.test(value);
                 }, 'Please enter a valid Salary Range like: lowest Salary - Highest Salary followed by ISO currency code || Example:100000-150000 INR ||. If salary is Fixed give Both side the same salary.');
-                
+               
                 $.validator.addMethod("dateFormat",
                     function(value, element) {
                         return value.match(/^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/);

@@ -98,7 +98,7 @@
 
                                                 <tr>
                                                     <td><?php echo $j; ?></td>
-                                                    <td><?php echo $countrow; ?> new  interview sheduled by <?php echo $data['name'];?>.</td>
+                                                    <td><?php echo $countrow; ?> new  interview scheduled by <?php echo $data['name'];?>.</td>
 <!--                                                    <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_admin.php?delid=<?= $row['id'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>-->
                                                 </tr>
                                                 <?php

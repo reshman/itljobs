@@ -106,27 +106,27 @@
                         if ($_SESSION['regsucc'] != '') {
                             if ($_SESSION['regsucc'] == '1') {
                                 ?>
-                                <div class="alert alert-success">
+                                <div class="alert alert-success" id="status-message">
                                     Thanks for registering. Will contact you soon!
                                 </div>
                             <?php } else if ($_SESSION['regsucc'] == '3') {
                                 ?>
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger" id="status-message">
                                     <?php echo "<span style='color:red'/><b>Already registered!</b></span><br/><br/>"; ?>
                                 </div>
                             <?php } else if ($_SESSION['regsucc'] == '4') {
                                 ?>
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger" id="status-message">
                                     <?php echo "<span style='color:red'/><b>Please upload only DOC or DOCX Files!</b></span><br/><br/>"; ?>
                                 </div>
                             <?php } else if ($_SESSION['regsucc'] == '5') {
                                 ?>
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger" id="status-message">
                                     <?php echo "<span style='color:red'/><b>Incorrect Captcha!!</b></span><br/><br/>"; ?>
                                 </div>
                             <?php } else {
                                 ?>
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger" id="status-message">
                                     <?php echo "<span style='color:red'/><b>Failed</b></span><br/><br/>"; ?>
                                 </div>
                                 <?php
@@ -134,6 +134,9 @@
                             unset($_SESSION['regsucc']);
                         }
                         ?>
+                        <script>
+                            $('#status-message').fadeOut(5000);
+                        </script>
                         <div class="col-md-12">
                             <div class="col-md-12">
 
@@ -265,7 +268,7 @@
                                         <option data-countryCode="AT" value="43">Austria (+43)</option>
                                         <option data-countryCode="AZ" value="994">Azerbaijan (+994)</option>
                                         <option data-countryCode="BS" value="1242">Bahamas (+1242)</option>
-<!--                                        <option data-countryCode="BH" value="973">Bahrain (+973)</option>-->
+                                        <!--                                        <option data-countryCode="BH" value="973">Bahrain (+973)</option>-->
                                         <option data-countryCode="BD" value="880">Bangladesh (+880)</option>
                                         <option data-countryCode="BB" value="1246">Barbados (+1246)</option>
                                         <option data-countryCode="BY" value="375">Belarus (+375)</option>
@@ -353,7 +356,7 @@
                                         <option data-countryCode="KI" value="686">Kiribati (+686)</option>
                                         <option data-countryCode="KP" value="850">Korea North (+850)</option>
                                         <option data-countryCode="KR" value="82">Korea South (+82)</option>
-<!--                                        <option data-countryCode="KW" value="965">Kuwait (+965)</option>-->
+                                        <!--                                        <option data-countryCode="KW" value="965">Kuwait (+965)</option>-->
                                         <option data-countryCode="KG" value="996">Kyrgyzstan (+996)</option>
                                         <option data-countryCode="LA" value="856">Laos (+856)</option>
                                         <option data-countryCode="LV" value="371">Latvia (+371)</option>
@@ -408,7 +411,7 @@
                                         <option data-countryCode="PL" value="48">Poland (+48)</option>
                                         <option data-countryCode="PT" value="351">Portugal (+351)</option>
                                         <option data-countryCode="PR" value="1787">Puerto Rico (+1787)</option>
-<!--                                        <option data-countryCode="QA" value="974">Qatar (+974)</option>-->
+                                        <!--                                        <option data-countryCode="QA" value="974">Qatar (+974)</option>-->
                                         <option data-countryCode="RE" value="262">Reunion (+262)</option>
                                         <option data-countryCode="RO" value="40">Romania (+40)</option>
                                         <option data-countryCode="RU" value="7">Russia (+7)</option>
@@ -450,11 +453,11 @@
                                         <option data-countryCode="TC" value="1649">Turks &amp; Caicos Islands (+1649)</option>
                                         <option data-countryCode="TV" value="688">Tuvalu (+688)</option>
                                         <option data-countryCode="UG" value="256">Uganda (+256)</option>
-                                         <option data-countryCode="GB" value="44">UK (+44)</option> 
+                                        <option data-countryCode="GB" value="44">UK (+44)</option> 
                                         <option data-countryCode="UA" value="380">Ukraine (+380)</option>
-<!--                                        <option data-countryCode="AE" value="971">United Arab Emirates (+971)</option>-->
+                                        <!--                                        <option data-countryCode="AE" value="971">United Arab Emirates (+971)</option>-->
                                         <option data-countryCode="UY" value="598">Uruguay (+598)</option>
-                                         <option data-countryCode="US" value="1">USA (+1)</option> 
+                                        <option data-countryCode="US" value="1">USA (+1)</option> 
                                         <option data-countryCode="UZ" value="7">Uzbekistan (+7)</option>
                                         <option data-countryCode="VU" value="678">Vanuatu (+678)</option>
                                         <option data-countryCode="VA" value="379">Vatican City (+379)</option>
@@ -710,7 +713,7 @@
             }
             return true;
         }, "Please Do not use Numbers or Special Characters");
-        
+
         jQuery.validator.addMethod("checkEmail", function (value) {
             var regex = new RegExp(".+@[a-z]+(\\.)[a-z]+$");
             var key = value;

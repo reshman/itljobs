@@ -109,7 +109,7 @@
                             if ($_SESSION['regsucc'] == '1') {
                                 ?>
 
-                                <div class="alert alert-success alert-dismissable">
+                        <div class="alert alert-success alert-dismissable" id="status-message">
 
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
@@ -121,7 +121,7 @@
                             } else if ($_SESSION['regsucc'] == '2') {
                                 ?>
 
-                                <div class="alert alert-danger alert-dismissable">
+                        <div class="alert alert-danger alert-dismissable" id="status-message">
 
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
@@ -133,7 +133,7 @@
                             } else if ($_SESSION['regsucc'] == '3') {
                                 ?>
 
-                                <div class="alert alert-danger alert-dismissable">
+                        <div class="alert alert-danger alert-dismissable" id="status-message">
 
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
@@ -145,7 +145,7 @@
                             } else if ($_SESSION['regsucc'] == '4') {
                                 ?>
 
-                                <div class="alert alert-danger alert-dismissable">
+                        <div class="alert alert-danger alert-dismissable" id="status-message">
 
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                     File upload failed because of one of the following reasons
@@ -163,7 +163,9 @@
                             unset($_SESSION['regsucc']);
                         }
                         ?>   
-
+                        <script>
+                            $('#status-message').fadeOut(5000);
+                        </script>
                         <div class="col-md-12"> 
                             <div class="col-md-3">
                                 <span class="post-title">COMPANY NAME: </span>    

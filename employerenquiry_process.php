@@ -34,20 +34,19 @@ if($countdtable>0){
  }
 else
     {
-
+       date_default_timezone_set('asia/kolkata');
+       $reg_date         = date("Y-m-d h:i:s");
 
 $sql          = sprintf("INSERT INTO users SET name = '%s', email = '%s', password = '%s', role_id = '%s'", $name, $email, $password, '4'); 
 $resultsql    = Db::query($sql);
 $uid = mysql_insert_id();
 
-
- $sql          = sprintf("INSERT INTO employers SET company_name = '%s', user_id = '%s', designation = '%s', mobile = '%s', enquiry_requirement = '%s',country='%s'", $companyname, $uid, $designation, $mobile, $enquiry,$country); 
+ $sql          = sprintf("INSERT INTO employers SET company_name = '%s', user_id = '%s', designation = '%s', mobile = '%s', enquiry_requirement = '%s',country='%s',created_date='%s'", $companyname, $uid, $designation, $mobile, $enquiry, $country, $reg_date); 
 $resultsql     = Db::query($sql);
 
 $inid = mysql_insert_id();
 
  //insert jon seeker to notification table
-       date_default_timezone_set('asia/kolkata');
        $create_date         = date("Y-m-d h:i:sa");
        $sqlqry = sprintf("INSERT INTO notification(ref_id,type_id,created_date) VALUES('%s','%s','%s')",$inid,3,$create_date);
        $resultqry = Db::query($sqlqry);
