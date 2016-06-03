@@ -121,7 +121,7 @@
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['email']; ?></td>
-                                                    <td><?php echo $row['experience']; ?></td>
+                                                    <td><?php echo $row['experience'].' Year(s)'; ?></td>
                                                     <td><a onclick="downloadfile('../uploads/<?php echo $row['file_name'] ?>')" href="../uploads/<?php echo $row['file_name'] ?>"   target="_blank" download=""><?php echo $row['file_name']; ?></a>
                                                     </td>
                                                    <!-- <td style="text-align: center;"><a onclick="downloadfile('../uploads/<?php echo $row['file_name'] ?>')" href="../uploads/<?php echo $row['file_name'] ?>"   target="_blank" download=""><img src="images/download_icon.png" alt="download" height="20" width="20"></a>

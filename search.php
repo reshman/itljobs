@@ -247,8 +247,8 @@ location.href = 'search-resume.php';
 						                        <tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
-                                                    <td><?php echo $row['india_experience']; ?></td>
-                                                    <td><?php echo $row['abroad_experience']; ?></td>
+                                                    <td><?php echo $row['india_experience'].' Year(s)'; ?></td>
+                                                    <td><?php echo $row['abroad_experience'].' Year(s)'; ?></td>
                                                     <td><?php echo $row['specification']; ?></td>
                                                     <!--<td><a href="uploads/<?php /*echo $row['file_name'] */?>" target="_blank"><?php /*$filename = "uploads/".$row['file_name']; if(file_exists($filename)){echo $row['file_name'];} else { echo 'File Doesnot exits'; } */?></a></td>-->
                                                     <td><a href="download-recruiter-file.php?filename=<?php echo $row['file_name'] ?>" target="_blank"><?php $filename = "uploads/".$row['file_name']; if(file_exists($filename)){echo $row['file_name'];} else { echo 'File Doesnot exits'; } ?></a></td>

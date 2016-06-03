@@ -74,9 +74,9 @@
                                                 <tr><th>Name</th><td><?php echo $row['name']; ?></td></tr>
                                                 <tr><th>E-mail</th><td><?php echo $row['email']; ?></td></tr>
                                                 <tr><th>Specialization</th><td><?php echo $row['specification']; ?></td></tr>
-                                                <tr><th>Abroad Experience</th><td><?php echo $row['abroad_experience']; ?></td></tr>
-                                                <tr><th>Indian Experience</th><td><?php echo $row['india_experience']; ?></td></tr>
-                                                <tr><th>Total Experience</th><td><?php echo $row['experience']; ?></td></tr>
+                                                <tr><th>Abroad Experience</th><td><?php echo $row['abroad_experience'].' Year(s)'; ?></td></tr>
+                                                <tr><th>Indian Experience</th><td><?php echo $row['india_experience'].' Year(s)'; ?></td></tr>
+                                                <tr><th>Total Experience</th><td><?php echo $row['experience'].' Year(s)'; ?></td></tr>
                                                 <tr><th>Qualification</th><td><?php echo $row['qualification']; ?></td></tr>
                                                 <tr><th>Current Location</th><td><?php echo $row['current_location']; ?></td></tr>
                                                 <tr><th>Date of Birth</th><td><?php echo $row['date_of_birth']; ?></td></tr>
