@@ -36,7 +36,6 @@
         <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
         <script type="text/javascript" src="js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
-<<<<<<< Updated upstream
         <script type="text/javascript" src="js/script.js"></script>
 
     </head>
@@ -161,6 +160,9 @@
                             $date = date('Y-m-d');
                             $jobcat = $_GET['jobcat'];
                             $location = $_GET['loc'];
+                            $page = isset($_GET['p']) ? trim($_GET['p']) : 1;
+                            $num_rec_per_page = 10;
+                            $start = ($page - 1) * $num_rec_per_page;
 
                             $jobsArray = array();
                             $jobsSaveArray = array();
@@ -181,7 +183,8 @@
                             }
 
                             $query = sprintf("SELECT j.id,j.company_name,j.ref_id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.created_date,j.salary,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE j.job_listing LIKE '%s' AND j.job_location LIKE '%s' AND j.job_listing LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'", '%' . $jobcat . '%', '%' . $location . '%', '%' . $jobcat . '%', $date, '1', '0');
-
+                            $total_query = $query;
+                            $query = $query . ' LIMIT ' . $start . ',' . $num_rec_per_page;
                             //$query = sprintf("SELECT * FROM `jobs` WHERE active='%s'AND job_listing='%s' AND job_location='%s' AND del_status='%s'",1,$jobcat,$location,0);
 
                             $result = Db::query($query);
@@ -197,7 +200,7 @@
                                             <p>
                                                 <span style="color:#6495ED">Location : </span><?php echo $row['job_location']; ?>&nbsp;&nbsp;&nbsp;
                                                 <span style="color:#6495ED">Company : </span><?php echo $row['company_name']; ?>&nbsp;&nbsp;&nbsp;
-                                                <span style="color:#6495ED">Experience : </span><?php echo $row['experience'].' years'; ?>&nbsp;&nbsp;&nbsp;
+                                                <span style="color:#6495ED">Experience : </span><?php echo $row['experience'] . ' years'; ?>&nbsp;&nbsp;&nbsp;
                                                 <span style="color:#6495ED">Closing Date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>&nbsp;&nbsp;&nbsp;
                                                 <span style="color:#6495ED">Reference Id : </span><?php echo $row['ref_id']; ?>&nbsp;&nbsp;&nbsp;
                                             </p>
@@ -207,14 +210,31 @@
                                                 <div id="view"><a href="javascript:void(0)" onclick="view(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsSaveArray)) ? 'SAVED' : 'SAVE' ?>"></a></div>
                                             <?php } ?>       
                                         </div>
-                                        <?php
-                                    }
-                                } else {
-                                    ?>
-                                    <div class="col-md-12"><h3 style="text-align: center; margin-bottom: 10px;">No jobs matching this alert</h3></div>
-                                <?php } ?>
 
-                            </div>
+                                    </div>
+                                    <?php
+                                }
+                            } else {
+                                ?>
+                                <div class="col-md-12"><h3 style="text-align: center; margin-bottom: 10px;">No jobs matching this alert</h3></div>
+                            <?php } ?>
+                            <?php
+                            $result = Db::query($total_query);
+                            $total_records = mysql_num_rows($result);
+                            $total_pages = ceil($total_records / $num_rec_per_page);
+                            if ($total_pages > 1) 
+                            {
+                                ?>
+                                <center>
+                                    <ul class="pagination">
+                                        <li <?php if ($page == 1) { ?> class='disabled' <?php } ?>><a href="alert_joblist.php?jobcat=<?= $jobcat ?>&loc=<?= $location ?>&p=1"><<</a></li>
+                                        <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+                                            <li <?php if ($page == $i) { ?> class='active' <?php } ?>><a href="alert_joblist.php?jobcat=<?= $jobcat ?>&loc=<?= $location ?>&p=<?= $i ?>"><?= $i ?></a></li>
+                                        <?php } ?>
+                                        <li <?php if ($page == $total_pages) { ?> class='disabled' <?php } ?>><a href="alert_joblist.php?jobcat=<?= $jobcat ?>&loc=<?= $location ?>&p=<?= $total_pages ?>">>></a></li>
+                                    </ul>
+                                </center>
+                            <?php } ?>
 
                         </div>
 

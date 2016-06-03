@@ -40,7 +40,7 @@
 
         <link rel="stylesheet" href="css/jquery-ui.css">
         <script src="js/jquery-ui.js"></script>
-        
+
         <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
         <script>
             $(function () {
@@ -91,10 +91,11 @@
         <!-- home-section
                           ================================================== -->
         <?php
-        $q = trim($_GET['q']);
-        $l = trim($_GET['l']);
-        $keyword = isset($q) ? trim($_GET['q']) : '';
-        $location = isset($l) ? trim($_GET['l']) : '';
+        $keyword = isset($_GET['q']) ? trim($_GET['q']) : '';
+        $location = isset($_GET['l']) ? trim($_GET['l']) : '';
+        $page = isset($_GET['p']) ? trim($_GET['p']) : 1;
+        $num_rec_per_page = 5;
+        $start = ($page - 1) * $num_rec_per_page;
         ?>
         <section class="page-banner-section">
             <div class="container">
@@ -138,8 +139,8 @@
                 }
 
 
-                $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE j.job_location LIKE '%s' AND j.job_listing LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'", '%' . $location . '%', '%' . $keyword . '%', $date, '1', '0');
-                
+                $query = sprintf("SELECT j.id,j.job_listing, j.experience,j.ref_id, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE j.job_location LIKE '%s' AND j.job_listing LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s' LIMIT %d,%d", '%' . $location . '%', '%' . $keyword . '%', $date, '1', '0', $start, $num_rec_per_page);
+
 
                 $result = Db::query($query);
                 while ($row = mysql_fetch_array($result)) {
@@ -151,7 +152,8 @@
                             <p><?php echo $row['job_description']; ?></p>
                             <p><span style="color:#6495ED">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?> ,
                                 <span style="color:#6495ED">Location : </span><?php echo $row['job_location']; ?>,
-                                <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?></p>
+                                <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>
+                                <span style="color:#6495ED">Reference Id : </span><?php echo $row['ref_id']; ?></p>
                             <?php if (isset($_SESSION['log'])): ?>
                                 <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsArray)) ? 'APPLIED' : 'APPLY' ?>"></a></div>
                                 <?php if (!in_array($row['id'], $jobsArray)): ?>
@@ -169,7 +171,22 @@
                     </div>
                     <?php
                 }
-                ?>
+                $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE j.job_location LIKE '%s' AND j.job_listing LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'", '%' . $location . '%', '%' . $keyword . '%', $date, '1', '0');
+                $result = Db::query($query);
+                $total_records = mysql_num_rows($result);
+                $total_pages = ceil($total_records / $num_rec_per_page);
+                if ($total_pages > 1) {
+                    ?>
+                    <center>
+                        <ul class="pagination">
+                            <li <?php if ($page == 1) { ?> class='disabled' <?php } ?>><a href="search-job.php?q=<?= $keyword ?>&l=<?= $location ?>&p=1"><<</a></li>
+                            <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+                                <li <?php if ($page == $i) { ?> class='active' <?php } ?>><a href="search-job.php?q=<?= $keyword ?>&l=<?= $location ?>&p=<?= $i ?>"><?= $i ?></a></li>
+                            <?php } ?>
+                            <li <?php if ($page == $total_pages) { ?> class='disabled' <?php } ?>><a href="search-job.php?q=<?= $keyword ?>&l=<?= $location ?>&p=<?= $total_pages ?>">>></a></li>
+                        </ul>
+                    </center>
+                <?php } ?>
             </div>
         </section>
 
@@ -214,164 +231,164 @@
             </div>
         </div>
 
-    <!-- Revolution slider -->
-    <script type="text/javascript">
+        <!-- Revolution slider -->
+        <script type="text/javascript">
 
-        $(function () {
-            $('#popup-login').on('click', function () {
-                var email = $.trim($('#popup-email').val());
-                var password = $.trim($('#popup-password').val());
-                if (email != '' && password != '') {
-                    $.ajax({
-                        url: 'popup-login.php?email=' + email + '&password=' + password
-                    }).done(function (status) {
-                        if (status == 'SUCCESS') {
-                            window.location.reload();
-                        }
-                    })
-                }
-            });
-        });
-
-        function view(job_id, $this) {
-            var current = $this;
-            $(current).children().val('SAVING...');
-            $.ajax({
-                url: 'ajax-jobs-saved.php?jobid=' + job_id
-            }).done(function (data) {
-                if (data == 'SUCCESS') {
-                    $(current).children().val('SAVED');
-                }
-            });
-        }
-
-        function apply(job_id, $this) {
-            var current = $this;
-            $(current).children().val('APPLYING...');
-            $.ajax({
-                url: 'ajax-jobs-applied.php?jobid=' + job_id
-            }).done(function (data) {
-                if (data == 'SUCCESS') {
-                    viewDiv = $(current).parent().next();
-                    $(viewDiv).hide();
-                    $(current).children().val('APPLIED');
-                }
-            });
-        }
-
-        jQuery(document).ready(function () {
-
-            jQuery('.tp-banner').show().revolution(
-                    {
-                        dottedOverlay: "none",
-                        delay: 10000,
-                        startwidth: 1140,
-                        startheight: 450,
-                        hideThumbs: 200,
-                        thumbWidth: 100,
-                        thumbHeight: 50,
-                        thumbAmount: 5,
-                        navigationType: "bullet",
-                        touchenabled: "on",
-                        onHoverStop: "off",
-                        swipe_velocity: 0.7,
-                        swipe_min_touches: 1,
-                        swipe_max_touches: 1,
-                        drag_block_vertical: false,
-                        parallax: "mouse",
-                        parallaxBgFreeze: "on",
-                        parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
-                        keyboardNavigation: "off",
-                        navigationHAlign: "center",
-                        navigationVAlign: "bottom",
-                        navigationHOffset: 0,
-                        navigationVOffset: "center",
-                        shadow: 0,
-                        spinner: "spinner4",
-                        stopLoop: "off",
-                        stopAfterLoops: -1,
-                        stopAtSlide: -1,
-                        shuffle: "off",
-                        autoHeight: "off",
-                        forceFullWidth: "off",
-                        hideThumbsOnMobile: "off",
-                        hideNavDelayOnMobile: 1500,
-                        hideBulletsOnMobile: "off",
-                        hideArrowsOnMobile: "off",
-                        hideThumbsUnderResolution: 0,
-                        hideSliderAtLimit: 0,
-                        hideCaptionAtLimit: 0,
-                        hideAllCaptionAtLilmit: 0,
-                        startWithSlide: 0,
-                        fullScreenOffsetContainer: ".header"
-                    });
-
-        });	//ready
-
-        //isotope
-        jQuery(document).ready(function () {
-            var $container = $('.iso-call');
-            // init
-            $container.isotope({
-                // options
-                itemSelector: '.services-project, .project-post',
-                masonry: {
-                    columnWidth: '.default-size'
-                }
-            });
-        });	//ready
-    </script>
-
-    <script>
-        $(function () {
-
-            $('#box1').autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: 'searchkeywordindex.php',
-                        dataType: "json",
-                        data: {
-                            query: $('#box1').val(),
-                            type: 'search'
-                        },
-                        success: function (data) {
-                            response($.map(data, function (item) {
-                                return {
-                                    label: item,
-                                    value: item
-                                }
-                            }));
-                        }
-                    });
-                },
-                autoFocus: true,
-                minLength: 1
+            $(function () {
+                $('#popup-login').on('click', function () {
+                    var email = $.trim($('#popup-email').val());
+                    var password = $.trim($('#popup-password').val());
+                    if (email != '' && password != '') {
+                        $.ajax({
+                            url: 'popup-login.php?email=' + email + '&password=' + password
+                        }).done(function (status) {
+                            if (status == 'SUCCESS') {
+                                window.location.reload();
+                            }
+                        })
+                    }
+                });
             });
 
-            $('#box2').autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: 'searchlocationindex.php',
-                        dataType: "json",
-                        data: {
-                            query: $('#box2').val(),
-                            type: 'search'
-                        },
-                        success: function (data) {
-                            response($.map(data, function (item) {
-                                return {
-                                    label: item,
-                                    value: item
-                                }
-                            }));
-                        }
-                    });
-                },
-                autoFocus: true,
-                minLength: 0
-            });
+            function view(job_id, $this) {
+                var current = $this;
+                $(current).children().val('SAVING...');
+                $.ajax({
+                    url: 'ajax-jobs-saved.php?jobid=' + job_id
+                }).done(function (data) {
+                    if (data == 'SUCCESS') {
+                        $(current).children().val('SAVED');
+                    }
+                });
+            }
 
-        });
-    </script>
-</body>
+            function apply(job_id, $this) {
+                var current = $this;
+                $(current).children().val('APPLYING...');
+                $.ajax({
+                    url: 'ajax-jobs-applied.php?jobid=' + job_id
+                }).done(function (data) {
+                    if (data == 'SUCCESS') {
+                        viewDiv = $(current).parent().next();
+                        $(viewDiv).hide();
+                        $(current).children().val('APPLIED');
+                    }
+                });
+            }
+
+            jQuery(document).ready(function () {
+
+                jQuery('.tp-banner').show().revolution(
+                        {
+                            dottedOverlay: "none",
+                            delay: 10000,
+                            startwidth: 1140,
+                            startheight: 450,
+                            hideThumbs: 200,
+                            thumbWidth: 100,
+                            thumbHeight: 50,
+                            thumbAmount: 5,
+                            navigationType: "bullet",
+                            touchenabled: "on",
+                            onHoverStop: "off",
+                            swipe_velocity: 0.7,
+                            swipe_min_touches: 1,
+                            swipe_max_touches: 1,
+                            drag_block_vertical: false,
+                            parallax: "mouse",
+                            parallaxBgFreeze: "on",
+                            parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
+                            keyboardNavigation: "off",
+                            navigationHAlign: "center",
+                            navigationVAlign: "bottom",
+                            navigationHOffset: 0,
+                            navigationVOffset: "center",
+                            shadow: 0,
+                            spinner: "spinner4",
+                            stopLoop: "off",
+                            stopAfterLoops: -1,
+                            stopAtSlide: -1,
+                            shuffle: "off",
+                            autoHeight: "off",
+                            forceFullWidth: "off",
+                            hideThumbsOnMobile: "off",
+                            hideNavDelayOnMobile: 1500,
+                            hideBulletsOnMobile: "off",
+                            hideArrowsOnMobile: "off",
+                            hideThumbsUnderResolution: 0,
+                            hideSliderAtLimit: 0,
+                            hideCaptionAtLimit: 0,
+                            hideAllCaptionAtLilmit: 0,
+                            startWithSlide: 0,
+                            fullScreenOffsetContainer: ".header"
+                        });
+
+            });	//ready
+
+            //isotope
+            jQuery(document).ready(function () {
+                var $container = $('.iso-call');
+                // init
+                $container.isotope({
+                    // options
+                    itemSelector: '.services-project, .project-post',
+                    masonry: {
+                        columnWidth: '.default-size'
+                    }
+                });
+            });	//ready
+        </script>
+
+        <script>
+            $(function () {
+
+                $('#box1').autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: 'searchkeywordindex.php',
+                            dataType: "json",
+                            data: {
+                                query: $('#box1').val(),
+                                type: 'search'
+                            },
+                            success: function (data) {
+                                response($.map(data, function (item) {
+                                    return {
+                                        label: item,
+                                        value: item
+                                    }
+                                }));
+                            }
+                        });
+                    },
+                    autoFocus: true,
+                    minLength: 1
+                });
+
+                $('#box2').autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: 'searchlocationindex.php',
+                            dataType: "json",
+                            data: {
+                                query: $('#box2').val(),
+                                type: 'search'
+                            },
+                            success: function (data) {
+                                response($.map(data, function (item) {
+                                    return {
+                                        label: item,
+                                        value: item
+                                    }
+                                }));
+                            }
+                        });
+                    },
+                    autoFocus: true,
+                    minLength: 0
+                });
+
+            });
+        </script>
+    </body>
 </html>

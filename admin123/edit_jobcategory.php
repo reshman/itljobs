@@ -260,13 +260,13 @@
                     },
                     ignore: 'input[type=hidden]',
                     rules: {
-                        title: {required: true, lettersonly: true},
+                        title: {required: true},
                         'industry[]': {letters: true}
                     },
                     // Specify the validation error messages
 
                     messages: {
-                        title: {required: "Please enter title", lettersonly: "Please enter letters only"}
+                        title: {required: "Please enter title"}
 
                     },
                     submitHandler: function (form) {
@@ -275,10 +275,6 @@
                     }
 
                 });
-
-                jQuery.validator.addMethod("lettersonly", function (value, element) {
-                    return this.optional(element) || /^[a-z\s]+$/i.test(value);
-                }, "Letters only please");
 
                 $('#industry').change(function () {
                     $('[name="industry[]"]').valid();
@@ -293,7 +289,7 @@
                     $('#errMsg').html("<strong></strong>");
                     if (val.length > 0) {
                         for (i = 0; i < val.length; i++) {
-                            var test = /^[a-z\.\+\-\&\:\/\s]+$/i.test(val[i]);
+                            var test = /^[a-z\.\+\-\&\:\,\(\)\/\s]+$/i.test(val[i]);
                             if (!test) {
                                 count++;
                                 flag = false;
