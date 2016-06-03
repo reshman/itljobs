@@ -4,7 +4,7 @@
 				<div class="top-line">
 					<div class="container">
 						<div class="row">
-                            <div class="col-md-10 col-xs-12 col-sm-6"><span class="navbar-brand" href="index.html"><img src="images/logo.png" alt=""></span></div>
+                                                    <div class="col-md-10 col-xs-12 col-sm-6"><span class="navbar-brand"><a href="index.php"><img src="images/logo.png" alt=""></a></span></div>
 							<div class="col-md-2 col-xs-12">
                                 <div class="itl-top"><img src="images/top-logo.jpg" alt=""></div>
 							</div>	

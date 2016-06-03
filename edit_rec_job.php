@@ -231,7 +231,7 @@ if ($_GET) {
                             <div class="col-md-12">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-8 jdeditor">
-                                    <textarea class="ckeditor" id="job_description" placeholder="Job Description" name="job_description"> <?= $jrow['job_description'] ?></textarea><br>
+                                    <textarea class="ckeditor" id="job_description" placeholder="Job Description" name="job_description"> <?php if($jrow['job_description']!='PDF Attached'){ echo $jrow["job_description"]; } ?></textarea><br>
                                 </div>
                             </div>
                             <div class="col-md-12">
