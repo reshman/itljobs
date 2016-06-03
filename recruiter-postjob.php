@@ -159,6 +159,18 @@
                                 </div>
 
                                 <?php
+                            } else if ($_SESSION['regsucc'] == '5') {
+                                ?>
+
+                        <div class="alert alert-danger alert-dismissable" id="status-message">
+
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                    Job description missing. Either add job description by text or upload a PDF. <a href="#" class="alert-link"></a>
+
+                                </div>
+
+                                <?php
                             }
                             unset($_SESSION['regsucc']);
                         }
@@ -420,7 +432,7 @@
                 }, "Please use letters, '&' and '-' only");
                 
                 $.validator.addMethod('experience', function (value) {
-                    return /^[0-9] [A-Za-z]{4,}( - [0-9] [A-Za-z]{4,}){0,1}$/.test(value);
+                    return /^[0-9]+ [A-Za-z]{4,}( - [0-9]+ [A-Za-z]{4,}){0,1}$/.test(value);
                 }, 'Please enter valid experience in or months or year as in range as low-High. Example : 6 months - 1 year');
                 // Setup form validation on the #register-form element
 

@@ -136,6 +136,81 @@ if ($_GET) {
                         }
                         ?>
                         <form id="contact-form" method="POST" action="recruiter-edit-jobprocess.php" enctype="multipart/form-data">
+                            <?php
+                            if (isset($_SESSION['regsucc'])) {
+
+                                if ($_SESSION['regsucc'] == '1') {
+                                    ?>
+
+                                    <div class="alert alert-success alert-dismissable" id="status-message">
+
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                        Job Added successfully <a href="#" class="alert-link"></a>.
+
+                                    </div>
+
+                                    <?php
+                                } else if ($_SESSION['regsucc'] == '2') {
+                                    ?>
+
+                                    <div class="alert alert-danger alert-dismissable" id="status-message">
+
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                        Failed <a href="#" class="alert-link"></a>
+
+                                    </div>
+
+                                    <?php
+                                } else if ($_SESSION['regsucc'] == '3') {
+                                    ?>
+
+                                    <div class="alert alert-danger alert-dismissable" id="status-message">
+
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                        Incorrect salary Range <a href="#" class="alert-link"></a>.
+
+                                    </div>
+
+                                    <?php
+                                } else if ($_SESSION['regsucc'] == '4') {
+                                    ?>
+
+                                    <div class="alert alert-danger alert-dismissable" id="status-message">
+
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        File upload failed because of one of the following reasons
+                                        <ol>
+                                            <li>Incorrect File type</li>
+                                            <li>Size of file exceeds 10 MB</li>
+                                            <li>Server Error</li>
+                                        </ol>
+                                        <a href="#" class="alert-link"></a>.
+
+                                    </div>
+
+                                    <?php
+                                } else if ($_SESSION['regsucc'] == '5') {
+                                    ?>
+
+                                    <div class="alert alert-danger alert-dismissable" id="status-message">
+
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                        Job description missing. Either add job description by text or upload a PDF. <a href="#" class="alert-link"></a>
+
+                                    </div>
+
+                                    <?php
+                                }
+                                unset($_SESSION['regsucc']);
+                            }
+                            ?>   
+                            <script>
+                                $('#status-message').fadeOut(5000);
+                            </script>
                             <input id="id" name="id" value="<?php echo $id; ?>" hidden>
                             <input id="id" name="ref_id" value="<?php echo $jrow['ref_id']; ?>" hidden>
                             <div class="col-md-12"> 
@@ -179,14 +254,14 @@ if ($_GET) {
                                     <span class="post-title">INDUSTRY:</span>    
                                 </div>
 
-<!--                                <div class="col-md-8">
-                                    <input name="companytitle" id="companytitle" type="text" placeholder="JOB TITLE" value="<?php //echo $jrow['job_listing']; ?>">    
-                                </div>-->
+                                <!--                                <div class="col-md-8">
+                                                                    <input name="companytitle" id="companytitle" type="text" placeholder="JOB TITLE" value="<?php //echo $jrow['job_listing'];  ?>">    
+                                                                </div>-->
                                 <div class="col-md-8" id="industry">
-                                <select name="sub_category" id="sub_category">
-                                    <option></option>
+                                    <select name="sub_category" id="sub_category">
+                                        <option></option>
                                         <?php
-                                        $qry = sprintf("SELECT i.id as id,i.industry_name as name FROM industries i LEFT JOIN industry_category ic ON i.id=ic.industry_id WHERE category_id=%d",$jrow['job_category_id']);
+                                        $qry = sprintf("SELECT i.id as id,i.industry_name as name FROM industries i LEFT JOIN industry_category ic ON i.id=ic.industry_id WHERE category_id=%d", $jrow['job_category_id']);
                                         $res = Db::query($qry);
                                         while ($row = mysql_fetch_array($res)) {
                                             ?>
@@ -198,12 +273,12 @@ if ($_GET) {
 
                                         <?php } ?>
 
-                                </select>
-                            </div>
-                            
-                            <div class="col-md-8" id="response">
-                                
-                            </div>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-8" id="response">
+
+                                </div>
 
                             </div> 
 
@@ -231,14 +306,16 @@ if ($_GET) {
                             <div class="col-md-12">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-8 jdeditor">
-                                    <textarea class="ckeditor" id="job_description" placeholder="Job Description" name="job_description"> <?php if($jrow['job_description']!='PDF Attached'){ echo $jrow["job_description"]; } ?></textarea><br>
+                                    <textarea class="ckeditor" id="job_description" placeholder="Job Description" name="job_description"> <?php if ($jrow['job_description'] != 'PDF Attached') {
+                                        echo $jrow["job_description"];
+                                    } ?></textarea><br>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-8 jdfile">
                                     <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="CHOOSE FILE (Only PDF)" >
-                                    <label for="f02"><?php echo $jrow['ref_id'].'pdf '; ?>CHOOSE FILE (Only PDF)</label>
+                                    <label for="f02"><?php echo $jrow['ref_id'] . 'pdf '; ?>CHOOSE FILE (Only PDF)</label>
                                 </div>
                             </div> 
                             <div class="col-md-12"> 
@@ -336,15 +413,15 @@ if ($_GET) {
                                 <div class="col-md-2">
                                     <select name="salarycat">
                                         <option <?php
-                                        if ($per[1] == "PER YEAR") {
+                                    if ($per[1] == "PER YEAR") {
                                             ?>
                                                 selected
                                                 <?php
                                             }
                                             ?>>PER YEAR</option>    
                                         <option<?php
-                                        if ($per[1] == "PER MONTH") {
-                                            ?>
+                                    if ($per[1] == "PER MONTH") {
+                                                ?>
                                                 selected
                                                 <?php
                                             }
@@ -378,29 +455,29 @@ if ($_GET) {
             <!-- footer 
                             ================================================== -->
 
-            <?php include("footer.php"); ?>
+    <?php include("footer.php"); ?>
 
             <!-- End footer -->
 
             <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-            
+
             <script type="text/javascript">
-    $(document).ready(function () {
-      
-        $("select.category").change(function () {
-            var jobcat = $(".category option:selected").val();
-            $.ajax({
-                type: "POST",
-                url: "category.php",
-                data: {jobcat: jobcat}
-            }).done(function (data) {
-                $("#response").html(data);
-                $("#industry").hide();
-            });
-        });
-     });
-    </script>
-    
+                            $(document).ready(function () {
+
+                                $("select.category").change(function () {
+                                    var jobcat = $(".category option:selected").val();
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "category.php",
+                                        data: {jobcat: jobcat}
+                                    }).done(function (data) {
+                                        $("#response").html(data);
+                                        $("#industry").hide();
+                                    });
+                                });
+                            });
+            </script>
+
             <script>
 
                 // When the browser is ready...

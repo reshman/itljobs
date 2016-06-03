@@ -30,6 +30,14 @@ if ($minsal > $maxsal) {
     die();
 }
 
+if ($description == '') {
+    if (!file_exists('jobdescriptions/'.$ref_id.'.pdf')) {
+        $_SESSION['regsucc'] = 5;
+        echo "<script type='text/javascript'> window.location.href = '" . $urlin . "'; </script>";
+        die();
+    }
+}
+
 $create_date1 = trim($_POST['create_date']);
 
 $create_date1 = explode('/', $create_date1);
