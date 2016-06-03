@@ -430,9 +430,9 @@ if ($_GET) {
                     }, "Please use letters, '&' and '-' only");
 
                     $.validator.addMethod('experience', function (value) {
-                        return /^[0-9 A-Za-z]+((-){0,1}[0-9 A-Za-z]+){0,1}$/.test(value);
+                        return /^[0-9] [A-Za-z]{4,}( - [0-9] [A-Za-z]{4,}){0,1}$/.test(value);
 
-                    }, 'Please enter valid experience in years or months or range as low-High.');
+                    }, 'Please enter valid experience in or months or year as in range as low-High. Example : 6 months - 1 year');
 
                     // Setup form validation on the #register-form element
 

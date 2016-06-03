@@ -451,7 +451,7 @@
                     messages: {
                         companyname: {required: "Please Enter company name"},
                         sub_category: {required: "Please Enter Industry"},
-                        description: "Please Enter Description",
+                        job_description: {required: "Please Enter Job Description"},
                         location: "Please Enter Location",
                         jobtype: "Please Enter Jobtype",
                         salary: {required: "Please Enter Salary"},
