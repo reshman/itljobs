@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="col-md-8">
-                            <select name="category" id="category">
+                            <select name="category" id="category" required>
                                 <option selected disabled>CATEGORY</option>
                                 <?php
                                 $qry = sprintf("SELECT * FROM `job_categories` ORDER BY name");

@@ -200,7 +200,7 @@ if ($_GET) {
                                             <?php } ?>
                                         </p>
                                         <h3>EXPERIENCE</h3>
-                                        <p><?php echo $row['experience']; ?></p>
+                                        <p><?php echo $row['experience'].' Year(s)'; ?></p>
                                         <h3>JOB LOCATION</h3>
                                         <p><?php echo $row['job_location']; ?></p>
                                         <h3>CREATED DATE</h3>

@@ -71,6 +71,8 @@ $closing_date = implode('-', $closing_date1);
         }
         $uploadpath = 'jobdescriptions/' . $file;     // gets the file name
         // If no errors, upload the image, else, output the errors
+        chmod($uploadpath, 0644);
+        unlink($uploadpath);
         if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $uploadpath)) {
             
         } else {
