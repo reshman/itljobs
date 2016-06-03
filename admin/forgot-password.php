@@ -8,7 +8,7 @@ $urlin = "index.php";
 $femail = $_POST['femail'];
 //echo $femail; 
 
- $sql = sprintf("SELECT email,name FROM users WHERE email='%s' AND role_id ='%s'",$femail,'2'); 
+ $sql = sprintf("SELECT email,name FROM users WHERE email='%s' AND role_id ='%s' AND del_status='%d'",$femail,'2',0); 
 
 $result = Db::query($sql);
 //while ($row = mysql_fetch_array($result)) {
@@ -27,8 +27,8 @@ function generateRandomString($length = 8) {
 $key = generateRandomString();
 $keymd = md5($key);
 //end random key generation
-mysql_query("Update users set password='$keymd' where email='$femail' AND role_id='2'");
-
+$query = sprintf("Update users set password='%s' where email='%s' AND role_id='%d' AND del_status='%d'",$keymd,$femail,2,0);
+$res = Db::query($query);
 //send key
 
     $row = mysql_fetch_assoc($result);

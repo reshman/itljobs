@@ -171,7 +171,7 @@
                                     <select name="job_category_id" class="job">
                                         <option disabled="" selected="">JOB APPLIED FOR</option>
                                         <?php
-                                        $qry = sprintf("SELECT * FROM `job_categories`");
+                                        $qry = sprintf("SELECT * FROM `job_categories` ORDER BY name");
                                         $res = Db::query($qry);
                                         while ($row = mysql_fetch_array($res)) {
                                             ?>

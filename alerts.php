@@ -185,9 +185,8 @@
                                 <?php include('myprofile-sidemenu.php'); ?>
                                 <div class="col-md-10">
                                     <?php
-                                    if ($_GET) {
-                                        $status = $_GET['status'];
-                                        if ($status == 0) {
+                                    if (isset($_SESSION['delsucc'])) {
+                                        if ($_SESSION['delsucc']) {
                                             ?>
                                             <div class="bg-success text-center" id="status-message" style="padding: 10px; margin: 10px;">Alert Deleted Successfully</div>
                                             <?php
@@ -196,6 +195,7 @@
                                             <div class="bg-danger text-center" id="status-message" style="padding: 10px; margin: 10px;">Alert Deletion Failed</div>
                                             <?php
                                         }
+                                        unset($_SESSION['delsucc']);
                                     }
                                     ?>
                                     <script>

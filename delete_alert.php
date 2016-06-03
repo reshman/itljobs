@@ -3,13 +3,16 @@
 if ($_GET) {
     include 'db.php';
     $id = $_GET['id'];
-
+    session_start();
+    
     $sql = sprintf("DELETE FROM alerts WHERE id=%d", $id);
     $resultsql = Db::query($sql);
 
     if ($resultsql) {
-        echo '<script> window.location.href="alerts.php?status=0"; </script>';
+        $_SESSION['delsucc'] = TRUE;
+        echo '<script> window.location.href="alerts.php"; </script>';
     } else {
-        echo '<script> window.location.href="alerts.php?status=1"; </script>';
+        $_SESSION['delsucc'] = FALSE;
+        echo '<script> window.location.href="alerts.php"; </script>';
     }
 }

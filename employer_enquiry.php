@@ -117,6 +117,7 @@
                                 <div class="row">
                                     <div id="error" style="display:none; color:#C80000; margin-left: 20px; font-size:16px;"><b>Invalid Email</b></div>
                                 </div>
+                                <div class="bg-success text-center" id="success-message" style="padding: 10px; margin: 10px;"></div>
                             </div>
 
                             <div class="modal-footer">
@@ -540,6 +541,7 @@
 
         <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
         <script>
+                                $('#success-message').hide();
                                 $('#forgot-submit').click(function () {
 
                                     var femail = document.getElementById("field-forgotemail").value;
@@ -550,8 +552,9 @@
                                         data: {femail: femail},
                                         success: function (data) {
                                             if (data == '1') {
-                                                alert("Check your email for your new password.");
-                                                window.location.href = "index.php";
+                                                $('#success-message').fadeIn(1000).html("Check your mail for new password!");
+                                                $('#success-message').fadeOut(5000);
+                                                $('#myModal').fadeOut(5000);
                                                 return true;
                                             } else {
                                                 $('#error').show();

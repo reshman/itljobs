@@ -1,6 +1,6 @@
 <?php
 
-//session_start();
+session_start();
 //include("logincheck.php");
 
 require_once("db.php");
@@ -8,7 +8,6 @@ require_once("db.php");
 $urlin = "list_admin.php";
 
 $delId = isset($_GET['delid']) ? $_GET['delid'] : 0;
-
 
 
 if ($delId) {
@@ -22,7 +21,7 @@ if ($delId) {
     $result = Db::query($sql);
 }
 
-if ($result) {
+if ($resultDelCon) {
     $_SESSION['delsucc'] = TRUE;
 } else {
     $_SESSION['delsucc'] = FALSE;

@@ -8,7 +8,7 @@ $email    = (trim($_POST['email']));
 $pass     =(trim($_POST['password']));
 $password = MD5($pass);
 
-$query = sprintf("SELECT * FROM `users` WHERE email='%s' AND password='%s' AND role_id='%s'AND active='%s'",$email,$password,2,1);
+$query = sprintf("SELECT * FROM `users` WHERE email='%s' AND password='%s' AND role_id='%s'AND active='%s' AND del_status='%s'",$email,$password,2,1,0);
 $result = Db::query($query);
 
     $row = mysql_fetch_assoc($result);
