@@ -238,7 +238,7 @@ if ($_GET) {
                                 <div class="col-md-3"></div>
                                 <div class="col-md-8 jdfile">
                                     <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="CHOOSE FILE (Only PDF)" >
-                                    <label for="f02">CHOOSE FILE (Only PDF)</label>
+                                    <label for="f02"><?php echo $jrow['ref_id'].'pdf '; ?>CHOOSE FILE (Only PDF)</label>
                                 </div>
                             </div> 
                             <div class="col-md-12"> 
