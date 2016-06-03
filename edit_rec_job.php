@@ -157,7 +157,7 @@ if ($_GET) {
                                 <div class="col-md-8">
                                     <select name="category" class="category">
                                         <?php
-                                        $qry = sprintf("SELECT * FROM `job_categories`");
+                                        $qry = sprintf("SELECT * FROM `job_categories` ORDER BY name");
                                         $res = Db::query($qry);
                                         while ($row = mysql_fetch_array($res)) {
                                             ?>
