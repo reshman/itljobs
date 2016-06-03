@@ -176,7 +176,7 @@
 
                                                     <option <?php echo (in_array($rowind['industry_name'], $rowArr)) ? 'selected == selected' : ''; ?> value="<?php echo $rowind['industry_name']; ?>"><?php echo $rowind['industry_name']; ?></option>
 
-                                                    <?php 
+                                                    <?php
                                                 }
                                                 ?>
                                             </select>
@@ -230,99 +230,107 @@
 
 
 <script>
-            $('.js-data-example-ajax').select2({
-                tags: true
+    $('.js-data-example-ajax').select2({
+        tags: true
 
-            });
+    });
 </script>
 
-        <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
 
     <!--<script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>-->
 
-        <script>
-            // When the browser is ready...
+<script>
+// When the browser is ready...
 
-            $(function () {
-                // Setup form validation on the #register-form element
+    $(function () {
+// Setup form validation on the #register-form element
 
-                $("#frm").validate({
-                    // Specify the validation rules
-                    errorPlacement: function (error, element) {
-                        switch (element.attr("name")) {
-                            case 'industry[]':
-                                error.insertAfter($("#errMsg"));
-                                break;
-                            default:
-                                error.insertAfter(element);
-                        }
-                    },
-                    ignore: 'input[type=hidden]',
-                    rules: {
-                        title: {required: true},
-                        'industry[]': {letters: true}
-                    },
-                    // Specify the validation error messages
+        $("#frm").validate({
+            // Specify the validation rules
+            errorPlacement: function (error, element) {
+                switch (element.attr("name")) {
+                    case 'industry[]':
+                        error.insertAfter($("#errMsg"));
+                        break;
+                    default:
+                        error.insertAfter(element);
+                }
+            },
+            ignore: 'input[type=hidden]',
+            rules: {
+                title: {required: true, lettersonly:true},
+                'industry[]': {letters: true}
+            },
+            // Specify the validation error messages
 
-                    messages: {
-                        title: {required: "Please enter title"}
+            messages: {
+                title: {required: "Please enter title"}
 
-                    },
-                    submitHandler: function (form) {
+            },
+            submitHandler: function (form) {
 
-                        form.submit();
+                form.submit();
+            }
+
+        });
+
+
+
+        jQuery.validator.addMethod("lettersonly", function (value, element) {
+            console.log(value);
+            return this.optional(element) || /^[a-z\.\+\-\&\:\,\(\)\/\s]+$/i.test(value);
+        }, "Invalid Category name. Allowed Special Charecters are - (,,(,),.,+,-,&,:,/)");
+
+        $('#industry').change(function () {
+            $('[name="industry[]"]').valid();
+        });
+
+        $.validator.addMethod("letters", function (value, element) {
+            var flag = true, i, count = 0;
+
+
+            var val = $('.select2-selection__choice').map(function () {
+                return $(this).attr('title');
+            }).get();
+            $('#errMsg').html("<strong></strong>");
+            if (val.length > 0) {
+                for (i = 0; i < val.length; i++) {
+                    var test = /^[a-z\.\+\-\&\:\,\(\)\/\s]+$/i.test(val[i]);
+                    if (!test) {
+                        count++;
+                        flag = false;
                     }
+                }
+                if (flag) {
+                    return true;
+                } else {
+                    $('#errMsg').html("<strong>" + count + " Number of Industrie(s) are Invalid. Allowed Special Charecters are - (.,+,-,&,:,/)</strong>");
+                    return false;
+                }
 
-                });
+            } else {
+                $('#errMsg').html("<strong>Industry required</strong>");
+                return false;
+            }
+        });
 
-                $('#industry').change(function () {
-                    $('[name="industry[]"]').valid();
-                });
+    });
 
-                $.validator.addMethod("letters", function (value, element) {
-                    var flag = true, i, count = 0;
-
-                    var val = $('.select2-selection__choice').map(function () {
-                        return $(this).attr('title');
-                    }).get();
-                    $('#errMsg').html("<strong></strong>");
-                    if (val.length > 0) {
-                        for (i = 0; i < val.length; i++) {
-                            var test = /^[a-z\.\+\-\&\:\,\(\)\/\s]+$/i.test(val[i]);
-                            if (!test) {
-                                count++;
-                                flag = false;
-                            }
-                        }
-                        if (flag) {                            
-                            return true;
-                        } else {
-                            $('#errMsg').html("<strong>" + count + " Number of Industrie(s) are Invalid. Allowed Special Charecters are - (.,+,-,&,:,/)</strong>");
-                            return false;
-                        }
-
-                    } else {
-                        $('#errMsg').html("<strong>Industry required</strong>");
-                        return false;
-                    }
-                });
-
-            });
-
-        </script> 
+</script> 
 <!--<script type="text/javascript">
 $(function () {
 
 
 var upload_number = 2;
 $('#addUpload').on('click', function(){
-    var moreUploadTag = '';
-    moreUploadTag += '<div class="form-group"><label for="exampleInputFile"' + upload_number + '>Upload File ' + upload_number + '</label>';
-    moreUploadTag += '<input type="file" id="upload_file' + upload_number + '" name="upload_file' + upload_number + '"/>';
-    moreUploadTag += '&nbsp;<a href="javascript:del_file(' + upload_number + ')" style="cursor:pointer;" onclick="return confirm(\"Are you really want to delete ?\")">Delete ' + upload_number + '</a></div>';
-    $('<dl id="delete_file' + upload_number + '">' + moreUploadTag + '</dl>').fadeIn('slow').appendTo('#moreImageUpload');
-    upload_number++;
+var moreUploadTag = '';
+moreUploadTag += '<div class="form-group"><label for="exampleInputFile"' + upload_number + '>Upload File ' + upload_number + '</label>';
+moreUploadTag += '<input type="file" id="upload_file' + upload_number + '" name="upload_file' + upload_number + '"/>';
+moreUploadTag += '&nbsp;<a href="javascript:del_file(' + upload_number + ')" style="cursor:pointer;" onclick="return confirm(\"Are you really want to delete ?\")">Delete ' + upload_number + '</a></div>';
+$('<dl id="delete_file' + upload_number + '">' + moreUploadTag + '</dl>').fadeIn('slow').appendTo('#moreImageUpload');
+upload_number++;
 })
 });
 

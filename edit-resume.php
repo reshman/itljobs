@@ -99,7 +99,7 @@
             <section class="register-section services-offer-section services-page-section">
                 <div class="container">
                     <div class="title-section">
-                        <h1>EDIT PROFILE</h1>
+                        <h1>EDIT MY PROFILE</h1>
                     </div>
                     <?php include('myprofile-sidemenu.php'); ?>
                     <div class="col-md-10">

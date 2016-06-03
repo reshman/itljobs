@@ -153,7 +153,7 @@
                 <div class="container">
 
                     <div class="title-section">
-                        <h1>EDIT RECRUITER PROFILE</h1>
+                        <h1>EDIT MY PROFILE</h1>
                     </div>
                     <?php include('myprofile-sidemenu.php'); ?>
                     <div class="col-lg-10">

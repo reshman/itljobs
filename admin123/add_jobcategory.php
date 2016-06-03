@@ -243,7 +243,7 @@
             // Specify the validation error messages
 
             messages: {
-                title: {required: "Please enter title", lettersonly: "Please enter letters only"}
+                title: {required: "Please enter title"}
             },
             submitHandler: function (form) {
 
@@ -258,8 +258,8 @@
 
         jQuery.validator.addMethod("lettersonly", function (value, element) {
             console.log(value);
-            return this.optional(element) || /^[a-z\s]+$/i.test(value);
-        }, "Letters only please");
+            return this.optional(element) || /^[a-z\.\+\-\&\:\,\(\)\/\s]+$/i.test(value);
+        }, "Invalid Category name. Allowed Special Charecters are - (,,(,),.,+,-,&,:,/)");
 
         $.validator.addMethod("letters", function (value, element) {
             var flag = true, i, count=0;
@@ -270,7 +270,7 @@
             
             if (val.length > 0) {
                 for (i = 0; i < val.length; i++) {
-                    var test = /^[a-z\.\+\-\&\:\/\s]+$/i.test(val[i]);
+                    var test = /^[a-z\.\+\-\&\:\,\(\)\/\s]+$/i.test(val[i]);
                     if (!test) {
                         count++;
                         flag=false;
@@ -280,7 +280,7 @@
                     $('#errMsg').html("");
                     return true;
                 } else {
-                    $('#errMsg').html("<strong>"+count+" Number of Industrie(s) are Invalid. Allowed Special Charecters are - (.,+,-,&,:,/)</strong>");
+                    $('#errMsg').html("<strong>"+count+" Number of Industrie(s) are Invalid. Allowed Special Charecters are - (,,(,),.,+,-,&,:,/)</strong>");
                     return false;
                 }
 
