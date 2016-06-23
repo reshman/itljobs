@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <?php  //include("logincheck.php");?>
+    <?php //include("logincheck.php");?>
     <head>
         <meta charset="UTF-8">
         <title>Admin | ITL JOBS</title>
@@ -34,7 +34,7 @@
             <?php include 'header.php'; ?>
 
             <?php include 'menu.php'; ?>
-            
+
             <?php include_once 'db.php'; ?>
 
             <!-- Content Wrapper. Contains page content -->
@@ -47,8 +47,8 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-<!--                        <li><a href="#">Tables</a></li>
-                        <li class="active">Data tables</li>-->
+                        <!--                        <li><a href="#">Tables</a></li>
+                                                <li class="active">Data tables</li>-->
                     </ol>
                 </section>
 
@@ -61,59 +61,57 @@
                                     <h3 class="box-title"> Recruiter Notifications </h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                   
+
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
-                                           <tr>
+                                            <tr>
                                                 <th>Sl.No</th>
                                                 <th>Notification</th>
 <!--                                                <th>Delete</th>                     -->
                                             </tr>
                                         </thead>
-                                       <tbody>
-                                          <?php
-                                            $j=1;
-                                            
-                                            $querydate = sprintf("SELECT datetime,id FROM log ORDER BY id DESC LIMIT 1"); 
+                                        <tbody>
+                                            <?php
+                                            $j = 1;
+
+                                            $querydate = sprintf("SELECT datetime,id FROM log ORDER BY id DESC LIMIT 1");
                                             $resultdate = Db::query($querydate);
-                                            $datetime=mysql_fetch_assoc($resultdate);
-                                            $log= $datetime['datetime'];
-                                            
-                                           $query = sprintf("SELECT created_date FROM resume WHERE created_date>='%s' ",$log);
-                                           $result = Db::query($query);
-                                           $countrow=mysql_num_rows($result);
-                                           if($countrow>0)
-                                           {
-                                           while($row=mysql_fetch_array($result))
-                                                {
-                                                         ?>
-                                                <tr>
-                                                    <td><?php echo $j; ?></td>
-                                                    <?php 
-                                                          $date = $row['created_date'];
-                                                          //$regdate = date($date,"Y/m/d");
-//                                                          echo $regtime = date_format($date,"h:i:s A"); 
-//                                                         die;?>
-                                                    <td>New user has registered on <?php echo $date;?> !</td>
-                                                </tr>
-                                                <?php
-                                                $j = $j + 1;
-                                                } 
-                                           }
+                                            $datetime = mysql_fetch_assoc($resultdate);
+                                            $log = $datetime['datetime'];
+
+                                            $query = sprintf("SELECT created_date FROM resume WHERE created_date>='%s' ", $log);
+                                            $result = Db::query($query);
+                                            $countrow = mysql_num_rows($result);
+                                            if ($countrow > 0) {
+                                                while ($row = mysql_fetch_array($result)) {
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $j; ?></td>
+                                                        <?php
+                                                        $date = $row['created_date'];
+                                                        $regdate = date("d-m-Y", strtotime($date));
+                                                        $regtime = date("h:i:s A", strtotime($date));
+                                                        ?>
+                                                        <td>New user has registered on <?php echo $regdate; ?> at <?php echo $regtime; ?>!</td>
+                                                    </tr>
+                                                    <?php
+                                                    $j = $j + 1;
+                                                }
+                                            }
                                             ?>
                                         </tbody>
-                                 
+
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
 
-                           
+
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
-<!--            
-
+            <!--            
+            
             <!-- Control Sidebar -->      
             <aside class="control-sidebar control-sidebar-dark">                
                 <!-- Create the tabs -->
@@ -300,17 +298,17 @@
         <!-- page script -->
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
         <script type="text/javascript">
-                                                        $(function () {
-                                                            $("#example1").dataTable();
-                                                            $('#example2').dataTable({
-                                                                "bPaginate": true,
-                                                                "bLengthChange": false,
-                                                                "bFilter": false,
-                                                                "bSort": true,
-                                                                "bInfo": true,
-                                                                "bAutoWidth": false
-                                                            });
-                                                        });
+            $(function () {
+                $("#example1").dataTable();
+                $('#example2').dataTable({
+                    "bPaginate": true,
+                    "bLengthChange": false,
+                    "bFilter": false,
+                    "bSort": true,
+                    "bInfo": true,
+                    "bAutoWidth": false
+                });
+            });
         </script>
         <script>
             function deleteConfirm(href) {
@@ -326,29 +324,29 @@
             });
         </script>
         <script>
-    $(function() {
+            $(function () {
 //        
 //         $('.toggle-event').bootstrapToggle({
 //            on: 'Hold',
 //            off: 'Unhold'
 //         });
-        $('.toggle-event').change(function() {
-            //alert("asda");
-            var status = $(this).prop('checked')==true?'1':'0';
-            var rowId  = $(this).attr('rowid');
-            url = "active_admins.php";
-            $.ajax({
-                url:url,
-                type:'POST',
-                data:{id:rowId, status:status}
-            }).done(function( data ) {
-                //location.reload();
-            });
+                $('.toggle-event').change(function () {
+                    //alert("asda");
+                    var status = $(this).prop('checked') == true ? '1' : '0';
+                    var rowId = $(this).attr('rowid');
+                    url = "active_admins.php";
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {id: rowId, status: status}
+                    }).done(function (data) {
+                        //location.reload();
+                    });
 
-        })
+                })
 
 
-    })
-</script>
+            })
+        </script>
     </body>
 </html>

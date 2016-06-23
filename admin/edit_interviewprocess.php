@@ -14,7 +14,6 @@ $company_name    = (trim($_POST['company_name']));
 $salary       = (trim($_POST['salary']));
 $time            = (trim($_POST['time']));
 $venue           = (trim($_POST['venue']));
-$title           = $_POST['title'];
 $date1           = trim($_POST['date']);
 $sdate           = explode('/', $date1);
 $date            = $sdate[2].'-'.$sdate[1].'-'.$sdate[0]; 
@@ -26,7 +25,7 @@ $interview       = (trim($_POST['interview']));
    date_default_timezone_set('Asia/Calcutta'); 
    $todaydate         = date("Y-m-d h:i:s"); 
 
- $sql    = sprintf("UPDATE interviews SET name = '%s',company_name = '%s',salary = '%s',schedule_time = '%s', venue='%s', title = '%s', schedule_date = '%s', description = '%s', coordinator = '%s', contact = '%s', interview = '%s' WHERE id = '%s'", $name, $company_name, $salary, $time,$venue, $title, $date, $description,$coordinator,$contact,$interview,$id); 
+ $sql    = sprintf("UPDATE interviews SET name = '%s',company_name = '%s',salary = '%s',schedule_time = '%s', venue='%s', schedule_date = '%s', description = '%s', coordinator = '%s', contact = '%s', interview = '%s' WHERE id = '%s'", $name, $company_name, $salary, $time, $venue, $date, $description,$coordinator,$contact,$interview,$id); 
 
 $resultedit = Db::query($sql);
 $urlin = "edit_interview.php?id=$id";

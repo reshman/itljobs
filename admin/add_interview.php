@@ -273,25 +273,25 @@
 
                                         </div>
                                         
-                                        <div class="form-group">
+<!--                                        <div class="form-group">
 
                                             <label for="exampleInputEmail1">Job Applied For</label>
 
                                             <select class="form-control" name="title">
                                                 <option disabled="" selected="">select</option>
                                                 <?php
-                                                $qry = sprintf("SELECT id,name FROM `job_categories` ORDER BY name");
-                                                $res = Db::query($qry);
-                                                if(mysql_num_rows($res)){
-                                                while ($row = mysql_fetch_array($res)) {
+//                                                $qry = sprintf("SELECT id,name FROM `job_categories` ORDER BY name");
+//                                                $res = Db::query($qry);
+//                                                if(mysql_num_rows($res)){
+//                                                while ($row = mysql_fetch_array($res)) {
                                                 ?>
-                                                <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
+                                                <option value="<?php // echo $row['id'];?>"><?php // echo $row['name'];?></option>
                                                 <?php
-                                                }  }
+//                                                }  }
                                                 ?>
                                             </select>
 
-                                        </div>
+                                        </div>-->
                                         
                                         <div class="form-group">
                                             
@@ -384,8 +384,8 @@
                 }); 
                 
                 $.validator.addMethod('salrange', function (value) {
-                    return /^[0-9 ]+(-[0-9 ]+)+\s*[A-Z]{3}\s*$/.test(value);
-                }, 'Please enter a valid Salary Range like: lowest Salary - Highest Salary followed by ISO currency code || Example:100000-150000 INR ||. If salary is Fixed give Both side the same salary.');
+                    return /^[0-9]+( - [0-9]+ )+\s*[A-Z]{3}\s*$/.test(value);
+                }, 'Please enter a valid Salary Range like: lowest Salary - Highest Salary followed by ISO currency code || Example:100000 - 150000 INR ||. If salary is Fixed give Both side the same salary.');
                
                 $.validator.addMethod("dateFormat",
                     function(value, element) {
@@ -393,6 +393,10 @@
                     },
                     "Please enter a date in the format dd/mm/yyyy."
                 );
+                $.validator.addMethod('location', function (value) {
+                    return /^[A-Za-z0-9,\. ]+$/i.test(value);
+                }, 'Please enter letters, comma, dot and numbers only.');
+               
                 // Setup form validation on the #register-form element
                 
                 $("#frm").validate({
@@ -403,13 +407,13 @@
                     rules: {
                         
                         name: {required:true,lettersonly:true},
-                        title: "required",
+//                        title: "required",
                         date: {required:true, dateFormat: true},
                         company_name: {required:true,lettersonly:true},
                         country : "required",
                         salary: {required: true, salrange: true},
                         time : "required",
-                        venue : {required:true,lettersonly:true},
+                        venue : {required:true,location:true},
                         interview : "required",
                         coordinator : {required:true,lettersonly:true},
                         contact : {
@@ -432,13 +436,13 @@
                     messages: {
 
                         name: {required:"Please enter position",lettersonly:"Please enter letters only"},
-                        title: "Please select job category",
+//                        title: "Please select job category",
                         date: {required: "Please enter date",dateFormat: "Please enter a date in the format dd/mm/yyyy."},
                         company_name: {required:"Please enter company name",lettersonly:"Please enter letters only"},
                         country : "Please enter country",
                         salary: {required: "Please Enter Salary"},
                         time : "Please enter time",
-                        venue : {required:"Please enter location",lettersonly:"Please enter letters only"},
+                        venue : {required:"Please enter location"},
                         interview : "please select interview",
                         coordinator : {required:"Please enter name of coordinator",lettersonly:"Please enter letters only"},
                         contact:{

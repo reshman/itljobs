@@ -274,25 +274,25 @@
 
                                         </div>
 
-                                        <div class="form-group">
+<!--                                        <div class="form-group">
 
                                             <label for="exampleInputEmail1">Job Category</label>
 
                                             <select class="form-control" name="title">
                                                 <option disabled="" selected="">select</option>
                                                 <?php
-                                                $qry = sprintf("SELECT id,name FROM `job_categories`");
-                                                $res = Db::query($qry);
-                                                if(mysql_num_rows($res)){
-                                                while ($row = mysql_fetch_array($res)) {
+//                                                $qry = sprintf("SELECT id,name FROM `job_categories`");
+//                                                $res = Db::query($qry);
+//                                                if(mysql_num_rows($res)){
+//                                                while ($row = mysql_fetch_array($res)) {
                                                 ?>
-                                                <option value="<?php echo $row['id'];?>" <?php if($title == $row['id']){ echo 'selected="selected"';} ?>><?php echo $row['name'];?></option>
+                                                <option value="<?php // echo $row['id'];?>" <?php // if($title == $row['id']){ echo 'selected="selected"';} ?>><?php // echo $row['name'];?></option>
                                                 <?php
-                                                }  }
+//                                                }  }
                                                 ?>
                                             </select>
 
-                                        </div>
+                                        </div>-->
                                         
                                         <div class="form-group">
                                         <label for="exampleInputEmail1">Interview Time</label>
@@ -402,7 +402,7 @@
                     rules: {
                         
                         name: {required:true,lettersonly:true},
-                        title: "required",
+                        //title: "required",
                         date: {required:true, dateFormat: true},
                         company_name: {required:true,lettersonly:true},
                         country : "required",
@@ -431,7 +431,7 @@
                     messages: {
 
                         name: {required:"Please enter position",lettersonly:"Please enter letters only"},
-                        title: "Please select job category",
+                        //title: "Please select job category",
                         date: {required: "Please enter date",dateFormat: "Please enter a date in the format dd/mm/yyyy."},
                         company_name: {required:"Please enter company name",lettersonly:"Please enter letters only"},
                         country : "Please enter country",
