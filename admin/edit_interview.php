@@ -392,6 +392,9 @@
                     },
                     "Please enter a date in the format dd/mm/yyyy."
                 );
+                $.validator.addMethod('location', function (value) {
+                    return /^[A-Za-z0-9,\. ]+$/i.test(value);
+                }, 'Please enter letters, comma, dot and numbers only.');
                 // Setup form validation on the #register-form element
                 
                 $("#frm").validate({
@@ -408,7 +411,7 @@
                         country : "required",
                         salary: {required: true, salrange: true},
                         time : "required",
-                        venue : {required:true,lettersonly:true},
+                        venue : {required:true,location:true},
                         interview : "required",
                         coordinator : {required:true,lettersonly:true},
                         contact : {
@@ -437,7 +440,7 @@
                         country : "Please enter country",
                         salary: {required: "Please Enter Salary"},
                         time : "Please enter time",
-                        venue : {required:"Please enter location",lettersonly:"Please enter letters only"},
+                        venue : {required:"Please enter location"},
                         interview : "please select interview",
                         coordinator : {required:"Please enter name of coordinator",lettersonly:"Please enter letters only"},
                         contact:{
