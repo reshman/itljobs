@@ -278,7 +278,7 @@
                                                 <?php
                                                 $i = 1;
                                                 require_once 'db.php';
-                                                $query = sprintf("SELECT * FROM jobs WHERE user_id='%s' AND del_status=0 ORDER BY closing_date", $user_id);
+                                                $query = sprintf("SELECT * FROM jobs WHERE user_id='%s' AND del_status=0 ORDER BY job_listing", $user_id);
                                                 $result = Db::query($query);
                                                 if(mysql_num_rows($result)<1){ ?>
                                                     <tbody>

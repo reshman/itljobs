@@ -158,7 +158,7 @@
 		<section class="services-offer-section">
 		<div class="container">
 		<div class="services-box ser-box2">
-                <div class="col-md-2">
+                <div class="col-md-3">
 		<div class="service-post">
 		<img src="images/itl-resume.png" alt="ITL JOBS">
 		<div class="service-content">
@@ -168,7 +168,7 @@
 		</div>
 
                 
-                <div class="col-md-2">
+                <div class="col-md-3">
 		<div class="service-post">
 		<img src="images/itl-jobs.png" alt="ITL JOBS">
 		<div class="service-content">
@@ -177,7 +177,7 @@
 		</div>
 		</div>
                     
-                    <div class="col-md-2">
+                    <div class="col-md-3">
 		<div class="service-post">
 		<img src="images/view-resume.png" alt="ITL JOBS">
 		<div class="service-content">
@@ -187,16 +187,16 @@
 		</div>
 
 
-                <div class="col-md-2">
+<!--                <div class="col-md-2">
 		<div class="service-post">
 		<img src="images/itl-alert.png" alt="ITL JOBS">
 		<div class="service-content">
 		<h2><a href="search-resume.php">SEARCH RESUME</a></h2>
 		</div>
 		</div>
-		</div>
+		</div>-->
                     
-                <div class="col-md-2">
+                <div class="col-md-3">
 		<div class="service-post">
 		<img src="images/itl-account.png" alt="ITL JOBS">
 		<div class="service-content">
