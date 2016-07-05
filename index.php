@@ -273,7 +273,7 @@
                             <?php
 //$qry = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 limit 1");
 
-                            $qry = sprintf("SELECT name,description,schedule_date,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' limit 1", $today_date, 1, 0);
+                            $qry = sprintf("SELECT name,description,schedule_date,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' ORDER BY schedule_date LIMIT 1", $today_date, 1, 0);
                             $res = Db::query($qry);
                             while ($rw = mysql_fetch_array($res)) {
                                 ?>

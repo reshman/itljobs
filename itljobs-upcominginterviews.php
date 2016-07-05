@@ -117,7 +117,7 @@
                                 }
                             }
                             $today_date = date('Y-m-d');
-                            $query = sprintf("SELECT id,name,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s'", $today_date, 1, 0);
+                            $query = sprintf("SELECT id,name,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' ORDER BY schedule_date", $today_date, 1, 0);
                             // echo $query = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,js.experience,js.job_location,js.closing_date,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 AND inv.schedule_date>='$today_date'"); die; 
                             $result = Db::query($query);
                             while ($row = mysql_fetch_array($result)) {
