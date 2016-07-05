@@ -3,9 +3,10 @@ require('db.php');
 
 $jc=$_POST['jobcat']; 
  date_default_timezone_set('Asia/Calcutta'); 
+ $today_date = date('Y-m-d');
             $i=1;
 //            $query = sprintf("SELECT * FROM `jobs` where job_type='%s' AND active='%s' AND del_status='%s'",$jc,1,0);
-            $query = sprintf("SELECT inv.name,inv.company_name,inv.schedule_date,inv.schedule_time,inv.venue,inv.interview,inv.contact,us.email FROM interviews as inv JOIN users as us ON inv.user_id=us.id WHERE inv.interview='$jc' AND inv.active='1' AND inv.del_status='0'");
+            $query = sprintf("SELECT inv.name,inv.company_name,inv.schedule_date,inv.schedule_time,inv.venue,inv.interview,inv.contact,us.email FROM interviews as inv JOIN users as us ON inv.user_id=us.id WHERE inv.interview='%s' AND inv.active=%d AND inv.del_status=%d AND schedule_date > '%s'",$jc,1,0,$today_date);
             $result = Db::query($query);
             if(mysql_num_rows($result) > 0){
             ?>  
