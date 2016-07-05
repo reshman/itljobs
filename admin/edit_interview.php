@@ -306,7 +306,6 @@
                                                     <!--<option disabled="" selected="">SELECT</option>-->
                                                     <option value="Overseas" <?php if($rowedit['interview']=='Overseas'){?> selected=""<?php } ?> >Overseas</option>
                                                     <option value="India" <?php if($rowedit['interview']=='India'){?> selected=""<?php } ?> >India</option>
-                                                    <option value="Direct" <?php if($rowedit['interview']=='Direct'){?> selected=""<?php } ?> >Direct</option>
                                                 </select>
                                         </div>
                                         

@@ -307,7 +307,6 @@
                                                     <option disabled="" selected="">SELECT</option>
                                                     <option name="Overseas">Overseas</option>
                                                     <option name="India">India</option>
-                                                    <option name="Direct">Direct</option>
                                                 </select>
                                         </div>
                                         

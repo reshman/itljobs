@@ -66,13 +66,14 @@
                                          <?php
                                             $id = $_REQUEST['id'];
                                             $i = 1;
-                                             $query = sprintf("SELECT r.user_id,r.id,r.experience,r.qualification,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name, r.del_status, u.name as name,u.email ,jc.name as jobcatname,r.abroad_experience,r.india_experience from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s' AND r.id='%s'",'0',$id);  
+                                             $query = sprintf("SELECT r.user_id,r.id,r.experience,r.qualification,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name, r.del_status, r.mobile, u.name as name,u.email ,jc.name as jobcatname,r.abroad_experience,r.india_experience from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s' AND r.id='%s'",'0',$id);  
                                             $result = Db::query($query);
                                             while ($row = mysql_fetch_array($result)) {
                                                 ?>
                                         <thead>
                                                 <tr><th>Name</th><td><?php echo $row['name']; ?></td></tr>
                                                 <tr><th>E-mail</th><td><?php echo $row['email']; ?></td></tr>
+                                                <tr><th>Mobile</th><td><?php echo $row['mobile']; ?></td></tr>
                                                 <tr><th>Specialization</th><td><?php echo $row['specification']; ?></td></tr>
                                                 <tr><th>Abroad Experience</th><td><?php echo $row['abroad_experience'].' Year(s)'; ?></td></tr>
                                                 <tr><th>Indian Experience</th><td><?php echo $row['india_experience'].' Year(s)'; ?></td></tr>
