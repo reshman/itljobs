@@ -131,22 +131,22 @@
                                     <div class="accord-content" style="display: none;">
                                         <p><?php echo $row['description']; ?></p>
                                         <p>
-                                            <span style="color:#6495ED">Salary Structure : </span><?php echo $row['salary']; ?>
-                                        </p>
-                                        <p>
                                             <span style="color:#6495ED">Company Name: </span><?php echo $row['company_name']; ?>
                                         </p>
                                         <p>
-                                            <span style="color:#6495ED">Interview date : </span><?php echo $row[schedule_date] . ' at ' . $row[schedule_time]; ?>
-                                        </p>
-                                        <p>
-                                            <span style="color:#6495ED">Location : </span><?php echo $row['venue']; ?>
+                                            <span style="color:#6495ED">Salary Structure : </span><?php echo $row['salary']; ?>
                                         </p>
                                         <p>
                                             <span style="color:#6495ED">Co ordinator : </span><?php echo $row['coordinator']; ?>
                                         </p>
                                         <p>
                                             <span style="color:#6495ED">Contact : </span><?php echo $row['contact']; ?>
+                                        </p>
+                                        <p>
+                                            <span style="color:#6495ED">Interview date : </span><?php echo $row[schedule_date] . ' at ' . $row[schedule_time]; ?>
+                                        </p>
+                                        <p>
+                                            <span style="color:#6495ED">Location : </span><?php echo $row['venue']; ?>
                                         </p>
 
                                         <?php if (isset($_SESSION['log'])): ?>

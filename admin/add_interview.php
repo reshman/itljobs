@@ -393,7 +393,7 @@
                     },
                     "Please enter a date in the format dd/mm/yyyy."
                 );
-                $.validator.addMethod('location', function (value) {
+                $.validator.addMethod('alphanumeric', function (value) {
                     return /^[A-Za-z0-9,\. ]+$/i.test(value);
                 }, 'Please enter letters, comma, dot and numbers only.');
                
@@ -406,14 +406,14 @@
                     debug: false,
                     rules: {
                         
-                        name: {required:true,lettersonly:true},
+                        name: {required:true,alphanumeric:true},
 //                        title: "required",
                         date: {required:true, dateFormat: true},
                         company_name: {required:true,lettersonly:true},
                         country : "required",
                         salary: {required: true, salrange: true},
                         time : "required",
-                        venue : {required:true,location:true},
+                        venue : {required:true,alphanumeric:true},
                         interview : "required",
                         coordinator : {required:true,lettersonly:true},
                         contact : {

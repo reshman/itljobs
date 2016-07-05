@@ -97,7 +97,7 @@
             <section class="register-section">
                 <div class="container">
                     <div class="title-section">
-                        <h1>Looking for a Better Job?</h1>
+                        <h1>LOOKING FOR A BETTER JOB ... GET IT RIGHT FIRST TIME</h1>
                     </div>
                     <form id="contact-form" method="POST" action="registration.php" enctype="multipart/form-data">  
                         <?php

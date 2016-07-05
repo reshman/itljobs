@@ -146,10 +146,10 @@
                                             ?>
                                         </p>
                                         <p class="c_b_t_border"><span style="color:#007ac9">Company Name: </span><?php echo $row['company_name']; ?>,
-                                            <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?> ,
-                                            <span style="color:#007ac9">Location : </span><?php echo $row['job_location']; ?>,
+                                            <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?>,
+                                            <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>,
                                             <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
-                                            <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>
+                                            <span style="color:#007ac9">Location : </span><?php echo $row['job_location']; ?>
                                         </p>
 
                                         <?php if (isset($_SESSION['log'])): ?>

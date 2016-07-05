@@ -193,9 +193,10 @@
                                                 <p>
                                                     <span style="color:#6495ED">Company : </span><?php echo $row['company_name']; ?>,    
                                                     <span style="color:#6495ED">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?>,
-                                                    <span style="color:#6495ED">Location : </span><?php echo $row['job_location']; ?>,
-                                                    <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>
-                                                    <span style="color:#6495ED">Reference Id : </span><?php echo $row['ref_id']; ?></p>
+                                                    <span style="color:#6495ED">Reference Id : </span><?php echo $row['ref_id']; ?>,
+                                                    <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
+                                                    <span style="color:#6495ED">Location : </span><?php echo $row['job_location']; ?>
+                                                </p>
                                                 <input type="hidden" name="bid" id="bid" value="<?php echo $row['id']; ?>"/>
 
                                                 <div class="dropdown">
@@ -243,10 +244,11 @@
                                                     </p>
                                                     <p>
                                                         <span style="color:#6495ED">Company : </span><?php echo $rw['company_name']; ?>,
-                                                        <span style="color:#6495ED">Experience : </span><?php echo ($rw['experience'] == 0) ? $rw['experience'] . ' year' : $rw['experience'] . ' years'; ?>,
-                                                        <span style="color:#6495ED">Location : </span><?php echo $rw['job_location']; ?>,
-                                                        <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($rw['closing_date'])); ?>
-                                                        <span style="color:#6495ED">Reference Id : </span><?php echo $rw['ref_id']; ?></p>
+                                                        <span style="color:#6495ED">Experience : </span><?php echo ($rw['experience'] == 0) ? $rw['experience'] . ' year' : $rw['experience'] . ' years'; ?>,                                     
+                                                        <span style="color:#6495ED">Reference Id : </span><?php echo $rw['ref_id']; ?>,
+                                                        <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($rw['closing_date'])); ?>,
+                                                        <span style="color:#6495ED">Location : </span><?php echo $rw['job_location']; ?>
+                                                    </p>
                                                     <input type="hidden" name="jbid" id="jbid" value="<?php echo $rw['id']; ?>"/>
 
                                                 </div>
@@ -333,9 +335,10 @@
                                                 <p>
                                                     <span style="color:#6495ED">Company : </span><?php echo $rwofr['company_name']; ?>,
                                                     <span style="color:#6495ED">Experience : </span><?php echo ($rwofr['experience'] == 0) ? $rwofr['experience'] . ' year' : $rwofr['experience'] . ' years'; ?>,
-                                                    <span style="color:#6495ED">Location : </span><?php echo $rwofr['job_location']; ?>,
-                                                    <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($rwofr['closing_date'])); ?>
-                                                    <span style="color:#6495ED">Reference Id : </span><?php echo $rwofr['ref_id']; ?></p>
+                                                    <span style="color:#6495ED">Reference Id : </span><?php echo $rwofr['ref_id']; ?>,
+                                                    <span style="color:#6495ED">Closing date : </span><?php echo date("d/m/Y", strtotime($rwofr['closing_date'])); ?>,
+                                                    <span style="color:#6495ED">Location : </span><?php echo $rwofr['job_location']; ?>
+                                                </p>
                                                 <input type="submit" value="Apply Now" onclick="offered(<?php echo $rwofr['id']; ?>, this)"/>
                                             </div>
                                         <?php
@@ -345,9 +348,9 @@
                                         <div class="accord-content" style="display: none;">
                                             <p>Keep track of offers you've received by moving your jobs to Offered.</p>
                                         </div>
-    <?php
-}
-?>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
 
 

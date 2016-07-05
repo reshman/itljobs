@@ -1,5 +1,5 @@
 <!doctype html>
-<?php //require 'check_session_rec.php'; ?>
+<?php require 'check_session_rec.php'; ?>
 
 <html lang="en" class="no-js">
     <head>
@@ -191,12 +191,12 @@
 
                         <div class="col-md-12"> 
                             <div class="col-md-3">
-                                <span class="post-title">CATEGORY:</span>    
+                                <span class="post-title">JOB TITLE:</span>    
                             </div>
 
                             <div class="col-md-8">
                                 <select name="category" class="category">
-                                    <option selected disabled>CATEGORY</option>
+                                    <option selected disabled>JOB TITLE</option>
                                     <?php
                                     $qry = sprintf("SELECT * FROM `job_categories` ORDER BY name");
                                     $res = Db::query($qry);
@@ -463,7 +463,10 @@
                     messages: {
                         companyname: {required: "Please Enter company name"},
                         sub_category: {required: "Please Enter Industry"},
-                        job_description: {required: "Please Enter Job Description"},
+                        job_description: {
+                                required: "Please Enter Job Description",
+                                minlength: "Please enter atleast 10 characters"
+                            },
                         location: "Please Enter Location",
                         jobtype: "Please Enter Jobtype",
                         salary: {required: "Please Enter Salary"},

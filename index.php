@@ -192,7 +192,7 @@
             <section class="services-offer-section">
                 <div class="container">
                     <div class="title-section">
-                        <h1>Looking for a Better Job?</h1>
+                        <h1>LOOKING FOR A BETTER JOB ... GET IT RIGHT FIRST TIME</h1>
 
                         <p>You can start by posting a chore you need done, <br> 
                             or a service you can do for others</p>

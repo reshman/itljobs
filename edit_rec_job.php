@@ -226,7 +226,7 @@ if ($_GET) {
 
                             <div class="col-md-12"> 
                                 <div class="col-md-3">
-                                    <span class="post-title">CATEGORY:</span>    
+                                    <span class="post-title">JOB TITLE:</span>    
                                 </div>
 
                                 <div class="col-md-8">

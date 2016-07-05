@@ -167,10 +167,10 @@
 
                                             <div class="form-group">
 
-                                                <label for="exampleInputEmail1">Job Category</label>
+                                                <label for="exampleInputEmail1">Job Title</label>
 
                                                 <select class="form-control" name="job_cat" id="job_cat">
-                                                    <option disabled="" selected="">Select Category</option>
+                                                    <option disabled="" selected="">Select Job Title</option>
                                                     <?php
                                                     $qry = sprintf("SELECT id,name FROM `job_categories`");
                                                     $res = Db::query($qry);

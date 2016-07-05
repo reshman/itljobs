@@ -161,7 +161,7 @@
 		<div class="service-post">
 		<img src="images/itl-air.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.itlworld.com/">AIR TICKETING</a></h2>
+		<h2><a href="http://www.itlworld.com/" target="_blank">AIR TICKETING</a></h2>
 		</div>
 		</div>
 		</div>
@@ -171,7 +171,7 @@
 		<div class="service-post">
 		<img src="images/itl-holiday.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.itlworld.com/">HOLIDAY</a></h2>
+		<h2><a href="http://itlholidays.co/" target="_blank">HOLIDAY</a></h2>
 		</div>
 		</div>
 		</div>
@@ -180,7 +180,7 @@
 		<div class="service-post">
 		<img src="images/itl-car-rental.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.itlmotors.com/">CAR RENTALS</a></h2>
+		<h2><a href="http://www.itlmotors.com/" target="_blank">CAR RENTALS</a></h2>
 		</div>
 		</div>
 		</div>
@@ -189,7 +189,7 @@
 		<div class="service-post">
 		<img src="images/itl-forex.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.itlworld.com/">FOREX</a></h2>
+		<h2><a href="http://www.itlworld.com/" target="_blank">FOREX</a></h2>
 		</div>
 		</div>
 		</div>
@@ -198,7 +198,7 @@
 		<div class="service-post">
 		<img src="images/itl-visa.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.itlworld.com/">VISA SERVICE</a></h2>
+		<h2><a href="http://www.itlworld.com/" target="_blank">VISA SERVICE</a></h2>
 		</div>
 		</div>
 		</div>
@@ -207,7 +207,7 @@
 		<div class="service-post">
 		<img src="images/itl-emi.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.itljobs.com/">EMIGRATION CLEARANCE</a></h2>
+		<h2><a href="http://www.itljobs.com/" target="_blank">EMIGRATION CLEARANCE</a></h2>
 		</div>
 		</div>
 		</div>
@@ -216,7 +216,16 @@
 		<div class="service-post">
 		<img src="images/itl-cert.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.itljobs.com/">CERTIFICATE ATTESTATION</a></h2>
+		<h2><a href="http://www.itljobs.com/" target="_blank">CERTIFICATE ATTESTATION</a></h2>
+		</div>
+		</div>
+		</div>
+                    
+                <div class="col-md-3">
+		<div class="service-post">
+		<img src="images/itl-hotel-booking.png" alt="ITL JOBS">
+		<div class="service-content">
+                    <h2><a href="http://tripmakerspartnernetwork.com/" target="_blank">HOTEL BOOKING</a></h2>
 		</div>
 		</div>
 		</div>
