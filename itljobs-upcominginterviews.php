@@ -126,7 +126,7 @@
                                 <div class="accord-elem">
                                     <div class="accord-title">
                                         <a class="accord-link" href="#"></a>
-                                        <h2><?php echo $row['name'].', '.$row['company_name'] .', '.$row['country'];?></h2>
+                                        <h2><?php echo strtoupper($row['name']).', '.strtoupper($row['company_name']) .', '.strtoupper($row['country']);?></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
                                         <p><?php echo $row['description']; ?></p>                                       

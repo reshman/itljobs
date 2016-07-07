@@ -133,7 +133,7 @@
                                 <div class="accord-elem">
                                     <div class="accord-title">
                                         <a class="accord-link" href="#"></a>
-                                        <h2><?php echo strtoupper($row['job_listing']); ?></h2>
+                                        <h2><?php echo strtoupper($row['job_listing']).', '.  strtoupper($row['company_name']).', '.  strtoupper($row['job_location']); ?></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
                                         <p>
@@ -145,7 +145,8 @@
                                             }
                                             ?>
                                         </p>
-                                        <p class="c_b_t_border"><span style="color:#007ac9">Company Name: </span><?php echo $row['company_name']; ?>,
+                                        <p class="c_b_t_border">
+                                            <!--<span style="color:#007ac9">Company Name: </span><?php // echo $row['company_name']; ?>,-->
                                             <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?>,
                                             <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>,
                                             <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
@@ -175,15 +176,16 @@
                                 <div class="accord-elem">
                                     <div class="accord-title">
                                         <a class="accord-link" href="#"></a>
-                                        <h2><?php echo strtoupper($row['job_listing']); ?></h2>
+                                        <h2><?php echo strtoupper($row['job_listing']).', '.  strtoupper($row['company_name']).', '.  strtoupper($row['job_location']); ?></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
                                         <p><?php echo $row['job_description']; ?></p>
-                                        <p class="c_b_t_border"><span style="color:#007ac9">Company : </span><?php echo $row['company_name']; ?>,
-                                            <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?> ,
-                                            <span style="color:#007ac9">Location : </span><?php echo $row['job_location']; ?>,
+                                        <p class="c_b_t_border">
+                                            <!--<span style="color:#007ac9">Company : </span><?php // echo $row['company_name']; ?>,-->
+                                            <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?>,
+                                            <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>,
                                             <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
-                                            <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>
+                                            <span style="color:#007ac9">Location : </span><?php echo $row['job_location']; ?>
                                         </p>
 
                                         <?php if (isset($_SESSION['log'])): ?>
