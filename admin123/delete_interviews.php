@@ -6,7 +6,12 @@ session_start();
 
 require_once("db.php");
 
-$urlin = "list_interviews.php";
+if(isset($_GET['own'])){
+    $urlin = "list_own_interviews.php";
+} else {
+    $urlin = "list_interviews.php";
+}
+
 
 $delId = isset($_GET['delid']) ? $_GET['delid'] : 0;
 

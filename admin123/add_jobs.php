@@ -13,6 +13,9 @@
 
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
+        <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.css" rel="stylesheet" />
+
+
         <!-- Font Awesome Icons -->
 
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -32,50 +35,7 @@
         <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 
 
-        <!--<script src="//code.jquery.com/jquery-1.9.1.js"></script>-->
-
-        <!--<script> jQuery.noConflict();</script>-->
-
-       <!-- <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>-->
-
-        <!--<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>-->
-
-        <link href="plugins/datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
-
-
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-
-        <!--[if lt IE 9]>
-
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
-        <![endif]-->
-
-
-
-        <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-
-
-        <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-
-        <script src="js/jquery.Jcrop.min.js"></script>
-        <link href="css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
-
-        <script src="ckeditor/ckeditor.js"></script>
-
-        <link href="css/datepicker.css" rel="stylesheet" />
-        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-
-        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-        <script src="js/jquery.geocomplete.js"></script>
-
         <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
 
         <style>
@@ -94,7 +54,7 @@
 
             <?php
             include 'menu.php';
-            include 'db.php';
+            include_once 'db.php';
 
             session_start();
             ?>
@@ -314,11 +274,11 @@
 
             </div>  <!--/.content-wrapper -->
 
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
             <!-- Bootstrap 3.3.2 JS -->
 
             <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-            <script src="plugins/datetimepicker/moment.js" type="text/javascript"></script>
-            <script src="plugins/datetimepicker/bootstrap-datetimepicker.js" type="text/javascript"></script>
 
             <!-- FastClick -->
 
@@ -332,11 +292,19 @@
 
             <script src="dist/js/demo.js" type="text/javascript"></script>
 
- <!--<script src="js/datepick.js"></script>-->
-<!-- <script src="js/bootstrap-datepicker.js"></script>
- <script src="js/bootstrap-datetimepicker.min.js"></script>-->
+
+            <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+
+<!--        <script src="js/jquery.Jcrop.min.js"></script>
+        <link href="css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />-->
+
+            <script src="ckeditor/ckeditor.js"></script>
+
+            <script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCs0t_PMvRJFMcxdA1ytRbIWE8GdobPsyg"></script>
+            <script src="js/jquery.geocomplete.js"></script>
 
 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
             <script>
 
                 // When the browser is ready...
