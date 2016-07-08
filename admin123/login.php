@@ -22,6 +22,7 @@ $urlinlogin="home.php";
 $urlinnotlogin="index.php";
 if ($countrow >0){
 $_SESSION['logged-in-super'] = true;
+$_SESSION['id']=1;
 echo "<script type='text/javascript'>
 location.href = '" . $urlinlogin . "';
 </script>";

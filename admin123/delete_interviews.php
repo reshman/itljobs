@@ -15,10 +15,10 @@ if ($delId) {
     $resultDelFile = Db::query($sqlDelFile);
 }
 
-if ($sqlDelFile) {
-    $_SESSION['delsucc'] = TRUE;
+if ($resultDelFile) {
+    $_SESSION['delsucc'] = true;
 } else {
-    $_SESSION['delsucc'] = FALSE;
+    $_SESSION['delsucc'] = false;
 }
 
 echo "<script type='text/javascript'>
