@@ -133,7 +133,14 @@
                                 <div class="accord-elem">
                                     <div class="accord-title">
                                         <a class="accord-link" href="#"></a>
-                                        <h2><?php echo strtoupper($row['job_listing']).', '.  strtoupper($row['company_name']).', '.  strtoupper($row['job_location']); ?></h2>
+                                        <?php
+                                        $explode = explode(',', $row['job_location']);
+                                        $end = '';
+                                        if(count($explode) > 0){
+                                            $end = array_pop($explode);
+                                        }
+                                        ?>
+                                        <h2><?php echo strtoupper($row['job_listing']).', '.  strtoupper($row['company_name']).', '.strtoupper($end); ?></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
                                         <p>
@@ -176,7 +183,14 @@
                                 <div class="accord-elem">
                                     <div class="accord-title">
                                         <a class="accord-link" href="#"></a>
-                                        <h2><?php echo strtoupper($row['job_listing']).', '.  strtoupper($row['company_name']).', '.  strtoupper($row['job_location']); ?></h2>
+                                        <?php
+                                        $explode = explode(',', $row['job_location']);
+                                        $end = '';
+                                        if(count($explode) > 0){
+                                            $end = array_pop($explode);
+                                        }
+                                        ?>
+                                        <h2><?php echo strtoupper($row['job_listing']).', '.  strtoupper($row['company_name']).', '.strtoupper($end); ?></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
                                         <p><?php echo $row['job_description']; ?></p>
