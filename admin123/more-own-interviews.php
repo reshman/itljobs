@@ -19,7 +19,6 @@
              folder instead of downloading all of them to reduce the load. -->
         <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
         <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
-        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -35,14 +34,14 @@
 
             <?php include 'menu.php'; ?>
             
-            <?php include 'db.php'; ?>
+            <?php include_once 'db.php'; ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                         Interview List 
+                         Interview Details 
                         <small> ITL JOBS</small>
                     </h1>
                     <ol class="breadcrumb">
@@ -81,84 +80,45 @@
                                                     <?php
 
                                                 }
-                                               unset($_SESSION['addsucc']);
+
                                             }
- 
-                                            if (isset($_SESSION['delsucc'])) {
 
-                                            if ($_SESSION['delsucc']) {
-                                                ?>
-                                                <br>
-                                                <div class="alert alert-success alert-dismissable">
+                                            unset($_SESSION['addsucc']);
 
-                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                                                    Interview Deleted Successfully <a href="#" class="alert-link"></a>.
-
-                                                </div>
-
-                                            <?php } else {
-                                                ?>
-                                                <br>
-                                                <div class="alert alert-danger alert-dismissable">
-
-                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                                                    Interview Deletion Failed <a href="#" class="alert-link"></a>.
-
-                                                </div>
-                                                <?php
-                                            }
-                                            unset($_SESSION['delsucc']);
-                                        }
-                                        ?>
+                                            ?>
                          
                                     <table id="example2" class="table table-bordered table-hover">
-                                        <thead>
-                                           <tr>
-                                                <th>Sl.No</th>
-                                                <th>Position</th>
-                                                <!--<th>Title</th>-->
-                                                <th>Description</th>
-                                                <th>Salary</th>
-                                                <th>Company Name</th>
-                                                <th>Contact</th>
-                                                <th>View more</th>
-                                                <th>Status</th>
-                                                <th>Edit</th>
-                                                <th>Delete</th>
-                                            </tr>
-                                        </thead>
+                                                
+                                                
+                                            
                                        <tbody>
                                           <?php 
                                           session_start();
                                           $id= $_SESSION['id'];
+                                          $intid = $_REQUEST['id'];
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d h:m:s');
-                                          $query = sprintf("SELECT us.id,us.name,iv.id as intId,iv.id,iv.schedule_date,iv.salary,iv.country,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact,iv.coordinator FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' AND iv.user_id='%s'",$today_date,0,$id); 
+                                          $query = sprintf("SELECT iv.id as intId,iv.id,iv.schedule_date,iv.salary,iv.country,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact,iv.coordinator FROM interviews as iv WHERE iv.schedule_date>='%s' AND iv.del_status='%s' AND iv.user_id='%s' AND iv.id=%d",$today_date,0,$id,$intid); 
                                                
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {
                                           ?>
                                            
                                                 <tr>
-                                                    <td><?php echo $i; ?></td>
-                                                    <td><?php echo $row['name']; ?></td>
-                                                    <!--<td><?php // echo $row['job_title']; ?></td>-->
-                                                    <td><?php echo $row['description']; ?></td>
-                                                    <td><?php echo $row['salary']; ?></td>
-                                                    <td><?php echo $row['company_name']; ?></td>
-                                                    <td><?php echo $row['contact']; ?></td>
-                                                    <td><a href="more-interviews.php?id=<?php echo $row['intId'];?>">view more</a></td>
-                                                  
-<!--                                                    <td><input type="number" name="order" id="order" class="order" value="<?php //echo $row['job_order'];?>"/><a onclick="otpcheck()" class="btn btn-primary">update</a></td>
-                                       <input type="hidden" name="id" id="id" value="<?php// echo $row['id'];?>"/>-->
-                                                    <td>
-                                                      <input <?php echo ($row['active']=='1') ? 'checked' : '';?> rowid="<?php echo $row['intId'];?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
-                                                    </td>   
-                                                <td class=center><a href="edit_interview.php?id=<?= $row['intId'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>
-                                                <td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_interviews.php?delid=<?= $row['intId'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                                    <th>Position</th><td><?php echo $row['name']; ?></td></tr>
+                                                    <!--<tr><th>Title</th><td><?php // echo $row['job_title']; ?></td></tr>-->
+                                                    <tr><th>Description</th><td><?php echo $row['description']; ?></td></tr>
+                                                    <tr><th>Salary</th><td><?php echo $row['salary']; ?></td></tr>
+                                                    <tr><th>Company Name</th><td><?php echo $row['company_name']; ?></td></tr>
+                                                    <tr><th>Schedule date</th><td><?php echo $row['schedule_date']; ?></td></tr>
+                                                    <tr><th>Time</th><td><?php echo $row['schedule_time']; ?></td></tr>
+                                                    <tr><th>Venue</th><td><?php echo $row['venue']; ?></td></tr>
+                                                    <tr><th>Interview</th><td><?php echo $row['interview']; ?></td></tr>
+                                                    <tr><th>Co ordinator</th><td><?php echo $row['coordinator'];?></td></tr>
+                                                    <tr><th>Contact</th><td><?php echo $row['contact']; ?></td></tr>
+                                                    <tr><th>Edit</th><td class=center><a type="button" href="edit_interview.php?id=<?= $row['intId'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td></tr>
+                                                <tr><th>Delete</th><td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_interviews.php?delid=<?= $row['intId'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
                                                 <?php
                                                 $i = $i + 1;

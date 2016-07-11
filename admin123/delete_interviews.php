@@ -6,7 +6,12 @@ session_start();
 
 require_once("db.php");
 
-$urlin = "list_interviews.php";
+if(isset($_GET['own'])){
+    $urlin = "list_own_interviews.php";
+} else {
+    $urlin = "list_interviews.php";
+}
+
 
 $delId = isset($_GET['delid']) ? $_GET['delid'] : 0;
 
@@ -15,10 +20,10 @@ if ($delId) {
     $resultDelFile = Db::query($sqlDelFile);
 }
 
-if ($sqlDelFile) {
-    $_SESSION['delsucc'] = TRUE;
+if ($resultDelFile) {
+    $_SESSION['delsucc'] = true;
 } else {
-    $_SESSION['delsucc'] = FALSE;
+    $_SESSION['delsucc'] = false;
 }
 
 echo "<script type='text/javascript'>

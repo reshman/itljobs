@@ -62,23 +62,25 @@
                     <li><a href="list_industry.php"><i class="fa fa-circle-o"></i>List Industry</a></li>
                 </ul>
             </li>
-              <li <?php if($filename == 'list_jobs.php'){ ?> class="active" <?php }else{ ?>class="treeview"<?php } ?>>
+              <li <?php if($filename == 'list_jobs.php'||$filename == 'add_jobs.php'){ ?> class="active" <?php }else{ ?>class="treeview"<?php } ?>>
                 <a href="#">
                     <i class="fa fa-edit"></i> <span>Jobs </span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
+                    <li><a href="add_jobs.php"><i class="fa fa-circle-o"></i>Add Jobs</a></li> 
                     <li><a href="list_jobs.php"><i class="fa fa-circle-o"></i>List Jobs</a></li> 
                 </ul>
             </li>
-             <li <?php if($filename == 'list_interviews.php'){ ?> class="active" <?php }else{ ?>class="treeview"<?php } ?>>
+             <li <?php if($filename == 'list_interviews.php'||$filename == 'list_own_interviews.php'||$filename == 'add_interview.php'){ ?> class="active" <?php }else{ ?>class="treeview"<?php } ?>>
                 <a href="#">
                     <i class="fa fa-edit"></i> <span>Interviews </span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="list_interviews.php"><i class="fa fa-circle-o"></i>List Interviews</a></li>  
- 
+                    <li><a href="add_interview.php"><i class="fa fa-circle-o"></i>Add Interviews</a></li>  
+                    <li><a href="list_own_interviews.php"><i class="fa fa-circle-o"></i>List Own Interviews</a></li>  
+                    <li><a href="list_interviews.php"><i class="fa fa-circle-o"></i>List Admin Interviews</a></li>  
                 </ul>
             </li>
                <li <?php if($filename == 'list_resume.php'){ ?> class="active" <?php }else{ ?>class="treeview"<?php } ?>>
