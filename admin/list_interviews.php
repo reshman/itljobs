@@ -136,7 +136,7 @@
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d h:m:s');
-                                          $query = sprintf("SELECT us.id,us.name,iv.id as intId,iv.id,iv.schedule_date,iv.salary,iv.country,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact,iv.coordinator FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' AND iv.user_id='%s'",$today_date,0,$id); 
+                                          $query = sprintf("SELECT us.id,us.name,iv.id as intId,iv.id,iv.schedule_date,iv.salary,iv.country,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact,iv.coordinator FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' AND iv.user_id='%s' ORDER BY schedule_date",$today_date,0,$id); 
                                                
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {

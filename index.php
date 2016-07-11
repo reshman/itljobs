@@ -232,7 +232,8 @@
 
                             $query = sprintf("SELECT id, job_listing, job_description, ref_id  FROM `jobs` WHERE active='%s'AND job_order!='%s' AND del_status='%s' AND closing_date>='%s' ORDER BY job_order limit 1", 1, 0, 0, $today_date);
                             $result = Db::query($query);
-                            while ($row = mysql_fetch_array($result)) {
+                            if(mysql_num_rows($result) > 0){
+                            $row = mysql_fetch_array($result);
                                 ?>
                                 <div class="jobs-box">
                                     <div class="col-md-4">
@@ -284,7 +285,8 @@
 
                             $qry = sprintf("SELECT id,name,description,schedule_date,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' ORDER BY schedule_date LIMIT 1", $today_date, 1, 0);
                             $res = Db::query($qry);
-                            while ($rw = mysql_fetch_array($res)) {
+                            if(mysql_num_rows($res) > 0){
+                            $rw = mysql_fetch_array($res);
                                 ?>
                                 <div class="jobs-box">
                                     <div class="col-md-4">

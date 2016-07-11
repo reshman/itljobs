@@ -37,7 +37,6 @@ $user = mysql_fetch_assoc($resuser);
 $username = $user['name'];
 
 $txt = "$username has applied for an Interview thats posted by $adminname";
-//       $txt = "Dear  " .$name. ", <br/>" . $msg;
 $email_template_apply = file_get_contents("email_template_apply.html");
 $email_template_apply = str_replace("{{content}}", $txt, $email_template_apply);
 $headers = "MIME-Version: 1.0" . "\r\n";
