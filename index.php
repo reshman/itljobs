@@ -42,7 +42,6 @@
         <script src="js/jquery-ui.js"></script>
         <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
-    </head>
 
     <script>
         $(function () {
@@ -80,6 +79,7 @@
         })
     </script>
 
+    </head>
     <body>
 
         <!-- Container -->
@@ -230,7 +230,7 @@
                                 }
                             }
 
-                            $query = sprintf("SELECT id, job_listing, job_description, ref_id  FROM `jobs` WHERE active='%s'AND job_order!='%s' AND del_status='%s' AND closing_date>='%s' ORDER BY job_order limit 1", 1, 0, 0, $today_date);
+                            $query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>'%s' AND job_order>'%s' ORDER BY job_order LIMIT 1", 1, 0, 0, $today_date);
                             $result = Db::query($query);
                             if(mysql_num_rows($result) > 0){
                             $row = mysql_fetch_array($result);

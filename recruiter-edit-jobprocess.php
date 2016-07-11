@@ -1,7 +1,7 @@
 <?php
 
 require('db.php');
-// include("logincheck.php");
+ include("logincheck.php");
 session_start();
 $urlin = "recruiter_view_jobs.php";
 
@@ -15,6 +15,8 @@ $location = (trim($_POST['location']));
 $jobtype = (trim($_POST['jobtype']));
 $salaryamount = (trim($_POST['salary']));
 $salarycategory = (trim($_POST['salarycat']));
+$keys = json_encode($_POST['keys']);
+$keys = mysql_real_escape_string($keys);
 $salary = $salaryamount . ' ' . $salarycategory;
 date_default_timezone_set('Asia/Calcutta');
 $date = date("Y-m-d h:i:s");
@@ -91,7 +93,7 @@ $closing_date = implode('-', $closing_date1);
     }
 
 
-$sql = sprintf("UPDATE jobs SET company_name = '%s', job_listing = '%s', job_description = '%s', job_location = '%s', job_type = '%s', salary = '%s', created_date = '%s', closing_date = '%s', date = '%s', active = '%s', del_status = '%s', job_category_id='%s',experience='%s' WHERE id=%d", $companyname, $companytitle, $description, $location, $jobtype, $salary, $create_date, $closing_date, $date, '0', '0', $category_id, $experience, $id);
+$sql = sprintf("UPDATE jobs SET company_name = '%s', job_listing = '%s', job_description = '%s', job_location = '%s', job_type = '%s', salary = '%s', created_date = '%s', closing_date = '%s', date = '%s', active = '%s', del_status = '%s', job_category_id='%s',experience='%s',key_array='%s' WHERE id=%d", $companyname, $companytitle, $description, $location, $jobtype, $salary, $create_date, $closing_date, $date, '0', '0', $category_id, $experience,$keys,$id);
 $resultsql = Db::query($sql);
 
 

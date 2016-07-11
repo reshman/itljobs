@@ -64,6 +64,10 @@ if ($_GET) {
 
             <script src="admin/ckeditor/ckeditor.js"></script>
 
+            <!-- SELECT 2 -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+
             <style>
                 /* Hide the file input using
         opacity */
@@ -253,10 +257,6 @@ if ($_GET) {
                                 <div class="col-md-3">
                                     <span class="post-title">INDUSTRY:</span>    
                                 </div>
-
-                                <!--                                <div class="col-md-8">
-                                                                    <input name="companytitle" id="companytitle" type="text" placeholder="JOB TITLE" value="<?php //echo $jrow['job_listing'];  ?>">    
-                                                                </div>-->
                                 <div class="col-md-8" id="industry">
                                     <select name="sub_category" id="sub_category">
                                         <option></option>
@@ -306,15 +306,17 @@ if ($_GET) {
                             <div class="col-md-12">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-8 jdeditor">
-                                    <textarea class="ckeditor" id="job_description" placeholder="Job Description" name="job_description"> <?php if ($jrow['job_description'] != 'PDF Attached') {
-                                        echo $jrow["job_description"];
-                                    } ?></textarea><br>
+                                    <textarea class="ckeditor" id="job_description" placeholder="Job Description" name="job_description"> <?php
+                                        if ($jrow['job_description'] != 'PDF Attached') {
+                                            echo $jrow["job_description"];
+                                        }
+                                        ?></textarea><br>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-8 jdfile">
-                                    <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="CHOOSE FILE (Only PDF)" >
+                                    <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="CHOOSE FILE (Only PDF)">
                                     <label for="f02"><?php echo $jrow['ref_id'] . 'pdf '; ?>CHOOSE FILE (Only PDF)</label>
                                 </div>
                             </div> 
@@ -413,15 +415,15 @@ if ($_GET) {
                                 <div class="col-md-2">
                                     <select name="salarycat">
                                         <option <?php
-                                    if ($per[1] == "PER YEAR") {
+                                        if ($per[1] == "PER YEAR") {
                                             ?>
                                                 selected
                                                 <?php
                                             }
                                             ?>>PER YEAR</option>    
                                         <option<?php
-                                    if ($per[1] == "PER MONTH") {
-                                                ?>
+                                        if ($per[1] == "PER MONTH") {
+                                            ?>
                                                 selected
                                                 <?php
                                             }
@@ -434,6 +436,16 @@ if ($_GET) {
                                     </select>         
                                 </div>
 
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    <span class="post-title">KEY WORDS(Optional):</span>    
+                                </div>
+                                <div class="col-md-8">
+                                    <select class="select2" id="keys" name="keys[]" multiple style="width: 100%">
+
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="col-md-11"> 
@@ -455,27 +467,42 @@ if ($_GET) {
             <!-- footer 
                             ================================================== -->
 
-    <?php include("footer.php"); ?>
+            <?php include("footer.php"); ?>
 
             <!-- End footer -->
 
             <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
             <script type="text/javascript">
-                            $(document).ready(function () {
+                                $(document).ready(function () {
 
-                                $("select.category").change(function () {
-                                    var jobcat = $(".category option:selected").val();
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "category.php",
-                                        data: {jobcat: jobcat}
-                                    }).done(function (data) {
-                                        $("#response").html(data);
-                                        $("#industry").hide();
+                                    $("#keys").select2({
+                                        tags: true
+                                    });
+
+                                    $.post("get_keys.php", {
+                                        id:<?= $id ?>
+                                    },
+                                            function (response) {
+                                                data = JSON.parse(response);
+                                                if (data[0] != null && data[1] !== null) {
+                                                    $('#keys').select2({data: data[0], tags: true}).val(data[1]).trigger("change");
+                                                    console.log(data);
+                                                }
+                                            });
+
+                                    $("select.category").change(function () {
+                                        var jobcat = $(".category option:selected").val();
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "category.php",
+                                            data: {jobcat: jobcat}
+                                        }).done(function (data) {
+                                            $("#response").html(data);
+                                            $("#industry").hide();
+                                        });
                                     });
                                 });
-                            });
             </script>
 
             <script>

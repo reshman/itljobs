@@ -37,6 +37,9 @@
 
         <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
 
+        <!-- SELECT 2 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+
 
         <style>
             .error{
@@ -274,7 +277,7 @@
 
             </div>  <!--/.content-wrapper -->
 
-            
+
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
             <!-- Bootstrap 3.3.2 JS -->
 
@@ -305,11 +308,18 @@
 
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
+
+            <!-- SELECT 2 -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
             <script>
 
                 // When the browser is ready...
 
                 $(function () {
+                    
+                    $("#keys").select2({
+                        tags: true
+                    });
 
                     $('#title').attr("disabled", "disabled");
                     $('#job_cat').change(function () {

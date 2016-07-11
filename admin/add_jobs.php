@@ -77,6 +77,10 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
         <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
+        <!-- SELECT 2 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+
 
         <style>
             .error{
@@ -286,9 +290,19 @@
 
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Job Location</label>
+                                            <label for="location">Job Location</label>
 
                                             <input type="text" class="form-control" id="location" placeholder="Job Location" name="location">
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <label for="keys">Key Words(optional)</label>
+
+                                            <select class="form-control select2" id="keys" name="keys[]" multiple>
+
+                                            </select>
 
                                         </div>
 
@@ -342,6 +356,10 @@
                 // When the browser is ready...
 
                 $(function () {
+
+                    $("#keys").select2({
+                        tags: true
+                    });
 
                     $('#title').attr("disabled", "disabled");
                     $('#job_cat').change(function () {

@@ -37,6 +37,8 @@
 
         <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
 
+        <!-- SELECT 2 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
 
         <style>
             .error{
@@ -156,12 +158,12 @@
                                     $row = array();
                                     if (mysql_num_rows($result) > 0) {
                                         $row = mysql_fetch_assoc($result);
-                                        
+
                                         $create_date = $row['created_date'];
                                         $create_date = explode('-', $create_date);
                                         $create_date = array_reverse($create_date);
                                         $create_date = implode('/', $create_date);
-                                        
+
                                         $closing_date = $row['closing_date'];
                                         $closing_date = explode('-', $closing_date);
                                         $closing_date = array_reverse($closing_date);
@@ -269,7 +271,7 @@
                                                     <option value="CONTRACT" <?php if ($row['job_type'] == 'CONTRACT') { ?> selected=""<?php } ?>>CONTRACT</option>
                                                     <option value="INTERNSHIP" <?php if ($row['job_type'] == 'INTERNSHIP') { ?> selected=""<?php } ?>>INTERNSHIP</option>
                                                     <option value="FRESHER" <?php if ($row['job_type'] == 'FRESHER') { ?> selected=""<?php } ?>>FRESHER</option>
-                                                    <option value="WALKIN" <?php if ($row['job_type'] == 'WALKIN') { ?> selected=""<?php } ?>>WALKIN</option>
+                                                    <option value="WALKIN" <?php if ($row['job_type'] == 'WALKIN') { ?> selected=""<?php } ?>>WALK-IN</option>
                                                 </select>
 
                                             </div>
@@ -280,6 +282,11 @@
 
                                                 <input type="text" class="form-control" id="location" placeholder="Job Location" name="location" value="<?php echo $row['job_location']; ?>">
 
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="keys">Key Words(optional)</label>
+                                                <select class="form-control select2" id="keys" name="keys[]" multiple>
+                                                </select>
                                             </div>
                                             <input type="hidden"  name="id" value="<?php echo $row['id']; ?>"/>
 
@@ -338,11 +345,29 @@
 
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
+
+            <!-- SELECT 2 -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
             <script>
 
                 // When the browser is ready...
 
                 $(function () {
+
+                    $("#keys").select2({
+                        tags: true
+                    });
+
+
+                    $.post("get_keys.php", {
+                        id:<?= $id ?>
+                    },
+                            function (response) {
+                                data = JSON.parse(response);
+                                if (data[0] != null && data[1] !== null) {
+                                    $('#keys').select2({data: data[0], tags: true}).val(data[1]).trigger("change");
+                                }
+                            });
 
 //                    $('#title').attr("disabled", "disabled");
                     $('#job_cat').change(function () {

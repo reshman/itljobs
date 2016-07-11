@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/html">
+<html>
     <?php include("logincheck.php"); ?>
     <head>
 
@@ -71,6 +71,10 @@
 
         <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
         <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+
+        <!-- SELECT 2 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
 
         <style>
             .error{
@@ -203,7 +207,7 @@
                                                             }
                                                         }
                                                     } else {
-                                                    ?>
+                                                        ?>
                                                         <option value="Unavailable">No Industry Available</option>        
                                                     <?php } ?>
                                                 </select>
@@ -281,6 +285,11 @@
                                                 <input type="text" class="form-control" id="location" placeholder="Job Location" name="location" value="<?php echo $row['job_location']; ?>">
 
                                             </div>
+                                            <div class="form-group">
+                                                <label for="keys">Key Words(optional)</label>
+                                                <select class="form-control select2" id="keys" name="keys[]" multiple>
+                                                </select>
+                                            </div>
 
                                         <?php } ?>
                                         <input type="hidden"  name="id" value="<?php echo $row['id']; ?>"/>
@@ -338,6 +347,21 @@
 
     $(function () {
 
+        $("#keys").select2({
+            tags: true
+        });
+
+
+        $.post("get_keys.php", {
+            id:<?= $id ?>
+        },
+                function (response) {
+                    data = JSON.parse(response);
+                    if (data[0] != null && data[1] !== null) {
+                        $('#keys').select2({data: data[0], tags: true}).val(data[1]).trigger("change");
+                    }
+                });
+
         $('#job_cat').change(function () {
             var id = $('#job_cat').val();
             $.post("get_industry.php", {
@@ -346,7 +370,7 @@
                     function (response) {
                         if (response != '<option selected disabled>Select Industry</option>') {
                             $('#title').html(response);
-                           // $('#title').removeAttr("disabled");
+                            // $('#title').removeAttr("disabled");
                         } else {
                             var msg = "<option value=\"Unavailable\" selected>No Industry Available for the selected Category</option>";
                             $('#title').html(msg);
@@ -363,7 +387,7 @@
         });
         $.validator.addMethod('experience', function (value) {
 //            return /^[0-9 ]+((-){0,1}[0-9 ]+){0,1}$/.test(value);
-           return /^[0-9] [A-Za-z]{4,}( - [0-9] [A-Za-z]{4,}){0,1}$/.test(value);
+            return /^[0-9] [A-Za-z]{4,}( - [0-9] [A-Za-z]{4,}){0,1}$/.test(value);
 
         }, 'Please enter valid experience in or months or year as in range as low-High. Example : 6 months - 1 year');
         // Setup form validation on the #register-form element

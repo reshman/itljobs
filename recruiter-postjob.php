@@ -49,6 +49,10 @@
 
         <script src="admin/ckeditor/ckeditor.js"></script>
 
+        <!-- SELECT 2 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+
         <style>
             /* Hide the file input using
     opacity */
@@ -109,7 +113,7 @@
                             if ($_SESSION['regsucc'] == '1') {
                                 ?>
 
-                        <div class="alert alert-success alert-dismissable" id="status-message">
+                                <div class="alert alert-success alert-dismissable" id="status-message">
 
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
@@ -121,7 +125,7 @@
                             } else if ($_SESSION['regsucc'] == '2') {
                                 ?>
 
-                        <div class="alert alert-danger alert-dismissable" id="status-message">
+                                <div class="alert alert-danger alert-dismissable" id="status-message">
 
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
@@ -133,7 +137,7 @@
                             } else if ($_SESSION['regsucc'] == '3') {
                                 ?>
 
-                        <div class="alert alert-danger alert-dismissable" id="status-message">
+                                <div class="alert alert-danger alert-dismissable" id="status-message">
 
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
@@ -145,7 +149,7 @@
                             } else if ($_SESSION['regsucc'] == '4') {
                                 ?>
 
-                        <div class="alert alert-danger alert-dismissable" id="status-message">
+                                <div class="alert alert-danger alert-dismissable" id="status-message">
 
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                     File upload failed because of one of the following reasons
@@ -162,7 +166,7 @@
                             } else if ($_SESSION['regsucc'] == '5') {
                                 ?>
 
-                        <div class="alert alert-danger alert-dismissable" id="status-message">
+                                <div class="alert alert-danger alert-dismissable" id="status-message">
 
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
@@ -221,9 +225,9 @@
                                     <option disabled="" selected="">INDUSTRY</option>
                                 </select>
                             </div>
-                            
+
                             <div class="col-md-8" id="response">
-                                
+
                             </div>
 
                         </div> 
@@ -362,6 +366,16 @@
                             </div>
 
                         </div>
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <span class="post-title">KEY WORDS(Optional):</span>    
+                            </div>
+                            <div class="col-md-8">
+                                <select class="select2" id="keys" name="keys[]" multiple >
+
+                                </select>
+                            </div>
+                        </div>
                         <input type="hidden" name="id" value="<?php echo $user_id; ?>"/>
                         <div class="col-md-12">
                             <div class="col-md-11"> 
@@ -388,24 +402,28 @@
         <!-- End footer -->
 
         <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-        
-    <script type="text/javascript">
-    $(document).ready(function () {
-      
-        $("select.category").change(function () {
-            var jobcat = $(".category option:selected").val();
-            $.ajax({
-                type: "POST",
-                url: "category.php",
-                data: {jobcat: jobcat}
-            }).done(function (data) {
-                $("#response").html(data);
-                $("#industry").hide();
-            });
-        });
-     });
-    </script>
-        
+
+        <script type="text/javascript">
+                            $(document).ready(function () {
+                                
+                                $("#keys").select2({
+                                    tags:true
+                                });
+
+                                $("select.category").change(function () {
+                                    var jobcat = $(".category option:selected").val();
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "category.php",
+                                        data: {jobcat: jobcat}
+                                    }).done(function (data) {
+                                        $("#response").html(data);
+                                        $("#industry").hide();
+                                    });
+                                });
+                            });
+        </script>
+
         <script>
 
             // When the browser is ready...
@@ -430,7 +448,7 @@
                     }
                     return true;
                 }, "Please use letters, '&' and '-' only");
-                
+
                 $.validator.addMethod('experience', function (value) {
                     return /^[0-9]+ [A-Za-z]{4,}( - [0-9]+ [A-Za-z]{4,}){0,1}$/.test(value);
                 }, 'Please enter valid experience in or months or year as in range as low-High. Example : 6 months - 1 year');
@@ -464,9 +482,9 @@
                         companyname: {required: "Please Enter company name"},
                         sub_category: {required: "Please Enter Industry"},
                         job_description: {
-                                required: "Please Enter Job Description",
-                                minlength: "Please enter atleast 10 characters"
-                            },
+                            required: "Please Enter Job Description",
+                            minlength: "Please enter atleast 10 characters"
+                        },
                         location: "Please Enter Location",
                         jobtype: "Please Enter Jobtype",
                         salary: {required: "Please Enter Salary"},
