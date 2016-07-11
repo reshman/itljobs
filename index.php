@@ -271,9 +271,18 @@
                             <div class="title-section">
                                 <h1>Upcoming Interviews</h1></div>
                             <?php
-//$qry = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 limit 1");
+                            
+                            $interviewArray = array();
+                            $interviewSaveArray = array();
+                            $sqlinterviewApplied = sprintf("SELECT int_id FROM interview_applied WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
+                            $resultIntApplied = Db::query($sqlinterviewApplied);
+                            if (mysql_num_rows($resultIntApplied) > 0) {
+                                while ($rowIntApplied = mysql_fetch_assoc($resultIntApplied)) {
+                                    $interviewArray[] = $rowIntApplied['int_id'];
+                                }
+                            }
 
-                            $qry = sprintf("SELECT name,description,schedule_date,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' ORDER BY schedule_date LIMIT 1", $today_date, 1, 0);
+                            $qry = sprintf("SELECT id,name,description,schedule_date,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' ORDER BY schedule_date LIMIT 1", $today_date, 1, 0);
                             $res = Db::query($qry);
                             while ($rw = mysql_fetch_array($res)) {
                                 ?>
@@ -283,7 +292,18 @@
                                     </div>
                                     <div class="col-md-8">
                                         <h3><?php echo $rw['name']; ?></h3>
-                                        <p><?php echo substr($rw['description'], 0, 120); ?>...</p>      
+                                        <p><?php echo substr($rw['description'], 0, 120); ?>...</p>   
+                                         <?php if (isset($_SESSION['log'])): ?>
+                                            <div id="apply">
+                                                <!--<input type="submit" id="submit_contact" value="APPLY">-->
+                                                <a href="javascript:void(0)" onclick="applyInterview(<?php echo $rw['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($rw['id'], $interviewArray)) ? 'APPLIED' : 'APPLY' ?>"></a>
+                                            </div>
+                                        <?php else: ?>
+                                            <div id="apply">
+                                                <!--<input type="submit" id="submit_contact" value="APPLY">-->
+                                                <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><input type="submit" value="APPLY"></a>
+                                            </div>
+                                        <?php endif; ?>
                                         <div id="view"><form action="moreinterviews.php"><input type="submit" value="VIEW MORE"></form></div>    
                                     </div>        
                                 </div>     
@@ -591,7 +611,7 @@
                 });
             });
 
-
+            //apply job
             function apply(job_id, $this) {
                 var current = $this;
                 $.ajax({
@@ -605,6 +625,19 @@
                 });
             }
 
+            //apply interview
+            function applyInterview(int_id, $this) {
+                var current = $this;
+                $.ajax({
+                    url: 'ajax-interviews-applied.php?intid=' + int_id
+                }).done(function (data) {
+                    if (data == 'SUCCESS') {
+                        //viewDiv = $(current).parent().next();
+                        //$(viewDiv).hide();
+                        $(current).children().val('APPLIED');
+                    }
+                });
+            }
             jQuery(document).ready(function () {
 
                 jQuery('.tp-banner').show().revolution(

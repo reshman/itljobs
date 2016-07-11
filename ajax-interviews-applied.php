@@ -6,7 +6,7 @@ date_default_timezone_set('Asia/Kolkata');
 
 $date = date('Y-m-d h:i:s A');
 $userId = $_SESSION['log'];
-$jobId = isset($_GET['jobid']) ? $_GET['jobid'] : 0;
+$jobId = isset($_GET['intid']) ? $_GET['intid'] : 0;
 
 $sqlAlreadyApplied = sprintf("SELECT id FROM interviews_applied WHERE
     user_id = '%s' AND interview_id = '%s' AND del_status = '%s'", $userId, $jobId, 0);

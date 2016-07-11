@@ -205,7 +205,7 @@
                 var current = $this;
                 $(current).children().val('APPLYING...');
                 $.ajax({
-                    url: 'ajax-interviews-applied.php?jobid=' + job_id
+                    url: 'ajax-interviews-applied.php?intid=' + job_id
                 }).done(function (data) {
                     if (data == 'SUCCESS') {
                         viewDiv = $(current).parent().next();
