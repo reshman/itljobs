@@ -255,6 +255,12 @@
 
                                         </div>
 
+                                        <div class="form-group">
+                                            <label for="keys">Key Words(optional)</label>
+                                            <select class="form-control select2" id="keys" name="keys[]" multiple>
+                                            </select>
+                                        </div>
+
                                         <div class="box-footer">
 
                                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -316,7 +322,7 @@
                 // When the browser is ready...
 
                 $(function () {
-                    
+
                     $("#keys").select2({
                         tags: true
                     });

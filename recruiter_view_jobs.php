@@ -269,6 +269,7 @@
                                                         <th>Title</th>
                                                         <th>Create Date</th>
                                                         <th>Closing Date</th>
+                                                        <th>Applicants List</th>
                                                         <th>Edit</th>
                                                         <th>Delete</th>
 
@@ -303,6 +304,7 @@
                                                             <td><a href="view_rec_job.php?id=<?php echo $row['id']; ?>"><?php echo $row['job_listing'] ?></a></td>
                                                             <td><?php echo $created; ?></td>
                                                             <td><?php echo $closing; ?></td>
+                                                            <td><a href="list_applicants.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">View</a></td>
                                                             <td><a href="edit_rec_job.php?id=<?php echo $row['id']; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a></td>
                                                             <td><a onclick="deleteConfirm('delete_rec_job.php?id=<?php echo $row['id']; ?>')" class="btn btn-danger"><span class="fa fa-times"></span></a></td>
 
