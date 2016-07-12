@@ -64,7 +64,7 @@
 
             <?php
             include 'menu.php';
-            // include 'db.php'; 
+            include_once 'db.php'; 
 
             session_start();
             ?>
@@ -122,7 +122,7 @@
                                 <form  role="form" name="frm" id="frm" method="POST" action="addjobcat_process.php" enctype="multipart/form-data">
 
                                     <?php
-                                    if ($_SESSION['addsucc'] != '') {
+                                    if ($_SESSION['addsucc']!='') {
 
                                         if ($_SESSION['addsucc'] == '1') {
                                             ?>
@@ -137,9 +137,9 @@
 
                                             <?php
                                         }
+                                        unset($_SESSION['addsucc']);
                                     }
-
-                                    unset($_SESSION['addsucc']);
+                                    
                                     ?>
 
                                     <div class="box-body">

@@ -30,11 +30,11 @@
     <body class="skin-blue sidebar-mini">
         <div class="wrapper">
 
-            <?php include 'header.php'; ?>
-
-            <?php include 'menu.php'; ?>
-
-            <?php //include 'db.php'; ?>
+            <?php 
+            include_once 'header.php'; 
+            include_once 'menu.php'; 
+            include_once 'db.php'; 
+            ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
