@@ -12,8 +12,9 @@ $sqlAlreadyApplied = sprintf("SELECT id FROM jobs_applied WHERE
 
 $resultAlreadyApplied = Db::query($sqlAlreadyApplied);
 
-if (mysql_num_rows($resultAlreadyApplied) > 0)
+if (mysql_num_rows($resultAlreadyApplied) > 0){
     die('ALREADY APPLIED');
+}
 
 $sqlApply = sprintf("INSERT INTO jobs_applied SET
     user_id = '%s',
@@ -34,6 +35,9 @@ $sqlApply = sprintf("INSERT INTO jobs_applied SET
     $resuser = Db::query($qryuser);
     $user = mysql_fetch_assoc($resuser);
     $username = $user['name'];
+    
+    $inform_query = sprintf("UPDATE jobs SET informed=0 WHERE id=%d",$jobId);
+    Db::query($inform_query);
     
        $txt = "$username has applied for a job with reference id $ref_id that posted by $adminname";
 //       $txt = "Dear  " .$name. ", <br/>" . $msg;

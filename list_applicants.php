@@ -1,8 +1,10 @@
 <!doctype html>
 <?php
-include 'check_session_rec.php';
+//include 'check_session_rec.php';
 if (isset($_GET['id'])) {
     $id = trim($_GET['id']);
+} else if(isset($_GET['token'])){    
+    $id = openssl_decrypt(trim($_GET['token']), "seed", "token");
 } else {
     echo '<h1>Access Denied</h1>';
     die();
