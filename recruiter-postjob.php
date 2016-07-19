@@ -199,7 +199,7 @@
                             </div>
 
                             <div class="col-md-8">
-                                <select name="category" class="category">
+                                <select name="category" class="category select2" id="category">
                                     <option selected disabled>JOB TITLE</option>
                                     <?php
                                     $qry = sprintf("SELECT * FROM `job_categories` ORDER BY name");
@@ -221,13 +221,9 @@
                             </div>
 
                             <div class="col-md-8" id="industry">
-                                <select name="sub_category" id="sub_category">
+                                <select name="sub_category" id="sub_category" class="select2">
                                     <option disabled="" selected="">INDUSTRY</option>
                                 </select>
-                            </div>
-
-                            <div class="col-md-8" id="response">
-
                             </div>
 
                         </div> 
@@ -410,16 +406,21 @@
                                 $("#keys").select2({
                                     tags:true
                                 });
+                                
+                                $('#category').select2();
+                                
+                                $('#sub_category').select2();
 
                                 $("select.category").change(function () {
                                     var jobcat = $(".category option:selected").val();
+                                    console.log(jobcat);
                                     $.ajax({
                                         type: "POST",
                                         url: "category.php",
                                         data: {jobcat: jobcat}
                                     }).done(function (data) {
-                                        $("#response").html(data);
-                                        $("#industry").hide();
+                                        $("#industry").html(data);
+                                        $('#sub_category').select2();
                                     });
                                 });
                             });
