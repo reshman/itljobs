@@ -175,6 +175,37 @@
 
                                         <div class="form-group">
 
+                                            <label for="exampleInputEmail1">Job Category</label>
+
+                                            <select class="form-control" name="job_cat" id="job_cat">
+                                                <option disabled="" selected="">Select Job Category</option>
+                                                <?php
+                                                $qry = sprintf("SELECT id,name FROM `job_categories` ORDER BY name");
+                                                $res = Db::query($qry);
+                                                if (mysql_num_rows($res)) {
+                                                    while ($row = mysql_fetch_array($res)) {
+                                                        ?>
+                                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
+                                                        <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">Industry</label>
+
+                                            <select class="form-control" name="title" id="title">
+                                                <option disabled="" selected="">Select a Category to Populate</option>
+                                            </select>
+
+                                        </div>
+
+                                        <div class="form-group">
+
                                             <label for="exampleInputEmail1">Description</label>
 
                                             <textarea  class="ckeditor" rows="3" placeholder="Enter ..." name="description" id="description"></textarea>
@@ -252,7 +283,7 @@
 //                                                if(mysql_num_rows($res)){
 //                                                while ($row = mysql_fetch_array($res)) {
                                         ?>
-                                                                                        <option value="<?php // echo $row['id'];      ?>"><?php // echo $row['name'];      ?></option>
+                                                                                        <option value="<?php // echo $row['id'];         ?>"><?php // echo $row['name'];         ?></option>
                                         <?php
 //                                                }  }
                                         ?>
@@ -322,7 +353,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
 
             <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
-            
+
             <script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCs0t_PMvRJFMcxdA1ytRbIWE8GdobPsyg"></script>
             <script src="js/jquery.geocomplete.js"></script>
 
@@ -331,6 +362,23 @@
                                                 // When the browser is ready...
 
                                                 $(function () {
+
+                                                    $('#title').attr("disabled", "disabled");
+                                                    $('#job_cat').change(function () {
+                                                        var id = $('#job_cat').val();
+                                                        $.post("get_industry.php", {
+                                                            id: id
+                                                        },
+                                                        function (response) {
+                                                            if (response != '<option selected disabled>Select Industry</option>') {
+                                                                $('#title').html(response);
+                                                                $('#title').removeAttr("disabled");
+                                                            } else {
+                                                                var msg = "<option value=\"Unavailable\" selected>No Industry Available for the selected Category</option>";
+                                                                $('#title').html(msg);
+                                                            }
+                                                        });
+                                                    });
 
                                                     $("#venue").geocomplete({
                                                         types: ["geocode", "establishment"],
@@ -364,7 +412,8 @@
                                                         debug: false,
                                                         rules: {
                                                             name: {required: true, alphanumeric: true},
-                                                            //                        title: "required",
+                                                            title: {required: true},
+                                                            job_cat: "required",
                                                             date: {required: true, dateFormat: true},
                                                             company_name: {required: true, lettersonly: true},
                                                             country: "required",
@@ -391,7 +440,8 @@
 
                                                         messages: {
                                                             name: {required: "Please enter position", lettersonly: "Please enter letters only"},
-                                                            //                        title: "Please select job category",
+                                                            title: {required: "Please enter industry"},
+                                                            job_cat: "Please enter job category",
                                                             date: {required: "Please enter date", dateFormat: "Please enter a date in the format dd/mm/yyyy."},
                                                             company_name: {required: "Please enter company name", lettersonly: "Please enter letters only"},
                                                             country: "Please enter country",

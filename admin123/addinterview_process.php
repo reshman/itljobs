@@ -21,12 +21,13 @@ $description  = (trim($_POST['description']));
 $coordinator  = (trim($_POST['coordinator']));
 $contact      = (trim($_POST['contact']));
 $interview    = (trim($_POST['interview']));
-
+$title        = (trim($_POST['title']));
+$job_cat      = (trim($_POST['job_cat']));
 
    date_default_timezone_set('Asia/Calcutta'); 
    $todaydate         = date("Y-m-d h:i:s"); 
 
-  $sql          = sprintf("INSERT INTO interviews(name,company_name,country,salary,schedule_date,schedule_time,venue,description,interview,coordinator,contact,user_id,active,del_status,date) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $name, $company_name,$country, $salary, $date, $time, $venue, $description, $interview, $coordinator, $contact, $id,'0','0',$todaydate);
+  $sql          = sprintf("INSERT INTO interviews(name,company_name,country,salary,schedule_date,schedule_time,venue,description,interview,coordinator,contact,user_id,active,del_status,date,job_category_id,industry) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $name, $company_name,$country, $salary, $date, $time, $venue, $description, $interview, $coordinator, $contact, $id,'0','0',$todaydate,$job_cat,$title);
   $resultsql    = Db::query($sql);
   $inid = mysql_insert_id();
    //insert jon seeker to notification table

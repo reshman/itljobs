@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <?php  include("logincheck.php");?>
+    <?php include("logincheck.php"); ?>
     <head>
         <meta charset="UTF-8">
         <title>Admin | ITL JOBS</title>
@@ -34,19 +34,19 @@
             <?php include 'header.php'; ?>
 
             <?php include 'menu.php'; ?>
-           
+
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                         Interview List 
+                        Interview List 
                         <small> ITL JOBS</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-<!--                        <li><a href="#">Tables</a></li>
-                        <li class="active">Data tables</li>-->
+                        <!--                        <li><a href="#">Tables</a></li>
+                                                <li class="active">Data tables</li>-->
                     </ol>
                 </section>
 
@@ -59,36 +59,38 @@
                                     <h3 class="box-title"> Interviews</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                         
+
                                     <table id="example2" class="table table-bordered table-hover">
-                                       <tbody>
-                                          <?php 
-                                          $id = $_REQUEST['id'];
-                                          date_default_timezone_set('Asia/Kolkata');
-                                          $today_date = date('Y-m-d');
-                                          $query = sprintf("SELECT us.id,us.name,iv.id as intId,jc.name as job_title,iv.schedule_date, iv.name as jobname,iv.description,iv.country,iv.salary,iv.schedule_time,iv.company_name,iv.venue,iv.interview,iv.contact,iv.coordinator, iv.user_id,iv.active,iv.del_status FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id INNER JOIN job_categories as jc ON iv.title=jc.id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' AND iv.id='%s'",$today_date,0,$id); 
-                                               
-                                          $result = Db::query($query);
-                                          $row = mysql_fetch_array($result);
-                                          ?> 
-                                                <tr>
-                                                    <th>Job Title</th><td><?php echo $row['jobname']; ?></td></tr>
-                                                    <tr><th>Schedule date</th><td><?php echo $row['schedule_date']; ?></td></tr>
-                                                    <tr><th>Name</th><td><?php echo $row['name']; ?></td></tr>
-                                                    <tr><th>Company Name</th><td><?php echo $row['company_name']; ?></td></tr>
-                                                    <tr><th>Country</th><td><?php echo $row['country']; ?></td></tr>
-                                                    <tr><th>Salary</th><td><?php echo $row['salary']; ?></td></tr>
-                                                    <tr><th>Time</th><td><?php echo $row['schedule_time']; ?></td></tr>
-                                                    <tr><th>Venue</th><td><?php echo $row['venue']; ?></td></tr>
-                                                    <tr><th>Description</th><td><?php echo $row['description']; ?></td></tr>
-                                                    <tr><th>Interview</th><td><?php echo $row['interview']; ?></td></tr>
-                                                    <tr><th>Coordinator</th><td><?php echo $row['coordinator']; ?></td></tr>
-                                                    <tr><th>Contact</th><td><?php echo $row['contact']; ?></td></tr>
-                                                <tr><th>Delete</th><td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_interviews.php?delid=<?= $row['intId'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
-                                                </tr>
-                                               
+                                        <tbody>
+                                            <?php
+                                            $id = $_REQUEST['id'];
+                                            date_default_timezone_set('Asia/Kolkata');
+                                            $today_date = date('Y-m-d');
+                                            $query = sprintf("SELECT us.id,us.name,iv.id as intId,jc.name as jobcat,iv.schedule_date, iv.name as jobname,iv.description,iv.country,iv.salary,iv.schedule_time,iv.company_name,iv.venue,iv.interview,iv.contact,iv.coordinator, iv.user_id,iv.active,iv.del_status,iv.industry FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id INNER JOIN job_categories as jc ON iv.job_category_id=jc.id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' AND iv.id='%s'", $today_date, 0, $id);
+
+                                            $result = Db::query($query);
+                                            $row = mysql_fetch_array($result);
+                                            ?> 
+                                            <tr>
+                                                <th>Job Title</th><td><?php echo $row['jobname']; ?></td></tr>
+                                        <th>Job Category</th><td><?php echo $row['jobcat']; ?></td></tr>
+                                        <th>Industry</th><td><?php echo $row['industry']; ?></td></tr>
+                                        <tr><th>Schedule date</th><td><?php echo $row['schedule_date']; ?></td></tr>
+                                        <tr><th>Name</th><td><?php echo $row['name']; ?></td></tr>
+                                        <tr><th>Company Name</th><td><?php echo $row['company_name']; ?></td></tr>
+                                        <tr><th>Country</th><td><?php echo $row['country']; ?></td></tr>
+                                        <tr><th>Salary</th><td><?php echo $row['salary']; ?></td></tr>
+                                        <tr><th>Time</th><td><?php echo $row['schedule_time']; ?></td></tr>
+                                        <tr><th>Venue</th><td><?php echo $row['venue']; ?></td></tr>
+                                        <tr><th>Description</th><td><?php echo $row['description']; ?></td></tr>
+                                        <tr><th>Interview</th><td><?php echo $row['interview']; ?></td></tr>
+                                        <tr><th>Coordinator</th><td><?php echo $row['coordinator']; ?></td></tr>
+                                        <tr><th>Contact</th><td><?php echo $row['contact']; ?></td></tr>
+                                        <tr><th>Delete</th><td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_interviews.php?delid=<?= $row['intId'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                        </tr>
+
                                         </tbody>
-                                 
+
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
@@ -97,8 +99,8 @@
                     </div><!-- /.row -->
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
-<!--            
-
+            <!--            
+            
             <!-- Add the sidebar's background. This div must be placed
                  immediately after the control sidebar -->
             <div class='control-sidebar-bg'></div>
@@ -122,17 +124,17 @@
         <!-- page script -->
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
         <script type="text/javascript">
-                                                        $(function () {
-                                                            $("#example1").dataTable();
-                                                            $('#example2').dataTable({
-                                                                "bPaginate": true,
-                                                                "bLengthChange": false,
-                                                                "bFilter": false,
-                                                                "bSort": true,
-                                                                "bInfo": true,
-                                                                "bAutoWidth": false
-                                                            });
-                                                        });
+                                            $(function () {
+                                                $("#example1").dataTable();
+                                                $('#example2').dataTable({
+                                                    "bPaginate": true,
+                                                    "bLengthChange": false,
+                                                    "bFilter": false,
+                                                    "bSort": true,
+                                                    "bInfo": true,
+                                                    "bAutoWidth": false
+                                                });
+                                            });
         </script>
         <script>
             function deleteConfirm(href) {
@@ -148,28 +150,28 @@
             });
         </script>
 
- <script>
+        <script>
 
-    $(function() {
+            $(function () {
 
-        $('.toggle-event').change(function() {
-//            alert("asda");
-            var status = $(this).prop('checked')==true?'1':'0';
-            var rowId  = $(this).val();
-//            alert(status);
-            url = "interview_status.php";
-            $.ajax({
-                url:url,
-                type:'POST',
-                data:{id:rowId, status:status}
-            }).done(function( data ) {
-               // location.reload();
+                $('.toggle-event').change(function () {
+                    //            alert("asda");
+                    var status = $(this).prop('checked') == true ? '1' : '0';
+                    var rowId = $(this).val();
+                    //            alert(status);
+                    url = "interview_status.php";
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {id: rowId, status: status}
+                    }).done(function (data) {
+                        // location.reload();
+                    });
+
+                });
             });
+        </script>
 
-        });
-    });
-</script>
 
-    
     </body>
 </html>

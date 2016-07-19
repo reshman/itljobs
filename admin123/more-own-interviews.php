@@ -99,7 +99,7 @@
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d h:m:s');
-                                          $query = sprintf("SELECT iv.id as intId,iv.id,iv.schedule_date,iv.salary,iv.country,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact,iv.coordinator FROM interviews as iv WHERE iv.schedule_date>='%s' AND iv.del_status='%s' AND iv.user_id='%s' AND iv.id=%d",$today_date,0,$id,$intid); 
+                                          $query = sprintf("SELECT iv.id as intId,iv.id,iv.schedule_date,iv.salary,iv.country,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact,iv.coordinator,jc.name as jobcat,iv.industry FROM interviews as iv INNER JOIN job_categories as jc ON iv.job_category_id=jc.id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' AND iv.user_id='%s' AND iv.id=%d",$today_date,0,$id,$intid); 
                                                
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {
@@ -107,7 +107,8 @@
                                            
                                                 <tr>
                                                     <th>Position</th><td><?php echo $row['name']; ?></td></tr>
-                                                    <!--<tr><th>Title</th><td><?php // echo $row['job_title']; ?></td></tr>-->
+                                                    <th>Job Category</th><td><?php echo $row['jobcat']; ?></td></tr>
+                                                    <th>Industry</th><td><?php echo $row['industry']; ?></td></tr>
                                                     <tr><th>Description</th><td><?php echo $row['description']; ?></td></tr>
                                                     <tr><th>Salary</th><td><?php echo $row['salary']; ?></td></tr>
                                                     <tr><th>Company Name</th><td><?php echo $row['company_name']; ?></td></tr>
