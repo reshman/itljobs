@@ -492,7 +492,7 @@
 
                             <div class="col-md-4">
 
-                                <input type="text" name="captcha" placeholder="ENTER CAPTCHA">
+                                <input type="text" name="captcha" placeholder="ENTER CAPTCHA" maxlength="4">
                             </div>
 
                             <div class="col-md-2">
@@ -507,8 +507,8 @@
                         <div class="col-md-12">
                             <div class="col-md-12">
 
-                                <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV(DOC or DOCX ONLY)" >
-                                <label for="f02">UPLOAD YOUR CV (DOC or DOCX ONLY)</label>
+                                <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV" >
+                                <label for="f02">UPLOAD YOUR CV</label>
 
                             </div>
 

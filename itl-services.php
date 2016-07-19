@@ -180,7 +180,7 @@
 		<div class="service-post">
 		<img src="images/itl-car-rental.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.itlmotors.com/" target="_blank">CAR RENTALS</a></h2>
+		<h2><a href="http://www.itlworld.com/contact-us" target="_blank">CAR RENTALS</a></h2>
 		</div>
 		</div>
 		</div>
@@ -189,7 +189,7 @@
 		<div class="service-post">
 		<img src="images/itl-forex.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.itlworld.com/" target="_blank">FOREX</a></h2>
+		<h2><a href="http://www.itlworld.com/contact-us" target="_blank">FOREX</a></h2>
 		</div>
 		</div>
 		</div>
@@ -198,7 +198,7 @@
 		<div class="service-post">
 		<img src="images/itl-visa.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.itlworld.com/" target="_blank">VISA SERVICE</a></h2>
+		<h2><a href="" target="_blank">VISA SERVICE</a></h2>
 		</div>
 		</div>
 		</div>
@@ -207,7 +207,7 @@
 		<div class="service-post">
 		<img src="images/itl-emi.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.itljobs.com/" target="_blank">EMIGRATION CLEARANCE</a></h2>
+		<h2><a href="https://emigrate.gov.in/ext/" target="_blank">EMIGRATION CLEARANCE</a></h2>
 		</div>
 		</div>
 		</div>
@@ -216,7 +216,7 @@
 		<div class="service-post">
 		<img src="images/itl-cert.png" alt="ITL JOBS">
 		<div class="service-content">
-		<h2><a href="http://www.itljobs.com/" target="_blank">CERTIFICATE ATTESTATION</a></h2>
+		<h2><a href="http://www.norkaroots.net/home.html" target="_blank">CERTIFICATE ATTESTATION</a></h2>
 		</div>
 		</div>
 		</div>

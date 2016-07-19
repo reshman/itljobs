@@ -433,6 +433,11 @@ if ($_GET) {
                                                 <?php
                                             }
                                             ?>>PER DAY</option>
+                                        <option <?php if ($per[1] == "PER HOUR") { ?>
+                                                selected
+                                                <?php
+                                            }
+                                            ?>>PER HOUR</option>
                                     </select>         
                                 </div>
 

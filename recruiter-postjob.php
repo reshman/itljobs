@@ -362,6 +362,7 @@
                                     <option>PER YEAR</option>    
                                     <option>PER MONTH</option>
                                     <option>PER DAY</option>
+                                    <option>PER HOUR</option>
                                 </select>         
                             </div>
 
