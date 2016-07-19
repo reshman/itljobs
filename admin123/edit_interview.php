@@ -615,7 +615,6 @@
                 // When the browser is ready...
 
                 $(function () {
-                    $('#title').attr("disabled", "disabled"); 
                     $('#job_cat').change(function () {
                         var id = $('#job_cat').val();
                         $.post("get_industry.php", {
