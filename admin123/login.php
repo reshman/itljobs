@@ -13,6 +13,7 @@ $query = sprintf("SELECT * FROM `users` WHERE email='%s' AND password='%s' AND r
 $result = Db::query($query);
 
 while ($row = mysql_fetch_array($result)) {
+    $id = $row['id'];
     $pass = $row['password'];
     $val = strcmp($pass, $password);
 }
@@ -23,7 +24,7 @@ $urlinlogin = "home.php";
 $urlinnotlogin = "index.php";
 if ($countrow > 0) {
     $_SESSION['logged-in-super'] = true;
-    $_SESSION['id'] = $row['id'];
+    $_SESSION['id'] = $id;
     echo "<script type='text/javascript'>
 location.href = '" . $urlinlogin . "';
 </script>";

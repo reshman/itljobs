@@ -472,6 +472,8 @@ p {
 .title-section p {
     max-width: 600px;
     margin: 0 auto;
+    font-weight: bolder;
+    font-size-adjust: .75;
 }
 #home-section {
     margin-top: 147px;

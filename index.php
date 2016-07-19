@@ -117,7 +117,7 @@
                                      data-splitout="none"
                                      data-elementdelay="0.1"
                                      data-endelementdelay="0.1"
-                                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">NEED NOT SEARCH ... JUST CHOOSE</span>
+                                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">LOOKING FOR A BETTER JOB ...</span>
                                 </div>
 
                                 <!-- LAYER NR. 1 -->
@@ -132,7 +132,7 @@
                                      data-splitout="none"
                                      data-elementdelay="0.1"
                                      data-endelementdelay="0.1"
-                                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">Let's get to work
+                                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">GET IT RIGHT FIRST TIME
                                 </div>
 
 
@@ -192,7 +192,7 @@
             <section class="services-offer-section">
                 <div class="container">
                     <div class="title-section">
-                        <h1>LOOKING FOR A BETTER JOB ... GET IT RIGHT FIRST TIME</h1>
+                        <!--<h1>LOOKING FOR A BETTER JOB ... GET IT RIGHT FIRST TIME</h1>-->
 
                         <p>You can start by posting a chore you need done, <br> 
                             or a service you can do for others</p>
