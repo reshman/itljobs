@@ -100,6 +100,7 @@
                                                 <th>Company Name</th>
                                                 <th>Mobile</th>-->
                                                 <th>Status</th>
+                                                <th>Resume Search</th>
                                                 <th>View More</th>
                                                 <th>Delete</th>
 
@@ -108,7 +109,7 @@
                                         <tbody>
                                             <?php
                                             $i = 1;
-                                            $query = sprintf("SELECT u.id as uid,u.name,u.email,r.designation,u.active,r.designation,r.user_id from employers r LEFT JOIN  users u ON r.user_id = u.id  WHERE role_id='%s' AND u.del_status='%s'", '4', '0');
+                                            $query = sprintf("SELECT u.id as uid,u.name,u.email,r.designation,u.active,r.designation,r.user_id,r.search_allowed from employers r LEFT JOIN  users u ON r.user_id = u.id  WHERE role_id='%s' AND u.del_status='%s'", '4', '0');
                                             $result = Db::query($query);
                                             while ($row = mysql_fetch_array($result)) {
                                                 ?>
@@ -119,8 +120,11 @@
                                                     <td><?php echo $row['designation']; ?></td>
                                                     <td><?php echo $row['email']; ?></td>
                                                     <td>
-                                                        <input <?php echo ($row['active'] == '1') ? 'checked' : ''; ?> data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox" value="<?php echo $row['uid']; ?>">                                
+                                                        <input <?php echo ($row['active'] == '1') ? 'checked' : ''; ?> data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox" value="<?php echo $row['uid']; ?>" id="status">                                
                                                     </td> 
+                                                    <td>
+                                                        <input <?php echo ($row['search_allowed'] == '1') ? 'checked' : ''; ?> data-on="Allowed" data-off="Not allowed" class="toggle-event" data-toggle="toggle" type="checkbox" value="<?php echo $row['uid']; ?>" id="search">                                
+                                                    </td>
                                                     <td><a href="viewmore_listemployers.php?id=<?php echo $row['uid'] ?>" target="_BLANK">View More</a></td>
 
                                                     <td class="center"><a href="javascript:void(0)" onclick="deleteConfirm('delete_recruiter.php?delid=<?= $row['uid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
@@ -356,11 +360,26 @@
         <script>
             $(function () {
 
-                $('body').on('change', '.toggle-event', function () {
+                $('body').on('change', '#status', function () {
                     //alert("asda");
                     var status = $(this).prop('checked') === true ? '1' : '0';
                     var rowId = $(this).val();
                     url = "active_employer.php";
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {id: rowId, status: status}
+                    }).done(function (data) {
+                        // alert(data);
+                    });
+
+                });
+                
+                $('body').on('change', '#search', function () {
+                    //alert("asda");
+                    var status = $(this).prop('checked') === true ? '1' : '0';
+                    var rowId = $(this).val();
+                    url = "allow_search.php";
                     $.ajax({
                         url: url,
                         type: 'POST',
