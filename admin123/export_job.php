@@ -5,7 +5,7 @@
 header("Content-type: application/vnd-ms-excel");
  
 // Defines the name of the export file "codelution-export.xls"
-header("Content-Disposition: attachment; filename=Log.xls");
+header("Content-Disposition: attachment; filename=Job.xls");
  
 include 'db.php';
 // Add data table     
