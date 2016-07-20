@@ -136,24 +136,24 @@
                                         <?php
                                         $explode = explode(',', $row['job_location']);
                                         $end = '';
-                                        if(count($explode) > 0){
+                                        if (count($explode) > 0) {
                                             $end = array_pop($explode);
                                         }
                                         ?>
-                                        <h2><?php echo strtoupper($row['job_listing']).', '.  strtoupper($row['company_name']).', '.strtoupper($end); ?></h2>
+                                        <h2><?php echo strtoupper($row['job_listing']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
                                         <p>
                                             <?php
-                                            if ($row['job_description']=="PDF Attached") {
-                                                echo $row['job_description'].' - <a href="jobdescriptions/'.$row['ref_id'].'.pdf" target="_BLANK">View Here</a>';
+                                            if ($row['job_description'] == "PDF Attached") {
+                                                echo $row['job_description'] . ' - <a href="jobdescriptions/' . $row['ref_id'] . '.pdf" target="_BLANK">View Here</a>';
                                             } else {
                                                 echo $row['job_description'];
                                             }
                                             ?>
                                         </p>
                                         <p class="c_b_t_border">
-                                            <!--<span style="color:#007ac9">Company Name: </span><?php // echo $row['company_name']; ?>,-->
+                                            <!--<span style="color:#007ac9">Company Name: </span><?php // echo $row['company_name'];  ?>,-->
                                             <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?>,
                                             <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>,
                                             <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
@@ -186,16 +186,16 @@
                                         <?php
                                         $explode = explode(',', $row['job_location']);
                                         $end = '';
-                                        if(count($explode) > 0){
+                                        if (count($explode) > 0) {
                                             $end = array_pop($explode);
                                         }
                                         ?>
-                                        <h2><?php echo strtoupper($row['job_listing']).', '.  strtoupper($row['company_name']).', '.strtoupper($end); ?></h2>
+                                        <h2><?php echo strtoupper($row['job_listing']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
                                         <p><?php echo $row['job_description']; ?></p>
                                         <p class="c_b_t_border">
-                                            <!--<span style="color:#007ac9">Company : </span><?php // echo $row['company_name']; ?>,-->
+                                            <!--<span style="color:#007ac9">Company : </span><?php // echo $row['company_name'];  ?>,-->
                                             <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?>,
                                             <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>,
                                             <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
@@ -287,6 +287,8 @@
                                 {position: "right"}
                         );
                     } else if (data == 'ALREADY SAVED') {
+
+                        $(current).children().val('SAVED');
                         $(current).children().notify(
                                 "Job Already Saved!",
                                 {position: "right"}
@@ -307,6 +309,14 @@
                         $(current).children().val('APPLIED');
                         $(current).notify(
                                 "Job Applied Successfully", "success",
+                                {position: "right"}
+                        );
+                    } else if(data == 'ALREADY APPLIED'){
+                        viewDiv = $(current).parent().next();
+                        $(viewDiv).hide();
+                        $(current).children().val('APPLIED');
+                        $(current).notify(
+                                "Job Already Applied", "danger",
                                 {position: "right"}
                         );
                     }

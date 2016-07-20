@@ -199,11 +199,11 @@
                                                 </p>
                                                 <input type="hidden" name="bid" id="bid" value="<?php echo $row['id']; ?>"/>
 
-                                                <div class="dropdown">
-                                                    <button onclick="apply(<?php echo $row['id']; ?>, this)" type="button">
-                                                        Apply Now
+                                                <div class="apply">
+                                                    <a href="javascript:void(0)" onclick="apply(<?php echo $row['id']; ?>, this)">
+                                                        <input type="submit" value="Apply Now">
                                                          <!--<span class="caret"></span>-->
-                                                    </button>
+                                                    </a>
                                                     <!--<ul class="dropdown-menu" aria-labelledby="dLabel">
                                                         <li><a id="applied"> Move to Applied</a></li>
                                                         <li><a id="archived"> Move to Archived</a></li>
@@ -381,16 +381,7 @@
                     //$.unblockUI;
                     $('#applied-affix').append(data);
                     $('#accord-saved-' + job_id).empty();
-                    $.notify("Job Applied Successfully", "success");
-                    //$.growlUI('SAVED JOBS', 'Job Applied Successfully');
-                    //if (data == 'SUCCESS') {
-
-                    //$.unblockUI;
-
-                    //viewDiv = $(current).parent().next();
-                    //$(viewDiv).hide();
-                    //$(current).children().val('APPLIED');
-                    //}
+                    $('#applied-affix').notify("Job Applied Successfully", "success");
                 });
             }
 
@@ -400,7 +391,7 @@
                 }).done(function (data) {
                     $('#accord-offered-' + jobid).remove();
                     $('#applied-affix').append(data);
-                    $.notify("Offered Job Applied Successfully", "success");
+                    $('#applied-affix').notify("Offered Job Applied Successfully", "success");
                     //$.growlUI('OFFERED JOBS', 'Offered Job Applied Successfully');
                 });
             }

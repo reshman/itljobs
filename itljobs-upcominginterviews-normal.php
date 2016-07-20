@@ -1,5 +1,5 @@
 <!doctype html>
-<?php session_start(); ?>
+
 
 <html lang="en" class="no-js">
     <head>
@@ -96,20 +96,7 @@
         <section class="services-offer-section">
             <div class="container">
                 <div class="services-box ser-box2">
-                    <?php
-                    if (isset($_SESSION['illegal'])) {
-                        ?>
-                        <div class="alert alert-danger alert-dismissable">
 
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                            Invalid.
-
-                        </div>
-                        <?php
-                        unset($_SESSION['illegal']);
-                    }
-                    ?>
 
                     <div class="col-md-12">
                         <div class="accordion-box">
@@ -128,43 +115,48 @@
                                     }
                                 }
                             }
+                            
                             $today_date = date('Y-m-d');
-
-                            $query = sprintf("SELECT DISTINCT company_name,country FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' ORDER BY company_name", $today_date, 1, 0);
-//                            die();
-                            $cresult = Db::query($query);
-                            while ($crow = mysql_fetch_assoc($cresult)) {
+                            $query = sprintf("SELECT id,name,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' ORDER BY schedule_date", $today_date, 1, 0);
+                            // echo $query = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,js.experience,js.job_location,js.closing_date,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 AND inv.schedule_date>='$today_date'"); die; 
+                            $result = Db::query($query);
+                            while ($row = mysql_fetch_array($result)) {
                                 ?>
 
                                 <div class="accord-elem">
                                     <div class="accord-title">
                                         <a class="accord-link" href="#"></a>
-                                        <h2><?php echo strtoupper($crow['company_name']) . ', ' . strtoupper($crow['country']); ?></h2>
+                                        <h2><?php echo strtoupper($row['name']).', '.strtoupper($row['company_name']) .', '.strtoupper($row['country']);?></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
-                                        <?php
-                                        $query = sprintf("SELECT id,name,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' AND company_name='%s' ORDER BY schedule_date", $today_date, 1, 0, $crow['company_name']);
-                                        // echo $query = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,js.experience,js.job_location,js.closing_date,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 AND inv.schedule_date>='$today_date'"); die; 
-                                        $result = Db::query($query);
-                                        while ($row = mysql_fetch_array($result)) {
-                                            ?>
-                                        <a href="moreinterviews.php?id=<?= $row['id']?>">
-                                            <div class="col-lg-8 col-md-8"><?php echo $row['name']; ?></div>
-                                        </a>
-                                            <div class="col-lg-4 col-md-4">
-                                                <?php if (isset($_SESSION['log'])): ?>
-                                                    <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $interviewArray)) ? 'APPLIED' : 'APPLY' ?>"></a></div>
-                                                <?php else: ?>
-                                                    <div id="apply"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" ><input type="submit" value="APPLY"></a></div>
-                                            <?php endif; ?>
-                                            </div>
-                                        <?php }
-                                        ?>
+                                        <p><?php echo $row['description']; ?></p>                                       
+                                        <p>
+                                            <span style="color:#6495ED">Salary Structure : </span><?php echo $row['salary']; ?>
+                                        </p>
+                                        <p>
+                                            <span style="color:#6495ED">Co ordinator : </span><?php echo $row['coordinator']; ?>
+                                        </p>
+                                        <p>
+                                            <span style="color:#6495ED">Contact : </span><?php echo $row['contact']; ?>
+                                        </p>
+                                        <p>
+                                            <span style="color:#6495ED">Interview date : </span><?php echo $row[schedule_date] . ' at ' . $row[schedule_time]; ?>
+                                        </p>
+                                        <p>
+                                            <span style="color:#6495ED">Location : </span><?php echo $row['venue']; ?>
+                                        </p>
+
+                                        <?php if (isset($_SESSION['log'])): ?>
+                                            <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $interviewArray)) ? 'APPLIED' : 'APPLY' ?>"></a></div>
+                                        <?php else: ?>
+                                            <div id="apply"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" ><input type="submit" value="APPLY"></a></div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <?php
                             }
-                            ?>	
+                            ?>			
+
                         </div>
                     </div>
 
@@ -223,8 +215,8 @@
                                 "Interview Applied Successfully", "success",
                                 {position: "right"}
                         );
-                    } else if (data == 'ALREADY APPLIED') {
-                        viewDiv = $(current).parent().next();
+                    } else if(data == 'ALREADY APPLIED'){
+                         viewDiv = $(current).parent().next();
                         $(viewDiv).hide();
                         $(current).children().val('APPLIED');
                         $(current).notify(
@@ -238,7 +230,7 @@
         <!-- footer 
                         ================================================== -->
 
-<?php include("footer.php"); ?>
+        <?php include("footer.php"); ?>
 
         <!-- End footer -->
 
