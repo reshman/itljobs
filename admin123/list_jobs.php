@@ -58,8 +58,8 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title"> Jobs</h3>
-                                </div><!-- /.box-header -->
+                                    <h3 class="box-title"> Jobs</h3>                                   
+                                </div><!-- /.box-header -->                                
                                 <div class="box-body" style="overflow-y: scroll;">
                                     <?php
                                     if (isset($_SESSION['delsucc'])) {
@@ -90,6 +90,7 @@
                                         unset($_SESSION['delsucc']);
                                     }
                                     ?>
+                                            <a href="export_job.php"><input type="button" class="btn btn-primary" name="submit" value="Export"></a>        
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>

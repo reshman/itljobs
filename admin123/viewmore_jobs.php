@@ -92,7 +92,7 @@
                                                     <tr><th>Job Location</th><td><?php echo $row['job_location']; ?></td></tr>
                                                     <tr><th>Created date</th><td><?php echo $row['created_date']; ?></td></tr>
                                                     <tr><th>Closing date</th><td><?php echo $row['closing_date']; ?></td></tr>
-                                                    <tr><th>Name</th><td><?php echo $row['name']; ?></td></tr>
+                                                    <tr><th>Category</th><td><?php echo $row['name']; ?></td></tr>
 <!--                                                    <tr><th>Order</th><td><input type="number" name="order" id="order" class="order" value="<?php echo $row['job_order'];?>"/>
                                                         <a onclick="updatecheck(this)" class="btn btn-primary">update</a>
                                                         <input type="hidden" name="id" id="id" value="<?php echo $row['jobid'];?>"/>
