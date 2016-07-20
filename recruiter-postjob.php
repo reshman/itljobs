@@ -198,7 +198,7 @@
                                 <span class="post-title">JOB TITLE:</span>    
                             </div>
 
-                            <div class="col-md-8">
+                            <div class="col-md-8 companyname1">
                                 <select name="category" class="category select2" id="category">
                                     <option selected disabled>JOB TITLE</option>
                                     <?php
@@ -220,7 +220,7 @@
                                 <span class="post-title">INDUSTRY:</span>    
                             </div>
 
-                            <div class="col-md-8" id="industry">
+                            <div class="col-md-8 companyname1" id="industry">
                                 <select name="sub_category" id="sub_category" class="select2">
                                     <option disabled="" selected="">INDUSTRY</option>
                                 </select>

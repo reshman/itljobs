@@ -11,7 +11,7 @@
                             <li><a href="search-job-basis.php">Job Search Basics</a></li>
                             <li><a href="prepare-resume.php">HOW TO PREPARE A RESUME</a></li>
                             <li><a href="cover-letter-tips.php">Cover Letter Tips</a></li>
-                            <li><a href="how-to-passport.php">How to Apply for a Passport</a></li>
+                            <li><a href="http://passport.gov.in">How to Apply for a Passport</a></li>
                         </ul>
                     </div>
                 </div>

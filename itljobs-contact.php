@@ -240,7 +240,7 @@
                     <div class="col-md-12">
 
 
-                        <div class="col-md-6">
+                        <!--div class="col-md-6">
                             <div class="contact-section">
                                 <div class="contact-info">
                                     <h2>Calicut</h2>
@@ -251,7 +251,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
 
                         <div class="col-md-6">
                             <div class="contact-section">
