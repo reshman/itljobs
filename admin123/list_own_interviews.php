@@ -88,9 +88,9 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title"> Interviews</h3>
+                                    <h3 class="box-title"> Interviews</h3>                                   
                                 </div><!-- /.box-header -->
-                                <div class="box-body" style="overflow-y: scroll;">
+                                <div class="box-body" style="overflow-y: scroll">
                                     
                                        <?php
                                            
@@ -232,7 +232,7 @@
                 $('#example2').dataTable({
                     "bPaginate": true,
                     "bLengthChange": false,
-                    "bFilter": false,
+                    "bFilter": true,
                     "bSort": true,
                     "bInfo": true,
                     "bAutoWidth": false

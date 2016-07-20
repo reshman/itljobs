@@ -173,7 +173,7 @@
                                                             $('#example2').dataTable({
                                                                 "bPaginate": true,
                                                                 "bLengthChange": false,
-                                                                "bFilter": false,
+                                                                "bFilter": true,
                                                                 "bSort": true,
                                                                 "bInfo": true,
                                                                 "bAutoWidth": false

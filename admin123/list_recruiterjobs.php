@@ -42,7 +42,7 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                         Recruiter Job List 
+                         Employer Job List 
                         <small> ITL JOBS</small>
                     </h1>
                     <ol class="breadcrumb">
@@ -58,7 +58,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title"> Recruiter Jobs</h3>
+                                    <h3 class="box-title"> Employer Jobs</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body" style="overflow-y: scroll">
                                    <?php
@@ -72,7 +72,7 @@
 
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-                                                Recruiter's Job Deleted Successfully <a href="#" class="alert-link"></a>.
+                                                Employer's Job Deleted Successfully <a href="#" class="alert-link"></a>.
 
                                             </div>
 
@@ -83,7 +83,7 @@
 
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-                                                Recruiter's Job Deletion Failed <a href="#" class="alert-link"></a>.
+                                                Employer's Job Deletion Failed <a href="#" class="alert-link"></a>.
 
                                             </div>
                                             <?php
@@ -177,7 +177,7 @@
                                                             $('#example2').dataTable({
                                                                 "bPaginate": true,
                                                                 "bLengthChange": false,
-                                                                "bFilter": false,
+                                                                "bFilter": true,
                                                                 "bSort": true,
                                                                 "bInfo": true,
                                                                 "bAutoWidth": false

@@ -146,7 +146,7 @@
 
                                             $res = Db::query($qry);
                                             while ($row = mysql_fetch_array($res)) {
-                                                
+
                                                 $filqry = sprintf("SELECT role_id FROM users WHERE id=%d", $row['user_id']);
                                                 $filres = Db::query($filqry);
                                                 $filrow = mysql_fetch_assoc($filres);
@@ -213,17 +213,17 @@
         <!-- page script -->
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
         <script type="text/javascript">
-                                                        $(function () {
-                                                            $("#example1").dataTable();
-                                                            $('#example2').dataTable({
-                                                                "bPaginate": true,
-                                                                "bLengthChange": false,
-                                                                "bFilter": false,
-                                                                "bSort": true,
-                                                                "bInfo": true,
-                                                                "bAutoWidth": false
-                                                            });
+                                                    $(function () {
+                                                        $("#example1").dataTable();
+                                                        $('#example2').dataTable({
+                                                            "bPaginate": true,
+                                                            "bLengthChange": false,
+                                                            "bFilter": true,
+                                                            "bSort": true,
+                                                            "bInfo": true,
+                                                            "bAutoWidth": false
                                                         });
+                                                    });
         </script>
         <script>
             function deleteConfirm(href) {
@@ -289,6 +289,5 @@
 
             }
         </script>
-
     </body>
 </html>

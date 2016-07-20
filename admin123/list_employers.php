@@ -40,8 +40,8 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Recruiters 
-                        <small> List Of Recruiters </small>
+                        Employers 
+                        <small> List Of Employers </small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -56,7 +56,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title"> Recruiters </h3>
+                                    <h3 class="box-title"> Employers </h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body" style="overflow-y: scroll">
                                     <?php
@@ -70,7 +70,7 @@
 
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-                                                Recruiter Deleted Successfully <a href="#" class="alert-link"></a>.
+                                                Employers Deleted Successfully <a href="#" class="alert-link"></a>.
 
                                             </div>
 
@@ -81,7 +81,7 @@
 
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-                                                Recruiter Deletion Failed <a href="#" class="alert-link"></a>.
+                                                Employer Deletion Failed <a href="#" class="alert-link"></a>.
 
                                             </div>
                                             <?php
@@ -333,7 +333,7 @@
                                                         $('#example2').dataTable({
                                                             "bPaginate": true,
                                                             "bLengthChange": false,
-                                                            "bFilter": false,
+                                                            "bFilter": true,
                                                             "bSort": true,
                                                             "bInfo": true,
                                                             "bAutoWidth": false

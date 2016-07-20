@@ -34,7 +34,6 @@
 
             <?php include 'menu.php'; ?>
 
-            <?php //include 'db.php'; ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
