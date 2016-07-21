@@ -561,7 +561,7 @@
                                 <div class="col-md-12">
 
                                     <input type="file"  class="resume" name="fileToUpload" id="f02">
-                                    <label for="f02"><?php echo isset($rowresult['file_name']) ? $rowresult['file_name'] : 'UPLOAD YOUR CV (DOC or DOCX Only)' ?></label>
+                                    <label for="f02"><?php echo isset($rowresult['file_name']) ? $rowresult['file_name'] : 'UPLOAD YOUR CV (DOC, DOCX, PDF, JPG, PNG, BMP, GIF)' ?></label>
 
                                 </div>
 

@@ -112,6 +112,7 @@
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d');
+                                         // echo $date = strtotime('2012-05-01 -4 months');die;
                                            while ($row = mysql_fetch_array($res)) {
                                           ?>
                                            <tr>

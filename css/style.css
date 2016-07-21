@@ -1283,16 +1283,16 @@ button.mfp-arrow {
     padding: 40px 0 60px;
     overflow: hidden;
 }
-.accord-elem {
+.accord-elem, .accord-elem-inner {
     margin-top: 8px;
 }
-.accord-elem:first-child {
+.accord-elem:first-child, .accord-elem-inner:first-child {
     margin-top: 0px;
 }
-.accord-title {
+.accord-title, .accord-title-inner {
     position: relative;
 }
-.accord-title h2 {
+.accord-title h2, .accord-title-inner h2 {
     padding: 15px 15px;
     background: #e1e1e1;
     color: #222222;
@@ -1309,7 +1309,7 @@ button.mfp-arrow {
     -webkit-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
 }
-.accord-title a.accord-link {
+.accord-title a.accord-link, .accord-title-inner a.accord-link-inner {
     display: inline-block;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
@@ -1325,7 +1325,7 @@ button.mfp-arrow {
     border-right: none;
     background: #e1e1e1;
 }
-.accord-title a.accord-link:after {
+.accord-title a.accord-link:after, .accord-title-inner a.accord-link-inner:after {
     font-family: 'FontAwesome';
     content: '\f067';
     font-size: 18px;
@@ -1336,24 +1336,24 @@ button.mfp-arrow {
     -webkit-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
 }
-.accord-elem.active .accord-title h2 {
+.accord-elem.active .accord-title h2, .accord-elem-inner.active .accord-title-inner h2 {
     color: #ffffff;
     background: #222222;
 }
-.accord-elem.active a.accord-link {
+.accord-elem.active a.accord-link, .accord-elem-inner.active a.accord-link-inner {
     background: #222222;
     border-right: none;
 }
-.accord-elem.active a.accord-link:after {
+.accord-elem.active a.accord-link:after, .accord-elem-inner.active a.accord-link-inner:after {
     content: '\f068';
     color: #ffffff;
 }
-.accord-content {
+.accord-content, .accord-content-inner {
     display: none;
     overflow: hidden;
     padding: 16px 0 5px;
 }
-.accord-content p {
+.accord-content p, .accord-content-inner p {
     font-size: 15px;
     color: #666666;
     font-family: 'Roboto', sans-serif;
@@ -1366,7 +1366,7 @@ button.mfp-arrow {
     padding-top: 10px;
     padding-bottom: 15px;
 }
-.accord-elem.active .accord-content {
+.accord-elem.active .accord-content, .accord-content-inner {
     display: block;
 }
 .c_b_t_border
