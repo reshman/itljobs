@@ -17,25 +17,25 @@
             <tr>
                 <th>Sl.No</th>
                 <th>Job Title</th>
-                <th>Candidate Name</th>
-                <th>Applied date</th>
-                <th>Job posted by</th>
+                <th>Industry</th>
+                <th>Candidate Name</th>              
                 <th>Date of Birth</th>
                 <th>Mobile</th>
                 <th>Email</th>
                 <th>Current Location</th>
                 <th>Qualification</th>
-                <th>Industry</th>
                 <th>Specialization</th>
                 <th>Abroad experience</th>
                 <th>Indian experience</th>
                 <th>Total Experience</th>
+                <th>Applied date</th>
+                <th>Job posted by</th>
 
             </tr>
         </thead>
         <tbody>
             <?php
-            $qry = sprintf("SELECT js.id,js.job_listing,js.user_id as jobuserid,ja.id as apid,ja.job_id,ja.user_id,ja.created_date,us.name FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id ORDER BY ja.id DESC");
+            $qry = sprintf("SELECT js.id,js.job_listing,js.user_id as jobuserid,ja.id as apid,ja.job_id,ja.user_id,ja.created_date,us.name,us.email FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id ORDER BY ja.id DESC");
             $res = Db::query($qry);
             $i = 1;
             date_default_timezone_set('Asia/Kolkata');
@@ -49,7 +49,17 @@
                 <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $row['job_listing']; ?></td>
-                    <td><?php echo $row['name']; ?></td>
+                    <td><?php echo $rw['sub_category']; ?></td>
+                    <td><?php echo $row['name']; ?></td>                
+                    <td><?php echo $rw['date_of_birth']; ?></td>
+                    <td><?php echo $rw['mobile']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $rw['current_location']; ?></td>
+                    <td><?php echo $rw['qualification']; ?></td>
+                    <td><?php echo $rw['specification']; ?></td>
+                    <td><?php echo $rw['abroad_experience']; ?></td>
+                    <td><?php echo $rw['india_experience']; ?></td>
+                    <td><?php echo $rw['experience']; ?></td>
                     <?php
                     $date = $row['created_date'];
                     $regdate = date("d-m-Y", strtotime($date));
@@ -68,16 +78,6 @@
                     $rowapp = mysql_fetch_assoc($resl);
                     ?>
                     <td><?php echo $jpid; ?></td>
-                    <td><?php echo $rw['date_of_birth']; ?></td>
-                    <td><?php echo $rw['mobile']; ?></td>
-                    <td><?php echo $rowapp['email']; ?></td>
-                    <td><?php echo $rw['current_location']; ?></td>
-                    <td><?php echo $rw['qualification']; ?></td>
-                    <td><?php echo $rw['sub_category']; ?></td>
-                    <td><?php echo $rw['specification']; ?></td>
-                    <td><?php echo $rw['abroad_experience']; ?></td>
-                    <td><?php echo $rw['india_experience']; ?></td>
-                    <td><?php echo $rw['experience']; ?></td>
                 </tr>
                 <?php
                 $i = $i + 1;
