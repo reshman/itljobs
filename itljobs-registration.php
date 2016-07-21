@@ -67,6 +67,7 @@
                 width: 100%;
             }
 
+
         </style>
         <style>
             .rbutton{
@@ -493,8 +494,8 @@
 
                                 <div class="col-md-4">
 
-                                <input type="text" name="captcha" placeholder="ENTER CAPTCHA" maxlength="4" id="txtboxToFilter">
-                            </div>
+                                    <input type="text" name="captcha" placeholder="ENTER CAPTCHA" maxlength="4">
+                                </div>
 
                                 <div class="col-md-2">
                                     <img src="verificationimage.php?<?php echo rand(0, 9999); ?>" alt="verification image, type it in the box" width="150" height="50" align="absbottom" id="captcha"/>
@@ -508,8 +509,8 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
 
-                                <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV" >
-                                <label for="f02">UPLOAD YOUR CV (DOC, DOCX, PDF, JPG, PNG, BMP, GIF)</label>
+                                    <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV" >
+                                    <label for="f02">UPLOAD YOUR CV</label>
 
                                 </div>
 
@@ -681,7 +682,6 @@
 
                 var total = +abexp + +inexp;
 
-<<<<<<< Updated upstream
                 $.ajax({
                     type: "POST",
                     url: "check.php",
@@ -760,49 +760,6 @@
                     captcha: "required",
                     fileToUpload: "required",
                     email: {required: true, checkEmail: true}
-=======
-            if (!regex.test(key)) {
-                return false;
-            }
-            return true;
-        }, "Please Enter Valid Email");
-
-        $("#txtboxToFilter").keydown(function (e) {
-            // Allow: backspace, delete, tab, escape, enter and .
-            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
-                    // Allow: Ctrl+A, Command+A
-                            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-                            // Allow: home, end, left, right, down, up
-                                    (e.keyCode >= 35 && e.keyCode <= 40)) {
-                        // let it happen, don't do anything
-                        return;
-                    }
-                    // Ensure that it is a number and stop the keypress
-                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                        e.preventDefault();
-                    }
-                });
-
-        $("#contact-form").validate({
-            // Specify the validation rules
-
-            rules: {
-                title: "required",
-                name: {required: true, nonNumeric: true},
-                job_category_id: "required",
-//                        sub_category:"required",
-                india: "required",
-//                        abroad:"required",
-                dob: {required: true, dateFormat: true},
-                phoneCode: {
-                    required: true
-                },
-                mobile: {
-                    required: true,
-                    digits: true,
-                    minlength: 10, //or look at the additional-methods.js to see available phone validations
-                    maxlength: 10
->>>>>>> Stashed changes
                 },
                 // Specify the validation error messages
 
