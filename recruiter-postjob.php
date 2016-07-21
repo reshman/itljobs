@@ -407,9 +407,9 @@
                                     tags:true
                                 });
                                 
-                                $('#category').select2();
+                                $('#category').select2({tags:true});
                                 
-                                $('#sub_category').select2();
+                                $('#sub_category').select2({tags:true});
 
                                 $("select.category").change(function () {
                                     var jobcat = $(".category option:selected").val();
@@ -420,7 +420,7 @@
                                         data: {jobcat: jobcat}
                                     }).done(function (data) {
                                         $("#industry").html(data);
-                                        $('#sub_category').select2();
+                                        $('#sub_category').select2({tags:true});
                                     });
                                 });
                             });

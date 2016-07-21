@@ -48,6 +48,50 @@ if ($flag == 1) {
     $experience = $india_exp + $abr_exp;
 
     $timestamp = date("YmdHis");
+
+    //Check to see if a new category is entered
+//If category is new add it to database 
+    if (!is_numeric($job_category_id)) {
+        $job_category_id = strtoupper($job_category_id);
+        $sql = sprintf("SELECT * FROM job_categories WHERE name='%s' LIMIT 1", $job_category_id);
+        $resultsql = Db::query($sql);
+        if (mysql_num_rows($resultsql) > 0) {
+            $row = mysql_fetch_assoc($resultsql);
+            $job_category_id = $row['id'];
+        } else {
+            $sql = sprintf("INSERT INTO job_categories SET name='%s' LIMIT 1", $job_category_id);
+            $resultsql = Db::query($sql);
+            if ($resultsql) {
+                $job_category_id = mysql_insert_id();
+            } else {
+                $_SESSION['regsucc'] = 2;
+                echo "<script type='text/javascript'>
+        window.location.href = '" . $urlin . "';
+        </script>";
+                die();
+            }
+        }
+    }
+
+//Check to see if a new Industry is entered
+    $companytitle = strtoupper($sub_category);
+    $sql = sprintf("SELECT * FROM industries WHERE industry_name='%s'", $sub_category);
+    $result = DB::query($sql);
+    if (mysql_num_rows($result) <= 0) {
+        $sql = sprintf("INSERT INTO industries SET industry_name='%s'", $sub_category);
+        $result = DB::query($sql);
+    }
+
+    //Check to see if a new Qualification is entered
+    $companytitle = strtoupper($qualification);
+    $sql = sprintf("SELECT * FROM industries WHERE industry_name='%s'", $qualification);
+    $result = DB::query($sql);
+    if (mysql_num_rows($result) <= 0) {
+        $sql = sprintf("INSERT INTO industries SET industry_name='%s'", $qualification);
+        $result = DB::query($sql);
+    }
+
+
     $target_dir = "uploads/";
     //  echo $target_file; exit;
     $uploadOk = 1;
