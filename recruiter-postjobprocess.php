@@ -86,6 +86,24 @@ $result = DB::query($sql);
 if (mysql_num_rows($result) <= 0) {
     $sql = sprintf("INSERT INTO industries SET industry_name='%s'", $companytitle);
     $result = DB::query($sql);
+    if (!$result) {
+            $_SESSION['regsucc'] = 2;
+            echo "<script type='text/javascript'>
+        window.location.href = '" . $urlin . "';
+        </script>";
+            die();
+        } else {
+            $industry_id = mysql_insert_id();
+            $sql = sprintf("INSERT INTO industry_category SET industry_id=%d,category_id=%d", $industry_id, $category_id);
+            $result = DB::query($sql);
+            if (!$result) {
+                $_SESSION['regsucc'] = 2;
+                echo "<script type='text/javascript'>
+        window.location.href = '" . $urlin . "';
+        </script>";
+                die();
+            }
+        }
 }
 
 
