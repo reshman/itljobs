@@ -1,5 +1,7 @@
 <!doctype html>
-<?php include 'check_session_rec.php'; ?>
+<?php include 'check_session_rec.php';
+ include_once 'db.php';
+?>
 
 <html lang="en" class="no-js">
     <head>
@@ -77,12 +79,12 @@
                                      data-splitout="none"
                                      data-elementdelay="0.1"
                                      data-endelementdelay="0.1"
-                                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;"><span>NEED NOT SEARCH ... JUST CHOOSE</span>
+                                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">LOOKING FOR A BETTER JOB ...</span>
                                 </div>
 
                                 <!-- LAYER NR. 1 -->
                                 <div class="tp-caption finewide_medium_white lft tp-resizeme rs-parallaxlevel-0"
-                                     data-x="300"
+                                     data-x="195"
                                      data-y="230" 
                                      data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
                                      data-speed="1000"
@@ -92,7 +94,7 @@
                                      data-splitout="none"
                                      data-elementdelay="0.1"
                                      data-endelementdelay="0.1"
-                                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">Let's get to work
+                                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">GET IT RIGHT FIRST TIME
                                 </div>
 
 

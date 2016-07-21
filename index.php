@@ -122,7 +122,7 @@
 
                                 <!-- LAYER NR. 1 -->
                                 <div class="tp-caption finewide_medium_white lft tp-resizeme rs-parallaxlevel-0"
-                                     data-x="300"
+                                     data-x="195"
                                      data-y="230" 
                                      data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
                                      data-speed="1000"

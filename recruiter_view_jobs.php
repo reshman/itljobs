@@ -53,86 +53,9 @@
 
             <!-- home-section 
                               ================================================== -->
-            <section id="home-section" class="slider2">
+            <section class="page-banner-section">
+                <div class="container">
 
-                <div class="tp-banner-container">
-                    <div class="tp-banner" >
-                        <ul>	<!-- SLIDE  -->
-
-                            <li data-transition="fade" data-slotamount="7" data-masterspeed="500" data-saveperformance="on"  data-title="Intro Slide">
-                                <!-- MAIN IMAGE -->
-                                <img src="images/main-slider-bg.jpg"  alt="slidebg1" data-lazyload="images/main-slider-bg.jpg" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-                                <!-- LAYERS -->
-
-                                <!-- LAYER NR. 1 -->
-
-                                <div class="tp-caption medium_thin_grey customin"     
-                                     data-x="310"
-                                     data-y="160" 
-                                     data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                                     data-speed="1000"
-                                     data-start="1200"
-                                     data-easing="Power3.easeInOut"
-                                     data-splitin="none"
-                                     data-splitout="none"
-                                     data-elementdelay="0.1"
-                                     data-endelementdelay="0.1"
-                                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">NEED NOT SEARCH ... JUST CHOOSE</span>
-                                </div>
-
-                                <!-- LAYER NR. 1 -->
-                                <div class="tp-caption finewide_medium_white lft tp-resizeme rs-parallaxlevel-0"
-                                     data-x="300"
-                                     data-y="230" 
-                                     data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                                     data-speed="1000"
-                                     data-start="1600"
-                                     data-easing="Power3.easeInOut"
-                                     data-splitin="none"
-                                     data-splitout="none"
-                                     data-elementdelay="0.1"
-                                     data-endelementdelay="0.1"
-                                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">Let's get to work
-                                </div>
-
-
-                                <!-- LAYER NR. 3 
-                                <div class="tp-caption lfb tp-resizeme rs-parallaxlevel-0"
-                                        data-x="0"
-                                        data-y="320" 
-                                        data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                                        data-speed="1000"
-                                        data-start="2500"
-                                        data-easing="Power3.easeInOut"
-                                        data-splitin="none"
-                                        data-splitout="none"
-                                        data-elementdelay="0.1"
-                                        data-endelementdelay="0.1"
-                                        data-linktoslide="next"
-                                        style="z-index: 10; max-width: auto; max-height: auto; white-space: nowrap;"><a href='#' class='trans-btn'>LOGIN</a>
-                                </div>-->
-
-                                <!-- LAYER NR. 4
-                                <div class="tp-caption lfr tp-resizeme rs-parallaxlevel-0"
-                                        data-x="180"
-                                        data-y="320" 
-                                        data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                                        data-speed="1000"
-                                        data-start="2600"
-                                        data-easing="Power3.easeInOut"
-                                        data-splitin="none"
-                                        data-splitout="none"
-                                        data-elementdelay="0.1"
-                                        data-endelementdelay="0.1"
-                                        data-linktoslide="next"
-                                        style="z-index: 11; max-width: auto; max-height: auto; white-space: nowrap;"><a href='#' class='trans-btn2'>REGISTER</a>
-                                </div> -->
-
-                            </li>
-
-                        </ul>
-                        <div class="tp-bannertimer"></div>
-                    </div>
                 </div>
             </section>
             <!-- End home section -->
@@ -282,40 +205,43 @@
                                                 require_once 'db.php';
                                                 $query = sprintf("SELECT * FROM jobs WHERE user_id='%s' AND del_status=0 ORDER BY job_listing", $user_id);
                                                 $result = Db::query($query);
-                                                if(mysql_num_rows($result)<1){ ?>
+                                                if (mysql_num_rows($result) < 1) {
+                                                    ?>
                                                     <tbody>
                                                         <tr>
                                                             <td colspan="6">NO JOBS FOUND</td>
                                                         </tr>
                                                     </tbody>
-                                                <?php } else {
-                                                while ($row = mysql_fetch_array($result)) {
+                                                <?php
+                                                } else {
+                                                    while ($row = mysql_fetch_array($result)) {
 
-                                                    $created = explode('-', $row['created_date']);
-                                                    $created = array_reverse($created);
-                                                    $created = implode('/', $created);
+                                                        $created = explode('-', $row['created_date']);
+                                                        $created = array_reverse($created);
+                                                        $created = implode('/', $created);
 
-                                                    $closing = explode('-', $row['closing_date']);
-                                                    $closing = array_reverse($closing);
-                                                    $closing = implode('/', $closing);
-                                                    ?>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td><?php echo $i; ?></td>
-                                                            <td><a href="view_rec_job.php?id=<?php echo $row['id']; ?>"><?php echo $row['job_listing'] ?></a></td>
-                                                            <td><?= $row['company_name'] ?></td>
-                                                            <td><?php echo $created; ?></td>
-                                                            <td><?php echo $closing; ?></td>
-                                                            <td><a href="list_applicants.php?id=<?php echo $row['id']; ?>" class="btn btn-primary"><span class="fa fa-list"></span></a></td>
-                                                            <td><a href="edit_rec_job.php?id=<?php echo $row['id']; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a></td>
-                                                            <td><a onclick="deleteConfirm('delete_rec_job.php?id=<?php echo $row['id']; ?>')" class="btn btn-danger"><span class="fa fa-times"></span></a></td>
+                                                        $closing = explode('-', $row['closing_date']);
+                                                        $closing = array_reverse($closing);
+                                                        $closing = implode('/', $closing);
+                                                        ?>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><?php echo $i; ?></td>
+                                                                <td><a href="view_rec_job.php?id=<?php echo $row['id']; ?>"><?php echo $row['job_listing'] ?></a></td>
+                                                                <td><?= $row['company_name'] ?></td>
+                                                                <td><?php echo $created; ?></td>
+                                                                <td><?php echo $closing; ?></td>
+                                                                <td><a href="list_applicants.php?id=<?php echo $row['id']; ?>" class="btn btn-primary"><span class="fa fa-list"></span></a></td>
+                                                                <td><a href="edit_rec_job.php?id=<?php echo $row['id']; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a></td>
+                                                                <td><a onclick="deleteConfirm('delete_rec_job.php?id=<?php echo $row['id']; ?>')" class="btn btn-danger"><span class="fa fa-times"></span></a></td>
 
-                                                        </tr>
-                                                    </tbody>
+                                                            </tr>
+                                                        </tbody>
 
-                                                    <?php
-                                                    $i++;
-                                                } }
+                                                        <?php
+                                                        $i++;
+                                                    }
+                                                }
                                                 ?>
 
                                             </table>
@@ -332,7 +258,7 @@
             <!-- footer 
                             ================================================== -->
 
-            <?php include("footer.php"); ?>
+<?php include("footer.php"); ?>
 
             <!-- End footer -->
 
