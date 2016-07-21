@@ -146,7 +146,7 @@ if ($flag == 1) {
 
     $filename = $timestamp . '.' . $imageFileType;
 
-    $countemail = sprintf("SELECT * FROM `users` WHERE email='%s' AND del_status='%s'", $email, '0');
+    $countemail = sprintf("SELECT * FROM `users` WHERE email='%s' AND del_status='%s' AND email!=''", $email, '0');
     $countresultemail = Db::query($countemail);
     $countdtable = mysql_num_rows($countresultemail);
     if ($countdtable == 1) {
@@ -188,6 +188,7 @@ if ($flag == 1) {
 
         /* Sending mail */
 
+        if(!empty($email)){
         $msg = "Thanks for registering with ITL JOBS.You can log in to your account in conjunction with your email address";
         $txt = "Dear  " . $name . ", <br/>" . $msg;
         $email_template_register = file_get_contents("email_template_register.html");
@@ -200,7 +201,7 @@ if ($flag == 1) {
         $to = $email;
         $subject = "Welcome to ITL JOBS";
         mail($to, $subject, $email_template_register, $headers);
-
+        }
         $_SESSION['regsucc'] = 1;
     } else if ($filename == NULL) {
 

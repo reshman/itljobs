@@ -494,7 +494,7 @@
 
                                 <div class="col-md-4">
 
-                                    <input type="text" name="captcha" placeholder="ENTER CAPTCHA" maxlength="4">
+                                    <input type="text" name="captcha" placeholder="ENTER CAPTCHA" maxlength="4" id="txtboxToFilter">
                                 </div>
 
                                 <div class="col-md-2">
@@ -510,7 +510,7 @@
                                 <div class="col-md-12">
 
                                     <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV" >
-                                    <label for="f02">UPLOAD YOUR CV</label>
+                                    <label for="f02">UPLOAD YOUR CV (DOC, DOCX, PDF, JPG, PNG, BMP, GIF)</label>
 
                                 </div>
 
@@ -730,6 +730,22 @@
                 }
                 return true;
             }, "Please Enter Valid Email");
+            
+            $("#txtboxToFilter").keydown(function (e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                    // Allow: Ctrl+A, Command+A
+                            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                            // Allow: home, end, left, right, down, up
+                                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                        // let it happen, don't do anything
+                        return;
+                    }
+                    // Ensure that it is a number and stop the keypress
+                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                        e.preventDefault();
+                    }
+                });
 
             $("#contact-form").validate({
                 // Specify the validation rules
@@ -759,7 +775,7 @@
                     //year:"required",
                     captcha: "required",
                     fileToUpload: "required",
-                    email: {required: true, checkEmail: true}
+                    email: {email: true}
                 },
                 // Specify the validation error messages
 
@@ -785,7 +801,7 @@
                     //year:"Please enter date of birth",
                     captcha: "Please enter captcha",
                     fileToUpload: "Please upload your resume",
-                    email: {required: "Please enter email"}
+                    //email: {required: "Please enter email"}
 
                 },
                 submitHandler: function (form) {
