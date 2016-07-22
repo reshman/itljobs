@@ -120,10 +120,10 @@ if ($flag == 1) {
 
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
-//    if ($imageFileType != "docx" && $imageFileType != "doc") {
-//        
-//        $uploadOk = 0;
-//    }
+    if ($imageFileType != 'docx' && $imageFileType != 'doc' && $imageFileType != 'pdf' && $imageFileType != 'jpg' && $imageFileType != 'png' && $imageFileType != 'bmp' && $imageFileType != 'gif') {
+        
+        $uploadOk = 0;
+    }
 
     if ($uploadOk == 0) {
         $notup = "Sorry, your file was not uploaded.";

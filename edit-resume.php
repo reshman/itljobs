@@ -42,6 +42,10 @@
         <script type="text/javascript" src="js/script.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
         <script src="js/jquery.geocomplete.js"></script>
+
+        <!-- SELECT 2 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
         <style>
 
             /* Hide the file input using
@@ -161,14 +165,14 @@
                             $dob = explode('-', $rowresult['date_of_birth']);
                             $dob = array_reverse($dob);
                             $dob = implode('/', $dob);
-                                                        
-                            $phoneCode = substr($rowresult['mobile'],1,  strlen($rowresult['mobile'])-11);
-                            $rowresult['mobile'] = substr($rowresult['mobile'],  strlen($phoneCode)+1,10);
+
+                            $phoneCode = substr($rowresult['mobile'], 1, strlen($rowresult['mobile']) - 11);
+                            $rowresult['mobile'] = substr($rowresult['mobile'], strlen($phoneCode) + 1, 10);
                             ?>
                             <div class="col-md-12">
                                 <div class="col-md-12">
 
-                                    <select name="job_category_id" class="job">
+                                    <select name="job_category_id" class="job" id="category">
                                         <option disabled="" selected="">JOB APPLIED FOR</option>
                                         <?php
                                         $qry = sprintf("SELECT * FROM `job_categories` ORDER BY name");
@@ -211,50 +215,23 @@
 
                                 <div class="col-md-4">
                                     <!-- <input name="qualification" id="qualification" type="text" placeholder="QUALIFICATION ">    -->
-                                    <select name="qualification">
-                                        <option disabled="" selected="">Select Qualification</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'B.A') ? 'selected = selected' : ''; ?> value="B.A">B.A</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'B.Arch') ? 'selected = selected' : ''; ?> value="B.Arch">B.Arch</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'BCA') ? 'selected = selected' : ''; ?> value="BCA">BCA</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'BBA') ? 'selected = selected' : ''; ?> value="BBA">BBA</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'B.Com') ? 'selected = selected' : ''; ?> value="B.Com">B.Com</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'B.Ed') ? 'selected = selected' : ''; ?> value="B.Ed">B.Ed</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'BDS') ? 'selected = selected' : ''; ?> value="BDS">BDS</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'BHM') ? 'selected = selected' : ''; ?> value="BHM">BHM</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'B.Pharma') ? 'selected = selected' : ''; ?> value="B.Pharma">B.Pharma</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'B.Sc') ? 'selected = selected' : ''; ?> value="B.Sc">B.Sc</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'B.Tech / B.E') ? 'selected = selected' : ''; ?> value="B.Tech / B.E">B.Tech / B.E</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'LLB') ? 'selected = selected' : ''; ?> value="LLB">LLB</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'MBBS') ? 'selected = selected' : ''; ?> value="MBBS">MBBS</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'Diploma') ? 'selected = selected' : ''; ?> value="Diploma">Diploma</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'BVSC') ? 'selected = selected' : ''; ?> value="BVSC">BVSC</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'CA') ? 'selected = selected' : ''; ?> value="CA">CA</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'CS') ? 'selected = selected' : ''; ?> value="CS">CS</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'ICWA (CMA)') ? 'selected = selected' : ''; ?> value="ICWA (CMA)">ICWA (CMA)</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'Integrated PG') ? 'selected = selected' : ''; ?> value="Integrated PG">Integrated PG</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'LLM') ? 'selected = selected' : ''; ?> value="LLM">LLM</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'M.A') ? 'selected = selected' : ''; ?> value="M.A">M.A</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'M.Arch') ? 'selected = selected' : ''; ?> value="M.Arch">M.Arch</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'M.Com') ? 'selected = selected' : ''; ?> value="M.Com">M.Com</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'M.Ed') ? 'selected = selected' : ''; ?> value="M.Ed">M.Ed</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'M.Pharma') ? 'selected = selected' : ''; ?> value="M.Pharma">M.Pharma</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'MSc') ? 'selected = selected' : ''; ?> value="MSc">MSc</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'M.Tech') ? 'selected = selected' : ''; ?> value="M.Tech">M.Tech</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'MBA/PGDM') ? 'selected = selected' : ''; ?> value="MBA/PGDM">MBA/PGDM</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'MCA') ? 'selected = selected' : ''; ?> value="MCA">MCA</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'MS') ? 'selected = selected' : ''; ?> value="MS">MS</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'PG Diploma') ? 'selected = selected' : ''; ?> value="PG Diploma">PG Diploma</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'MVSC') ? 'selected = selected' : ''; ?> value="MVSC">MVSC</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'MCM') ? 'selected = selected' : ''; ?> value="MCM">MCM</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'Ph.D/Doctorate') ? 'selected = selected' : ''; ?> value="Ph.D/Doctorate">Ph.D/Doctorate</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'M.Phil') ? 'selected = selected' : ''; ?> value="M.Phil">M.Phil</option>
-                                        <option <?php echo ($rowresult['qualification'] == 'Other') ? 'selected = selected' : ''; ?> value="Other">Other</option>
-
-                                    </select>
+                                    <select name="qualification" id="qualification" class="select2">
+                                        <option disabled="" selected="">SELECT QUALIFICATION</option>
+                                        <?php
+                                        $qryqa = sprintf("SELECT * FROM `qualification` ORDER BY qualification");
+                                        $resqua = Db::query($qryqa);
+                                        while ($rowq = mysql_fetch_assoc($resqua)) {
+                                            ?>
+                                            <option value="<?php echo $rowq['qualification']; ?>" <?php if ($rowresult['qualification'] == $rowq['qualification']) {
+                                            echo "selected";
+                                        } ?>><?php echo $rowq['qualification']; ?></option>
+<?php }
+?>
+                                    </select>  
                                 </div>
 
                                 <div class="col-md-4" id="cat">
-                                    <select name="sub_category">
+                                    <select name="sub_category" id="sub_category">
                                         <option disabled="" selected="">INDUSTRY </option>
                                     </select>
                                 </div>
@@ -272,18 +249,18 @@
                                 <div class="col-md-4">
                                     <select name="abroad" class="exp">
                                         <option disabled="" selected="" value="0">EXPERIENCE IN ABROAD</option>
-<?php for ($i = 0; $i <= 40; $i++) { ?>
+                                        <?php for ($i = 0; $i <= 40; $i++) { ?>
                                             <option <?php echo ($ab_exp == $i) ? 'selected = selected' : ''; ?> value="<?php echo $i; ?>" ><?php echo "$i year(s)"; ?></option>
-                                        <?php } ?>
+<?php } ?>
                                     </select>
                                 </div>
 
                                 <div class="col-md-4">
                                     <select name="india" class="inexp">
                                         <option disabled="" selected="" value="0">EXPERIENCE IN INDIA</option>
-<?php for ($i = 0; $i <= 40; $i++) { ?>
+                                        <?php for ($i = 0; $i <= 40; $i++) { ?>
                                             <option <?php echo ($ind_exp == $i) ? 'selected = selected' : ''; ?> value="<?php echo $i; ?>" ><?php echo "$i year(s)"; ?></option>
-                                        <?php } ?>
+<?php } ?>
                                     </select>
                                 </div>
 
@@ -662,9 +639,9 @@
 
             <!-- footer
                 ================================================== -->
-<?php
-include 'footer.php';
-?>
+            <?php
+            include 'footer.php';
+            ?>
 
         </div>
         <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
@@ -689,13 +666,16 @@ include 'footer.php';
         <script type="text/javascript">
             $(document).ready(function () {
 
+                $('#category').select2({tags: true});
+                $('#qualification').select2({tags: true});
+
                 $.ajax({
                     type: "POST",
                     url: "category.php",
                     data: {jobcat: '<?php echo $jobcat ?>', subcat: '<?php echo $subcat ?>'}
                 }).done(function (data) {
-                    $("#response").html(data);
-                    $("#cat").hide();
+                    $("#cat").html(data);
+                    $('#sub_category').select2({tags: true});
                 });
 
 
@@ -706,12 +686,12 @@ include 'footer.php';
                         url: "category.php",
                         data: {jobcat: jobcat}
                     }).done(function (data) {
-                        $("#response").html(data);
-                        $("#cat").hide();
+                        $("#cat").html(data);
+                        $('#sub_category').select2({tags: true});
                     });
                 });
-                
-                $('#phoneCode [value="<?php echo $phoneCode; ?>"]').attr("selected","selected");
+
+                $('#phoneCode [value="<?php echo $phoneCode; ?>"]').attr("selected", "selected");
             });
         </script>
 

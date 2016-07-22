@@ -234,7 +234,7 @@ if ($_GET) {
                                 </div>
 
                                 <div class="col-md-8">
-                                    <select name="category" class="category">
+                                    <select name="category" class="category" id="category">
                                         <?php
                                         $qry = sprintf("SELECT * FROM `job_categories` ORDER BY name");
                                         $res = Db::query($qry);
@@ -485,6 +485,9 @@ if ($_GET) {
                                         tags: true
                                     });
 
+                                    $('#category').select2({tags: true});
+                                    $('#sub_category').select2({tags: true});
+
                                     $.post("get_keys.php", {
                                         id:<?= $id ?>
                                     },
@@ -492,6 +495,8 @@ if ($_GET) {
                                                 data = JSON.parse(response);
                                                 if (data[0] != null && data[1] !== null) {
                                                     $('#keys').select2({data: data[0], tags: true}).val(data[1]).trigger("change");
+//                                                    $('#category').select2({data: data[2], tags: true}).val(data[3]).trigger("change");
+//                                                    $('#sub_category').select2({data: data[4], tags: true}).val(data[5]).trigger("change");
                                                     console.log(data);
                                                 }
                                             });

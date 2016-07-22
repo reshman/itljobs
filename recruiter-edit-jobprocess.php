@@ -52,6 +52,57 @@ $closing_date1 = explode('/', $closing_date1);
 $closing_date1 = array_reverse($closing_date1);
 $closing_date = implode('-', $closing_date1);
 
+//Check to see if a new category is entered
+//If category is new add it to database 
+if (!is_numeric($category_id)) {
+    $category_id = strtoupper($category_id);
+    $sql = sprintf("SELECT * FROM job_categories WHERE name='%s' LIMIT 1", $category_id);
+    $resultsql = Db::query($sql);
+    if (mysql_num_rows($resultsql) > 0) {
+        $row = mysql_fetch_assoc($resultsql);
+        $category_id = $row['id'];
+    } else {
+        $sql = sprintf("INSERT INTO job_categories SET name='%s' LIMIT 1", $category_id);
+        $resultsql = Db::query($sql);
+        if ($resultsql) {
+            $category_id = mysql_insert_id();
+        } else {
+            $_SESSION['regsucc'] = 2;
+            echo "<script type='text/javascript'>
+        window.location.href = '" . $urlin . "';
+        </script>";
+            die();
+        }
+    }
+}
+
+//Check to see if a new Industry is entered
+$companytitle = strtoupper($companytitle);
+$sql = sprintf("SELECT * FROM industries WHERE industry_name='%s'", $companytitle);
+$result = DB::query($sql);
+if (mysql_num_rows($result) <= 0) {
+    $sql = sprintf("INSERT INTO industries SET industry_name='%s'", $companytitle);
+    $result = DB::query($sql);
+    if (!$result) {
+            $_SESSION['regsucc'] = 2;
+            echo "<script type='text/javascript'>
+        window.location.href = '" . $urlin . "';
+        </script>";
+            die();
+        } else {
+            $industry_id = mysql_insert_id();
+            $sql = sprintf("INSERT INTO industry_category SET industry_id=%d,category_id=%d", $industry_id, $category_id);
+            $result = DB::query($sql);
+            if (!$result) {
+                $_SESSION['regsucc'] = 2;
+                echo "<script type='text/javascript'>
+        window.location.href = '" . $urlin . "';
+        </script>";
+                die();
+            }
+        }
+}
+
 //PHP Upload Script
     if (!is_dir("jobdescriptions")) {
         mkdir("jobdescriptions");
