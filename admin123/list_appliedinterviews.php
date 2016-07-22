@@ -61,7 +61,7 @@
                                     <h3 class="box-title"> Jobs</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body" style="overflow-y: scroll">
-                                  <?php
+                                    <?php
                                     session_start();
                                     if (isset($_SESSION['delsucc'])) {
 
@@ -91,7 +91,7 @@
                                         unset($_SESSION['delsucc']);
                                     }
                                     ?> 
-                                    <a href="export_interview.php"><input type="button" class="btn btn-primary" name="submit" value="Export"></a> 
+                                    <a href="export_interview.php" class="export_button"><input type="button" class="btn btn-primary" name="submit" value="Export"></a> 
                                     <table id="example2" class="table table-bordered table-hover">
 
                                         <thead>
@@ -178,17 +178,28 @@
         <!-- page script -->
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
         <script>
-                                                $(function () {
-                                                    $("#example1").dataTable();
-                                                    $('#example2').dataTable({
-                                                        "bPaginate": true,
-                                                        "bLengthChange": false,
-                                                        "bFilter": true,
-                                                        "bSort": true,
-                                                        "bInfo": true,
-                                                        "bAutoWidth": false
-                                                    });
+                                            $(function () {
+                                                $("#example1").dataTable();
+                                                $('#example2').dataTable({
+                                                    "bPaginate": true,
+                                                    "bLengthChange": false,
+                                                    "bFilter": true,
+                                                    "bSort": true,
+                                                    "bInfo": true,
+                                                    "bAutoWidth": false
                                                 });
+
+                                                $('#example2_filter input').keyup(function () {
+                                                    var term = $('#example2_filter input').val();
+                                                    if (term == '') {
+                                                        $('.export_button').attr('href', 'export_interview.php')
+                                                    } else {
+                                                        $('.export_button').attr('href', 'export_interview.php?term=' + term);
+                                                    }
+
+                                                });
+
+                                            });
         </script>
         <script>
             function deleteConfirm(href) {

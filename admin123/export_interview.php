@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
    <?php
+   $term = (isset($_GET['term']))?$_GET['term']:'';
     include("logincheck.php");
     // The function header by sending raw excel
     header("Content-type: application/vnd-ms-excel");

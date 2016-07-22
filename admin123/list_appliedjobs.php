@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <?php  include("logincheck.php");?>
+    <?php include("logincheck.php"); ?>
     <head>
         <meta charset="UTF-8">
         <title>Admin | ITL JOBS</title>
@@ -34,7 +34,7 @@
             <?php include 'header.php'; ?>
 
             <?php include 'menu.php'; ?>
-            
+
             <?php //include 'db.php'; ?>
 
             <!-- Content Wrapper. Contains page content -->
@@ -42,13 +42,13 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                         Job List 
+                        Job List 
                         <small> ITL JOBS</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-<!--                        <li><a href="#">Tables</a></li>
-                        <li class="active">Data tables</li>-->
+                        <!--                        <li><a href="#">Tables</a></li>
+                                                <li class="active">Data tables</li>-->
                     </ol>
                 </section>
 
@@ -61,7 +61,7 @@
                                     <h3 class="box-title"> Jobs</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body" style="overflow-y: scroll">
-                                  <?php
+                                    <?php
                                     session_start();
                                     if (isset($_SESSION['delsucc'])) {
 
@@ -91,11 +91,11 @@
                                         unset($_SESSION['delsucc']);
                                     }
                                     ?> 
-                                    <a href="export_appliedjob.php"><input type="button" class="btn btn-primary" name="submit" value="Export"></a> 
+                                    <a href="export_appliedjob.php" class="export_button"><input type="button" class="btn btn-primary" name="submit" value="Export"></a>
                                     <table id="example2" class="table table-bordered table-hover">
-                                    
+
                                         <thead>
-                                           <tr>
+                                            <tr>
                                                 <th>Sl.No</th>
                                                 <th>Job Title</th>
                                                 <th>Candidate Name</th>
@@ -105,57 +105,57 @@
                                                 <th>Delete</th>
                                             </tr>
                                         </thead>
-                                       <tbody>
-                                          <?php
-                                          $qry = sprintf("SELECT js.id,js.job_listing,js.user_id as jobuserid,ja.id as apid,ja.job_id,ja.user_id,ja.created_date,us.name FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id ORDER BY ja.id DESC");
-                                          $res = Db::query($qry);
-                                          $i = 1;
-                                          date_default_timezone_set('Asia/Kolkata');
-                                          $today_date = date('Y-m-d');
-                                         // echo $date = strtotime('2012-05-01 -4 months');die;
-                                           while ($row = mysql_fetch_array($res)) {
-                                          ?>
-                                           <tr>
+                                        <tbody>
+                                            <?php
+                                            $qry = sprintf("SELECT js.id,js.job_listing,js.user_id as jobuserid,ja.id as apid,ja.job_id,ja.user_id,ja.created_date,us.name FROM jobs as js JOIN jobs_applied as ja ON js.id = ja.job_id JOIN users as us ON ja.user_id = us.id ORDER BY ja.id DESC");
+                                            $res = Db::query($qry);
+                                            $i = 1;
+                                            date_default_timezone_set('Asia/Kolkata');
+                                            $today_date = date('Y-m-d');
+                                            // echo $date = strtotime('2012-05-01 -4 months');die;
+                                            while ($row = mysql_fetch_array($res)) {
+                                                ?>
+                                                <tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['job_listing']; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <?php
-                                                        $date    = $row['created_date'];
-                                                        $regdate = date("d-m-Y", strtotime($date));
-                                                        $regtime = date("h:i:s a", strtotime($date));
+                                                    $date = $row['created_date'];
+                                                    $regdate = date("d-m-Y", strtotime($date));
+                                                    $regtime = date("h:i:s a", strtotime($date));
                                                     ?>
                                                     <td><?php echo $regdate; ?> at <?php echo $regtime; ?></td>
                                                     <?php
                                                     $admin_id = $row['jobuserid'];
-                                                    $query = sprintf("SELECT name FROM users WHERE id='%s'",$admin_id);
+                                                    $query = sprintf("SELECT name FROM users WHERE id='%s'", $admin_id);
                                                     $result = Db::query($query);
                                                     $rowres = mysql_fetch_assoc($result);
-                                                    $jpid =  $rowres['name'];
+                                                    $jpid = $rowres['name'];
                                                     ?>
-                                                    <td><?php echo $jpid;?></td>
-                                                    <td><a href="more-appliedjobs.php?param=<?php echo $row['apid'];?>">view more</a></td>
-                                                    
-                                                <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>"/>
-                                         
-                                                <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_appliedjobs.php?delid=<?= $row['apid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
-                                                </tr>
-                                                <?php
-                                                $i = $i + 1;
-                                            }
-                                            ?>
+                                                    <td><?php echo $jpid; ?></td>
+                                                    <td><a href="more-appliedjobs.php?param=<?php echo $row['apid']; ?>">view more</a></td>
+
+                                            <input type="hidden" name="id" id="id" value="<?php echo $row['id']; ?>"/>
+
+                                            <td class=center><a type="button" href="javascript:void(0)" onclick="deleteConfirm('delete_appliedjobs.php?delid=<?= $row['apid'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                            </tr>
+                                            <?php
+                                            $i = $i + 1;
+                                        }
+                                        ?>
                                         </tbody>
-                                 
+
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
 
-                           
+
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
-<!--            
-
+            <!--            
+            
             <!-- Add the sidebar's background. This div must be placed
                  immediately after the control sidebar -->
             <div class='control-sidebar-bg'></div>
@@ -179,17 +179,27 @@
         <!-- page script -->
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
         <script type="text/javascript">
-                                                        $(function () {
-                                                            $("#example1").dataTable();
-                                                            $('#example2').dataTable({
-                                                                "bPaginate": true,
-                                                                "bLengthChange": false,
-                                                                "bFilter": true,
-                                                                "bSort": true,
-                                                                "bInfo": true,
-                                                                "bAutoWidth": false
-                                                            });
-                                                        });
+                                            $(function () {
+                                                $("#example1").dataTable();
+                                                $('#example2').dataTable({
+                                                    "bPaginate": true,
+                                                    "bLengthChange": false,
+                                                    "bFilter": true,
+                                                    "bSort": true,
+                                                    "bInfo": true,
+                                                    "bAutoWidth": false
+                                                });
+                                                $('#example2_filter input').keyup(function () {
+                                                    var term = $('#example2_filter input').val();
+                                                    if (term == '') {
+                                                        $('.export_button').attr('href', 'export_appliedjob.php')
+                                                    } else {
+                                                        $('.export_button').attr('href', 'export_appliedjob.php?term=' + term);
+                                                    }
+
+                                                });
+
+                                            });
         </script>
         <script>
             function deleteConfirm(href) {

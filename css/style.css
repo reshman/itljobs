@@ -2557,7 +2557,32 @@ border-top: 1px solid #ddd;
     font-size: 13px;
     font-family: 'Roboto', sans-serif;
 }
-
+.companyname1
+{
+    padding: 15px 20px;
+    border: 1px solid #c1c1c1;
+    margin-bottom: 10px;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    background-color: #f4f4f4;
+    box-shadow: inset 0 0 40px #ddd;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #666666;
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+	margin-left:15px;
+	width:63.2%;
+	}
+.select2-selection--single {
+display: inline !important;
+ border:none !important;
+ color:#ababab !important;
+}
 input[type=file] {
 
     display: block;
@@ -3730,14 +3755,14 @@ display: inline !important;
         display: none;
     }
 .companyname3{
-width: 30%;
+width:30%;
 }
 .companyname4{
-width:30.2%;
+width:30%;
 margin-left: 30px;
 }
 .move1{
-margin-left: 13px;
+margin-left: 15px;
 }
 }
 
@@ -3927,9 +3952,6 @@ margin-left: 15px;
 margin-left: 0px;
 }
 }
-
-
-}
 @media (max-width: 767px) {
     .navbar-brand {
         padding-top: 15px !important;
@@ -4015,10 +4037,13 @@ margin-left: 0px;
 width:95%;
 }
 }
+
 @media (max-width: 480px) {
 .companyname3, .companyname4{
 width:91.5% !important;
 }
+}
+
 @media (max-width: 500px) {
     .project-box .project-post {
         width: 100%;
@@ -4187,7 +4212,6 @@ width:91.5% !important;
     #home-section {
         margin-top: 222px;
     }
-
 }
 
 
@@ -4205,6 +4229,7 @@ width:91.5% !important;
     box-shadow: 0 3px 9px rgba(0,0,0,.5);
     padding: 20px!important;
 }
+
 .jobs-m-listing {
 
     font-family: 'Roboto', sans-serif;
@@ -4213,7 +4238,12 @@ width:91.5% !important;
     line-height: 18px;
 
 }
+
+
+
+
 .jobs-m-listing h3 {
+
     color: #222222;
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
@@ -4227,7 +4257,12 @@ width:91.5% !important;
 }
 
 .jobs-m-ls {
+
+
+
+
 }
+
 .jdchoice{
     padding:10px;
     margin:10px;

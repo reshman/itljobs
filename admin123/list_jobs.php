@@ -90,7 +90,7 @@
                                         unset($_SESSION['delsucc']);
                                     }
                                     ?>
-                                            <a href="export_job.php"><input type="button" class="btn btn-primary" name="submit" value="Export"></a>        
+                                    <a href="export_job.php" class="export_button"><input type="button" class="btn btn-primary" name="submit" value="Export"></a>        
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
@@ -224,6 +224,17 @@
                                                             "bInfo": true,
                                                             "bAutoWidth": false
                                                         });
+
+                                                        $('#example2_filter input').keyup(function () {
+                                                            var term = $('#example2_filter input').val();
+                                                            if (term == '') {
+                                                                $('.export_button').attr('href', 'export_job.php')
+                                                            } else {
+                                                                $('.export_button').attr('href', 'export_job.php?term=' + term);
+                                                            }
+
+                                                        });
+
                                                     });
         </script>
         <script>
