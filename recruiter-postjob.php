@@ -410,6 +410,8 @@
                                 $('#category').select2({tags:true});
                                 
                                 $('#sub_category').select2({tags:true});
+                                
+                                $('span.select2').attr('style','width:100%');
 
                                 $("select.category").change(function () {
                                     var jobcat = $(".category option:selected").val();
@@ -421,6 +423,7 @@
                                     }).done(function (data) {
                                         $("#industry").html(data);
                                         $('#sub_category').select2({tags:true});
+                                        $('span.select2').attr('style','width:100%');
                                     });
                                 });
                             });

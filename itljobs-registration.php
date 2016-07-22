@@ -142,7 +142,7 @@
                                 $('#status-message').fadeOut(5000);
                             </script>
                             <div class="col-md-12">
-                                <div class="col-md-12">
+                                <div class="col-md-12 companyname2">
 
                                     <select name="job_category_id" class="job select2" id="category">
                                         <option disabled="" selected="">JOB APPLYING FOR</option>   
@@ -186,7 +186,7 @@
                             <!--     ************************************************  -->
                             <div class="col-md-12">
 
-                                <div class="col-md-4">
+                                <div class="col-md-4 col-sm-12 col-xs-12 companyname3">
                                    <!-- <input name="qualification" id="qualification" type="text" placeholder="QUALIFICATION ">    -->
                                     <select name="qualification" id="qualification" class="select2">
                                         <option disabled="" selected="">SELECT QUALIFICATION</option>
@@ -201,13 +201,13 @@
                                     </select>  
                                 </div> 
 
-                                <div class="col-md-4" id="cat">
+                                <div class="col-md-4 col-sm-12 col-xs-12 companyname4" id="cat">
                                     <select name="sub_category" id="sub_category" class="select2">
                                         <option disabled="" selected="">INDUSTRY </option>
                                     </select>     
                                 </div> 
 
-                                <div class="col-md-4">
+                                <div class="col-md-4 move1">
                                     <input name="specification" id="specification" type="text" placeholder="SPECIALIZATION/CERTIFICATION">    
                                 </div>
 
@@ -640,7 +640,9 @@
 
             $('#category').select2({tags:true});
             $('#sub_category').select2({tags:true});
-            $('#qualification').select2({tags:true});
+            $('#qualification').select2({tags:true});            
+            
+            $('span.select2').attr('style','width:100%');
 
             $("select.job").change(function () {
                 var jobcat = $(".job option:selected").val();
@@ -651,6 +653,7 @@
                 }).done(function (data) {
                     $("#cat").html(data);
                     $('#sub_category').select2({tags:true});
+                    $('span.select2').attr('style','width:100%');
                 });
             });
         });
@@ -709,6 +712,7 @@
         // When the browser is ready...
 
         $(function () {
+            
 
             // Setup form validation on the #register-form element
             jQuery.validator.addMethod("nonNumeric", function (value) {
