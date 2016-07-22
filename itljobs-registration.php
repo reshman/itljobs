@@ -121,7 +121,7 @@
                                 <?php } else if ($_SESSION['regsucc'] == '4') {
                                     ?>
                                     <div class="alert alert-danger" id="status-message">
-                                        <?php echo "<span style='color:red'/><b>Please upload only DOC or DOCX Files!</b></span><br/><br/>"; ?>
+                                        <?php echo "<span style='color:red'/><b>Please upload only DOC, DOCX, PDF, JPG, PNG, BMP or GIF Files!</b></span><br/><br/>"; ?>
                                     </div>
                                 <?php } else if ($_SESSION['regsucc'] == '5') {
                                     ?>
