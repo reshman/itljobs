@@ -1,6 +1,7 @@
 <!doctype html>
-<?php include 'check_session_rec.php';
- include_once 'db.php';
+<?php
+include 'check_session_rec.php';
+include_once 'db.php';
 ?>
 
 <html lang="en" class="no-js">
@@ -39,6 +40,13 @@
         <script type="text/javascript" src="js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
+        
+        <style>
+            .withsearch{
+                float: left;
+                width: 20%;
+            }
+        </style>
 
     </head>
     <body>
@@ -155,12 +163,21 @@
             <?php
             if (isset($_SESSION['log'])) {
                 $user_id = $_SESSION['log'];
+            } else if (isset($_SESSION['reclog'])) {
+                $user_id = $_SESSION['reclog'];
+            }
+
+            $query = sprintf("SELECT search_allowed FROM employers WHERE user_id=%d", $user_id);
+            $result = DB::query($query);
+            $row = mysql_fetch_assoc($result);
+            if (mysql_num_rows($result) > 0 && $row['search_allowed'] == 1) {
+                $_SESSION['search_allowed'] = true;
             }
             ?>
             <section class="services-offer-section">
                 <div class="container">
                     <div class="services-box ser-box2">
-                        <div class="col-md-3">
+                        <div class="<?php echo (isset($_SESSION['search_allowed'])) ? 'withsearch' : 'col-md-3'; ?>">
                             <div class="service-post">
                                 <img src="images/itl-resume.png" alt="ITL JOBS">
                                 <div class="service-content">
@@ -170,7 +187,7 @@
                         </div>
 
 
-                        <div class="col-md-3">
+                        <div class="<?php echo (isset($_SESSION['search_allowed'])) ? 'withsearch' : 'col-md-3'; ?>">
                             <div class="service-post">
                                 <img src="images/itl-jobs.png" alt="ITL JOBS">
                                 <div class="service-content">
@@ -179,7 +196,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="<?php echo (isset($_SESSION['search_allowed'])) ? 'withsearch' : 'col-md-3'; ?>">
                             <div class="service-post">
                                 <img src="images/view-resume.png" alt="ITL JOBS">
                                 <div class="service-content">
@@ -187,26 +204,21 @@
                                 </div>
                             </div>
                         </div>
-
                         <?php
-                        $query = sprintf("SELECT search_allowed FROM employers WHERE user_id=%d",$user_id);
-                        $result = DB::query($query);
-                        $row = mysql_fetch_assoc($result);
-                        if(mysql_num_rows($result)>0 && $row['search_allowed']==1){
-                        ?>
-                        <div class="col-md-2">
-                            <div class="service-post">
-                                <img src="images/itl-alert.png" alt="ITL JOBS">
-                                <div class="service-content">
-                                    <h2><a href="search-resume.php">SEARCH RESUME</a></h2>
+                        if (isset($_SESSION['search_allowed'])) {
+                            ?>
+                            <div class="withsearch">
+                                <div class="service-post">
+                                    <img src="images/itl-alert.png" alt="ITL JOBS">
+                                    <div class="service-content">
+                                        <h2><a href="search-resume.php">SEARCH RESUME</a></h2>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <?php
+                            <?php
                         }
                         ?>
-
-                        <div class="col-md-3">
+                        <div class="<?php echo (isset($_SESSION['search_allowed'])) ? 'withsearch' : 'col-md-3'; ?>">
                             <div class="service-post">
                                 <img src="images/itl-account.png" alt="ITL JOBS">
                                 <div class="service-content">
@@ -273,7 +285,7 @@
                             stopAtSlide: -1,
                             shuffle: "off",
                             autoHeight: "off",
-            forceFullWidth: "off",
+                            forceFullWidth: "off",
                             hideThumbsOnMobile: "off",
                             hideNavDelayOnMobile: 1500,
                             hideBulletsOnMobile: "off",

@@ -157,6 +157,34 @@
             <section class="services-offer-section">
                 <div class="container">
                     <div class="services-box ser-box2">
+
+                        <div class="col-md-3">
+                            <div class="service-post">
+                                <img src="images/itl-visa.png" alt="ITL JOBS">
+                                <div class="service-content">
+                                    <h2><a href="visa_service.php" target="_blank">VISA SERVICE</a></h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="service-post">
+                                <img src="images/itl-emi.png" alt="ITL JOBS">
+                                <div class="service-content">
+                                    <h2><a href="https://emigrate.gov.in/ext/" target="_blank">EMIGRATION CLEARANCE</a></h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="service-post">
+                                <img src="images/itl-cert.png" alt="ITL JOBS">
+                                <div class="service-content">
+                                    <h2><a href="http://www.norkaroots.net/home.html" target="_blank">CERTIFICATE ATTESTATION</a></h2>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-md-3">
                             <div class="service-post">
                                 <img src="images/itl-air.png" alt="ITL JOBS">
@@ -194,32 +222,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <div class="service-post">
-                                <img src="images/itl-visa.png" alt="ITL JOBS">
-                                <div class="service-content">
-                                    <h2><a href="" target="_blank">VISA SERVICE</a></h2>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="service-post">
-                                <img src="images/itl-emi.png" alt="ITL JOBS">
-                                <div class="service-content">
-                                    <h2><a href="https://emigrate.gov.in/ext/" target="_blank">EMIGRATION CLEARANCE</a></h2>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="service-post">
-                                <img src="images/itl-cert.png" alt="ITL JOBS">
-                                <div class="service-content">
-                                    <h2><a href="http://www.norkaroots.net/home.html" target="_blank">CERTIFICATE ATTESTATION</a></h2>
-                                </div>
-                            </div>
-                        </div>
+                        
 
                         <div class="col-md-3">
                             <div class="service-post">

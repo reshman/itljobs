@@ -91,12 +91,14 @@
                                         unset($_SESSION['delsucc']);
                                     }
                                     ?>
+                                            <a href="export_resume.php"><input type="button" class="btn btn-primary" name="submit" value="Export"></a> 
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <th>Sl.No</th>
                                                 <th>Name</th>
                                                 <th>E-mail</th>
+                                                <th>Mobile</th>
                                                 <!--<th>Specification</th>-->
                                                 <th>Experience</th>
                                                <!-- <th>Current location</th>
@@ -112,7 +114,7 @@
                                         <tbody>
                                             <?php
                                             $i = 1;
-                                            $query = sprintf("SELECT r.id,r.experience,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name,r.user_id, r.del_status, u.name as name,u.email ,jc.name as jobcatname from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s'", '0');
+                                            $query = sprintf("SELECT r.id,r.experience,r.specification,r.abroad_experience,r.current_location,r.date_of_birth,r.sub_category,r.file_name,r.user_id,r.mobile, r.del_status, u.name as name,u.email ,jc.name as jobcatname from resume r LEFT JOIN  users u ON r.user_id = u.id LEFT JOIN job_categories jc ON r.job_category_id=jc.id WHERE r.del_status='%s'", '0');
                                             $result = Db::query($query);
                                             while ($row = mysql_fetch_array($result)) {
                                                 ?>
@@ -121,6 +123,7 @@
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['email']; ?></td>
+                                                    <td><?php echo $row['mobile']; ?></td>
                                                     <td><?php echo $row['experience'].' Year(s)'; ?></td>
                                                     <td><a onclick="downloadfile('../uploads/<?php echo $row['file_name'] ?>')" href="../uploads/<?php echo $row['file_name'] ?>"   target="_blank" download=""><?php echo $row['file_name']; ?></a>
                                                     </td>
