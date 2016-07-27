@@ -28,6 +28,7 @@
             $url = $_SERVER['SCRIPT_FILENAME'];
             $filename = basename($url);
             $role = $_SESSION['role'];
+            include_once 'db.php';
         ?>
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
@@ -108,6 +109,7 @@
                 </ul>
             </li>
             
+            <?php if($role == 1){ ?> 
           <li <?php if($filename == 'job_notifications.php' || $filename == 'interview_notifications.php' || $filename == 'recruiter_notifications.php' || $filename == 'jobseeker_notifications.php'){ ?> class="active" <?php }else{ ?> class="treeview"<?php } ?>>
                 <a href="#">
                     <i class="fa fa-edit"></i> <span>Notifications</span>
@@ -115,7 +117,6 @@
                 </a>
                 <ul class="treeview-menu">
                     <?php
-                            include_once 'db.php';
                             $querydate = sprintf("SELECT datetime,id FROM log ORDER BY id DESC LIMIT 1"); 
                             $resultdate = Db::query($querydate);
                             $datetime=mysql_fetch_assoc($resultdate);
@@ -158,6 +159,7 @@
                   
                 </ul>
             </li>
+            <?php } ?>
   	    <li <?php if($filename == 'list_appliedjobs.php'||$filename == 'list_appliedinterviews.php'){ ?> class="active" <?php }else{ ?> class="treeview"<?php } ?>>
                 <a href="#">
                     <i class="fa fa-edit"></i> <span>Jobs/Interviews Applied</span>

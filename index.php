@@ -293,7 +293,7 @@
                                         <img src="images/spcl-img.jpg">   
                                     </div>
                                     <div class="col-md-8">
-                                        <h3><?php echo $rw['name']; ?></h3>
+                                        <h3><?php echo $rw['name']; ?><?php echo $rw['id'] ?></h3>
                                         <p><?php echo substr($rw['description'], 0, 120); ?>...</p>   
                                          <?php if (isset($_SESSION['log'])): ?>
                                             <div id="apply">
@@ -306,7 +306,7 @@
                                                 <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><input type="submit" value="APPLY"></a>
                                             </div>
                                         <?php endif; ?>
-                                        <div id="view"><form action="moreinterviews.php"><input type="submit" value="VIEW MORE"></form></div>    
+                                        <div id="view"><form action="itljobs-upcominginterviews.php"><input type="submit" value="MORE INTERVIEWS"></form></div>    
                                     </div>        
                                 </div>     
                                 <?php
