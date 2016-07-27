@@ -164,7 +164,7 @@
                                             ?>
                                         </p>
                                         <p class="c_b_t_border">
-                                            <!--<span style="color:#007ac9">Company Name: </span><?php // echo $row['company_name'];         ?>,-->
+                                            <!--<span style="color:#007ac9">Company Name: </span><?php // echo $row['company_name'];          ?>,-->
                                             <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?>,
                                             <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>,
                                             <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
@@ -204,9 +204,14 @@
                                         <h2><?php echo strtoupper($row['job_listing']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
-                                        <p><?php echo $row['job_description']; ?></p>
+                                        <p><?php
+                                            echo $row['job_description'];
+                                            if ($row['job_description'] == 'PDF Attached') {
+                                                echo '- <a href="jobdescriptions/'.$row['ref_id'].'.pdf" target="_BLANK">Click here</a> to View';
+                                            }
+                                            ?></p>
                                         <p class="c_b_t_border">
-                                            <!--<span style="color:#007ac9">Company : </span><?php // echo $row['company_name'];         ?>,-->
+                                            <!--<span style="color:#007ac9">Company : </span><?php // echo $row['company_name'];          ?>,-->
                                             <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?>,
                                             <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>,
                                             <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
@@ -420,15 +425,15 @@
                     }
                 });
             }
-            
+
             $(function () {
 
                 $('.toggle-event').change(function () {
                     var status = $(this).prop('checked') == true ? '1' : '0';
-                    if(status=='1'){
-                        window.location.href="itljobs-hotjobs.php?show=true";
+                    if (status == '1') {
+                        window.location.href = "itljobs-hotjobs.php?show=true";
                     } else {
-                        window.location.href="itljobs-hotjobs.php";
+                        window.location.href = "itljobs-hotjobs.php";
                     }
 
                 });
