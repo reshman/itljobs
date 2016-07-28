@@ -216,7 +216,7 @@
 
                                             <label for="exampleInputEmail1">Salary Structure</label>
 
-                                            <input type="text" class="form-control" id="salary" placeholder="Salary (minimum - maximum)" name="salary">
+                                            <input type="text" class="form-control" id="salary" placeholder="Salary" name="salary">
 
                                         </div>
 
@@ -390,9 +390,9 @@
                                                         startDate: '0'
                                                     });
 
-                                                    $.validator.addMethod('salrange', function (value) {
+                                                    /*$.validator.addMethod('salrange', function (value) {
                                                         return /^[0-9]+( - [0-9]+ )+\s*[A-Z]{3}\s*$/.test(value);
-                                                    }, 'Please enter a valid Salary Range like: lowest Salary - Highest Salary followed by ISO currency code || Example:100000 - 150000 INR ||. If salary is Fixed give Both side the same salary.');
+                                                    }, 'Please enter a valid Salary Range like: lowest Salary - Highest Salary followed by ISO currency code || Example:100000 - 150000 INR ||. If salary is Fixed give Both side the same salary.');*/
 
                                                     $.validator.addMethod("dateFormat",
                                                             function (value, element) {
@@ -417,7 +417,7 @@
                                                             date: {required: true, dateFormat: true},
                                                             company_name: {required: true, lettersonly: true},
                                                             country: "required",
-                                                            salary: {required: true, salrange: true},
+                                                            salary: {required: true},
                                                             time: "required",
                                                             venue: {required: true, alphanumeric: true},
                                                             interview: "required",

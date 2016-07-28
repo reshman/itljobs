@@ -283,7 +283,7 @@
                                 }
                             }
 
-                            $qry = sprintf("SELECT id,name,description,schedule_date,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' ORDER BY schedule_date LIMIT 1", $today_date, 1, 0);
+                            $qry = sprintf("SELECT i.id,i.job_category_id,i.description,i.schedule_date,i.active,i.del_status,j.name FROM interviews as i JOIN job_categories as j ON j.id = i.job_category_id WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' ORDER BY schedule_date LIMIT 1", $today_date, 1, 0);
                             $res = Db::query($qry);
                             if(mysql_num_rows($res) > 0){
                             $rw = mysql_fetch_array($res);
@@ -293,7 +293,7 @@
                                         <img src="images/spcl-img.jpg">   
                                     </div>
                                     <div class="col-md-8">
-                                        <h3><?php echo $rw['name']; ?><?php echo $rw['id'] ?></h3>
+                                        <h3><?php echo $rw['name']; ?></h3>
                                         <p><?php echo substr($rw['description'], 0, 120); ?>...</p>   
                                          <?php if (isset($_SESSION['log'])): ?>
                                             <div id="apply">

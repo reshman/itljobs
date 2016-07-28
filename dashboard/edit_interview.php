@@ -177,13 +177,6 @@
 
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Position</label>
-
-                                            <input type="text" class="form-control" id="name" placeholder="Position" name="name" value="<?php echo $rowedit['name'] ?>">
-
-                                        </div>
-                                        <div class="form-group">
-
                                             <label for="exampleInputEmail1">Job Category</label>
 
                                             <select class="form-control" name="job_cat" id="job_cat">
@@ -662,7 +655,7 @@
                         ignore: [],
                         debug: false,
                         rules: {
-                            name: {required: true, alphanumeric: true},
+                            //name: {required: true, alphanumeric: true},
                             title: {required: true},
                             job_cat: "required",
                             date: {required: true, dateFormat: true},
@@ -690,7 +683,7 @@
                         // Specify the validation error messages
 
                         messages: {
-                            name: {required: "Please enter position", lettersonly: "Please enter letters only"},
+                            //name: {required: "Please enter position", lettersonly: "Please enter letters only"},
                             title: {required: "Please enter industry"},
                             job_cat: "Please enter job category",
                             date: {required: "Please enter date", dateFormat: "Please enter a date in the format dd/mm/yyyy."},
