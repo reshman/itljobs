@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
-    <?php  include("logincheck.php");?>
+    <?php  include("logincheck.php");
+    if($_SESSION['role']!=1){
+        echo 'Acess Denied!';
+        exit();
+    }
+    ?>
     <head>
 
         <meta charset="UTF-8">

@@ -52,7 +52,14 @@
                     <td><?php echo $rw['sub_category']; ?></td>
                     <td><?php echo $row['name']; ?></td>                
                     <td><?php echo $rw['date_of_birth']; ?></td>
-                    <td><?php echo $rw['mobile']; ?></td>
+                    <?php
+                    // force certain number/date formats to be imported as strings
+                    $str = $rw['mobile'];
+                    if (preg_match("/^0/", $str) || preg_match("/^\+?\d{8,}$/", $str) || preg_match("/^\d{4}.\d{1,2}.\d{1,2}/", $str)) {
+                        $str = "$str";
+                    }
+                    ?>
+                    <td><?php echo $str; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $rw['current_location']; ?></td>
                     <td><?php echo $rw['qualification']; ?></td>

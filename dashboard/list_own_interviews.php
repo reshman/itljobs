@@ -55,6 +55,10 @@
                 color: #C80000 !important;
 
             }
+            
+            #example2_filter label{
+                float:right;
+            }
         </style>
     </head>
     <body class="skin-blue sidebar-mini">
@@ -142,13 +146,13 @@
                                             unset($_SESSION['delsucc']);
                                         }
                                         ?>
-                         
+                                    <a href="export_own_interview.php"><input type="button" class="btn btn-primary" name="submit" value="Export"></a>
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                            <tr>
                                                 <th>Sl.No</th>
-                                                <th>Position</th>
-                                                <!--<th>Title</th>-->
+                                                <th>Title</th>
+                                                <th>Industry</th>
                                                 <th>Description</th>
                                                 <th>Salary</th>
                                                 <th>Company Name</th>
@@ -166,7 +170,7 @@
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d');
-                                          $query = sprintf("SELECT iv.id as intId,iv.id,iv.schedule_date,iv.salary,iv.country,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact,iv.coordinator FROM interviews as iv WHERE iv.schedule_date>='%s' AND iv.del_status='%s' AND iv.user_id='%s' ORDER BY schedule_date",$today_date,0,$id); 
+                                          $query = sprintf("SELECT iv.id as intId,iv.id,iv.schedule_date,iv.salary,iv.country,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact,iv.coordinator,jc.name as jobcat,iv.industry FROM interviews as iv INNER JOIN job_categories as jc ON iv.job_category_id=jc.id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' AND iv.user_id='%s' ORDER BY schedule_date",$today_date,0,$id); 
                                                                              
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {
@@ -174,8 +178,8 @@
                                            
                                                 <tr>
                                                     <td><?php echo $i; ?></td>
-                                                    <td><?php echo $row['name']; ?></td>
-                                                    <!--<td><?php // echo $row['job_title']; ?></td>-->
+                                                    <td><?php echo $row['jobcat']; ?></td>
+                                                    <td><?php echo $row['industry']; ?></td>
                                                     <td><?php echo $row['description']; ?></td>
                                                     <td><?php echo $row['salary']; ?></td>
                                                     <td><?php echo $row['company_name']; ?></td>

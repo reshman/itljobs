@@ -29,7 +29,6 @@
     </head>
     <body class="skin-blue sidebar-mini">
         <div class="wrapper">
-            <?php // include 'db.php'; ?>
 
             <?php include 'header.php'; ?>
 
@@ -91,6 +90,7 @@
                                         unset($_SESSION['delsucc']);
                                     }
                                     ?>
+                                    <a href="export_recruiterjob.php"><input type="button" class="btn btn-primary" name="submit" value="Export"></a>
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                            <tr>

@@ -150,8 +150,9 @@
                                         if (count($explode) > 0) {
                                             $end = array_pop($explode);
                                         }
+                                        $postDate = date("d/m/Y", strtotime($row['created_date']));
                                         ?>
-                                        <h2><?php echo strtoupper($row['job_listing']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?></h2>
+                                        <h2><?php echo strtoupper($row['job_listing']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?><span style="float:right;"><?php echo 'Posted on: ' . strtoupper($postDate); ?></span></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
                                         <p>
@@ -164,7 +165,7 @@
                                             ?>
                                         </p>
                                         <p class="c_b_t_border">
-                                            <!--<span style="color:#007ac9">Company Name: </span><?php // echo $row['company_name'];          ?>,-->
+                                            <!--<span style="color:#007ac9">Company Name: </span><?php // echo $row['company_name'];           ?>,-->
                                             <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?>,
                                             <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>,
                                             <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
@@ -200,13 +201,14 @@
                                         if (count($explode) > 0) {
                                             $end = array_pop($explode);
                                         }
+                                        $postDate = date("d/m/Y", strtotime($row['created_date']));
                                         ?>
-                                        <h2><?php echo strtoupper($row['job_listing']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?></h2>
+                                        <h2><?php echo strtoupper($row['job_listing']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?><span style="float:right;"><?php echo 'Posted on: ' . strtoupper($postDate); ?></span></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
                                         <p><?php echo $row['job_description']; ?></p>
                                         <p class="c_b_t_border">
-                                            <!--<span style="color:#007ac9">Company : </span><?php // echo $row['company_name'];          ?>,-->
+                                            <!--<span style="color:#007ac9">Company : </span><?php // echo $row['company_name'];           ?>,-->
                                             <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?>,
                                             <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>,
                                             <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
@@ -295,7 +297,7 @@
                                             <div class="col-md-12">
                                                 <div class="accordion-box">
                                                     <?php
-                                                    $query = sprintf("SELECT id,name,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' AND company_name='%s' ORDER BY schedule_date", $today_date, 1, 0, $crow['company_name']);
+                                                    $query = sprintf("SELECT id,name,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status,date FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' AND company_name='%s' ORDER BY schedule_date", $today_date, 1, 0, $crow['company_name']);
                                                     // echo $query = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,js.experience,js.job_location,js.closing_date,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 AND inv.schedule_date>='$today_date'"); die; 
                                                     $result = Db::query($query);
                                                     while ($row = mysql_fetch_array($result)) {
@@ -304,7 +306,7 @@
                                                         <div class="accord-elem-inner">
                                                             <div class="accord-title-inner">
                                                                 <a class="accord-link-inner" href="#"></a>
-                                                                <h2><?php echo strtoupper($row['name']); ?></h2>
+                                                                <h2><?php echo strtoupper($row['name']); ?><span style="float:right;"><?php echo 'Posted on: ' . strtoupper(date("d/m/Y", strtotime($row['date'])));?></span></h2>
                                                             </div>
                                                             <div class="accord-content-inner" style="display: none;">
                                                                 <p><?php echo $row['description']; ?></p>                                       

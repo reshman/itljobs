@@ -82,8 +82,10 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="add_interview.php"><i class="fa fa-circle-o"></i>Add Interviews</a></li>  
-                    <li><a href="list_own_interviews.php"><i class="fa fa-circle-o"></i>List Own Interviews</a></li>  
+                    <li><a href="list_own_interviews.php"><i class="fa fa-circle-o"></i>List Own Interviews</a></li> 
+                    <?php if($role == 1){ ?>  
                     <li><a href="list_interviews.php"><i class="fa fa-circle-o"></i>List Admin Interviews</a></li>  
+                    <?php } ?>                    
                 </ul>
             </li>
                <li <?php if($filename == 'list_resume.php'){ ?> class="active" <?php }else{ ?>class="treeview"<?php } ?>>

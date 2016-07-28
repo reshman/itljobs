@@ -89,6 +89,7 @@
                                         unset($_SESSION['delsucc']);
                                     }
                                     ?>
+                                    <a href="export_employers.php"><input type="button" class="btn btn-primary" name="submit" value="Export"></a>
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>

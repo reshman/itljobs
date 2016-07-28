@@ -1,6 +1,12 @@
 <!DOCTYPE html>
+<?php
+include("logincheck.php");
+if ($_SESSION['role'] != 1) {
+    echo 'Acess Denied!';
+    exit();
+}
+?>
 <html>
-    <?php  include("logincheck.php");?>
     <head>
         <meta charset="UTF-8">
         <title>Admin | ITL JOBS</title>
@@ -29,24 +35,23 @@
     </head>
     <body class="skin-blue sidebar-mini">
         <div class="wrapper">
-            <?php // include 'db.php'; ?>
 
             <?php include 'header.php'; ?>
 
             <?php include 'menu.php'; ?>
-           
+
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                         Interview List 
+                        Interview List 
                         <small> ITL JOBS</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-<!--                        <li><a href="#">Tables</a></li>
-                        <li class="active">Data tables</li>-->
+                        <!--                        <li><a href="#">Tables</a></li>
+                                                <li class="active">Data tables</li>-->
                     </ol>
                 </section>
 
@@ -88,10 +93,10 @@
                                         unset($_SESSION['delsucc']);
                                     }
                                     ?>
-                         
+                                    <a href="export_list_interview.php"><input type="button" class="btn btn-primary" name="submit" value="Export"></a>
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
-                                           <tr>
+                                            <tr>
                                                 <th>Sl.No</th>
                                                 <th>Title</th>
                                                 <th>Schedule date</th>
@@ -104,17 +109,17 @@
                                                 <th>Delete</th>
                                             </tr>
                                         </thead>
-                                       <tbody>
-                                          <?php 
-                                          $i = 1;
-                                          date_default_timezone_set('Asia/Kolkata');
-                                          $today_date = date('Y-m-d');
-                                          $query = sprintf("SELECT us.id,us.name,iv.id as intId,jc.name as job_title,iv.schedule_date, iv.name as jobname,iv.description,iv.schedule_time,iv.company_name,iv.venue,iv.interview,iv.contact, iv.user_id,iv.active,iv.del_status FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id INNER JOIN job_categories as jc ON iv.title=jc.id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' ORDER BY schedule_date",$today_date,0); 
-                                               
-                                          $result = Db::query($query);
-                                           while ($row = mysql_fetch_array($result)) {
-                                          ?>
-                                           
+                                        <tbody>
+                                            <?php
+                                            $id = $_SESSION['id'];
+                                            $i = 1;
+                                            date_default_timezone_set('Asia/Kolkata');
+                                            $today_date = date('Y-m-d');
+                                            $query = sprintf("SELECT us.id,us.name,iv.id as intId,jc.name as job_title,iv.schedule_date, iv.name as jobname,iv.description,iv.schedule_time,iv.company_name,iv.venue,iv.interview,iv.contact, iv.user_id,iv.active,iv.del_status FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id INNER JOIN job_categories as jc ON iv.job_category_id=jc.id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' ORDER BY schedule_date", $today_date, 0);
+                                            $result = Db::query($query);
+                                            while ($row = mysql_fetch_array($result)) {
+                                                ?>
+
                                                 <tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['jobname']; ?></td>
@@ -122,19 +127,19 @@
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['company_name']; ?></td>
                                                     <td><?php echo $row['contact']; ?></td>
-                                                    <td><a href="more-interviews.php?id=<?php echo $row['intId'];?>">view more</a></td>
+                                                    <td><a href="more-interviews.php?id=<?php echo $row['intId']; ?>">view more</a></td>
                                                     <td>
-     <input <?php echo ($row['active']=='1') ? 'checked' : '';?> value="<?php echo $row['intId'];?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
-                                         </td>   
-                                                <!--<a type="button" href="edit_jobs.php?id=<?//= $row['id'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>-->
-                                                <td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_interviews.php?delid=<?= $row['intId'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
+                                                        <input <?php echo ($row['active'] == '1') ? 'checked' : ''; ?> value="<?php echo $row['intId']; ?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
+                                                    </td>   
+                                                           <!--<a type="button" href="edit_jobs.php?id=<?//= $row['id'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>-->
+                                                    <td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_interviews.php?delid=<?= $row['intId'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
                                                 <?php
                                                 $i = $i + 1;
                                             }
                                             ?>
                                         </tbody>
-                                 
+
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
@@ -143,8 +148,8 @@
                     </div><!-- /.row -->
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
-<!--            
-
+            <!--            
+            
             <!-- Add the sidebar's background. This div must be placed
                  immediately after the control sidebar -->
             <div class='control-sidebar-bg'></div>
@@ -168,17 +173,17 @@
         <!-- page script -->
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
         <script type="text/javascript">
-                                                        $(function () {
-                                                            $("#example1").dataTable();
-                                                            $('#example2').dataTable({
-                                                                "bPaginate": true,
-                                                                "bLengthChange": false,
-                                                                "bFilter": true,
-                                                                "bSort": true,
-                                                                "bInfo": true,
-                                                                "bAutoWidth": false
+                                                            $(function () {
+                                                                $("#example1").dataTable();
+                                                                $('#example2').dataTable({
+                                                                    "bPaginate": true,
+                                                                    "bLengthChange": false,
+                                                                    "bFilter": true,
+                                                                    "bSort": true,
+                                                                    "bInfo": true,
+                                                                    "bAutoWidth": false
+                                                                });
                                                             });
-                                                        });
         </script>
         <script>
             function deleteConfirm(href) {
@@ -194,28 +199,28 @@
             });
         </script>
 
- <script>
+        <script>
 
-    $(function() {
+            $(function () {
 
-        $('.toggle-event').change(function() {
-//            alert("asda");
-            var status = $(this).prop('checked')==true?'1':'0';
-            var rowId  = $(this).val();
-//            alert(status);
-            url = "interview_status.php";
-            $.ajax({
-                url:url,
-                type:'POST',
-                data:{id:rowId, status:status}
-            }).done(function( data ) {
-               // location.reload();
+                $('.toggle-event').change(function () {
+                    //            alert("asda");
+                    var status = $(this).prop('checked') == true ? '1' : '0';
+                    var rowId = $(this).val();
+                    //            alert(status);
+                    url = "interview_status.php";
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {id: rowId, status: status}
+                    }).done(function (data) {
+                        // location.reload();
+                    });
+
+                });
             });
+        </script>
 
-        });
-    });
-</script>
 
-    
     </body>
 </html>
