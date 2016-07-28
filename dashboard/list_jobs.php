@@ -282,8 +282,8 @@
                 }).done(function (data) {
                     if (data == 'SUCCESS') {
                         alert('Job order updated successfully');
-                    } else if (data == 'ALREADY EXISTED JOB ORDER') {
-                        alert('Already existed job order,Please choose another');
+                    } else if (data == 'FAILED') {
+                        alert('Job order Update failed. Please try again.');
                         location.reload();
                     }
                 });
