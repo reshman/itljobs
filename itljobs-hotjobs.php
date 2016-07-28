@@ -246,9 +246,7 @@
             </div>
         </section>
 
-        <?php
-        if (isset($_GET['show']) && $_GET['show'] == true) {
-            ?>
+        
             <section class="services-offer-section">
                 <div class="container">
                     <div class="services-box ser-box2">
@@ -288,7 +286,7 @@
                                 }
                                 $today_date = date('Y-m-d');
 
-                                $query = sprintf("SELECT DISTINCT company_name,country FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' ORDER BY company_name", $today_date, 1, 0);
+                                $query = sprintf("SELECT DISTINCT company_name,country FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' AND vih=%d ORDER BY company_name", $today_date, 1, 0,1);
 //                            die();
                                 $cresult = Db::query($query);
                                 while ($crow = mysql_fetch_assoc($cresult)) {
@@ -303,7 +301,7 @@
                                             <div class="col-md-12">
                                                 <div class="accordion-box">
                                                     <?php
-                                                    $query = sprintf("SELECT id,name,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status,date FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' AND company_name='%s' ORDER BY schedule_date", $today_date, 1, 0, $crow['company_name']);
+                                                    $query = sprintf("SELECT id,name,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status,date FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' AND company_name='%s' AND vih=%d ORDER BY schedule_date", $today_date, 1, 0, $crow['company_name'],1);
                                                     // echo $query = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,js.experience,js.job_location,js.closing_date,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 AND inv.schedule_date>='$today_date'"); die; 
                                                     $result = Db::query($query);
                                                     while ($row = mysql_fetch_array($result)) {
@@ -356,8 +354,7 @@
 
                     </div>
                 </div>
-            </section> 
-        <?php } ?>
+            </section>
 
         <!-- footer 
                         ================================================== -->

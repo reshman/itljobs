@@ -104,6 +104,7 @@ if ($_SESSION['role'] != 1) {
                                                 <th>Company Name</th>
                                                 <th>Contact</th>
                                                 <th>View more</th>
+                                                <th>View in Hotjjobs?</th>
                                                 <th>Status</th>
                                                 <!--<th>Edit</th>-->
                                                 <th>Delete</th>
@@ -115,7 +116,7 @@ if ($_SESSION['role'] != 1) {
                                             $i = 1;
                                             date_default_timezone_set('Asia/Kolkata');
                                             $today_date = date('Y-m-d');
-                                            $query = sprintf("SELECT us.id,us.name,iv.id as intId,jc.name as job_title,iv.schedule_date, iv.name as jobname,iv.description,iv.schedule_time,iv.company_name,iv.venue,iv.interview,iv.contact, iv.user_id,iv.active,iv.del_status FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id INNER JOIN job_categories as jc ON iv.job_category_id=jc.id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' ORDER BY schedule_date", $today_date, 0);
+                                            $query = sprintf("SELECT us.id,us.name,iv.id as intId,jc.name as job_title,iv.schedule_date, iv.name as jobname,iv.description,iv.schedule_time,iv.company_name,iv.venue,iv.interview,iv.contact, iv.user_id,iv.active,iv.vih,iv.del_status FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id INNER JOIN job_categories as jc ON iv.job_category_id=jc.id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' ORDER BY schedule_date", $today_date, 0);
                                             $result = Db::query($query);
                                             while ($row = mysql_fetch_array($result)) {
                                                 ?>
@@ -129,7 +130,10 @@ if ($_SESSION['role'] != 1) {
                                                     <td><?php echo $row['contact']; ?></td>
                                                     <td><a href="more-interviews.php?id=<?php echo $row['intId']; ?>">view more</a></td>
                                                     <td>
-                                                        <input <?php echo ($row['active'] == '1') ? 'checked' : ''; ?> value="<?php echo $row['intId']; ?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
+                                                        <input <?php echo ($row['vih'] == '1') ? 'checked' : ''; ?> value="<?php echo $row['intId']; ?>" data-on="Enabled" data-off="Disabled" class="toggle-event vih" data-toggle="toggle" type="checkbox">                                
+                                                    </td> 
+                                                    <td>
+                                                        <input <?php echo ($row['active'] == '1') ? 'checked' : ''; ?> value="<?php echo $row['intId']; ?>" data-on="Active" data-off="Inactive" class="toggle-event activate" data-toggle="toggle" type="checkbox">                                
                                                     </td>   
                                                            <!--<a type="button" href="edit_jobs.php?id=<?//= $row['id'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>-->
                                                     <td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_interviews.php?delid=<?= $row['intId'] ?>')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
@@ -203,12 +207,28 @@ if ($_SESSION['role'] != 1) {
 
             $(function () {
 
-                $('.toggle-event').change(function () {
+                $('.activate').change(function () {
                     //            alert("asda");
                     var status = $(this).prop('checked') == true ? '1' : '0';
                     var rowId = $(this).val();
                     //            alert(status);
                     url = "interview_status.php";
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {id: rowId, status: status}
+                    }).done(function (data) {
+                        // location.reload();
+                    });
+
+                });
+                
+                $('.vih').change(function () {
+                    //            alert("asda");
+                    var status = $(this).prop('checked') == true ? '1' : '0';
+                    var rowId = $(this).val();
+                    //            alert(status);
+                    url = "view_in_hotjobs_status.php";
                     $.ajax({
                         url: url,
                         type: 'POST',
