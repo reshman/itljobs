@@ -245,7 +245,7 @@
                 </div>
             </div>
         </section>
-
+        
         <?php
         $query = sprintf("SELECT count(*) as count FROM interviews WHERE vih=1");
         $result = DB::query($query);
@@ -290,7 +290,6 @@
                                     }
                                 }
                                 $today_date = date('Y-m-d');
-
                                 $query = sprintf("SELECT DISTINCT company_name,country FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' AND vih=%d ORDER BY company_name", $today_date, 1, 0, 1);
 //                            die();
                                 $cresult = Db::query($query);
