@@ -138,9 +138,11 @@ if ($_GET) {
                             $jobsSaveArray[] = $rowSave['job_id'];
                         }
                     }
-
+                    if(!empty($location)){
                     $query = sprintf("SELECT j.id,j.job_listing, j.experience,j.ref_id, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE j.job_location='%s' AND j.job_listing='%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s' LIMIT %d,%d", $location, $keyword, $date, '1', '0', $start, $num_rec_per_page);
-
+                    }else{
+                    $query = sprintf("SELECT j.id,j.job_listing, j.experience,j.ref_id, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE  j.job_listing='%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s' LIMIT %d,%d", $keyword, $date, '1', '0', $start, $num_rec_per_page);    
+                    }
                     $result = Db::query($query);
                     if (mysql_num_rows($result) > 0) {
                         while ($row = mysql_fetch_array($result)) {
@@ -167,8 +169,11 @@ if ($_GET) {
                             </div>
                             <?php
                         }
-
+                        if(!empty($location)){
                         $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE j.job_location='%s' AND j.job_listing='%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'", $location, $keyword, $date, '1', '0');
+                        }else{
+                        $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE j.job_listing='%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'", $keyword, $date, '1', '0');    
+                        }
                         $result = Db::query($query);
                         $total_records = mysql_num_rows($result);
                         $total_pages = ceil($total_records / $num_rec_per_page);
@@ -178,13 +183,13 @@ if ($_GET) {
                         $keyword = explode(' ', $keyword);
 
                         $query = "SELECT j.id,j.job_listing, j.experience,j.ref_id, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE ";
-
+                         if(!empty($location)){
                         foreach ($location as $each_location) {
                             $each_location = preg_replace('/[^A-Za-z0-9 ]/', '', $each_location);
                             $each_location = mysql_real_escape_string($each_location);
                             $query .= "j.key_array LIKE '%" . strtolower($each_location) . "%' AND ";
                         }
-
+                         }
                         foreach ($keyword as $each_keyword) {
                             $each_keyword = preg_replace('/[^A-Za-z0-9 ]/', '', $each_keyword);
                             $each_keyword = mysql_real_escape_string($each_keyword);
