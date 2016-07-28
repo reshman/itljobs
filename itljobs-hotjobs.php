@@ -96,10 +96,10 @@
         </section>
         <br>
         <section class="container"> 
-<!--            <div class="col-lg-3 col-md-3 pull-right">
-                Show Upcoming Interviews?
-                <input <?php //echo (isset($_GET['show']) && $_GET['show'] == true) ? 'checked' : ''; ?> data-on="Show" data-off="Hide" class="toggle-event" data-toggle="toggle" type="checkbox" id="reveal">
-            </div>-->
+            <!--            <div class="col-lg-3 col-md-3 pull-right">
+                            Show Upcoming Interviews?
+                            <input <?php //echo (isset($_GET['show']) && $_GET['show'] == true) ? 'checked' : '';  ?> data-on="Show" data-off="Hide" class="toggle-event" data-toggle="toggle" type="checkbox" id="reveal">
+                        </div>-->
         </section>
         <section class="services-offer-section">
             <div class="container">
@@ -247,7 +247,10 @@
         </section>
 
         <?php
-        if (isset($_GET['show']) && $_GET['show'] == true) {
+        $query = sprintf("SELECT count(*) as count FROM interviews WHERE vih=1");
+        $result = DB::query($query);
+        $row = mysql_fetch_assoc($result);
+        if ($row[count] > 0) {
             ?>
             <section class="services-offer-section">
                 <div class="container">
@@ -288,7 +291,7 @@
                                 }
                                 $today_date = date('Y-m-d');
 
-                                $query = sprintf("SELECT DISTINCT company_name,country FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' ORDER BY company_name", $today_date, 1, 0);
+                                $query = sprintf("SELECT DISTINCT company_name,country FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' AND vih=%d ORDER BY company_name", $today_date, 1, 0, 1);
 //                            die();
                                 $cresult = Db::query($query);
                                 while ($crow = mysql_fetch_assoc($cresult)) {
@@ -303,7 +306,7 @@
                                             <div class="col-md-12">
                                                 <div class="accordion-box">
                                                     <?php
-                                                    $query = sprintf("SELECT id,name,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status,date FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' AND company_name='%s' ORDER BY schedule_date", $today_date, 1, 0, $crow['company_name']);
+                                                    $query = sprintf("SELECT id,name,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status,date FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' AND company_name='%s' AND vih=%d ORDER BY schedule_date", $today_date, 1, 0, $crow['company_name'], 1);
                                                     // echo $query = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,js.experience,js.job_location,js.closing_date,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 AND inv.schedule_date>='$today_date'"); die; 
                                                     $result = Db::query($query);
                                                     while ($row = mysql_fetch_array($result)) {
@@ -312,7 +315,7 @@
                                                         <div class="accord-elem-inner">
                                                             <div class="accord-title-inner">
                                                                 <a class="accord-link-inner" href="#"></a>
-                                                                <h2><?php echo strtoupper($row['name']); ?><span style="float:right;"><?php echo 'Posted on: ' . strtoupper(date("d/m/Y", strtotime($row['date'])));?></span></h2>
+                                                                <h2><?php echo strtoupper($row['name']); ?><span style="float:right;"><?php echo 'Posted on: ' . strtoupper(date("d/m/Y", strtotime($row['date']))); ?></span></h2>
                                                             </div>
                                                             <div class="accord-content-inner" style="display: none;">
                                                                 <p><?php echo $row['description']; ?></p>                                       
@@ -356,7 +359,7 @@
 
                     </div>
                 </div>
-            </section> 
+            </section>
         <?php } ?>
 
         <!-- footer 
