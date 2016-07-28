@@ -96,10 +96,10 @@
         </section>
         <br>
         <section class="container"> 
-            <div class="col-lg-3 col-md-3 pull-right">
+<!--            <div class="col-lg-3 col-md-3 pull-right">
                 Show Upcoming Interviews?
-                <input <?php echo (isset($_GET['show']) && $_GET['show'] == true) ? 'checked' : ''; ?> data-on="Show" data-off="Hide" class="toggle-event" data-toggle="toggle" type="checkbox" id="reveal">
-            </div>
+                <input <?php //echo (isset($_GET['show']) && $_GET['show'] == true) ? 'checked' : ''; ?> data-on="Show" data-off="Hide" class="toggle-event" data-toggle="toggle" type="checkbox" id="reveal">
+            </div>-->
         </section>
         <section class="services-offer-section">
             <div class="container">
@@ -205,12 +205,15 @@
                                         <h2><?php echo strtoupper($row['job_listing']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?><span style="float:right;"><?php echo 'Posted on: ' . strtoupper($postDate); ?></span></h2>
                                     </div>
                                     <div class="accord-content" style="display: none;">
-                                        <p><?php
-                                            echo $row['job_description'];
-                                            if ($row['job_description'] == 'PDF Attached') {
-                                                echo '- <a href="jobdescriptions/'.$row['ref_id'].'.pdf" target="_BLANK">Click here</a> to View';
+                                        <p> 
+                                            <?php
+                                            if ($row['job_description'] == "PDF Attached") {
+                                                echo $row['job_description'] . ' - <a href="jobdescriptions/' . $row['ref_id'] . '.pdf" target="_BLANK">View Here</a>';
+                                            } else {
+                                                echo $row['job_description'];
                                             }
-                                            ?></p>
+                                            ?>
+                                        </p>
                                         <p class="c_b_t_border">
                                             <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?>,
                                             <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>,
