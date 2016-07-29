@@ -29,13 +29,9 @@
     </head>
     <body class="skin-blue sidebar-mini">
         <div class="wrapper">
-            <?php // include 'db.php'; ?>
-
             <?php include 'header.php'; ?>
 
             <?php include 'menu.php'; ?>
-
-            <?php //include 'db.php'; ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">

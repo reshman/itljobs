@@ -21,11 +21,11 @@ $keys = mysql_real_escape_string($keys);
 $sal = explode('-', $salaryamount);
 $minsal = (int) $sal[0];
 $maxsal = (int) $sal[1];
-if ($minsal > $maxsal) {
+/*if ($minsal > $maxsal) {
     $_SESSION['regsucc'] = 3;
     echo "<script type='text/javascript'> window.location.href = '" . $urlin . "'; </script>";
     die();
-}
+}*/
 
 if ($description == '') {
     if (isset($_FILES['fileToUpload']) && strlen($_FILES['fileToUpload']['name']) > 1) {

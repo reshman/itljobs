@@ -475,7 +475,7 @@
                             },
                             minlength: 10
                         },
-                        salary: {required: true, salrange: true},
+                        salary: {required: true},
                         salarycat: "required",
                         closing_date: "required",
                         experience: {required: true, experience: true}

@@ -90,7 +90,7 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    if($_SESSION['role_id']==1){
+                                    if($_SESSION['role']==1){
                                     ?>
                                     <tr>
                                         <!--<td><a href="#">ITP001</a></td>-->

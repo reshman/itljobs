@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
     <?php  include("logincheck.php");
     if($_SESSION['role']!=1){
         echo 'Acess Denied!';
         exit();
     }
     ?>
+<html xmlns="http://www.w3.org/1999/html">
     <head>
 
         <meta charset="UTF-8">
 
-        <title>Admin | ITL JOBS</title>
+        <title>ITL JOBS</title>
 
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 

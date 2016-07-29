@@ -1,6 +1,12 @@
 <!DOCTYPE html>
+<?php
+include("logincheck.php");
+if ($_SESSION['role'] != 1) {
+    echo 'Acess Denied!';
+    exit();
+}
+?>
 <html>
-    <?php  //include("logincheck.php");?>
     <head>
         <meta charset="UTF-8">
         <title>Admin | ITL JOBS</title>

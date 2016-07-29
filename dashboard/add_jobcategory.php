@@ -1,6 +1,7 @@
 <!DOCTYPE html>
+<?php include("logincheck.php"); ?>
 <html xmlns="http://www.w3.org/1999/html">
-    <?php include("logincheck.php"); ?>
+    
     <head>
 
         <meta charset="UTF-8">

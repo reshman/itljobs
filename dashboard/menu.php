@@ -44,69 +44,69 @@
             <?php if($role == 1){ ?>                
               <li <?php if($filename == 'addadmin.php' || $filename == 'list_admin.php'){ ?> class="active" <?php }else{ ?> class="treeview"<?php } ?>>
                 <a href="#">
-                    <i class="fa fa-edit"></i> <span>Admins</span>
+                    <i class="fa fa-users"></i> <span>Admins</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                  <li><a href="addadmin.php"><i class="fa fa-circle-o"></i>Create Admin</a></li>  
-                    <li><a href="list_admin.php"><i class="fa fa-circle-o"></i>Manage Admin</a></li> 
+                  <li><a href="addadmin.php"><i class="fa fa-user-plus"></i>Create Admin</a></li>  
+                    <li><a href="list_admin.php"><i class="fa fa-gears"></i>Manage Admin</a></li> 
           
                 </ul>
             </li>
             <?php } ?>
             <li <?php if($filename == 'list_jobcategory.php' || $filename == 'add_jobcategory.php' || $filename == 'list_industry.php'){ ?> class="active" <?php }else{ ?> class="treeview"<?php } ?>>
                 <a href="#">
-                    <i class="fa fa-edit"></i> <span>Job Category </span>
+                    <i class="fa fa-delicious"></i> <span>Job Category </span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="add_jobcategory.php"><i class="fa fa-circle-o"></i>Add Job Category</a></li>
-                    <li><a href="list_jobcategory.php"><i class="fa fa-circle-o"></i>List Job Category</a></li>                      
-                    <li><a href="list_industry.php"><i class="fa fa-circle-o"></i>List Industry</a></li>
+                    <li><a href="add_jobcategory.php"><i class="fa fa-user-plus"></i>Add Job Category</a></li>
+                    <li><a href="list_jobcategory.php"><i class="fa fa-list-ul"></i>List Job Category</a></li>                      
+                    <li><a href="list_industry.php"><i class="fa fa-desktop"></i>List Industry</a></li>
                 </ul>
             </li>
               <li <?php if($filename == 'list_jobs.php'||$filename == 'add_jobs.php'){ ?> class="active" <?php }else{ ?>class="treeview"<?php } ?>>
                 <a href="#">
-                    <i class="fa fa-edit"></i> <span>Jobs </span>
+                    <i class="fa fa-suitcase"></i> <span>Jobs </span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="add_jobs.php"><i class="fa fa-circle-o"></i>Add Jobs</a></li> 
-                    <li><a href="list_jobs.php"><i class="fa fa-circle-o"></i>List Jobs</a></li> 
+                    <li><a href="add_jobs.php"><i class="fa fa-user-plus"></i>Add Jobs</a></li> 
+                    <li><a href="list_jobs.php"><i class="fa fa-list-ul"></i>List Jobs</a></li> 
                 </ul>
             </li>
              <li <?php if($filename == 'list_interviews.php'||$filename == 'list_own_interviews.php'||$filename == 'add_interview.php'){ ?> class="active" <?php }else{ ?>class="treeview"<?php } ?>>
                 <a href="#">
-                    <i class="fa fa-edit"></i> <span>Interviews </span>
+                    <i class="fa fa-twitch"></i> <span>Interviews </span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="add_interview.php"><i class="fa fa-circle-o"></i>Add Interviews</a></li>  
-                    <li><a href="list_own_interviews.php"><i class="fa fa-circle-o"></i>List Own Interviews</a></li> 
+                    <li><a href="add_interview.php"><i class="fa fa-user-plus"></i>Add Interviews</a></li>  
+                    <li><a href="list_own_interviews.php"><i class="fa fa-list-ul"></i>List Own Interviews</a></li> 
                     <?php if($role == 1){ ?>  
-                    <li><a href="list_interviews.php"><i class="fa fa-circle-o"></i>List Admin Interviews</a></li>  
+                    <li><a href="list_interviews.php"><i class="fa fa-desktop"></i>List Admin Interviews</a></li> 
                     <?php } ?>                    
                 </ul>
             </li>
                <li <?php if($filename == 'list_resume.php'){ ?> class="active" <?php }else{ ?>class="treeview"<?php } ?>>
                 <a href="#">
-                    <i class="fa fa-edit"></i> <span>Resumes</span>
+                    <i class="fa fa-file-text-o"></i> <span>Resumes</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu"> 
-                    <li><a href="list_resume.php"><i class="fa fa-circle-o"></i>List Resume</a></li> 
+                    <li><a href="list_resume.php"><i class="fa fa-database"></i>List Resume</a></li> 
           
                 </ul>
             </li>
             
             <li <?php if($filename == 'list_employers.php' || $filename == 'list_recruiterjobs.php'){ ?> class="active" <?php }else{ ?> class="treeview"<?php } ?>>
                 <a href="#">
-                    <i class="fa fa-edit"></i> <span>Employers</span>
+                    <i class="fa fa-user"></i> <span>Employers</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu"> 
-                    <li><a href="list_employers.php"><i class="fa fa-circle-o"></i>List Employers</a></li> 
-                     <li><a href="list_recruiterjobs.php"><i class="fa fa-circle-o"></i>List Employer Jobs</a></li>
+                    <li><a href="list_employers.php"><i class="fa fa-list-ul"></i>List Employers</a></li> 
+                     <li><a href="list_recruiterjobs.php"><i class="fa fa-list"></i>List Employer Jobs</a></li>
           
                 </ul>
             </li>
@@ -130,7 +130,7 @@
                             $cntrw=mysql_num_rows($rest);
                     ?>
                     <input type="hidden" name="jobdate" id="jobdate" value="<?php echo $log;?>" />
-                    <li><a href="job_notifications.php" id="notific"><i class="fa fa-circle-o"></i>Jobs Notification<span class="label label-primary pull-right" id="notification"><?php echo $cntrw;?></span></a></li>
+                    <li><a href="job_notifications.php" id="notific"><i class="fa fa-bell"></i>Jobs Notification<span class="label label-primary pull-right" id="notification"><?php echo $cntrw;?></span></a></li>
                     
                     <?php
                                             
@@ -139,7 +139,7 @@
                             $cntrow=mysql_num_rows($res);
                     ?>
                     <input type="hidden" name="intdate" id="jobdate" value="<?php echo $log;?>" />
-                    <li><a href="interview_notifications.php" id="notif"><i class="fa fa-circle-o"></i>Interview Notification<span class="label label-primary pull-right" id="notification"><?php echo $cntrow;?></span></a></li> 
+                    <li><a href="interview_notifications.php" id="notif"><i class="fa fa-inbox"></i>Interview Notification<span class="label label-primary pull-right" id="notification"><?php echo $cntrow;?></span></a></li> 
                    
                     <?php
                                             
@@ -148,7 +148,7 @@
                             $countrow=mysql_num_rows($result);
                     ?>
                      <input type="hidden" name="jsdate" id="jsdate" value="<?php echo $log;?>" />
-                    <li><a href="recruiter_notifications.php" id='notificat'><i class="fa fa-circle-o"></i>Recruiter Notification<span class="label label-primary pull-right" id="notification"><?php echo $countrow;?></span></a></li> 
+                    <li><a href="recruiter_notifications.php" id='notificat'><i class="fa fa-folder-open"></i>Recruiter Notification<span class="label label-primary pull-right" id="notification"><?php echo $countrow;?></span></a></li> 
                     
                     <?php
                                             
@@ -157,21 +157,21 @@
                             $countrow1=mysql_num_rows($result1);
                     ?>
                     <input type="hidden" name="jsid" id="jsid" value="<?php echo $log;?>" />
-                    <li><a href="jobseeker_notifications.php" id="noti"><i class="fa fa-circle-o"></i>Job Seeker Notification<span id="newspannot"></span><span id="spannot" class="label label pull-right bg-red"><?php echo $countrow1;?></span></a></li>
+                    <li><a href="jobseeker_notifications.php" id="noti"><i class="fa fa-steam"></i>Job Seeker Notification<span id="newspannot"></span><span id="spannot" class="label label pull-right bg-red"><?php echo $countrow1;?></span></a></li>
                   
                 </ul>
             </li>
             <?php } ?>
   	    <li <?php if($filename == 'list_appliedjobs.php'||$filename == 'list_appliedinterviews.php'){ ?> class="active" <?php }else{ ?> class="treeview"<?php } ?>>
                 <a href="#">
-                    <i class="fa fa-edit"></i> <span>Jobs/Interviews Applied</span>
+                    <i class="fa fa-slideshare"></i> <span>Jobs/Interviews Applied</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu"> 
-                    <li><a href="list_appliedjobs.php"><i class="fa fa-circle-o"></i>List of applied jobs</a></li> 
+                    <li><a href="list_appliedjobs.php"><i class="fa fa-list-ul"></i>List of applied jobs</a></li> 
                 </ul>
                 <ul class="treeview-menu"> 
-                    <li><a href="list_appliedinterviews.php"><i class="fa fa-circle-o"></i>List of applied Interviews</a></li> 
+                    <li><a href="list_appliedinterviews.php"><i class="fa fa-paper-plane"></i>List of applied Interviews</a></li> 
                 </ul>
             </li>
             <li class="header">SETTINGS</li>
