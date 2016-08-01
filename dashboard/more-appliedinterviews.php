@@ -66,7 +66,7 @@
                                        <tbody>
                                           <?php
                                           $applied_id = $_REQUEST['param'];
-                                          $qry = sprintf("SELECT i.id,i.name as job_listing,i.user_id as jobuserid,i.id as apid,ia.interview_id,ia.user_id as userid,ia.created_date,us.name,us.email FROM interviews as i JOIN interviews_applied as ia ON i.id = ia.interview_id JOIN users as us ON ia.user_id = us.id WHERE ia.id='$applied_id'");
+                                          $qry = sprintf("SELECT i.id,i.name as job_listing,i.user_id as jobuserid,i.id as apid,ia.interview_id,ia.user_id as userid,ia.created_date,us.name,us.email,jc.name as job_title,i.industry FROM interviews as i JOIN interviews_applied as ia ON i.id = ia.interview_id JOIN users as us ON ia.user_id = us.id INNER JOIN job_categories as jc ON i.job_category_id=jc.id WHERE ia.id='$applied_id'");
                                           $res = Db::query($qry);
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
@@ -80,7 +80,8 @@
                                           $rw = mysql_fetch_array($result);
                                           ?>
                                            <tr>
-                                                    <th>Job Title</th><td><?php echo $row['job_listing']; ?></td> </tr>
+                                                    <th>Job Title</th><td><?php echo $row['job_title']; ?></td> </tr>
+                                                    <th>Industry</th><td><?php echo $row['industry']; ?></td> </tr>
                                                     <tr><th>Candidate Name</th><td><?php echo $row['name']; ?></td> </tr>
                                                     <tr><th>Date of Birth</th><td><?php echo $rw['date_of_birth']; ?></td> </tr>
                                                     <tr><th>Qualification</th><td><?php echo $rw['qualification']; ?></td> </tr>

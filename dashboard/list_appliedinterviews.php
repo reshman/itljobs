@@ -107,7 +107,12 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $qry = sprintf("SELECT i.id,i.name as title,i.user_id as postid,ia.interview_id,ia.id as apid,ia.created_date,u.name FROM interviews_applied ia LEFT JOIN interviews i ON ia.interview_id=i.id LEFT JOIN users u ON ia.user_id = u.id ORDER BY ia.id DESC");
+                                            if(isset($_SESSION) && $_SESSION['role'] == 1){
+                                                $qry = sprintf("SELECT i.id,i.name as title,i.user_id as postid,ia.interview_id,ia.id as apid,ia.created_date,u.name,jc.name as job_title FROM interviews_applied ia LEFT JOIN interviews i ON ia.interview_id=i.id LEFT JOIN users u ON ia.user_id = u.id INNER JOIN job_categories as jc ON i.job_category_id=jc.id ORDER BY ia.id DESC");
+                                            }else{
+                                                $uid = $_SESSION['id'];
+                                                $qry = sprintf("SELECT i.id,i.name as title,i.user_id as postid,ia.interview_id,ia.id as apid,ia.created_date,u.name,jc.name as job_title FROM interviews_applied ia LEFT JOIN interviews i ON ia.interview_id=i.id LEFT JOIN users u ON ia.user_id = u.id INNER JOIN job_categories as jc ON i.job_category_id=jc.id WHERE i.user_id ='$uid' ORDER BY ia.id DESC");
+                                            }
                                             $res = Db::query($qry);
                                             $i = 1;
                                             date_default_timezone_set('Asia/Kolkata');
@@ -116,7 +121,7 @@
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $i; ?></td>
-                                                    <td><?php echo $row['title']; ?></td>
+                                                    <td><?php echo $row['job_title']; ?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <?php
                                                     $date = $row['created_date'];
