@@ -104,7 +104,7 @@ if ($_GET) {
                         <div class="sea-box">
                             <form method="GET" action="search-job.php" enctype="multipart/form-data">
                                 <input type="text" value="<?php echo $keyword; ?>" placeholder="JOB TITLE,KEYWORDS" id="box1" name="q" required>
-                                <input type="text" value="<?php echo $location; ?>" placeholder="COUNTRY" id="box2" name="l" required>
+                                <input type="text" value="<?php echo $location; ?>" placeholder="COUNTRY" id="box2" name="l">
                                 <input type="submit" value="SEARCH JOBS" id="btn-search">
                             </form>
                         </div>
