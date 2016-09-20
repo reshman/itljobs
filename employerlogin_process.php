@@ -20,7 +20,7 @@ if($val==0){
 $countrow = mysql_num_rows($result);
 }
 $urlinlogin="recruiter.php";
-$urlinnotlogin="employer_enquiry.php#log";
+$urlinnotlogin="employer_enquiry.php";
 if ($countrow >0){
 $_SESSION['logged-in'] = true;
 $_SESSION['reclog'] = $id;

@@ -40,10 +40,7 @@
         <script type="text/javascript" src="js/countrystate.js"></script>
 
     </head>
-
-
-    <body onload="document.getElementById('captcha-form').focus()">
-
+    <body>
         <!-- Container -->
         <div id="container">
             <!-- Header
