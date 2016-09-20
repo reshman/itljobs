@@ -261,7 +261,7 @@
 
             $(function () {
 
-                $('.toggle-event').change(function () {
+                $('body').on('change', '.toggle-event', function() {
                     //            alert("asda");
                     var status = $(this).prop('checked') == true ? '1' : '0';
                     var rowId = $(this).attr('rowid');

@@ -207,7 +207,7 @@ if ($_SESSION['role'] != 1) {
 
             $(function () {
 
-                $('.activate').change(function () {
+                    $('body').on('change', '.toggle-event activate', function() {
                     //            alert("asda");
                     var status = $(this).prop('checked') == true ? '1' : '0';
                     var rowId = $(this).val();
