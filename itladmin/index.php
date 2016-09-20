@@ -186,7 +186,7 @@
 
                 $.ajax({
                     method: "POST",
-                    url: 'forgot-password.php',
+                    url: '../dashboard/forgot-password.php',
                     data: {femail: femail},
                     success: function (data) {
                         if (data == 1) {
