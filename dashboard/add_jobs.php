@@ -191,7 +191,15 @@
 
                                             <label for="exampleInputEmail1">Company Name</label>
 
-                                            <input type="text" class="form-control" id="company" placeholder="Company Name" name="company">
+                                            <select type="text" class="form-control" id="company" placeholder="Company Name" name="company">
+                                                <?php
+                                                    $sql = sprintf('SELECT * FROM company');
+                                                    $result = Db::query($sql);
+                                                    while($row = mysql_fetch_assoc($result)){
+                                                ?>
+                                                <option value="<?=$row['company_name']?>"><?=$row['company_name']?></option>
+                                                <?php } ?>
+                                            </select>
 
                                         </div>
 

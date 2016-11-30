@@ -1,11 +1,13 @@
-<!DOCTYPE html>
 <?php include("logincheck.php"); ?>
-<html xmlns="http://www.w3.org/1999/html">  
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+    
     <head>
 
         <meta charset="UTF-8">
 
-        <title>ITL JOBS</title>
+        <title>Admin | ITL JOBS</title>
 
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
@@ -414,27 +416,26 @@
                                                            // name: {required: true, alphanumeric: true},
                                                             title: {required: true},
                                                             job_cat: "required",
-                                                            date: {required: true, dateFormat: true},
+                                                            date: {dateFormat: true},
                                                             company_name: {required: true, lettersonly: true},
                                                             country: "required",
-                                                            salary: {required: true},
-                                                            time: "required",
+                                                            //salary: {required: true},
                                                             venue: {required: true, alphanumeric: true},
                                                             interview: "required",
-                                                            coordinator: {required: true, lettersonly: true},
+                                                            //coordinator: {required: true, lettersonly: true},
                                                             contact: {
                                                                 required: true,
                                                                 digits: true,
                                                                 minlength: 10, //or look at the additional-methods.js to see available phone validations
                                                                 maxlength: 15
                                                             },
-                                                            description: {
+                                                            /*description: {
                                                                 required: function ()
                                                                 {
                                                                     CKEDITOR.instances.description.updateElement();
                                                                 },
                                                                 minlength: 10
-                                                            }
+                                                            }*/
                                                         },
                                                         // Specify the validation error messages
 
@@ -445,21 +446,21 @@
                                                             date: {required: "Please enter date", dateFormat: "Please enter a date in the format dd/mm/yyyy."},
                                                             company_name: {required: "Please enter company name", lettersonly: "Please enter letters only"},
                                                             country: "Please enter country",
-                                                            salary: {required: "Please Enter Salary"},
+                                                            //salary: {required: "Please Enter Salary"},
                                                             time: "Please enter time",
                                                             venue: {required: "Please enter location"},
                                                             interview: "please select interview",
-                                                            coordinator: {required: "Please enter name of coordinator", lettersonly: "Please enter letters only"},
+                                                            //coordinator: {required: "Please enter name of coordinator", lettersonly: "Please enter letters only"},
                                                             contact: {
                                                                 required: "Please enter your contact number.",
                                                                 digits: "Enter digits only",
                                                                 minlength: "Enter valid contact number",
                                                                 maxlength: "Enter valid contact number"
                                                             },
-                                                            description: {
+                                                            /*description: {
                                                                 required: "Please enter description",
                                                                 minlength: "Please enter 10 characters"
-                                                            }
+                                                            }*/
                                                         },
                                                         submitHandler: function (form) {
 

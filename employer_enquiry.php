@@ -1,6 +1,5 @@
+<?php (!isset($_SESSION))? session_start():null;?>
 <!doctype html>
-
-
 <html lang="en" class="no-js">
     <head>
         <title>ITL JOBS</title>
@@ -39,6 +38,36 @@
         <script type="text/javascript" src="js/script.js"></script>
         <script type="text/javascript" src="js/countrystate.js"></script>
 
+         <style>
+
+            /* Hide the file input using
+            opacity */
+            [type=file] {
+                position: absolute;
+                filter: alpha(opacity=0);
+                opacity: 0;
+            }
+            input, [type="file"] + label {
+                border: 1px solid #ccc;
+                border-radius: 0;
+                font-size: 13px;
+                left: 0;
+                margin: 0;
+                padding: 14px;
+                position: relative;
+                text-align: left;
+                width: 100%;
+            }
+
+
+        </style>
+        <style>
+            .rbutton{
+                font-size: 30px;
+                margin-top: 10px;
+            }
+        </style>
+        
     </head>
     <body>
         <!-- Container -->
@@ -68,27 +97,24 @@
                         <div id="log">
                             <?php
                             error_reporting(0);
-                            session_start();
                             if ($_SESSION['in'] == 1) {
                                 ?>
                                 <div class="alert alert-danger alert-dismissable" id="status-message">
                                     <?php echo "<span style='color:red'/><b>Invalid email or password</b></span><br/><br/>"; ?>
                                 </div>                                          
                                 <?php
+                                unset($_SESSION['in']);
                             }
-                            unset($_SESSION['in']);
+                            
                             ?>
                         </div>                 
 
                         <div class="col-md-12">
-                            <input  id="loginemail" name="loginemail" type="text" placeholder="EMAIL ">    
-
+                            <input  id="loginemail" name="loginemail" type="text" placeholder="EMAIL "> 
                         </div>
                         <div class="col-md-12">
-                            <input id="loginpassword" name="loginpassword" type="password" placeholder="PASSWORD">    
-
+                            <input id="loginpassword" name="loginpassword" type="password" placeholder="PASSWORD"> 
                         </div>
-
                         <div class="col-md-6">          
                             <input type="submit" value="LOGIN">
                         </div>
@@ -164,12 +190,13 @@
 
                                 <?php
                             }
+                            unset($_SESSION['regsucc']);
                         }
 
-                        unset($_SESSION['regsucc']);
+                        
                         ?>
                         <script>
-                            $('#status-message').fadeOut(5000);
+                            $('#status-message').fadeOut(9000);
                         </script>
 
                         <div class="col-md-6">
@@ -425,6 +452,14 @@
                             <input id="moblie" name="mobile" type="text" placeholder="MOBILE" maxlength="10">    
 
                         </div>
+                        
+                        <div class="col-md-12">
+
+                                    <input type="file" class="enquiry resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR COMPANY LOGO" >
+                                    <label for="f02">UPLOAD YOUR COMPANY LOGO (JPG, PNG, GIF)</label>
+
+                        </div>
+                        
                         <div class="col-md-12">
                             <textarea name="enquiry" id="enquiry" placeholder="ENQUIRY/REQUIREMENT"></textarea>  
 

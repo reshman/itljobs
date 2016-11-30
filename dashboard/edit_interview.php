@@ -1,6 +1,6 @@
+<?php include("logincheck.php"); ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
-    <?php include("logincheck.php"); ?>
     <head>
 
         <meta charset="UTF-8">
@@ -658,11 +658,10 @@
                             //name: {required: true, alphanumeric: true},
                             title: {required: true},
                             job_cat: "required",
-                            date: {required: true, dateFormat: true},
+                            date: {dateFormat: true},
                             company_name: {required: true, lettersonly: true},
                             country: "required",
                             salary: {required: true, salrange: true},
-                            time: "required",
                             venue: {required: true, alphanumeric: true},
                             interview: "required",
                             coordinator: {required: true, lettersonly: true},

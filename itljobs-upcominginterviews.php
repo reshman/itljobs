@@ -129,7 +129,7 @@
                             }
                             $today_date = date('Y-m-d');
 
-                            $query = sprintf("SELECT DISTINCT company_name,country FROM interviews WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' ORDER BY company_name", $today_date, 1, 0);
+                            $query = sprintf("SELECT DISTINCT company_name,country FROM interviews WHERE (schedule_date>='%s' OR schedule_date='') AND active='%s' AND del_status='%s' ORDER BY company_name", $today_date, 1, 0);
 //                            die();
                             $cresult = Db::query($query);
                             while ($crow = mysql_fetch_assoc($cresult)) {
@@ -145,8 +145,8 @@
                                         <div class="col-md-12">
                                         <div class="accordion-box">
                                         <?php
-                                        $query = sprintf("SELECT id,job_category_id,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status,date FROM interviews WHERE schedule_date>='%s' AND active='%s' AND del_status='%s' AND company_name='%s' ORDER BY schedule_date", $today_date, 1, 0, $crow['company_name']);
-                                        // echo $query = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,js.experience,js.job_location,js.closing_date,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 AND inv.schedule_date>='$today_date'"); die; 
+                                        $query = sprintf("SELECT id,job_category_id,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status,date FROM interviews WHERE (schedule_date>='%s' OR schedule_date='%s') AND active='%s' AND del_status='%s' AND company_name='%s' ORDER BY schedule_date", $today_date,'', 1, 0, $crow['company_name']);
+                                        //$query = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,js.experience,js.job_location,js.closing_date,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 AND inv.schedule_date>='$today_date'"); die; 
                                         $result = Db::query($query);
                                         while ($row = mysql_fetch_array($result)) {
                                             $sqlCat = sprintf("SELECT name FROM job_categories WHERE id=%d",$row['job_category_id']);
@@ -160,18 +160,41 @@
                                         <h2><?php echo strtoupper($rowCat['name']);?><span style="float:right;"><?php echo 'Posted on: ' . strtoupper(date("d/m/Y", strtotime($row['date'])));?></span></h2>
                                     </div>
                                     <div class="accord-content-inner" style="display: none;">
-                                        <p><?php echo $row['description']; ?></p>                                       
-                                        <p>
-                                            <span style="color:#6495ED">Salary Structure : </span><?php echo $row['salary']; ?>
-                                        </p>
-                                        <p>
-                                            <span style="color:#6495ED">Co ordinator : </span><?php echo $row['coordinator']; ?>
-                                        </p>
+                                        <p><?php echo $row['description']; ?></p>                   
+                                        
+                                        <?php
+                                            if(!empty($row['salary']))
+                                              {
+                                        ?>
+                                              <p>
+                                                  <span style="color:#6495ED">Salary Structure : </span><?php echo $row['salary']; ?>
+                                              </p>
+                                        <?php
+                                              }
+                                        ?>
+
+                                        <?php
+                                            if(!empty($row['coordinator']))
+                                                {
+                                        ?>
+                                                <p>
+                                                    <span style="color:#6495ED">Co ordinator : </span><?php echo $row['coordinator']; ?>
+                                                </p>
+                                        <?php
+                                                }
+                                        ?>
                                         <p>
                                             <span style="color:#6495ED">Contact : </span><?php echo $row['contact']; ?>
                                         </p>
                                         <p>
-                                            <span style="color:#6495ED">Interview date : </span><?php echo $row[schedule_date] . ' at ' . $row[schedule_time]; ?>
+                                            <span style="color:#6495ED">Interview date : </span>
+                                            <?php 
+                                            if($row['schedule_date'] == ''){
+                                            	echo 'Comming soon';
+                                            } else {
+                                            	echo $row['schedule_date'] . ' at ' . $row['schedule_time']; 
+                                            }
+                                            ?>
                                         </p>
                                         <p>
                                             <span style="color:#6495ED">Location : </span><?php echo $row['venue']; ?>

@@ -14,9 +14,13 @@ $salary       = (trim($_POST['salary']));
 $time         = (trim($_POST['time']));
 $venue        = (trim($_POST['venue']));
 $date1        = (trim($_POST['date']));
+if($date1 == ''){
+$date = '';
+} else {
 $sdate        = explode('/', $date1);
 $date         = array_reverse($sdate);
 $date         = implode('-', $date);
+}
 $description  = (trim($_POST['description']));
 $coordinator  = (trim($_POST['coordinator']));
 $contact      = (trim($_POST['contact']));

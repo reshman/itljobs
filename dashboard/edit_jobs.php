@@ -222,8 +222,15 @@
                                             <div class="form-group">
 
                                                 <label for="exampleInputEmail1">Company Name</label>
-
-                                                <input type="text" class="form-control" id="company" placeholder="Company Name" name="company" value="<?php echo $row['company_name']; ?>">
+                                                <select type="text" class="form-control" id="company" placeholder="Company Name" name="company">
+                                                    <?php
+                                                    $sql = sprintf('SELECT * FROM company');
+                                                    $result = Db::query($sql);
+                                                    while($crow = mysql_fetch_assoc($result)){
+                                                        ?>
+                                                        <option value="<?=$crow['company_name']?>" <?php ($row['company_name'] == $crow['company_name'])?'selected':''; ?>><?=$crow['company_name']?></option>
+                                                    <?php } ?>
+                                                </select>
 
                                             </div>
 

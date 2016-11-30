@@ -1,6 +1,5 @@
+<?php (!isset($_SESSION))? session_start():null;?>
 <!doctype html>
-
-
 <html lang="en" class="no-js">
     <head>
         <title>ITL JOBS</title>
@@ -180,7 +179,7 @@
                 <div class="row">    
                     <div class="search-box">
                         <form method="GET" action="search-job.php" enctype="multipart/form-data">
-                            <input type="text" placeholder="JOB TITLE,KEYWORDS" id="box1" name="q" required>
+                            <input type="text" placeholder="JOB TITLE,KEYWORDS" id="box1" name="q">
                             <input type="text" placeholder="COUNTRY" id="box2" name="l" >
                             <input type="submit" value="SEARCH JOBS" id="btn-search">
                         </form> 
@@ -207,10 +206,10 @@
             </section>
             <!-- End services-offer section -->
 
-
             <section class="page-section">
                 <div class="container">
                     <div class="row">
+                    
                         <div class="col-md-6">
                             <div class="title-section">
                                 <h1>HOT JOBS</h1></div>
@@ -230,95 +229,117 @@
                                 }
                             }
 
-                            $query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>'%s' AND job_order>'%s' ORDER BY job_order LIMIT 1", 1, 0, $today_date, 0);
+                            //$query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>'%s' AND job_order>'%s' ORDER BY job_order LIMIT 1", 1, 0, $today_date, 0);
+                            $query = sprintf("SELECT j.* FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND j.job_order>'%d' ORDER BY job_order",1,0,$today_date,0);
                             $result = Db::query($query);
                             if(mysql_num_rows($result) > 0){
                             $row = mysql_fetch_array($result);
+                               $sqlCat = sprintf("SELECT name FROM job_categories WHERE id=%d",$row['job_category_id']);
+                                            $resultCat = Db::query($sqlCat);
+                                            $rowCat = mysql_fetch_assoc($resultCat);
                                 ?>
                                 <div class="jobs-box">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-xs-12">
                                         <img src="images/job-img.jpg">   
                                     </div>
-                                    <div class="col-md-8">
-                                        <h3><?php echo $row['job_listing']; ?></h3>
+                                    <div class="col-md-8 col-xs-12">
+                                        <h3><?php echo $rowCat['name']; ?></h3>
+                                        <div style="height: 149px;">
                                         <p><?php
-                                            if ($row['job_description'] == 'PDF Attached') {
+                                            if ($rowCat['name'] == 'PDF Attached') {
                                                 echo $row['job_description'] . ' - <a href="jobdescriptions/' . $row['ref_id'] . '.pdf" target="_BLANK">View Here</a>';
                                             } else {
                                                 echo substr($row['job_description'], 0, 120).'...';
                                             }
                                             ?>
                                         </p>
-
+                                        </div>
+                                        <div class="col-md-4 col-xs-12" style="padding-left:1px;">
                                         <?php if (isset($_SESSION['log'])): ?>
                                             <div id="apply">
                                                 <!--<input type="submit" id="submit_contact" value="APPLY">-->
-                                                <a href="javascript:void(0)" onclick="apply(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $jobsArray)) ? 'APPLIED' : 'APPLY' ?>"></a>
+                                                <a href="javascript:void(0)" onclick="apply(<?php echo $row['id'] ?>, this)">
+                                                <input style="width:100%;" type="submit" value="<?php echo (in_array($row['id'], $jobsArray)) ? 'APPLIED' : 'APPLY' ?>"></a>
                                             </div>
                                         <?php else: ?>
                                             <div id="apply">
                                                 <!--<input type="submit" id="submit_contact" value="APPLY">-->
                                                 <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><input type="submit" value="APPLY"></a>
                                             </div>
+                                        </div>
+                                        <div class="col-md-8 col-xs-12" style="padding-left:1px;">
                                         <?php endif; ?>
-                                        <div id="view"><form action="itljobs-hotjobs.php"><input type="submit" value="MORE JOBS"></form></div>        
+                                        <div id="view">
+                                            <form action="itljobs-hotjobs.php"><input type="submit" value="MORE JOBS"></form>
+                                        </div> 
+                                        </div>       
                                     </div>        
                                 </div>
                                 <?php
                             }
                             ?>
                         </div>
+                        
                         <div class="col-md-6">
                             <div class="title-section">
-                                <h1>Upcoming Interviews</h1></div>
+                                <h1>Upcoming Interviews</h1>
+                            </div>
                             <?php
-                            
-                            $interviewArray = array();
-                            $interviewSaveArray = array();
-                            $sqlinterviewApplied = sprintf("SELECT int_id FROM interview_applied WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
-                            $resultIntApplied = Db::query($sqlinterviewApplied);
-                            if (mysql_num_rows($resultIntApplied) > 0) {
-                                while ($rowIntApplied = mysql_fetch_assoc($resultIntApplied)) {
-                                    $interviewArray[] = $rowIntApplied['int_id'];
+                                $interviewArray = array();
+                                $interviewSaveArray = array();
+                                $sqlinterviewApplied = sprintf("SELECT int_id FROM interview_applied WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
+                                $resultIntApplied = Db::query($sqlinterviewApplied);
+                                if (mysql_num_rows($resultIntApplied) > 0) {
+                                    while ($rowIntApplied = mysql_fetch_assoc($resultIntApplied)) {
+                                        $interviewArray[] = $rowIntApplied['int_id'];
+                                    }
                                 }
-                            }
-
-                            $qry = sprintf("SELECT i.id,i.job_category_id,i.description,i.schedule_date,i.active,i.del_status,j.name FROM interviews as i JOIN job_categories as j ON j.id = i.job_category_id WHERE schedule_date>='%s' AND active='%s'AND del_status='%s' ORDER BY schedule_date LIMIT 1", $today_date, 1, 0);
-                            $res = Db::query($qry);
-                            if(mysql_num_rows($res) > 0){
-                            $rw = mysql_fetch_array($res);
-                                ?>
-                                <div class="jobs-box">
-                                    <div class="col-md-4">
-                                        <img src="images/spcl-img.jpg">   
-                                    </div>
-                                    <div class="col-md-8">
-                                        <h3><?php echo $rw['name']; ?></h3>
-                                        <p><?php echo substr($rw['description'], 0, 120); ?>...</p>   
-                                         <?php if (isset($_SESSION['log'])): ?>
-                                            <div id="apply">
-                                                <!--<input type="submit" id="submit_contact" value="APPLY">-->
-                                                <a href="javascript:void(0)" onclick="applyInterview(<?php echo $rw['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($rw['id'], $interviewArray)) ? 'APPLIED' : 'APPLY' ?>"></a>
-                                            </div>
-                                        <?php else: ?>
-                                            <div id="apply">
-                                                <!--<input type="submit" id="submit_contact" value="APPLY">-->
-                                                <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><input type="submit" value="APPLY"></a>
-                                            </div>
-                                        <?php endif; ?>
-                                        <div id="view"><form action="itljobs-upcominginterviews.php"><input type="submit" value="MORE INTERVIEWS"></form></div>    
-                                    </div>        
-                                </div>     
-                                <?php
-                            }
+                                $qry = sprintf("SELECT i.id,i.job_category_id,i.description,i.schedule_date,i.active,i.del_status,j.name,i.company_name FROM interviews as i JOIN job_categories as j ON j.id = i.job_category_id WHERE (schedule_date>='%s' OR schedule_date='') AND active='%s'AND del_status='%s' ORDER BY schedule_date LIMIT 1", $today_date, 1, 0);
+                                $res = Db::query($qry);
+                                if(mysql_num_rows($res) > 0){
+                                    $rw = mysql_fetch_array($res);
+                                $sqlCat = sprintf("SELECT name FROM job_categories WHERE id=%d",$rw['job_category_id']);
+                                    $resultCat = Db::query($sqlCat);
+                                    $rowCat = mysql_fetch_assoc($resultCat);
                             ?>
-                        </div> 
-                    </div>
-
-                </div>
+                            <div class="jobs-box">
+                                <div class="col-md-4 col-xs-12">
+                                    <img src="images/spcl-img.jpg">  
+                                </div>
+                                <div class="col-md-8 col-xs-12">
+                                    <h3><?php echo $rw['company_name']; ?></h3>
+                                    <h4><?php echo $rowCat['name']; ?></h4>
+                                    <div style="height: 120px;">
+                                        <p><?php echo substr($rw['description'], 0, 120); ?>...</p>
+                                    </div> 
+                                    <div class="col-md-4 col-md-12" style="padding-left:1px;">  
+                                    <?php if (isset($_SESSION['log'])): ?>
+                                        <div id="apply">
+                                            <!--<input type="submit" id="submit_contact" value="APPLY">-->
+                                            <a href="javascript:void(0)" onclick="applyInterview(<?php echo $rw['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($rw['id'], $interviewArray)) ? 'APPLIED' : 'APPLY' ?>"></a>
+                                        </div>
+                                    <?php else: ?>
+                                        <div id="apply">
+                                            <!--<input type="submit" id="submit_contact" value="APPLY">-->
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><input type="submit" value="APPLY"></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-md-12" style="padding-left:1px;">
+                                    <?php endif; ?>
+                                        <div id="view">
+                                            <form action="itljobs-upcominginterviews.php"><input type="submit" value="MORE INTERVIEWS"></form>
+                                        </div> 
+                                    </div>   
+                                </div>        
+                            </div>     
+                            <?php
+                                }
+                            ?>
+                        </div>
+                        
+                    </div><!-- row -->
+                </div><!-- container -->
             </section>
-
-
 
             <section class="news-section">
                 <div class="container">
@@ -422,12 +443,6 @@
                             </div>
 
                             <div class="item news-post">
-                                <img src="images/itl-clients-15.jpg" alt="">
-
-
-                            </div>
-
-                            <div class="item news-post">
                                 <img src="images/itl-clients-16.jpg" alt="">
 
 
@@ -495,12 +510,6 @@
 
                             <div class="item news-post">
                                 <img src="images/itl-clients-27.jpg" alt="">
-
-
-                            </div>
-
-                            <div class="item news-post">
-                                <img src="images/itl-clients-28.jpg" alt="">
 
 
                             </div>

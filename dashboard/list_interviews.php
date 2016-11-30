@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include("logincheck.php");
 if ($_SESSION['role'] != 1) {
@@ -6,6 +5,7 @@ if ($_SESSION['role'] != 1) {
     exit();
 }
 ?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -116,7 +116,7 @@ if ($_SESSION['role'] != 1) {
                                             $i = 1;
                                             date_default_timezone_set('Asia/Kolkata');
                                             $today_date = date('Y-m-d');
-                                            $query = sprintf("SELECT us.id,us.name,iv.id as intId,jc.name as job_title,iv.schedule_date, iv.name as jobname,iv.description,iv.schedule_time,iv.company_name,iv.venue,iv.interview,iv.contact, iv.user_id,iv.active,iv.vih,iv.del_status FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id INNER JOIN job_categories as jc ON iv.job_category_id=jc.id WHERE iv.schedule_date>='%s' AND iv.del_status='%s' ORDER BY schedule_date", $today_date, 0);
+                                            $query = sprintf("SELECT us.id,us.name,iv.id as intId,jc.name as job_title,iv.schedule_date, iv.name as jobname,iv.description,iv.schedule_time,iv.company_name,iv.venue,iv.interview,iv.contact, iv.user_id,iv.active,iv.vih,iv.del_status FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id INNER JOIN job_categories as jc ON iv.job_category_id=jc.id WHERE (iv.schedule_date>='%s' OR schedule_date='') AND iv.del_status='%s' ORDER BY schedule_date", $today_date, 0);
                                             $result = Db::query($query);
                                             while ($row = mysql_fetch_array($result)) {
                                                 ?>
@@ -124,7 +124,7 @@ if ($_SESSION['role'] != 1) {
                                                 <tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $row['jobname']; ?></td>
-                                                    <td><?php echo $row['schedule_date']; ?></td>
+                                                    <td><?php if($row['schedule_date'] == '' ){ echo 'Comming soon'; } else { echo $row['schedule_date']; }?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['company_name']; ?></td>
                                                     <td><?php echo $row['contact']; ?></td>
