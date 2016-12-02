@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <?php include("logincheck.php"); ?>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -85,8 +85,6 @@
 <?php
 include 'menu.php';
 include_once 'db.php';
-
-session_start();
 ?>
 
 <!-- Content Wrapper. Contains page content -->

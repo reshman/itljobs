@@ -193,7 +193,7 @@
 
                                             <select type="text" class="form-control" id="company" placeholder="Company Name" name="company">
                                                 <?php
-                                                    $sql = sprintf('SELECT * FROM company');
+                                                    $sql = sprintf('SELECT * FROM company ORDER BY company_name');
                                                     $result = Db::query($sql);
                                                     while($row = mysql_fetch_assoc($result)){
                                                 ?>

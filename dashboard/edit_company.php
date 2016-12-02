@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include_once 'db.php';
 if (empty($_GET['id'])) {
@@ -16,6 +15,7 @@ $row = mysql_fetch_assoc($result);
 $name = $row['company_name'];
 $logo = $row['logo'];
 ?>
+<!DOCTYPE html>
 <html>
 
 <head>

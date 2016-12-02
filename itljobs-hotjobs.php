@@ -102,16 +102,8 @@
                             <input <?php echo (isset($_GET['show']) && $_GET['show'] == true) ? 'checked' : '';  ?> data-on="Show" data-off="Hide" class="toggle-event" data-toggle="toggle" type="checkbox" id="reveal">
                         </div>-->
         </section>
-        <?php
-                            include 'db.php';
-                            date_default_timezone_set('Asia/Kolkata');
-                            $today_date = date('Y-m-d');
-                            //$query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND job_order>'%s' ORDER BY job_order", 1, 0, $today_date, 0);
-                            $query = sprintf("SELECT j.* FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND j.job_order>'%d' ORDER BY job_order",1,0,$today_date,0);
-                            $result = Db::query($query);
-                            if(mysql_num_rows($result)>0){
         
-        ?>
+        
         <section class="services-offer-section">
             <div class="container">
                 <div class="services-box ser-box2">
@@ -121,7 +113,17 @@
                     </div>
                     <div class="col-md-12">
                         <div class="accordion-box">
-
+                            <?php
+                            include 'db.php';
+                            date_default_timezone_set('Asia/Kolkata');
+                            $today_date = date('Y-m-d');
+                            //$query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND job_order>'%s' ORDER BY job_order", 1, 0, $today_date, 0);
+                            $query = sprintf("SELECT j.* FROM jobs as j JOIN job_categories as jc ON jc.id=j.job_category_id WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND j.job_order>'%d' ORDER BY job_order",1,0,$today_date,0);
+                            $result = Db::query($query);
+                            if(mysql_num_rows($result)>0){
+        
+        ?>
+        
                             <?php
 
                             if (isset($_SESSION['log'])) {
@@ -174,7 +176,7 @@
                                             ?>
                                         </p>
                                         <p class="c_b_t_border">
-                                            <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?>,
+                                            <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience']; ?>,
                                             <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>,
                                             <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
                                             <span style="color:#007ac9">Location : </span><?php echo $row['job_location']; ?>
@@ -192,9 +194,8 @@
 
                                     </div>
                                 </div>
-
                                 <?php
-                            }
+                            } }
                             $query = sprintf("SELECT * FROM `jobs` WHERE active='%s' AND del_status='%s' AND closing_date>='%s' AND job_order='%s'", 1, 0, $today_date, 0);
                             $result = Db::query($query);
                             while ($row = mysql_fetch_array($result)) {
@@ -227,7 +228,7 @@
                                             ?>
                                         </p>
                                         <p class="c_b_t_border">
-                                            <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience'] . ' years'; ?>,
+                                            <span style="color:#007ac9">Experience : </span><?php echo ($row['experience'] == 0) ? $row['experience'] . ' year' : $row['experience']; ?>,
                                             <span style="color:#007ac9">Reference Id : </span><?php echo $row['ref_id']; ?>,
                                             <span style="color:#007ac9">Closing date : </span><?php echo date("d/m/Y", strtotime($row['closing_date'])); ?>,
                                             <span style="color:#007ac9">Location : </span><?php echo $row['job_location']; ?>
@@ -258,128 +259,129 @@
             </div>
         </section>
         
-        <?php
-        }
-        $query = sprintf("SELECT count(*) as count FROM interviews WHERE vih=1");
-        $result = DB::query($query);
-        $row = mysql_fetch_assoc($result);
-        if ($row[count] > 0) {
-            ?>
-            <section class="services-offer-section">
-                <div class="container">
-                    <div class="services-box ser-box2">
-                        <?php
-                        if (isset($_SESSION['illegal'])) {
-                            ?>
-                            <div class="alert alert-danger alert-dismissable">
-
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                                Invalid.
-
-                            </div>
-                            <?php
-                            unset($_SESSION['illegal']);
-                        }
+  
+  
+  
+  <section class="services-offer-section">
+            <div class="container">
+                <div class="services-box ser-box2">
+                
+                    <?php
+                    if (isset($_SESSION['illegal'])) {
                         ?>
-                        <div class="title-section">
-                            <h1>Upcoming Interviews</h1>
+                        <div class="alert alert-danger alert-dismissable">
+
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                            Invalid.
+
                         </div>
-                        <div class="col-md-12">
-                            <div class="accordion-box">
+                        <?php
+                        unset($_SESSION['illegal']);
+                    }
+                    ?>
 
-                                <?php
-                                include_once 'db.php';
-                                date_default_timezone_set('Asia/Kolkata');
-                                if (isset($_SESSION['log'])) {
+                    <div class="col-md-12">
+                        <div class="accordion-box">
 
-                                    $interviewArray = array();
-                                   $sqlJobsApplied = sprintf("SELECT interview_id FROM interviews_applied WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
-                                    $resultApplied = Db::query($sqlJobsApplied);
-                                     if (mysql_num_rows($resultApplied) > 0) {
+                            <?php
+                            date_default_timezone_set('Asia/Kolkata');
+                            if (isset($_SESSION['log'])) {
+
+                                $interviewArray = array();
+                                $sqlJobsApplied = sprintf("SELECT interview_id FROM interviews_applied WHERE user_id = '%s' AND del_status = '%s'", $_SESSION['log'], 0);
+                                $resultApplied = Db::query($sqlJobsApplied);
+                                if (mysql_num_rows($resultApplied) > 0) {
                                     while ($rowApplied = mysql_fetch_assoc($resultApplied)) {
                                         $interviewArray[] = $rowApplied['interview_id'];
                                     }
                                 }
                             }
-                                $today_date = date('Y-m-d');
-                                $query = sprintf("SELECT DISTINCT company_name,country FROM interviews WHERE (schedule_date>='%s' OR schedule_date='') AND active='%s' AND del_status='%s' ORDER BY company_name", $today_date, 1, 0);
-//                            die();
-                                $cresult = Db::query($query);
-                                while ($crow = mysql_fetch_assoc($cresult)) {
-                                    ?>
+                            $today_date = date('Y-m-d');
+                                ?>
+                                <?php
+                                        $query = sprintf("SELECT id,job_category_id,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status,date FROM interviews WHERE (schedule_date>='%s' OR schedule_date='%s') AND active='%s' AND del_status='%s' AND vih=%d ORDER BY schedule_date", $today_date,'', 1, 0,1);
+                                        //$query = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,js.experience,js.job_location,js.closing_date,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 AND inv.schedule_date>='$today_date'"); die; 
+                                        $result = Db::query($query);
+                                        while ($row = mysql_fetch_array($result)) {
+                                            $sqlCat = sprintf("SELECT name FROM job_categories WHERE id=%d",$row['job_category_id']);
+                                            $resultCat = Db::query($sqlCat);
+                                            $rowCat = mysql_fetch_assoc($resultCat);
+                                ?>
 
-                                    <div class="accord-elem">
-                                        <div class="accord-title">
-                                            <a class="accord-link" href="#"></a>
-                                            <h2><?php echo strtoupper($crow['company_name']) . ', ' . strtoupper($crow['country']); ?></h2>
-                                        </div>
-                                        <div class="accord-content" style="display: none;">
-                                            <div class="col-md-12">
-                                                <div class="accordion-box">
-                                                    <?php
-                                                    $query = sprintf("SELECT id,job_category_id,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status,date FROM interviews WHERE schedule_date>='%s' AND active='%s' AND del_status='%s' AND company_name='%s' ORDER BY schedule_date", $today_date, 1, 0, $crow['company_name']);
-                                                    // echo $query = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,js.experience,js.job_location,js.closing_date,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 AND inv.schedule_date>='$today_date'"); die; 
-                                                    $result = Db::query($query);
-                                                    while ($row = mysql_fetch_array($result)) {
-                                                    $sqlCat = sprintf("SELECT name FROM job_categories WHERE id=%d",$row['job_category_id']);
-                                                        $resultCat = Db::query($sqlCat);
-                                                        $rowCat = mysql_fetch_assoc($resultCat);
-                                                        ?>
-
-                                                        <div class="accord-elem-inner">
-                                                            <div class="accord-title-inner">
-                                                                <a class="accord-link-inner" href="#"></a>
-                                                                <h2><?php echo strtoupper($rowCat['name']); ?><span style="float:right;"><?php echo 'Posted on: ' . strtoupper(date("d/m/Y", strtotime($row['date']))); ?></span></h2>
-                                                            </div>
-                                                            <div class="accord-content-inner" style="display: none;">
-                                                                <p><?php echo $row['description']; ?></p>                                       
-                                                                <p>
-                                                                    <span style="color:#6495ED">Salary Structure : </span><?php echo $row['salary']; ?>
-                                                                </p>
-                                                                <p>
-                                                                    <span style="color:#6495ED">Co ordinator : </span><?php echo $row['coordinator']; ?>
-                                                                </p>
-                                                                <p>
-                                                                    <span style="color:#6495ED">Contact : </span><?php echo $row['contact']; ?>
-                                                                </p>
-                                                                <p>
-                                                                    <span style="color:#6495ED">Interview date : </span>
-                                                                    <?php 
-                                                                     if($row['schedule_date'] == ''){ echo 'Coming Soon'; }
-                                                                     else { echo $row['schedule_date'] . ' at ' . $row['schedule_time']; }
-                                                                    ?>
-                                                                </p>
-                                                                <p>
-                                                                    <span style="color:#6495ED">Location : </span><?php echo $row['venue']; ?>
-                                                                </p>
-
-                                                                <?php if (isset($_SESSION['log'])): ?>
-                                                                    <div id="apply"><a href="javascript:void(0)" onclick="apply(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $interviewArray)) ? 'APPLIED' : 'APPLY' ?>"></a></div>
-                                                                <?php else: ?>
-                                                                    <div id="apply"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" ><input type="submit" value="APPLY"></a></div>
-                                                                <?php endif; ?>
-                                                            </div>
-                                                        </div>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="accord-elem">
+                                    <div class="accord-title">
+                                        <a class="accord-link" href="#"></a>
+                                         <h2><?php echo strtoupper($rowCat['name']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($row['country']);?><span style="float:right;"><?php echo 'Posted on: ' . strtoupper(date("d/m/Y", strtotime($row['date'])));?></span></h2>
                                     </div>
-                                    <?php
-                                }
-                                ?>	
-                            </div>
+                                     <div class="accord-content" style="display: none;">
+                                        <p><?php echo $row['description']; ?></p>                   
+                                        
+                                        <?php
+                                            if(!empty($row['salary']))
+                                              {
+                                        ?>
+                                              <p>
+                                                  <span style="color:#6495ED">Salary Structure : </span><?php echo $row['salary']; ?>
+                                              </p>
+                                        <?php
+                                              }
+                                        ?>
+
+                                        <?php
+                                            if(!empty($row['coordinator']))
+                                                {
+                                        ?>
+                                                <p>
+                                                    <span style="color:#6495ED">Co ordinator : </span><?php echo $row['coordinator']; ?>
+                                                </p>
+                                        <?php
+                                                }
+                                        ?>
+                                        <p>
+                                            <span style="color:#6495ED">Contact : </span><?php echo $row['contact']; ?>
+                                        </p>
+                                        <p>
+                                            <span style="color:#6495ED">Interview date : </span>
+                                            <?php 
+                                            if($row['schedule_date'] == ''){
+                                            	echo 'Comming soon';
+                                            } else {
+                                            	echo date('d/m/Y',strtotime($row['schedule_date'])) . ' at ' . $row['schedule_time']; 
+                                            }
+                                            ?>
+                                        </p>
+                                        <p>
+                                            <span style="color:#6495ED">Location : </span><?php echo $row['venue']; ?>
+                                        </p>
+
+                                        <?php if (isset($_SESSION['log'])): ?>
+                                            <div id="apply"><a href="javascript:void(0)" onclick="apply_interview(<?php echo $row['id'] ?>, this)"><input type="submit" value="<?php echo (in_array($row['id'], $interviewArray)) ? 'APPLIED' : 'APPLY' ?>"></a></div>
+                                        <?php else: ?>
+                                            <div id="apply"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" ><input type="submit" value="APPLY"></a></div>
+                                        <?php endif; ?>
+                                    </div>
+                                    
+                                
+                                </div>
+                                <?php
+                            }
+                            ?>
+                                    </div>
+                                                              </div>              </div>
+
+                                </div>
+                              	
                         </div>
-
-
-
                     </div>
+
+
+
                 </div>
-            </section>
-        <?php } ?>
+            </div>
+        </section>
+  
+        
 
         <!-- footer 
                         ================================================== -->
@@ -472,6 +474,32 @@
                         $(current).notify(
                                 "Job Already Applied", "danger",
                                 {position: "right"}
+                        );
+                    }
+                });
+            }
+
+            function apply_interview(job_id, $this) {
+                var current = $this;
+                $(current).children().val('APPLYING...');
+                $.ajax({
+                    url: 'ajax-interviews-applied.php?intid=' + job_id
+                }).done(function (data) {
+                    if (data == 'SUCCESS') {
+                        viewDiv = $(current).parent().next();
+                        $(viewDiv).hide();
+                        $(current).children().val('APPLIED');
+                        $(current).notify(
+                            "Interview Applied Successfully", "success",
+                            {position: "right"}
+                        );
+                    } else if (data == 'ALREADY APPLIED') {
+                        viewDiv = $(current).parent().next();
+                        $(viewDiv).hide();
+                        $(current).children().val('APPLIED');
+                        $(current).notify(
+                            "Already  Applied", "success",
+                            {position: "right"}
                         );
                     }
                 });

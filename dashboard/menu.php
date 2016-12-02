@@ -75,6 +75,15 @@
                     <li><a href="list_company.php"><i class="fa fa-list-ul"></i>List Company</a></li>
                 </ul>
             </li>
+             <li <?php if($filename == 'list_qualification.php'){ ?> class="active" <?php }else{ ?> class="treeview"<?php } ?>>
+                <a href="#">
+                    <i class="fa fa-delicious"></i> <span>Qualification </span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="list_qualification.php"><i class="fa fa-user-plus"></i>Manage Qualification </a></li>
+                </ul>
+            </li>
               <li <?php if($filename == 'list_jobs.php'||$filename == 'add_jobs.php'){ ?> class="active" <?php }else{ ?>class="treeview"<?php } ?>>
                 <a href="#">
                     <i class="fa fa-suitcase"></i> <span>Jobs </span>

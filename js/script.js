@@ -117,7 +117,7 @@ $(document).ready(function($) {
 		});
 
 		var owl2 = $("#owl-demo2").owlCarousel({
-			autoPlay: 10000,
+			autoPlay: 2000,
 			items : 5,
 			itemsDesktop : [1199,4],
 			itemsDesktopSmall : [979,3]
@@ -132,6 +132,45 @@ $(document).ready(function($) {
 			event.preventDefault();
 			owl2.trigger('owl.prev');
 		});
+
+
+        //hot jobs carousel
+        var hotjob = $("#owl-job").owlCarousel({
+            autoPlay: 6000,
+            items : 1,
+            itemsDesktop : [1199,1],
+            itemsDesktopSmall : [979,1]
+        });
+
+        // Custom Navigation Events
+        $(".arrow-box-job .next").click(function(event){
+            event.preventDefault();
+            hotjob.trigger('owl.next');
+        });
+        $(".arrow-box-job .prev").click(function(event){
+            event.preventDefault();
+            hotjob.trigger('owl.prev');
+        });
+
+        //Upcoming interview carousel
+        var upcoming = $("#owl-upcoming").owlCarousel({
+            autoPlay: 6000,
+            items : 1,
+            itemsDesktop : [1199,1],
+            itemsDesktopSmall : [979,1]
+        });
+
+        // Custom Navigation Events
+        $(".arrow-box-upcoming .next").click(function(event){
+            event.preventDefault();
+            upcoming.trigger('owl.next');
+        });
+        $(".arrow-box-upcoming .prev").click(function(event){
+            event.preventDefault();
+            upcoming.trigger('owl.prev');
+        });
+
+
 	} catch(err) {
 
 	}

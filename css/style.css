@@ -1100,14 +1100,14 @@ button.mfp-arrow {
     text-transform: uppercase;
     margin-bottom: 20px;
 }
-.news-section .arrow-box {
+.news-section .arrow-box,.news-section .arrow-box-job,.news-section .arrow-box-upcoming {
     position: absolute;
     top: -50px;
     width: 100%;
     right: 0;
     text-align: right;
 }
-.news-section .arrow-box a {
+.news-section .arrow-box a,.news-section .arrow-box-job a,.news-section .arrow-box-upcoming a {
     display: inline-block;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
