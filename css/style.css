@@ -1100,14 +1100,14 @@ button.mfp-arrow {
     text-transform: uppercase;
     margin-bottom: 20px;
 }
-.news-section .arrow-box,.news-section .arrow-box-job,.news-section .arrow-box-upcoming {
+.news-section .arrow-box {
     position: absolute;
     top: -50px;
     width: 100%;
     right: 0;
     text-align: right;
 }
-.news-section .arrow-box a,.news-section .arrow-box-job a,.news-section .arrow-box-upcoming a {
+.news-section .arrow-box a {
     display: inline-block;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
@@ -1125,6 +1125,14 @@ button.mfp-arrow {
 }
 .news-section .news-box {
     position: relative;
+}
+.news-section .job-box {
+    position: relative;
+    border: 1px solid #fff;
+    background-color: #f0eef0;
+    overflow: hidden;
+    border-bottom-color: #e0a025;
+    border-bottom-width: 2px;
 }
 .news-section #owl-demo {
     width: 1170px;
@@ -1495,7 +1503,7 @@ border-top: 1px solid #ddd;
     display: none;
 }
 .services-offer-section .services-box {
-    padding: 25px 25px 0;
+    padding: 2px 25px 0;
     /*background: #f1f1f1;
     border: 1px solid #d1d1d1;*/
 }
@@ -2476,6 +2484,7 @@ border-top: 1px solid #ddd;
     padding: 15px;
     opacity: .7;
     border-radius: 10px;
+    height: 260px;
 }
 .contact-section h2 {
     color: #222222;
@@ -2769,7 +2778,7 @@ label {
 
 #apply input[type="submit"],
 .apply input[type="submit"] {
-    padding: 10px 30px;
+    padding: 8px 30px;
     outline: none;
     border: 1px solid #007ac9;
     background: #007ac9;
@@ -2826,7 +2835,8 @@ label {
 
 #view input[type="submit"],
 .view input[type="submit"] {
-    padding: 10px 30px;
+    padding: 8px 30px;
+    margin-left: 15px;
     outline: none;
     border: 1px solid #e0a025;
     background: #e0a025;
@@ -3685,10 +3695,10 @@ transition: all 0.2s ease-in-out;
     margin-bottom: 10px;
     margin-left: 15px;
     outline: medium none;
-    padding: 15px 20px;
+    padding: 11px 20px;
     transition: all 0.2s ease-in-out 0s;
-    width: 97.5%
-	}
+    width: 97.3%;
+}
 .companyname3
 {
     padding: 12px 20px;
@@ -3696,19 +3706,19 @@ transition: all 0.2s ease-in-out;
     margin-bottom: 10px;
     outline: none;
 	margin-left:15px;
-	width:31%;
+	width:30.7%;
 }
 .companyname4
 {
-    padding: 12px 20px;
+    padding: 11px 20px;
     border: 1px solid #c1c1c1;
     margin-bottom: 10px;
     outline: none;
-	margin-left:25px;
-	width:31%;
+	margin-left:29px;
+	width:30.7%;
 }
 .move1{
-margin-left:11px;
+margin-left:14.4px;
 }
 .select2-selection--single {
 display: inline !important;
@@ -4188,7 +4198,7 @@ width:91.5% !important;
 
 .register-section {
 
-    padding-top: 120px;
+    padding-top: 25px;
 
 
 }
@@ -4258,9 +4268,6 @@ width:91.5% !important;
 
 .jobs-m-ls {
 
-
-
-
 }
 
 .jdchoice{
@@ -4268,10 +4275,80 @@ width:91.5% !important;
     margin:10px;
 }
 
+.logo-location{
 
+}
 
+.img-resp {
+    display: block;
+    max-width: 100%;
+    height: 100px;
+    margin-top: 20px;
+}
 
+.job_list {
+    margin-top: 10px; 
+    padding-top: 10px; 
+}
 
+.each_job { 
+    padding-top: 20px;
+    height: auto;
+}
 
-
-
+.company_name {
+    padding-top: 20px;
+    height: auto;
+}
+.job_desc {
+  padding-top: 20px;
+  text-indent: 30px;
+  height: 200px;
+  text-align: justify;
+  overflow: hidden;
+}
+.job_list {
+  padding-top: 10px;
+  height: 190px;
+  text-align: justify;
+  overflow: hidden;
+}
+.interview-border {
+  border-bottom: 1px solid #000;
+}
+#jobs-box {
+  border: 1px solid #ccc;
+  border-bottom-color:#e0a025;
+   border-bottom-width: 2px;
+   padding: 5px;
+}
+.news-section .arrow-box-job,.news-section .arrow-box-upcoming {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    text-align: right;
+    z-index: 10;
+}
+.news-section .arrow-box-job a,.news-section .arrow-box-upcoming a {
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    font-size: 15px;
+    color: #222222;
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    background: #f7f7f7;
+    border: 1px solid #e1e1e1;
+}
+.buttons {
+  margin-left: 15px;
+}
+.bod {
+padding-bottom: 10px;
+border-bottom: 2px solid #e0a025;
+}

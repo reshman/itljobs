@@ -223,7 +223,7 @@ include_once 'db.php';
                     <div class="title-section">
                         <h1>HOT JOBS</h1>
                     </div>
-                    <div class="news-box">
+                    <div class="news-box" id="jobs-box">
                         <div class="arrow-box-job">
                             <a href="#" class="prev"><i class="fa fa-angle-left"></i></a>
                             <a href="#" class="next"><i class="fa fa-angle-right"></i></a>
@@ -255,26 +255,29 @@ include_once 'db.php';
                             while ($row = mysql_fetch_assoc($result)) {
                                 ?>
                                 <div class="item">
-                                    <div class="logo-location">
-                                        <img src="images/logos/<?= $row['clogo'] ?>" alt="" class="img-responsive">
+                                  <div class="col-md-12 bod ">
+                                    <div class="col-md-3">
+                                      <div class="logo-location">
+                                        <img src="images/logos/<?= $row['clogo'] ?>" alt="" class="img-resp">
+                                      </div>
                                     </div>
-                                    <div class="company_name">
+                                    <div class="col-md-9">
+                                      <div class="company_name">
                                         <h3><?= $row['jcname'] ?></h3>
                                         <small><?= $row['company_name'] ?></small>
+                                      </div>
                                     </div>
+                                  </div>
+                                  
+                                  <div class="col-md-12 col-xs-12 col-sm-12">
                                     <div class="job_desc">
                                         <p>
                                             <?php
-                                            $string = trim($row['job_description'], '</p>');
-                                            $length = 200;
-                                            if (strlen($string) > $length) {
-                                                echo substr($string, 0, $length) . '...';
-                                            } else {
-                                                echo $string;
-                                            }
+                                                echo $row['job_description'];
                                             ?>
                                         </p>
-
+                                    </div>
+                                  </div>
                                         <div class="buttons">
                                             <?php if (isset($_SESSION['log'])) { ?>
                                                 <div id="apply"><a href="javascript:void(0)"
@@ -285,10 +288,14 @@ include_once 'db.php';
                                             <?php } else { ?>
                                                 <span id="apply"><a href="javascript:void(0)" data-toggle="modal"
                                                                     data-target="#myModal"><input type="submit"
-                                                                                                  value="APPLY"></a></span>
+                                                                                                  value="APPLY"></a>
+                                                </span>
                                             <?php } ?>
+                                            <div id="view">
+                                                <form action="itljobs-hotjobs.php"><input type="submit"
+                                                                                          value="MORE JOBS"></form>
+                                            </div>
                                         </div>
-                                    </div>
                                 </div>
                             <?php } ?>
                             <!-- Interview section -->
@@ -309,25 +316,26 @@ include_once 'db.php';
                             while ($row = mysql_fetch_assoc($result)) {
                                 ?>
                                 <div class="item">
-                                    <div class="logo-location">
-                                        <img src="images/logos/<?= $row['clogo'] ?>" alt="" class="img-responsive">
+                                  <div class="col-md-12 bod">
+                                    <div class="col-md-3">
+                                      <div class="logo-location">
+                                        <img src="images/logos/<?= $row['clogo'] ?>" alt="" class="img-resp">
+                                      </div>
                                     </div>
-                                    <div class="company_name">
+                                    <div class="col-md-9">
+                                      <div class="company_name">
                                         <h3><?= $row['jcname'] ?></h3>
                                         <small><?= $row['company_name'] ?></small>
+                                      </div>
                                     </div>
-                                    <div class="job_desc">
+                                  </div>
+                                    <div class="col-md-12 col-xs-12 job_desc">
                                         <p>
                                             <?php
-                                            $string = trim($row['job_description'], '</p>');
-                                            $length = 200;
-                                            if (strlen($string) > $length) {
-                                                echo substr($string, 0, $length) . '...';
-                                            } else {
-                                                echo $string;
-                                            }
+                                                echo $row['description'];
                                             ?>
                                         </p>
+                                    </div>
                                         <div class="buttons">
                                             <?php if (isset($_SESSION['log'])): ?>
                                                 <div id="apply"><a href="javascript:void(0)"
@@ -341,14 +349,13 @@ include_once 'db.php';
                                                                                                  value="APPLY"></a>
                                                 </div>
                                             <?php endif; ?>
+                                            <div id="view">
+                                                <form action="itljobs-hotjobs.php"><input type="submit"
+                                                                                          value="MORE JOBS"></form>
+                                            </div>
                                         </div>
-                                    </div>
                                 </div>
                             <?php } ?>
-                        </div>
-                        <div id="view">
-                            <form action="itljobs-hotjobs.php"><input type="submit"
-                                                                      value="MORE JOBS"></form>
                         </div>
 
                     </div>
@@ -360,7 +367,7 @@ include_once 'db.php';
                     <div class="title-section">
                         <h1>UPCOMING INTERVIEWS</h1>
                     </div>
-                    <div class="news-box">
+                    <div class="news-box" id="jobs-box">
                         <div class="arrow-box-upcoming">
                             <a href="#" class="prev"><i class="fa fa-angle-left"></i></a>
                             <a href="#" class="next"><i class="fa fa-angle-right"></i></a>
@@ -380,20 +387,29 @@ include_once 'db.php';
                                 }
                             }
 
-                            $sql = sprintf("SELECT DISTINCT company.company_name,logo FROM company JOIN interviews ON company.company_name = interviews.company_name WHERE active='%s' AND del_status='%s' AND schedule_date>='%s' ORDER BY company.company_name", 1, 0, date('Y-m-d'), 0);
+                            $sql = sprintf("SELECT DISTINCT company.company_name,logo,interviews.country FROM company JOIN interviews ON company.company_name = interviews.company_name WHERE active='%s' AND del_status='%s' AND schedule_date>='%s' ORDER BY interviews.schedule_date DESC LIMIT 5", 1, 0, date('Y-m-d'), 0);
                             $cresult = Db::query($sql);
                             while ($crow = mysql_fetch_assoc($cresult)) {
                                 ?>
                                 <div class="item">
-                                    <div class="logo-location">
-                                        <img src="images/logos/<?= $crow['logo'] ?>" alt="" class="img-responsive">
+                                  <div class="col-md-12 bod">
+                                    <div class="col-md-3">
+                                      <div class="logo-location">
+                                        <img src="images/logos/<?= $crow['logo'] ?>" alt="" class="img-resp">
+                                      </div>
                                     </div>
-                                    <div class="company_name">
-                                        <h2><?= $crow['company_name'] ?></h2>
+                                    <div class="col-md-9">
+                                      <div class="company_name">
+                                        <h3><?= $crow['company_name'] ?></h3>
+                                        <small><?= $crow['country'] ?></small>
+                                      </div>
                                     </div>
+                                  </div>
+                                  
+                                  <div class="col-md-12 col-xs-12">
                                     <div class="job_list">
                                         <?php
-                                        $query = sprintf("SELECT interviews.*, job_categories.name as jcname FROM interviews JOIN job_categories ON interviews.job_category_id = job_categories.id WHERE schedule_date>='%s' AND active='%s' AND del_status='%s' AND company_name='%s' ORDER BY schedule_date LIMIT 5", date('Y-m-d'), 1, 0, $crow['company_name']);
+                                        $query = sprintf("SELECT interviews.*, job_categories.name as jcname FROM interviews JOIN job_categories ON interviews.job_category_id = job_categories.id WHERE schedule_date>='%s' AND active='%s' AND del_status='%s' AND company_name='%s' AND country='%s' ORDER BY schedule_date LIMIT 3", date('Y-m-d'), 1, 0, $crow['company_name'],$crow['country']);
                                         $result = Db::query($query);
                                         while ($row = mysql_fetch_assoc($result)) {
                                             $postDate = date("d/m/Y", strtotime($row['created_date']));
@@ -405,34 +421,40 @@ include_once 'db.php';
                                                 $end = $row['venue'];
                                             }
                                             ?>
-                                            <div class="each_job">
-                                                <div class="job_name"><?php echo strtoupper($row['jcname']); ?></div>
-                                                <div class="buttons">
-                                                    <?php if (isset($_SESSION['log'])): ?>
-                                                        <div id="apply"><a href="javascript:void(0)"
+                                            <div class="interview-border col-md-12 col-sm-12 col-xs-12">
+                                              <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <div class="each_job">
+                                                    <div class="job_name"><?php echo strtoupper($row['jcname']); ?></div>
+                                                </div>
+                                              </div>
+                                              <div class="col-md-3 col-sm-3 col-xs-12">
+                                                 <div class="buttons">
+                                                            <?php if (isset($_SESSION['log'])): ?>
+                                                            <div id="apply"><a href="javascript:void(0)"
                                                                            onclick="applyInterview(<?php echo $row['id'] ?>, this)"><input
                                                                     type="submit"
                                                                     value="<?php echo (in_array($row['id'], $interviewArray)) ? 'APPLIED' : 'APPLY' ?>"></a>
-                                                        </div>
-                                                    <?php else: ?>
-                                                        <div id="apply"><a href="javascript:void(0)" data-toggle="modal"
-                                                                           data-target="#myModal"><input type="submit"
-                                                                                                         value="APPLY"></a>
-                                                        </div>
-                                                    <?php endif; ?>
-                                                </div>
+                                                            </div>
+                                                            <?php else: ?>
+                                                            <div id="apply"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal"><input type="submit" value="APPLY"></a>
+                                                            </div>
+                                                            <?php endif; ?>
+                                                 </div>
+                                               </div>
                                             </div>
-                                        <?php } ?>
+                                                    <?php } ?>
+                                            </div>
+                                      </div>
+                                    <div id="view">
+                                        <form action="itljobs-upcominginterviews.php"><input type="submit"
+                                                                                             value="MORE INTERVIEWS"></form>
                                     </div>
-                                </div>
+                                  </div>
                             <?php } ?>
-                        </div>
-                        <div id="view">
-                            <form action="itljobs-upcominginterviews.php"><input type="submit"
-                                                                                 value="MORE INTERVIEWS"></form>
                         </div>
 
                     </div>
+
                 </section>
             </div>
 

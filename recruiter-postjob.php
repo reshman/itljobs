@@ -1,6 +1,5 @@
-<!doctype html>
 <?php require 'check_session_rec.php'; ?>
-
+<!doctype html>
 <html lang="en" class="no-js">
     <head>
         <title>ITL JOBS</title>
@@ -44,7 +43,8 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
         <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
-        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+        <!--<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>-->
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places&key=AIzaSyBKY3LssTzDjFxtaPU3bx0YjZDRYxgj2Tk"></script>
         <script src="js/jquery.geocomplete.js"></script>
 
         <script src="admin/ckeditor/ckeditor.js"></script>
@@ -188,7 +188,12 @@
                             </div>
 
                             <div class="col-md-8">
-                                <input name="companyname" id="companyname" type="text" placeholder="COMPANY NAME">    
+                            <?php
+                            $qrycom = sprintf("SELECT company_name FROM employers WHERE user_id = %d", $user_id);
+                            $sqlcom = Db::query($qrycom);
+                            $com = mysql_fetch_assoc($sqlcom);
+                            ?>
+                                <input name="companyname" id="companyname" type="text" placeholder="COMPANY NAME" value="<?php echo $com['company_name'];?>" readonly>
                             </div>
                         </div> 
 

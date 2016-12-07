@@ -65,7 +65,7 @@ if (!is_numeric($category_id)) {
         $row = mysql_fetch_assoc($resultsql);
         $category_id = $row['id'];
     } else {
-        $sql = sprintf("INSERT INTO job_categories SET name='%s' LIMIT 1", $category_id);
+        $sql = sprintf("INSERT INTO job_categories SET name='%s'", $category_id);
         $resultsql = Db::query($sql);
         if ($resultsql) {
             $category_id = mysql_insert_id();
@@ -94,9 +94,9 @@ if (mysql_num_rows($result) <= 0) {
             die();
         } else {
             $industry_id = mysql_insert_id();
-            $sql = sprintf("INSERT INTO industry_category SET industry_id=%d,category_id=%d", $industry_id, $category_id);
-            $result = DB::query($sql);
-            if (!$result) {
+            $industry_sql = sprintf("INSERT INTO industry_category SET industry_id=%d,category_id=%d", $industry_id, $category_id);
+            $industry_result = DB::query($industry_sql);
+            if (!$industry_result) {
                 $_SESSION['regsucc'] = 2;
                 echo "<script type='text/javascript'>
         window.location.href = '" . $urlin . "';
@@ -105,6 +105,7 @@ if (mysql_num_rows($result) <= 0) {
             }
         }
 }
+
 
 
 //PHP Upload Script

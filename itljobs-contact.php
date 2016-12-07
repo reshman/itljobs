@@ -179,6 +179,18 @@
                     </div>
 
                     <div class="col-md-12">
+					 <div class="col-md-6">
+                            <div class="contact-section">
+                                <div class="contact-info">
+                                    <h2>Kerala</h2>
+                                    <ul class="information-list">
+                                        <li><i class="fa fa-map-marker"></i><span>Heera Chambers, East Fort, Trivandrum-695023, Kerala, India </span></li>
+                                        <li><i class="fa fa-phone"></i><span> +91 471 2469 555 555</span><span> +91 471 2479 555</span></li>
+                                        <li><i class="fa fa-envelope-o"></i><a href="mailto:info@itljobs.com">damodaran@ITLtravel.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="contact-section">
                                 <div class="contact-info">
@@ -192,7 +204,12 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                       
+
+                    </div>
+
+                    <div class="col-md-12">
+						<div class="col-md-6">
                             <div class="contact-section">
                                 <div class="contact-info">
                                     <h2>Cochin</h2>
@@ -204,11 +221,6 @@
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-
-                    <div class="col-md-12">
-
 
                         <div class="col-md-6">
                             <div class="contact-section">
@@ -222,8 +234,13 @@
                                 </div>
                             </div>
                         </div>
+						
+                    </div>
 
-                        <div class="col-md-6">
+                    <div class="col-md-12">
+
+
+                       <div class="col-md-6">
                             <div class="contact-section">
                                 <div class="contact-info">
                                     <h2>Angamaly</h2>
@@ -235,23 +252,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-12">
-
-
-                        <!--div class="col-md-6">
-                            <div class="contact-section">
-                                <div class="contact-info">
-                                    <h2>Calicut</h2>
-                                    <ul class="information-list">
-                                        <li><i class="fa fa-map-marker"></i><span>International Trade Links, 6/43 , Kannur road, Near Christian college, Opp IMA hall road, Calicut – 673011.</span></li>
-                                        <li><i class="fa fa-phone"></i><span>0495-2369843 / 3216555 / 4017555.</span><span>0495-2768543</span></li>
-                                        <li><i class="fa fa-envelope-o"></i><a href="mailto:info@itljobs.com">info@itljobs.com</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div-->
 
                         <div class="col-md-6">
                             <div class="contact-section">

@@ -1,7 +1,8 @@
-<!doctype html>
 <?php
+session_start();
 if ($_GET) {
 ?>
+<!doctype html>
 <html lang="en" class="no-js">
 <head>
     <title>ITL JOBS</title>
@@ -143,9 +144,9 @@ $start = ($page - 1) * $num_rec_per_page;
             }
         }
         if ($location != '%' AND $keyword != '%') {
-            $query = sprintf("SELECT j.id,j.job_listing, j.experience,j.ref_id, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE j.job_location LIKE '%s' AND (jc.name LIKE '%s' OR j.job_listing='%s' OR j.key_array LIKE '%s') AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s' LIMIT %d,%d", $location, $keyword, $keyword, $keyword, $date, '1', '0', $start, $num_rec_per_page);
+            $query = sprintf("SELECT j.id,j.job_listing, j.experience,j.ref_id, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE j.job_location LIKE '%s' AND (jc.name LIKE '%s' OR j.job_listing='%s' OR j.key_array LIKE '%s' OR j.job_description LIKE '%s') AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s' LIMIT %d,%d", $location, $keyword, $keyword, $keyword, $keyword, $date, '1', '0', $start, $num_rec_per_page);
         } else if ($location == '%' AND $keyword != '%') {
-            $query = sprintf("SELECT j.id,j.job_listing, j.experience,j.ref_id, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE  (jc.name LIKE '%s' OR j.job_listing='%s' OR j.key_array LIKE '%s') AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s' LIMIT %d,%d", $keyword, $keyword, $keyword, $date, '1', '0', $start, $num_rec_per_page);
+            $query = sprintf("SELECT j.id,j.job_listing, j.experience,j.ref_id, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE  (jc.name LIKE '%s' OR j.job_listing='%s' OR j.key_array LIKE '%s' OR j.job_description LIKE '%s') AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s' LIMIT %d,%d", $keyword, $keyword, $keyword, $keyword, $date, '1', '0', $start, $num_rec_per_page);
         } else if ($location != '%' AND $keyword == '%') {
             $query = sprintf("SELECT j.id,j.job_listing, j.experience,j.ref_id, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE  j.job_location LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s' LIMIT %d,%d", $location, $date, '1', '0', $start, $num_rec_per_page);
         } else {
@@ -201,9 +202,9 @@ $start = ($page - 1) * $num_rec_per_page;
         }
 
         if ($location != '%' AND $keyword != '%') {
-            $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE j.job_location LIKE '%s' AND (j.job_listing LIKE '%s' OR j.key_array LIKE '%s') AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'", $location, $keyword, $keyword, $date, '1', '0');
+            $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE j.job_location LIKE '%s' AND (j.job_listing LIKE '%s' OR j.key_array LIKE '%s' OR j.job_description LIKE '%s') AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'", $location, $keyword, $keyword, $keyword, $date, '1', '0');
         } else if ($location == '%' AND $keyword != '%'){
-            $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE (j.job_listing LIKE '%s' OR j.key_array LIKE '%s') AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'", $keyword, $keyword, $date, '1', '0');
+            $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE (j.job_listing LIKE '%s' OR j.key_array LIKE '%s' OR j.job_description LIKE '%s') AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'", $keyword, $keyword, $keyword, $date, '1', '0');
         } else if ($location != '%' AND $keyword == '%'){
             $query = sprintf("SELECT j.id,j.job_listing, j.experience, j.job_description, j.job_location, jc.name,j.closing_date,j.active  from jobs j LEFT JOIN  job_categories jc ON j.job_category_id = jc.id  WHERE j.job_location LIKE '%s' AND j.closing_date>='%s' AND j.active='%s' AND j.del_status='%s'", $location, $date, '1', '0');
         } else {
@@ -243,9 +244,9 @@ $start = ($page - 1) * $num_rec_per_page;
         }
 
         if ($location != '%' AND $keyword != '%') {
-            $query = sprintf("SELECT i.* FROM interviews as i JOIN job_categories as jc ON jc.id = i.job_category_id WHERE i.schedule_date>='%s' AND i.active='%s' AND i.del_status='%s' AND (i.industry LIKE '%s' OR jc.name LIKE '%s') AND (i.venue LIKE '%s' OR i.country LIKE '%s') ORDER BY schedule_date", $date, 1, 0, $keyword, $keyword, $location, $location);
+            $query = sprintf("SELECT i.* FROM interviews as i JOIN job_categories as jc ON jc.id = i.job_category_id WHERE i.schedule_date>='%s' AND i.active='%s' AND i.del_status='%s' AND (i.industry LIKE '%s' OR jc.name LIKE '%s' OR i.description LIKE '%s') AND (i.venue LIKE '%s' OR i.country LIKE '%s') ORDER BY schedule_date", $date, 1, 0, $keyword, $keyword, $keyword, $location, $location);
         } else if ($location == '%' AND $keyword != '%') {
-            $query = sprintf("SELECT i.* FROM interviews as i JOIN job_categories as jc ON jc.id = i.job_category_id WHERE i.schedule_date>='%s' AND i.active='%s' AND i.del_status='%s' AND (i.industry LIKE '%s' OR jc.name LIKE '%s') ORDER BY schedule_date", $date, 1, 0, $keyword, $keyword);
+            $query = sprintf("SELECT i.* FROM interviews as i JOIN job_categories as jc ON jc.id = i.job_category_id WHERE i.schedule_date>='%s' AND i.active='%s' AND i.del_status='%s' AND (i.industry LIKE '%s' OR jc.name LIKE '%s' OR i.description LIKE '%s') ORDER BY schedule_date", $date, 1, 0, $keyword, $keyword, $keyword);
         } else if ($location != '%' AND $keyword == '%') {
             $query = sprintf("SELECT i.* FROM interviews as i JOIN job_categories as jc ON jc.id = i.job_category_id WHERE i.schedule_date>='%s' AND i.active='%s' AND i.del_status='%s' AND (i.venue LIKE '%s' OR i.country LIKE '%s') ORDER BY schedule_date", $date, 1, 0, $location, $location);
         } else {

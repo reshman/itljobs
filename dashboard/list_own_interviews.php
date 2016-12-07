@@ -158,6 +158,7 @@
                                                 <th>Company Name</th>
                                                 <th>Contact</th>
                                                 <th>View more</th>
+                                               <th>View in Hotjjobs?</th>
                                                 <th>Status</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
@@ -170,7 +171,7 @@
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d');
-                                          $query = sprintf("SELECT iv.id as intId,iv.id,iv.schedule_date,iv.salary,iv.country,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact,iv.coordinator,jc.name as jobcat,iv.industry FROM interviews as iv INNER JOIN job_categories as jc ON iv.job_category_id=jc.id WHERE (iv.schedule_date>='%s' OR iv.schedule_date='') AND iv.del_status='%s' AND iv.user_id='%s' ORDER BY schedule_date",$today_date,0,$id); 
+                                          $query = sprintf("SELECT iv.id as intId,iv.id,iv.schedule_date,iv.salary,iv.country,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact,iv.coordinator,jc.name as jobcat,iv.industry,iv.vih FROM interviews as iv INNER JOIN job_categories as jc ON iv.job_category_id=jc.id WHERE (iv.schedule_date>='%s' OR iv.schedule_date='') AND iv.del_status='%s' AND iv.user_id='%s' ORDER BY schedule_date",$today_date,0,$id);
                                                                              
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {
@@ -185,11 +186,13 @@
                                                     <td><?php echo $row['company_name']; ?></td>
                                                     <td><?php echo $row['contact']; ?></td>
                                                     <td><a href="more-own-interviews.php?id=<?php echo $row['intId'];?>">view more</a></td>
-                                                  
                                                     <td>
-                                                      <input <?php echo ($row['active']=='1') ? 'checked' : '';?> rowid="<?php echo $row['intId'];?>" data-on="Active" data-off="Inactive" class="toggle-event" data-toggle="toggle" type="checkbox">                                
-                                                    </td>   
-                                                <td class=center><a href="edit_interview.php?id=<?= $row['intId'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>
+                                                        <input <?php echo ($row['vih'] == '1') ? 'checked' : ''; ?> value="<?php echo $row['intId']; ?>" data-on="Enabled" data-off="Disabled" class="toggle-event vih" data-toggle="toggle" type="checkbox">
+                                                    </td>
+                                                    <td>
+                                                        <input <?php echo ($row['active'] == '1') ? 'checked' : ''; ?> value="<?php echo $row['intId']; ?>" data-on="Active" data-off="Inactive" class="toggle-event activate" data-toggle="toggle" type="checkbox">
+                                                    </td>
+                                                    <td class=center><a href="edit_interview.php?id=<?= $row['intId'] ?>" class="btn btn-primary "><i class="fa fa-edit"></i></a></td>
                                                 <td class=center><a href="javascript:void(0)" onclick="deleteConfirm('delete_interviews.php?delid=<?= $row['intId'] ?>&own=true')" class="btn btn-danger "><i class="fa fa-times"></i></a></td>
                                                 </tr>
                                                 <?php
@@ -261,12 +264,28 @@
 
             $(function () {
 
-                $('body').on('change', '.toggle-event', function() {
+                $('.toggle-event.activate').change(function() {
                     //            alert("asda");
                     var status = $(this).prop('checked') == true ? '1' : '0';
-                    var rowId = $(this).attr('rowid');
+                    var rowId = $(this).val();
                     //            alert(status);
                     url = "interview_status.php";
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {id: rowId, status: status}
+                    }).done(function (data) {
+                        // location.reload();
+                    });
+
+                });
+
+                $('.vih').change(function () {
+                    //            alert("asda");
+                    var status = $(this).prop('checked') == true ? '1' : '0';
+                    var rowId = $(this).val();
+                    //            alert(status);
+                    url = "view_in_hotjobs_status.php";
                     $.ajax({
                         url: url,
                         type: 'POST',

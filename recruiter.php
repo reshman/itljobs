@@ -222,7 +222,7 @@ include_once 'db.php';
                             <div class="service-post">
                                 <img src="images/itl-account.png" alt="ITL JOBS">
                                 <div class="service-content">
-                                    <h2><a href="itljobs-changepassword.php">MY ACCOUNT</a></h2>
+                                    <h2><a href="itljobs-changepassword.php">CHANGE PASSWORD</a></h2>
                                 </div>
                             </div>
                         </div>

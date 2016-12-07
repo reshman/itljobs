@@ -121,7 +121,7 @@ if ($flag == 1) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
     if ($imageFileType != 'docx' && $imageFileType != 'doc' && $imageFileType != 'pdf' && $imageFileType != 'jpg' && $imageFileType != 'png' && $imageFileType != 'bmp' && $imageFileType != 'gif') {
-        
+
         $uploadOk = 0;
     }
 
@@ -156,7 +156,7 @@ if ($flag == 1) {
         location.href = '" . $urlin . "';
         </script>";
         die();
-    } else if ($countdtable != 1 AND $filename != NULL) {
+    } else if ($countdtable != 1) {
 
         //generate random key
         function generateRandomString($length = 8) {
@@ -203,9 +203,7 @@ if ($flag == 1) {
         mail($to, $subject, $email_template_register, $headers);
         }
         $_SESSION['regsucc'] = 1;
-    } else if ($filename == NULL) {
-
-        $_SESSION['regsucc'] = 4;
+        $urlin = "itljobs-login.php";
     } else {
         $_SESSION['regsucc'] = 2;
     }

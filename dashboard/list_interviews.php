@@ -123,8 +123,8 @@ if ($_SESSION['role'] != 1) {
 
                                                 <tr>
                                                     <td><?php echo $i; ?></td>
-                                                    <td><?php echo $row['jobname']; ?></td>
-                                                    <td><?php if($row['schedule_date'] == '' ){ echo 'Comming soon'; } else { echo $row['schedule_date']; }?></td>
+                                                    <td><?php echo $row['job_title']; ?></td>
+                                                    <td><?php if($row['schedule_date'] == '' ){ echo 'Comming soon'; } else { echo date('d/m/Y', strtotime($row['schedule_date'])); }?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['company_name']; ?></td>
                                                     <td><?php echo $row['contact']; ?></td>
@@ -207,7 +207,7 @@ if ($_SESSION['role'] != 1) {
 
             $(function () {
 
-                    $('body').on('change', '.toggle-event activate', function() {
+                $('.toggle-event.activate').change(function() {
                     //            alert("asda");
                     var status = $(this).prop('checked') == true ? '1' : '0';
                     var rowId = $(this).val();

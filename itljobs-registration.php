@@ -1,3 +1,5 @@
+<?php if(!isset($_SESSION)){
+session_start(); } ?>
 <!doctype html>
 
 
@@ -40,7 +42,7 @@
         <script type="text/javascript" src="js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
-        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places&key=AIzaSyBKY3LssTzDjFxtaPU3bx0YjZDRYxgj2Tk"></script>
         <script src="js/jquery.geocomplete.js"></script>
 
         <!-- SELECT 2 -->
@@ -106,7 +108,7 @@
                         <form id="contact-form" method="POST" action="registration.php" enctype="multipart/form-data">  
                             <?php
                             error_reporting(0);
-                            session_start();
+                            
                             if ($_SESSION['regsucc'] != '') {
                                 if ($_SESSION['regsucc'] == '1') {
                                     ?>
@@ -128,6 +130,11 @@
                                     <div class="alert alert-danger" id="status-message">
                                         <?php echo "<span style='color:red'/><b>Incorrect Captcha!!</b></span><br/><br/>"; ?>
                                     </div>
+                                <?php } else if ($_SESSION['regsucc'] == '6') {
+                                    ?>
+                                    <div class="alert alert-danger" id="status-message">
+                                        <?php echo "<span style='color:red'/><b>Qualification cannot be numbers!</b></span><br/><br/>"; ?>
+                                    </div>
                                 <?php } else {
                                     ?>
                                     <div class="alert alert-danger" id="status-message">
@@ -141,6 +148,7 @@
                             <script>
                                 $('#status-message').fadeOut(5000);
                             </script>
+                            <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-12 companyname2">
 
@@ -191,7 +199,7 @@
                                     <select name="qualification" id="qualification" class="select2">
                                         <option disabled="" selected="">SELECT QUALIFICATION</option>
                                         <?php
-                                        $qryqa = sprintf("SELECT * FROM `qualification` ORDER BY qualification");
+                                        $qryqa = sprintf("SELECT * FROM `qualification` WHERE active = %d ORDER BY qualification ", 1);
                                         $resqua = Db::query($qryqa);
                                         while ($rowq = mysql_fetch_assoc($resqua)) {
                                             ?>
@@ -207,7 +215,7 @@
                                     </select>     
                                 </div> 
 
-                                <div class="col-md-4 move1">
+                                <div class="col-md-4 col-sm-12 col-xs-12 move1">
                                     <input name="specification" id="specification" type="text" placeholder="SPECIALIZATION/CERTIFICATION">    
                                 </div>
 
@@ -218,19 +226,28 @@
                             <!--     ************************************************  -->
                             <div class="col-md-12">
 
-                                <div class="col-md-4">
+                                <div class="col-md-4 col-sm-12 col-xs-12">
                                     <select name="abroad" class="exp">
                                         <option disabled="" selected="" value="0">EXPERIENCE IN ABROAD</option>
-                                        <?php for ($i = 0; $i <= 40; $i++) { ?>
-                                            <option value="<?php echo $i; ?>" ><?php echo "$i year(s)"; ?></option>
+                                        <option value="0">0 Months</option>
+                                        <option value="0.25">3 Months</option>
+                                        <option value="0.5">6 Months</option>
+                                        <option value="0.75">9 Months</option>
+                                        <?php for ($i = 1; $i <= 40; $i++) { ?>
+                                           <option value="<?php echo $i; ?>" ><?php echo "$i year(s)"; ?></option>
                                         <?php } ?>
+                                    
                                     </select>  
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-4 col-sm-12 col-xs-12">
                                     <select name="india" class="inexp">
                                         <option disabled="" selected="" value="0">EXPERIENCE IN INDIA</option>
-                                        <?php for ($i = 0; $i <= 40; $i++) { ?>
+                                        <option value="0">0 Months</option>
+                                        <option value="0.25">3 Months</option>
+                                        <option value="0.5">6 Months</option>
+                                        <option value="0.75">9 Months</option>
+                                        <?php for ($i = 1; $i <= 40; $i++) { ?>
                                             <option value="<?php echo $i; ?>" ><?php echo "$i year(s)"; ?></option>
                                         <?php } ?>
                                     </select>   
@@ -238,18 +255,18 @@
 
 
 
-                                <div class="col-md-4" id="totalyrs">
+                                <div class="col-md-4 col-sm-12 col-xs-12" id="totalyrs">
                                     <input name="total1" id="email" type="text" placeholder="TOTAL YEARS" disabled="">    
                                 </div>
 
-                                <div class="col-md-4" id="result">
+                                <div class="col-md-4 col-sm-12 col-xs-12" id="result">
 
                                 </div>
 
                             </div>
                             <!--     ************************************************  -->
                             <div class="col-md-12">
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-sm-12 col-xs-12">
                                     <select name="phoneCode" id="phoneCode">
                                         <option data-countryCode="IN" value="91" Selected>India (+91)</option>
                                         <option data-countryCode="AE" value="971">United Arab Emirates (+971)</option>
@@ -475,15 +492,15 @@
                                         </optgroup>
                                     </select>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-sm-12 col-xs-12">
                                     <input name="mobile" id="mobile" type="text" placeholder="MOBILE NUMBER " maxlength="10">    
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-4 col-sm-12 col-xs-12">
                                     <input name="email" id="email" type="text" placeholder="EMAIL ">    
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-4 col-sm-12 col-xs-12">
                                     <input name="current_location" id="location" type="text" placeholder="CURRENT LOCATION ">    
                                 </div>
 
@@ -492,32 +509,30 @@
                             <div class="col-md-12">
 
 
-                                <div class="col-md-4">
+                                <div class="col-md-4 col-sm-12 col-xs-12">
 
                                     <input type="text" name="captcha" placeholder="ENTER CAPTCHA" maxlength="4" id="txtboxToFilter">
                                 </div>
 
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-sm-12 col-xs-12">
                                     <img src="verificationimage.php?<?php echo rand(0, 9999); ?>" alt="verification image, type it in the box" width="150" height="50" align="absbottom" id="captcha"/>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-sm-12 col-xs-12">
                                     <a href="javascript:void(0)" onclick="
                                             document.getElementById('captcha').src = 'verificationimage.php?' + Math.random();"
                                        id="change-image"><i class="fa fa-refresh rbutton"></i></a>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            </div>
                                 <div class="col-md-12">
 
-                                    <input type="file"  class="resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV" >
+                                    <input type="file"  class="col-md-12 col-sm-12 col-xs-12 resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV" >
                                     <label for="f02">UPLOAD YOUR CV (DOC, DOCX, PDF, JPG, PNG, BMP, GIF)</label>
 
                                 </div>
 
-                            </div>
-
                             <div class="col-md-12">
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-sm-12 col-xs-12">
                                     <div id="job">
                                         <input type="submit" value="SUBMIT">
                                     </div>
@@ -664,37 +679,43 @@
             $("select.exp").change(function () {
                 var inexp = $(".inexp option:selected").val();
                 var abexp = $(".exp option:selected").val();
-
-                var total = +abexp + +inexp;
+                
+                
+                var total = +abexp + +inexp;    
 
                 $.ajax({
                     type: "POST",
                     url: "check.php",
                     data: {total: total}
                 }).done(function (data) {
-                    $("#result").html(data);
-                    $("#totalyrs").hide();
+                    data = JSON.parse(data);	
+                    $("#result").html(data['val']);
+                    $("#result").hide();
+                    $("#totalyrs").html(data['display']);
                 });
             });
         });
 
-        $(document).ready(function () {
+       $(document).ready(function () {
             $("select.inexp").change(function () {
                 var inexp = $(".inexp option:selected").val();
                 var abexp = $(".exp option:selected").val();
 
-                var total = +abexp + +inexp;
+                var total = +abexp + +inexp;   
 
                 $.ajax({
                     type: "POST",
                     url: "check.php",
                     data: {total: total}
                 }).done(function (data) {
-                    $("#result").html(data);
-                    $("#totalyrs").hide();
+                    data = JSON.parse(data);	
+                    $("#result").html(data['val']);
+                    $("#result").hide();
+                    $("#totalyrs").html(data['display']);
                 });
             });
         });
+        
     </script>
 
     <script>
@@ -778,7 +799,6 @@
                     //                        month:"required",
                     //year:"required",
                     captcha: "required",
-                    fileToUpload: "required",
                     email: {email: true}
                 },
                 // Specify the validation error messages
@@ -804,7 +824,6 @@
                     month: "Enter date of birth",
                     //year:"Please enter date of birth",
                     captcha: "Please enter captcha",
-                    fileToUpload: "Please upload your resume",
                     //email: {required: "Please enter email"}
 
                 },

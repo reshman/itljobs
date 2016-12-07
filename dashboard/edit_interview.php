@@ -202,7 +202,7 @@
                                             <select class="form-control" name="title" id="title">
                                                 <?php
                                                 if ($row['industry'] != 'Unavailable') {
-                                                    $qry = sprintf("SELECT i.id,i.industry_name as name FROM industries i LEFT JOIN industry_category ic ON i.id=ic.industry_id WHERE ic.category_id=%d", $row['cid']);
+                                                    $qry = sprintf("SELECT i.id,i.industry_name as name FROM industries i LEFT JOIN industry_category ic ON i.id=ic.industry_id WHERE ic.category_id=%d", $rowedit['job_category_id']);
                                                     $res = Db::query($qry);
                                                     if (mysql_num_rows($res)) {
                                                         while ($row1 = mysql_fetch_assoc($res)) {
@@ -237,9 +237,16 @@
 
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Company Name</label>
-
-                                            <input type="text" class="form-control" id="company_name" placeholder="Company Name" name="company_name" value="<?php echo $rowedit['company_name'] ?>">
+                                                <label for="exampleInputEmail1">Company Name</label>
+                                                <select type="text" class="form-control" id="company_name" placeholder="Company Name" name="company_name">
+                                                    <?php
+                                                    $sql = sprintf('SELECT * FROM company');
+                                                    $result = Db::query($sql);
+                                                    while($crow = mysql_fetch_assoc($result)){
+                                                        ?>
+                                                        <option value="<?=$crow['company_name']?>" <?php if(strtolower($rowedit['company_name']) == strtolower($crow['company_name'])){ echo 'selected'; } ?>><?=$crow['company_name']?></option>
+                                                    <?php } ?>
+                                                </select>
 
                                         </div>
 
@@ -661,7 +668,7 @@
                             date: {dateFormat: true},
                             company_name: {required: true, lettersonly: true},
                             country: "required",
-                            salary: {required: true, salrange: true},
+                            salary: {required: true},
                             venue: {required: true, alphanumeric: true},
                             interview: "required",
                             coordinator: {required: true, lettersonly: true},

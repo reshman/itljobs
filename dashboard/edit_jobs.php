@@ -1,6 +1,6 @@
+<?php include("logincheck.php"); ?>
 <!DOCTYPE html>
 <html>
-    <?php include("logincheck.php"); ?>
     <head>
 
         <meta charset="UTF-8">

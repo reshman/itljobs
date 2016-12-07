@@ -115,8 +115,8 @@
                         <div class="col-md-12">
                             <input id="loginpassword" name="loginpassword" type="password" placeholder="PASSWORD"> 
                         </div>
-                        <div class="col-md-6">          
-                            <input type="submit" value="LOGIN">
+                        <div class="col-md-2">          
+                            <input type="submit" value="LOGIN" style="text-align: center;">
                         </div>
                         <a class="forgot" data-toggle="modal" data-target="#myModal" href="javascript:void(0)" style="float:right; margin-right: 20px;">Forgot Password?</a>
 
@@ -196,7 +196,7 @@
                         
                         ?>
                         <script>
-                            $('#status-message').fadeOut(9000);
+                            $('#status-message').fadeOut(12000);
                         </script>
 
                         <div class="col-md-6">
@@ -456,7 +456,7 @@
                         <div class="col-md-12">
 
                                     <input type="file" class="enquiry resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR COMPANY LOGO" >
-                                    <label for="f02">UPLOAD YOUR COMPANY LOGO (JPG, PNG, GIF)</label>
+                                    <label for="f02">UPLOAD YOUR COMPANY LOGO (JPG, PNG, JPEG)</label>
 
                         </div>
                         
@@ -467,9 +467,9 @@
 
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-2">
 
-                            <input type="submit" value="REGISTER" >
+                            <input type="submit" value="REGISTER" style="text-align: center;">
 
                         </div>
 
@@ -553,6 +553,839 @@
 
 
                             </div>
+
+
+
+<div class="item news-post">
+                                <img src="images/itl-clients-11.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-12.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-13.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-14.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-15.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-16.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-17.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-18.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-19.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-20.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-21.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-22.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-23.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-24.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-25.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-26.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-27.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-29.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-30.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-31.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-32.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-33.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-34.jpg" alt="">
+
+
+                            </div>
+
+                            <div class="item news-post">
+                                <img src="images/itl-clients-35.jpg" alt="">
+
+
+                            </div>
+                             
+ 
+ <div class="item news-post">
+                                <img src="images/logo-2/arabian-constructionscompany.jpg" alt="">
+
+
+                         </div>
+                         
+     <div class="item news-post">
+                                <img src="images/itl-company-logos/logo-2-our-clientele/al-falah.jpg" alt="">
+
+
+                         </div>
+ <div class="item news-post">
+                                <img src="images/itl-company-logos/logo-2-our-clientele/al-faris.jpg" alt="">
+
+
+                         </div>
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-2-our-clientele/comedat.jpg" alt="">
+
+
+                         </div> 
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-2-our-clientele/dongil.jpg" alt="">
+
+
+                         </div> 
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-2-our-clientele/kharafi-natitional.jpg" alt="">
+
+
+                         </div> 
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-2-our-clientele/last-image-logo-2.jpg" alt="">
+
+
+                         </div> 
+                            
+                    <div class="item news-post">
+                                <img src="images/itl-company-logos/logo-2-our-clientele/royal-united.jpg" alt="">
+
+
+                         </div>
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-2-our-clientele/sajer.jpg" alt="">
+
+
+                         </div>  
+                            <div class="item news-post">
+                                <img src="images/itl-company-logos/logo-2-our-clientele/union-global.jpg" alt="">
+
+
+                         </div>  
+ <div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/al-bilad.jpg" alt="">
+
+
+                         </div>
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/al-fanar.jpg" alt="">
+
+
+                         </div>   
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/al-jouf-cement.jpg" alt="">
+
+
+                         </div> 
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/al-rawaa-glass.jpg" alt="">
+
+
+                         </div>    
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/alico.jpg" alt="">
+
+
+                         </div>  
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/almarai.jpg" alt="">
+
+
+                         </div>  
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/blleli-saudi-arabia.jpg" alt="">
+
+
+                         </div> 
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/casa-via.jpg" alt="">
+
+
+                         </div>
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/gulf-union-food.jpg" alt="">
+
+
+                         </div> 
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/hail-agriculkture.jpg" alt="">
+
+
+                         </div>  
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/ibdaa.jpg" alt="">
+
+
+                         </div>  
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/johnson-controls.jpg" alt="">
+
+
+                         </div>  
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/nadec.jpg" alt="">
+
+
+                         </div> 
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/national-plastic.jpg" alt="">
+
+
+                         </div>  
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/pepsi.jpg" alt="">
+
+
+                         </div>  
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/playground-steel-factory.jpg" alt="">
+
+
+                         </div>  
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/qatar-polymer.jpg" alt="">
+
+
+                         </div>
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/rajhi-streel.jpg" alt="">
+
+
+                         </div>  
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/sanitart.jpg" alt="">
+
+
+                         </div>  
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/saudi-electro.jpg" alt="">
+
+
+                         </div> 
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/saudi-paper-manufacturing.jpg" alt="">
+
+
+                         </div> 
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/shehab-plastic.jpg" alt="">
+
+
+                         </div> 
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/smi.jpg" alt="">
+
+
+                         </div> 
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/td.jpg" alt="">
+
+
+                         </div> 
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/thyssenkrupp.jpg" alt="">
+
+
+                         </div> 
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/western-bakries.jpg" alt="">
+
+
+                         </div> 
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/zamil pipes.jpg" alt="">
+
+
+                         </div> 
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-3-production-and-manufacturing/zartech.jpg" alt="">
+
+
+                         </div> 
+
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/al-kaabi.jpg" alt="">
+
+
+                         </div> 
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/al-reem-hospico.jpg" alt="">
+
+
+                         </div> 
+
+ 
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/algosaibi-service.jpg" alt="">
+
+
+                         </div>     
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/almajal-alarabi.jpg" alt="">
+
+
+                         </div>  
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/catering.jpg" alt="">
+
+
+                         </div>       
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/crystal-palace.jpg" alt="">
+
+
+                         </div>    
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/dar-as-sihha-medical-center.jpg" alt="">
+
+
+                         </div>  
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/dm-healthcare.jpg" alt="">
+
+
+                         </div>     
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/jeddah-national-hospital.jpg" alt="">
+
+
+                         </div>   
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/massara-house.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/medical-center.jpg" alt="">
+
+
+                         </div>   
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/salamatek-medical-.jpg" alt="">
+
+
+                         </div>     
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/samama.jpg" alt="">
+
+
+                         </div> 
+
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/security-forces-hospital.jpg" alt="">
+
+
+                         </div> 
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-4-healthcare-and-hospitality/shifa-rahima-dispensary.jpg" alt="">
+
+
+                         </div>   
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/al-eram-animation-lab.jpg" alt="">
+
+
+                         </div> 
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/al-radhi-cosmetics.jpg" alt="">
+
+
+                         </div>    
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/aluminium.jpg" alt="">
+
+
+                         </div>             
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/apec.jpg" alt="">
+
+
+                         </div>      
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/dar-sa-sihha-medical-centr.jpg" alt="">
+
+
+                         </div>       
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/dar-sa-sihha-opticals.jpg" alt="">
+
+
+                         </div>      
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/dems.jpg" alt="">
+
+
+                         </div>            
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/dubai-cosmtics.jpg" alt="">
+
+
+                         </div>     
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eis.jpg" alt="">
+
+
+                         </div>           
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-asacon.jpg" alt="">
+
+
+                         </div>           
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-educational-welfare-trust.jpg" alt="">
+
+
+                         </div>        
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-engg-for-lift-tech.jpg" alt="">
+
+
+                         </div>      
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-engineering.jpg" alt="">
+
+
+                         </div>      
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-floors.jpg" alt="">
+
+
+                         </div>          
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-industeial-technologies.jpg" alt="">
+
+
+                         </div> 
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-international.jpg" alt="">
+
+
+                         </div> 
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-isea.jpg" alt="">
+
+
+                         </div>                                          
+                          
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-ksa.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-power-comm.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-rover.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-scientific.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-steel-factories.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/eram-trading.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/ess-arabia.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/hydrofit.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/ira-ksa.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/itl-contracting-co.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/itl-quality-bureau.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/omnex.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/sas-general.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/trip-makrs.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-5-our-associates/zeztate.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/al-farhan-trading.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/al-moaybd-trading.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/al-radhi-plastics.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/al-shahla.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/arabian-equipments-maintanbence.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/arabian-experience.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/ark-trading-contracting.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/choice-cateres.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/e-agnice.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/e-printing.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/eram-floors.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/eram-galleria.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/eram-holidays.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/eram-manpower-sfvice.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/eram-motors.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/eram-technologies.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/espoir.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/idealink.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/itl-communications.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/itl-holidays-pvt.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/itl-world.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/itrade.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/kaku.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/lojam-arabi.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/metaltech.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/mice-minds.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/mmps.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/ramz-ex.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/royal-gulf-food.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/saaq-trading-services.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/shehoun-trading-contracting.jpg" alt="">
+
+
+                         </div>
+
+<div class="item news-post">
+                                <img src="images/itl-company-logos/logo-6-our-associates/united-ark-company.jpg" alt="">
+
+
+                         </div>
+
+
+
+
+
+
+
+
+
+
+                            
+                            
 
                         </div>
                     </div>
@@ -639,6 +1472,7 @@
                             maxlength: 10
                         },
                         enquiry: "required",
+                        fileToUpload: "required",
                         email: {required: true, email: true}
                     },
                     // Specify the validation error messages
@@ -655,6 +1489,7 @@
                             maxlength: "Enter valid contact number"
                         },
                         enquiry: "Please enter enquiry",
+                        fileToUpload: "Please upload company logo",
                         email: {required: "Please enter email", email: "Please enter valid email"}
                     },
                     submitHandler: function (form) {

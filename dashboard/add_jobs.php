@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <?php include("logincheck.php"); ?>
+<!DOCTYPE html>
 <html>
     
     <head>
