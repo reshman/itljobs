@@ -411,7 +411,7 @@ p {
 
 
 .title-section {
-    margin-bottom: 45px;
+    margin-bottom: 1px;
     text-align: center;
 }
 
@@ -630,7 +630,7 @@ a.button-one {
     margin-left: 60px;
 }
 .services-offer-section {
-    padding: 40px 0;
+    padding: 25px 0;
 }
 .services-offer-section .services-box-mas .services-project {
     width: 25%;
@@ -1299,6 +1299,7 @@ button.mfp-arrow {
 }
 .accord-title, .accord-title-inner {
     position: relative;
+    height: auto;
 }
 .accord-title h2, .accord-title-inner h2 {
     padding: 15px 15px;
@@ -3715,10 +3716,10 @@ transition: all 0.2s ease-in-out;
     margin-bottom: 10px;
     outline: none;
 	margin-left:29px;
-	width:30.7%;
+	width:30.8%;
 }
 .move1{
-margin-left:14.4px;
+margin-left:14.5px;
 }
 .select2-selection--single {
 display: inline !important;
@@ -4351,4 +4352,16 @@ width:91.5% !important;
 .bod {
 padding-bottom: 10px;
 border-bottom: 2px solid #e0a025;
+}
+
+.location_below{
+    width: 100%;
+    background-color: #c0bebe;
+    padding:3px;
+    margin-right:auto;
+    margin-left:auto;
+    text-align: center;
+    border-radius: 5px;
+    border-top: 0px;
+    z-index:1000000000;
 }

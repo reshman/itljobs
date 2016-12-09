@@ -4,7 +4,7 @@
 
 <html lang="en" class="no-js">
 <head>
-    <title>ITL JOBS</title>
+    <title>Job Search | Overseas Jobs | Recruitment | Vacancies | Work Abroad</title>
 
     <meta charset="utf-8">
 
@@ -165,7 +165,7 @@
                                     ?>
                                     <h2><?php echo strtoupper($rowCat['name']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?>
                                         <span
-                                            style="float:right;"><?php echo 'Posted on: ' . strtoupper($postDate); ?></span>
+                                            style="float:right;"><?php echo $row['job_location'].' | Posted on: ' . strtoupper($postDate); ?></span>
                                     </h2>
                                 </div>
                                 <div class="accord-content" style="display: none;">
@@ -239,7 +239,7 @@
                                 ?>
                                 <h2><?php echo strtoupper($rowCat['name']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?>
                                     <span
-                                        style="float:right;"><?php echo 'Posted on: ' . strtoupper($postDate); ?></span>
+                                        style="float:right;"><?php echo $row['job_location'].' | Posted on: ' . strtoupper($postDate); ?></span>
                                 </h2>
                             </div>
                             <div class="accord-content" style="display: none;">
@@ -294,8 +294,6 @@
                     ?>
 
                 </div>
-            </div>
-            <div class="accordion-box">
 
                 <?php
                 date_default_timezone_set('Asia/Kolkata');
@@ -313,26 +311,34 @@
                 $today_date = date('Y-m-d');
                 ?>
                 <?php
-                $query = sprintf("SELECT id,job_category_id,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status,date FROM interviews WHERE (schedule_date>='%s' OR schedule_date='%s') AND active='%s' AND del_status='%s' AND vih=%d ORDER BY schedule_date", $today_date, '', 1, 0, 1);
+                $query = sprintf("SELECT id,job_category_id,industry,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status,date FROM interviews WHERE schedule_date>='%s' AND active='%s' AND del_status='%s' AND vih=%d ORDER BY schedule_date", $today_date, 1, 0, 1);
                 //$query = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,js.experience,js.job_location,js.closing_date,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 AND inv.schedule_date>='$today_date'"); die;
                 $result = Db::query($query);
                 while ($row = mysql_fetch_array($result)) {
+                    $interview_location = array();
                     $sqlCat = sprintf("SELECT name FROM job_categories WHERE id=%d", $row['job_category_id']);
                     $resultCat = Db::query($sqlCat);
                     $rowCat = mysql_fetch_assoc($resultCat);
+                    preg_match_all("/{{(.*)}}/U", $row['description'], $match_array);
+                    foreach ($match_array[1] as $value) {
+                        $location = explode('AT', $value)[1];
+                        if(!in_array($location,$interview_location)){
+                            $interview_location []= $location;
+                        }
+                    }
                     ?>
 
                     <div class="accord-elem">
                         <div class="accord-title">
                             <a class="accord-link" href="#"></a>
 
-                            <h2><?php echo strtoupper($rowCat['name']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($row['country']); ?>
+                            <h2><?php echo strtoupper($row['industry']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($row['country']); ?>
                                 <span
-                                    style="float:right;"><?php echo 'Posted on: ' . strtoupper(date("d/m/Y", strtotime($row['date']))); ?></span>
+                                    style="float:right;"><?php echo implode(' | ',$interview_location) . ' | Posted on: ' . strtoupper(date("d/m/Y", strtotime($row['date'])));?></span>
                             </h2>
                         </div>
                         <div class="accord-content" style="display: none;">
-                            <p><?php echo $row['description']; ?></p>
+                            <p><?php echo str_replace(str_split('{}'), '', $row['description']); ?></p>
 
                             <?php
                             if (!empty($row['salary'])) {
@@ -360,7 +366,7 @@
                             </p>
 
                             <p>
-                                <span style="color:#6495ED">Interview date : </span>
+                                <span style="color:#6495ED">Last date : </span>
                                 <?php
                                 if ($row['schedule_date'] == '') {
                                     echo 'Comming soon';
@@ -368,10 +374,6 @@
                                     echo date('d/m/Y', strtotime($row['schedule_date'])) . ' at ' . $row['schedule_time'];
                                 }
                                 ?>
-                            </p>
-
-                            <p>
-                                <span style="color:#6495ED">Location : </span><?php echo $row['venue']; ?>
                             </p>
 
                             <?php if (isset($_SESSION['log'])): ?>

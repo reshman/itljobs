@@ -412,9 +412,9 @@
                                     tags:true
                                 });
                                 
-                                $('#category').select2({tags:true});
+                                $('#category').select2();
                                 
-                                $('#sub_category').select2({tags:true});
+                                $('#sub_category').select2();
                                 
                                 $('span.select2').attr('style','width:100%');
 

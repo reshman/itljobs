@@ -50,8 +50,11 @@ if ($flag == 1) {
     $timestamp = date("YmdHis");
 
     //Check to see if a new category is entered
-//If category is new add it to database 
+//If category is new add it to database
     if (!is_numeric($job_category_id)) {
+        if ($sub_category == '') {
+            $sub_category = $job_category_id;
+        }
         $job_category_id = strtoupper($job_category_id);
         $sql = sprintf("SELECT * FROM job_categories WHERE name='%s' LIMIT 1", $job_category_id);
         $resultsql = Db::query($sql);
@@ -71,8 +74,13 @@ if ($flag == 1) {
                 die();
             }
         }
+    } elseif ($sub_category == '') {
+        $sql = sprintf("SELECT * FROM job_categories WHERE id=%d LIMIT 1", $job_category_id);
+        $resultsql = Db::query($sql);
+        $sub_row = mysql_fetch_assoc($resultsql);
+        $sub_category = $sub_row['name'];
     }
-    
+
 
 //Check to see if a new Industry is entered
     $sub_category = strtoupper($sub_category);
@@ -88,7 +96,7 @@ if ($flag == 1) {
         </script>";
             die();
         } else {
-            $industry_id = mysql_insert_id();            
+            $industry_id = mysql_insert_id();
             $sql = sprintf("INSERT INTO industry_category SET industry_id=%d,category_id=%d", $industry_id, $job_category_id);
             $result = DB::query($sql);
             if (!$result) {
@@ -159,7 +167,8 @@ if ($flag == 1) {
     } else if ($countdtable != 1) {
 
         //generate random key
-        function generateRandomString($length = 8) {
+        function generateRandomString($length = 8)
+        {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = strlen($characters);
             $randomString = '';
@@ -179,7 +188,7 @@ if ($flag == 1) {
 
         //insert job seeker to resume table
 
-        $sql = sprintf("INSERT INTO resume(user_id, experience, specification, abroad_experience, india_experience, current_location, mobile, qualification, date_of_birth, job_category_id, sub_category, file_name,created_date) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $inid, $experience, $specification, $abr_exp, $india_exp, $current_location, $mobile, $qualification, $date_of_birth, $job_category_id, $sub_category, $filename, $create_date);
+        $sql = sprintf("INSERT INTO resume(user_id, experience, specification, abroad_experience, india_experience, current_location, mobile, qualification, date_of_birth, job_category_id, sub_category, file_name,created_date) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $inid, $experience, $specification, $abr_exp, $india_exp, $current_location, '[ '.$mobile.' ]', $qualification, $date_of_birth, $job_category_id, $sub_category, $filename, $create_date);
         $resultsql = Db::query($sql);
         $uid = mysql_insert_id();
         //insert jon seeker to notification table
@@ -188,19 +197,19 @@ if ($flag == 1) {
 
         /* Sending mail */
 
-        if(!empty($email)){
-        $msg = "Thanks for registering with ITL JOBS.You can log in to your account in conjunction with your email address";
-        $txt = "Dear  " . $name . ", <br/>" . $msg;
-        $email_template_register = file_get_contents("email_template_register.html");
-        $email_template_register = str_replace("{{content}}", $txt, $email_template_register);
-        $email_template_register = str_replace("{{email}}", $email, $email_template_register);
-        $email_template_register = str_replace("{{pwd}}", $key, $email_template_register);
-        $headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        $headers.= "From:itljobs@webadmin.com" . "\r\n";
-        $to = $email;
-        $subject = "Welcome to ITL JOBS";
-        mail($to, $subject, $email_template_register, $headers);
+        if (!empty($email)) {
+            $msg = "Thanks for registering with ITL JOBS.You can log in to your account in conjunction with your email address";
+            $txt = "Dear  " . $name . ", <br/>" . $msg;
+            $email_template_register = file_get_contents("email_template_register.html");
+            $email_template_register = str_replace("{{content}}", $txt, $email_template_register);
+            $email_template_register = str_replace("{{email}}", $email, $email_template_register);
+            $email_template_register = str_replace("{{pwd}}", $key, $email_template_register);
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= "From:itljobs@webadmin.com" . "\r\n";
+            $to = $email;
+            $subject = "Welcome to ITL JOBS";
+            mail($to, $subject, $email_template_register, $headers);
         }
         $_SESSION['regsucc'] = 1;
         $urlin = "itljobs-login.php";

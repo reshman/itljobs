@@ -1,4 +1,3 @@
-<!doctype html>
 <?php
 if ($_GET) {
     require 'check_session_rec.php';
@@ -15,7 +14,7 @@ if ($_GET) {
         die();
     }
     ?>
-
+    <!doctype html>
     <html lang="en" class="no-js">
         <head>
             <title>ITL JOBS</title>
@@ -59,7 +58,7 @@ if ($_GET) {
             <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
             <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
-            <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+            <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places&key=AIzaSyBKY3LssTzDjFxtaPU3bx0YjZDRYxgj2Tk"></script>
             <script src="js/jquery.geocomplete.js"></script>
 
             <script src="admin/ckeditor/ckeditor.js"></script>
@@ -233,7 +232,7 @@ if ($_GET) {
                                     <span class="post-title">JOB TITLE:</span>    
                                 </div>
 
-                                <div class="col-md-8">
+                                <div class="col-md-8 companyname1">
                                     <select name="category" class="category" id="category">
                                         <?php
                                         $qry = sprintf("SELECT * FROM `job_categories` ORDER BY name");
@@ -257,7 +256,7 @@ if ($_GET) {
                                 <div class="col-md-3">
                                     <span class="post-title">INDUSTRY:</span>    
                                 </div>
-                                <div class="col-md-8" id="industry">
+                                <div class="col-md-8 companyname1" id="industry">
                                     <select name="sub_category" id="sub_category">
                                         <option></option>
                                         <?php
@@ -485,8 +484,8 @@ if ($_GET) {
                                         tags: true
                                     });
 
-                                    $('#category').select2({tags: true});
-                                    $('#sub_category').select2({tags: true});
+                                    $('#category').select2();
+                                    $('#sub_category').select2();
 
                                     $.post("get_keys.php", {
                                         id:<?= $id ?>
@@ -559,7 +558,7 @@ if ($_GET) {
                             description: "required",
                             location: "required",
                             jobtype: "required",
-                            salary: {required: true, salrange: true},
+                            salary: {required: true},
                             salarycat: "required",
                             closing_date: "required",
                             experience: {required: true, experience: true}

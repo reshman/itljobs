@@ -5,7 +5,7 @@ include_once 'db.php';
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-    <title>ITL JOBS</title>
+    <title>Job Search | Overseas Jobs | Recruitment | Vacancies | Work Abroad</title>
 
     <meta charset="utf-8">
 
@@ -332,7 +332,7 @@ include_once 'db.php';
                                     <div class="col-md-12 col-xs-12 job_desc">
                                         <p>
                                             <?php
-                                                echo $row['description'];
+                                                echo str_replace(str_split('{}'),'',$row['description']);
                                             ?>
                                         </p>
                                     </div>
@@ -387,7 +387,7 @@ include_once 'db.php';
                                 }
                             }
 
-                            $sql = sprintf("SELECT DISTINCT company.company_name,logo,interviews.country FROM company JOIN interviews ON company.company_name = interviews.company_name WHERE active='%s' AND del_status='%s' AND schedule_date>='%s' ORDER BY interviews.schedule_date DESC LIMIT 5", 1, 0, date('Y-m-d'), 0);
+                            $sql = sprintf("SELECT DISTINCT company.company_name,logo,interviews.country FROM company JOIN interviews ON company.company_name = interviews.company_name WHERE active='%s' AND del_status='%s' AND schedule_date>='%s' ORDER BY interviews.schedule_date DESC LIMIT 5", 1, 0, date('Y-m-d'));
                             $cresult = Db::query($sql);
                             while ($crow = mysql_fetch_assoc($cresult)) {
                                 ?>
@@ -412,6 +412,7 @@ include_once 'db.php';
                                         $query = sprintf("SELECT interviews.*, job_categories.name as jcname FROM interviews JOIN job_categories ON interviews.job_category_id = job_categories.id WHERE schedule_date>='%s' AND active='%s' AND del_status='%s' AND company_name='%s' AND country='%s' ORDER BY schedule_date LIMIT 3", date('Y-m-d'), 1, 0, $crow['company_name'],$crow['country']);
                                         $result = Db::query($query);
                                         while ($row = mysql_fetch_assoc($result)) {
+                                            $interview_location = array();
                                             $postDate = date("d/m/Y", strtotime($row['created_date']));
                                             $explode = explode(',', $row['venue']);
                                             $end = '';
@@ -420,11 +421,27 @@ include_once 'db.php';
                                             } else {
                                                 $end = $row['venue'];
                                             }
+                                            preg_match_all("/{{(.*)}}/U", $row['description'], $match_array);
+                                            foreach ($match_array[1] as $value) {
+                                                $location = explode('AT', $value)[1];
+                                                if(count($interview_location)>2){
+                                                    $interview_location [] = '...';
+                                                    break;
+                                                }
+                                                if(!in_array($location,$interview_location)){
+                                                    $interview_location []= $location;
+                                                }
+                                            }
                                             ?>
                                             <div class="interview-border col-md-12 col-sm-12 col-xs-12">
                                               <div class="col-md-9 col-sm-9 col-xs-12">
                                                 <div class="each_job">
-                                                    <div class="job_name"><?php echo strtoupper($row['jcname']); ?></div>
+                                                    <div class="job_name">
+                                                        <?php echo strtoupper($row['jcname']);
+                                                        if(count($interview_location)>0) {
+                                                            echo ' - ' . implode(' | ', $interview_location);
+                                                        }
+                                                        ?></div>
                                                 </div>
                                               </div>
                                               <div class="col-md-3 col-sm-3 col-xs-12">

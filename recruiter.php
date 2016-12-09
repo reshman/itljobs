@@ -1,8 +1,8 @@
-<!doctype html>
 <?php
 include 'check_session_rec.php';
 include_once 'db.php';
 ?>
+<!doctype html>
 
 <html lang="en" class="no-js">
     <head>

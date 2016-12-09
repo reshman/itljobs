@@ -1,6 +1,5 @@
-<!doctype html>
 <?php require 'check_session_rec.php'; ?>
-
+<!doctype html>
 <html lang="en" class="no-js">
     <head>
         <title>ITL JOBS</title>
@@ -38,6 +37,37 @@
         <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
         <script type="text/javascript" src="js/countrystate.js"></script>
+
+        <style>
+
+            /* Hide the file input using
+            opacity */
+            [type=file] {
+                position: absolute;
+                filter: alpha(opacity=0);
+                opacity: 0;
+            }
+
+            input, [type="file"] + label {
+                border: 1px solid #ccc;
+                border-radius: 0;
+                font-size: 13px;
+                left: 0;
+                margin: 0;
+                padding: 14px;
+                position: relative;
+                text-align: left;
+                width: 100%;
+            }
+
+
+        </style>
+        <style>
+            .rbutton {
+                font-size: 30px;
+                margin-top: 10px;
+            }
+        </style>
 
     </head>
 
@@ -195,7 +225,7 @@
                                 $user_id = $_SESSION['reclog'];
                             }
 
-                            $query = sprintf("SELECT e.user_id,e.company_name, e.designation,e.mobile,e.enquiry_requirement,e.country,u.name,u.email  from employers e LEFT JOIN  users u ON e.user_id = u.id  WHERE  e.user_id='%s' AND del_status='%s'", $user_id, '0');
+                            $query = sprintf("SELECT e.user_id,e.company_name, e.designation,e.mobile,e.enquiry_requirement,e.country,u.name,u.email,e.filename  from employers e LEFT JOIN  users u ON e.user_id = u.id  WHERE  e.user_id='%s' AND del_status='%s'", $user_id, '0');
                             $result = Db::query($query);
                             $row = mysql_fetch_array($result);
                                                         
@@ -707,14 +737,24 @@
                                 <input id="moblie" name="mobile" type="text" value="<?php echo $row['mobile']; ?>" placeholder="MOBILE " maxlength="10">    
 
                             </div>
+
+                            <div class="col-md-11">
+
+                                <input type="file" class="enquiry resume" name="fileToUpload" id="f02" placeholder="<?php echo $row['filename']; ?>">
+                                <label for="f02">UPLOAD NEW COMPANY LOGO (JPG, PNG, JPEG)(optional)</label>
+
+                            </div>
+                            <div class="col-md-1">
+                                <img src="images/logos/<?=$row['filename']?>" class="img-responsive">
+                            </div>
                             <div class="col-md-12">
                                 <textarea name="enquiry" id="enquiry" placeholder="ENQUIRY/REQUIREMENT"><?php echo $row['enquiry_requirement']; ?></textarea>  
 
                             </div>
                             <input type="hidden" name="id" value="<?php echo $user_id; ?>"/>
-                            <div class="col-md-6">
+                            <div class="col-md-2">
 
-                                <input type="submit" value="UPDATE" >
+                                <input type="submit" value="UPDATE" style="text-align: center;">
 
                             </div>
 

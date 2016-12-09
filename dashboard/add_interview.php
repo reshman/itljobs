@@ -109,7 +109,7 @@
 
                         <!-- left column -->
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
 
                             <!-- general form elements -->
 
@@ -177,10 +177,10 @@
 
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Job Category</label>
+                                            <label for="exampleInputEmail1">Industry</label>
 
                                             <select class="form-control" name="job_cat" id="job_cat">
-                                                <option disabled="" selected="">Select Job Category</option>
+                                                <option disabled="" selected="">Select Industry</option>
                                                 <?php
                                                 $qry = sprintf("SELECT id,name FROM `job_categories` ORDER BY name");
                                                 $res = Db::query($qry);
@@ -198,14 +198,48 @@
 
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Industry</label>
+                                            <label for="exampleInputEmail1">Job Category</label>
 
                                             <select class="form-control" name="title" id="title">
-                                                <option disabled="" selected="">Select a Category to Populate</option>
+                                                <option disabled="" selected="">Select an Industry to Populate</option>
                                             </select>
 
                                         </div>
+                                        <div id="instructionModal" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">
+                                                            <i class="fa fa-info"></i>
+                                                            Instruction to add Interview Date and Location
+                                                        </h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <ul>
+                                                            <li>Each date and location should be entered like this: <strong>{{ date AT Location }}</strong>.</li>
+                                                            <li>Use separate <strong>{{ }}</strong> for each pair of date and Location like this :
+                                                            <strong>{{date 1 AT location 1}} {{ date 2 AT location 2}}</strong></li>
+                                                            <li>Example :
+                                                                <ol>
+                                                                    <li><strong>{{ 12th,13th December 2017 AT Mumbai }}</strong></li>
+                                                                    <li><strong>{{ 14,15,16 Dec AT Chennai,TamilNadu }}</strong></li>
+                                                                </ol>
+                                                            </li>
+                                                            <li>'AT' should be in capital letters</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
 
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#instructionModal">
+                                            <i class="fa fa-eye"></i>
+                                            View Instructions
+                                        </button>
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail1">Description</label>
@@ -243,17 +277,9 @@
 
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Interview Date</label>
+                                            <label for="exampleInputEmail1">End Date</label>
 
                                             <input type="text" class="form-control" id='datepicker' name="date" placeholder="Interview Date"/>
-
-                                        </div>
-
-                                        <div class="form-group">
-
-                                            <label for="exampleInputEmail1">Location</label>
-
-                                            <input type="text" class="form-control" id="venue" placeholder="Location" name="venue">
 
                                         </div>
 
@@ -272,26 +298,6 @@
                                             <input type="text" class="form-control" id="contact" placeholder="Contact" name="contact">
 
                                         </div>
-
-                                        <!--                                        <div class="form-group">
-                                        
-                                                                                    <label for="exampleInputEmail1">Job Applied For</label>
-                                        
-                                                                                    <select class="form-control" name="title">
-                                                                                        <option disabled="" selected="">select</option>
-                                        <?php
-//                                                $qry = sprintf("SELECT id,name FROM `job_categories` ORDER BY name");
-//                                                $res = Db::query($qry);
-//                                                if(mysql_num_rows($res)){
-//                                                while ($row = mysql_fetch_array($res)) {
-                                        ?>
-                                                                                        <option value="<?php // echo $row['id'];         ?>"><?php // echo $row['name'];         ?></option>
-                                        <?php
-//                                                }  }
-                                        ?>
-                                                                                    </select>
-                                        
-                                                                                </div>-->
 
                                         <div class="form-group">
 
@@ -382,10 +388,6 @@
                                                         });
                                                     });
 
-                                                    $("#venue").geocomplete({
-                                                        types: ["geocode", "establishment"],
-                                                    });
-
 
                                                     $('#datepicker').datepicker({
                                                         format: "dd/mm/yyyy",
@@ -419,10 +421,7 @@
                                                             date: {dateFormat: true},
                                                             company_name: {required: true, lettersonly: true},
                                                             country: "required",
-                                                            //salary: {required: true},
-                                                            venue: {required: true, alphanumeric: true},
                                                             interview: "required",
-                                                            //coordinator: {required: true, lettersonly: true},
                                                             contact: {
                                                                 required: true,
                                                                 digits: true,
@@ -441,14 +440,13 @@
 
                                                         messages: {
                                                             //name: {required: "Please enter position", lettersonly: "Please enter letters only"},
-                                                            title: {required: "Please enter industry"},
-                                                            job_cat: "Please enter job category",
+                                                            title: {required: "Please enter Job category"},
+                                                            job_cat: "Please enter Industry",
                                                             date: {required: "Please enter date", dateFormat: "Please enter a date in the format dd/mm/yyyy."},
                                                             company_name: {required: "Please enter company name", lettersonly: "Please enter letters only"},
                                                             country: "Please enter country",
                                                             //salary: {required: "Please Enter Salary"},
                                                             time: "Please enter time",
-                                                            venue: {required: "Please enter location"},
                                                             interview: "please select interview",
                                                             //coordinator: {required: "Please enter name of coordinator", lettersonly: "Please enter letters only"},
                                                             contact: {

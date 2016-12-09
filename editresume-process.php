@@ -154,11 +154,11 @@ if ($flag == 1) {
 
     if ($filename != NULL) {
 
-        $sql = sprintf("UPDATE resume SET experience = '%s', specification = '%s', abroad_experience = '%s',india_experience = '%s', mobile = '%s', date_of_birth = '%s', qualification = '%s' ,file_name = '%s',job_category_id = '%s', sub_category = '%s',current_location = '%s' WHERE user_id = '%s'", $experience, $specification, $abrexp_year, $indexp_year, $mobile, $date_of_birth, $qualification, $filename, $job_category_id, $sub_category, $current_location, $id);
+        $sql = sprintf("UPDATE resume SET experience = '%s', specification = '%s', abroad_experience = '%s',india_experience = '%s', mobile = '%s', date_of_birth = '%s', qualification = '%s' ,file_name = '%s',job_category_id = '%s', sub_category = '%s',current_location = '%s' WHERE user_id = '%s'", $experience, $specification, $abrexp_year, $indexp_year, '[ '.$mobile.' ]', $date_of_birth, $qualification, $filename, $job_category_id, $sub_category, $current_location, $id);
 
         $resultedit = Db::query($sql);
     } else {
-        $sql = sprintf("UPDATE resume SET experience = '%s', specification = '%s', abroad_experience = '%s',india_experience = '%s', mobile = '%s', date_of_birth = '%s', qualification = '%s' ,job_category_id = '%s', sub_category = '%s',current_location = '%s' WHERE user_id = '%s'", $experience, $specification, $abrexp_year, $indexp_year, $mobile, $date_of_birth, $qualification, $job_category_id, $sub_category, $current_location, $id);
+        $sql = sprintf("UPDATE resume SET experience = '%s', specification = '%s', abroad_experience = '%s',india_experience = '%s', mobile = '%s', date_of_birth = '%s', qualification = '%s' ,job_category_id = '%s', sub_category = '%s',current_location = '%s' WHERE user_id = '%s'", $experience, $specification, $abrexp_year, $indexp_year, '[ '.$mobile.' ]', $date_of_birth, $qualification, $job_category_id, $sub_category, $current_location, $id);
 
         $resultedit = Db::query($sql);
     }
