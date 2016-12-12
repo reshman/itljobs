@@ -334,7 +334,7 @@
 
                             <h2><?php echo strtoupper($row['industry']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($row['country']); ?>
                                 <span
-                                    style="float:right;"><?php echo implode(' | ',$interview_location) . ' | Posted on: ' . strtoupper(date("d/m/Y", strtotime($row['date'])));?></span>
+                                    style="float:right;"><?php if(count($interview_location)>0){echo implode(' | ',$interview_location) . ' | ';} echo 'Posted on: ' . strtoupper(date("d/m/Y", strtotime($row['date'])));?></span>
                             </h2>
                         </div>
                         <div class="accord-content" style="display: none;">

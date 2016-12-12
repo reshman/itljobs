@@ -98,7 +98,7 @@ if ($_SESSION['role'] != 1) {
                                         <thead>
                                             <tr>
                                                 <th>Sl.No</th>
-                                                <th>Title</th>
+                                                <th>Job Category</th>
                                                 <th>Schedule date</th>
                                                 <th>Name</th>
                                                 <th>Company Name</th>
@@ -106,7 +106,6 @@ if ($_SESSION['role'] != 1) {
                                                 <th>View more</th>
                                                 <th>View in Hotjjobs?</th>
                                                 <th>Status</th>
-                                                <!--<th>Edit</th>-->
                                                 <th>Delete</th>
                                             </tr>
                                         </thead>
@@ -116,14 +115,14 @@ if ($_SESSION['role'] != 1) {
                                             $i = 1;
                                             date_default_timezone_set('Asia/Kolkata');
                                             $today_date = date('Y-m-d');
-                                            $query = sprintf("SELECT us.id,us.name,iv.id as intId,jc.name as job_title,iv.schedule_date, iv.name as jobname,iv.description,iv.schedule_time,iv.company_name,iv.venue,iv.interview,iv.contact, iv.user_id,iv.active,iv.vih,iv.del_status FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id INNER JOIN job_categories as jc ON iv.job_category_id=jc.id WHERE (iv.schedule_date>='%s' OR schedule_date='') AND iv.del_status='%s' ORDER BY schedule_date", $today_date, 0);
+                                            $query = sprintf("SELECT us.id,us.name,iv.id as intId,jc.name as job_title,iv.schedule_date, iv.name as jobname,iv.description,iv.schedule_time,iv.industry,iv.company_name,iv.venue,iv.interview,iv.contact, iv.user_id,iv.active,iv.vih,iv.del_status FROM interviews as iv INNER JOIN users as us ON us.id=iv.user_id INNER JOIN job_categories as jc ON iv.job_category_id=jc.id WHERE (iv.schedule_date>='%s' OR schedule_date='') AND iv.del_status='%s' ORDER BY schedule_date", $today_date, 0);
                                             $result = Db::query($query);
                                             while ($row = mysql_fetch_array($result)) {
                                                 ?>
 
                                                 <tr>
                                                     <td><?php echo $i; ?></td>
-                                                    <td><?php echo $row['job_title']; ?></td>
+                                                    <td><?php echo $row['industry']; ?></td>
                                                     <td><?php if($row['schedule_date'] == '' ){ echo 'Comming soon'; } else { echo date('d/m/Y', strtotime($row['schedule_date'])); }?></td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td><?php echo $row['company_name']; ?></td>

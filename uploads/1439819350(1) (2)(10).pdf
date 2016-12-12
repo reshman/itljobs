@@ -1,6 +1,0 @@
-<br />
-<b>Notice</b>:  Undefined variable: mimeType in <b>C:\xampp\htdocs\endorecord\myphpscript.php</b> on line <b>23</b><br />
-<br />
-<b>Warning</b>:  filesize(): stat failed for uploads/1439819350(1) (2).pdf in <b>C:\xampp\htdocs\endorecord\myphpscript.php</b> on line <b>27</b><br />
-<br />
-<b>Warning</b>:  readfile(uploads/1439819350(1) (2).pdf): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\endorecord\myphpscript.php</b> on line <b>28</b><br />

@@ -1,6 +1,6 @@
+<?php include("logincheck.php"); ?>
 <!DOCTYPE html>
 <html>
-    <?php include("logincheck.php"); ?>
     <head>
         <meta charset="UTF-8">
         <title>ITL JOBS</title>
@@ -123,8 +123,8 @@
                                         <thead>
                                             <tr>
                                                 <th>Sl.No</th>
-                                                <th>Title</th>
-                                                <th>Industries</th>
+                                                <th>Industry</th>
+                                                <th>Job Category</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>

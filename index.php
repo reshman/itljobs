@@ -324,7 +324,7 @@ include_once 'db.php';
                                     </div>
                                     <div class="col-md-9">
                                       <div class="company_name">
-                                        <h3><?= $row['jcname'] ?></h3>
+                                        <h3><?= $row['industry'] ?></h3>
                                         <small><?= $row['company_name'] ?></small>
                                       </div>
                                     </div>
@@ -437,7 +437,7 @@ include_once 'db.php';
                                               <div class="col-md-9 col-sm-9 col-xs-12">
                                                 <div class="each_job">
                                                     <div class="job_name">
-                                                        <?php echo strtoupper($row['jcname']);
+                                                        <?php echo strtoupper($row['industry']);
                                                         if(count($interview_location)>0) {
                                                             echo ' - ' . implode(' | ', $interview_location);
                                                         }

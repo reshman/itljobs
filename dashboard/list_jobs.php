@@ -1,6 +1,6 @@
+<?php include("logincheck.php"); ?>
 <!DOCTYPE html>
-<html>
-    <?php include("logincheck.php"); ?>
+<html>  
     <head>
         <meta charset="UTF-8">
         <title>Admin | ITL JOBS</title>
@@ -126,7 +126,7 @@
                                                     <td><?php echo $row['job_listing']; ?></td>
                                                     <td><?php echo $row['experience']; ?></td>
                                                     <td><?php echo $row['job_location']; ?></td>
-                                                    <td><?php echo $row['closing_date']; ?></td>
+                                                    <td><?php echo date('d/m/Y', strtotime($row['closing_date'])); ?></td>
                                                     <td><a href="viewmore_jobs.php?id=<?php echo $row['jobid']; ?>" target="_BLANK">view more</a></td>
                                                     <td><input type="number" min="0" name="order" id="order" class="order" value="<?php echo $row['job_order']; ?>"/>
                                                         <a onclick="updatecheck(this)" class="btn btn-primary">update</a>
@@ -160,7 +160,7 @@
                                                         <td><?php echo $row['job_listing']; ?></td>
                                                         <td><?php echo $row['experience']; ?></td>
                                                         <td><?php echo $row['job_location']; ?></td>
-                                                        <td><?php echo $row['closing_date']; ?></td>
+                                                        <td><?php echo date('d/m/Y',strtotime($row['closing_date'])); ?></td>
                                                         <td><a href="viewmore_jobs.php?id=<?php echo $row['jobid']; ?>" target="_BLANK">view more</a></td>
                                                         <td><input type="number" min="0" name="order" id="order" class="order" value="<?php echo $row['job_order']; ?>"/>
                                                             <a onclick="updatecheck(this)" class="btn btn-primary">update</a>

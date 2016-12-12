@@ -22,11 +22,19 @@ $closing_date = implode('-', $closing_date);
 $user_id = $_SESSION['id'];
 $keys = json_encode($_POST['keys']);
 $keys = strtolower($keys);
-$keys = mysql_real_escape_string($keys);
+$keys = mysql_escape_string($keys);
 
 date_default_timezone_set('Asia/Calcutta');
 $date = date("Y-m-d h:i:s");
 $ref_id = date('ymdHms');
+if(is_numeric($title)){
+    $isql = sprintf('SELECT * FROM industries WHERE id=%d',$title);
+    $iresult = Db::query($isql);
+    if(mysql_num_rows($iresult)==1){
+        $row = mysql_fetch_assoc($iresult);
+        $title= $row['industry_name'];
+    }
+}
 
 $sql = sprintf("INSERT INTO `jobs`(job_listing,job_description,experience,job_location,created_date,closing_date,company_name,job_type,job_category_id,user_id,date,ref_id,key_array) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $title, $job_description, $experience, $location, $create_date, $closing_date, $company, $job_type, $job_cat, $user_id, $date, $ref_id,$keys);
 $result = Db::query($sql);

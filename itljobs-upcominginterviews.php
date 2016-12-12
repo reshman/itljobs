@@ -147,7 +147,7 @@
                             <div class="col-md-12">
                                 <div class="accordion-box">
                                     <?php
-                                    $query = sprintf("SELECT id,job_category_id,company_name,description,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status,date FROM interviews WHERE (schedule_date>='%s' OR schedule_date='%s') AND active='%s' AND del_status='%s' AND company_name='%s' AND country='%s' ORDER BY schedule_date", $today_date, '', 1, 0, $crow['company_name'], $crow['country']);
+                                    $query = sprintf("SELECT id,job_category_id,company_name,description,industry,schedule_date,schedule_time,venue,interview,contact,country,salary,coordinator,active,del_status,date FROM interviews WHERE (schedule_date>='%s' OR schedule_date='%s') AND active='%s' AND del_status='%s' AND company_name='%s' AND country='%s' ORDER BY schedule_date", $today_date, '', 1, 0, $crow['company_name'], $crow['country']);
                                     //$query = sprintf("SELECT js.id,js.job_listing,js.job_description,js.active,js.del_status,js.experience,js.job_location,js.closing_date,inv.title,inv.active,inv.del_status FROM jobs as js JOIN interviews as inv ON js.id=inv.title WHERE js.active=1 AND inv.active=1 AND js.del_status=0 AND inv.del_status=0 AND inv.schedule_date>='$today_date'"); die;
                                     $result = Db::query($query);
                                     while ($row = mysql_fetch_array($result)) {
@@ -172,8 +172,8 @@
                                             <div class="accord-title-inner">
                                                 <a class="accord-link-inner" href="#"></a>
 
-                                                <h2><?php echo strtoupper($rowCat['name']); ?><span
-                                                        style="float:right;"><?php echo implode(' | ', $interview_location) . ' | Posted on: ' . strtoupper(date("d/m/Y", strtotime($row['date']))); ?></span>
+                                                <h2><?php echo strtoupper($row['industry']); ?><span
+                                                        style="float:right;"><?php if(count($interview_location)>0){echo implode(' | ', $interview_location) . ' | ';} echo 'Posted on: ' . strtoupper(date("d/m/Y", strtotime($row['date']))); ?></span>
                                                 </h2>
                                             </div>
                                             <div class="accord-content-inner" style="display: none;">

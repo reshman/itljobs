@@ -1,6 +1,6 @@
+<?php include("logincheck.php"); ?>
 <!DOCTYPE html>
 <html>
-    <?php include("logincheck.php"); ?>
     <head>
         <meta charset="UTF-8">
         <title>ITL JOBS</title>
@@ -29,7 +29,6 @@
     </head>
     <body class="skin-blue sidebar-mini">
         <div class="wrapper">
-            <?php // include 'db.php'; ?>
 
             <?php include 'header.php'; ?>
 
@@ -72,9 +71,8 @@
                                             $row = mysql_fetch_array($result);
                                             ?> 
                                             <tr>
-                                                <th>Job Title</th><td><?php echo $row['jobname']; ?></td></tr>
-                                        <th>Job Category</th><td><?php echo $row['jobcat']; ?></td></tr>
-                                        <th>Industry</th><td><?php echo $row['industry']; ?></td></tr>
+                                        <th>Industry</th><td><?php echo $row['jobcat']; ?></td></tr>
+                                        <th>Job category</th><td><?php echo $row['industry']; ?></td></tr>
                                         <tr><th>Schedule date</th><td><?php echo $row['schedule_date']; ?></td></tr>
                                         <tr><th>Name</th><td><?php echo $row['name']; ?></td></tr>
                                         <tr><th>Company Name</th><td><?php echo $row['company_name']; ?></td></tr>
