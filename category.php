@@ -6,7 +6,7 @@ $sc = isset($_POST['subcat']) ? $_POST['subcat'] : '';
 ?>
 
 <select name="sub_category" id="sub_category" class="select2 companyname4">
-    <option disabled="" selected="">INDUSTRY</option>
+    <option disabled="" selected="">JOB APPLYING FOR</option>
     <?php
 //            $query = sprintf("SELECT job_listing FROM `jobs` where job_category_id='%s' AND active='%s' AND del_status='%s'",$jc,1,0);
     $query = sprintf("SELECT ind.industry_name as industry_name FROM industries ind JOIN industry_category ic ON ind.id = ic.industry_id WHERE ic.category_id = '$jc'");

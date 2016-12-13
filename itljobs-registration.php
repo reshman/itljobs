@@ -5,7 +5,7 @@ session_start(); } ?>
 
 <html lang="en" class="no-js">
     <head>
-        <title>ITL JOBS</title>
+        <title>Job Search | Overseas Jobs | Recruitment | Vacancies | Work Abroad</title>
 
         <meta charset="utf-8">
 
@@ -72,10 +72,7 @@ session_start(); } ?>
 
         </style>
         <style>
-            .rbutton{
-                font-size: 30px;
-                margin-top: 10px;
-            }
+            
         </style>         
     </head>
 
@@ -149,11 +146,13 @@ session_start(); } ?>
                                 $('#status-message').fadeOut(5000);
                             </script>
                             <div class="row">
+                           
+                                
                             <div class="col-md-12">
                                 <div class="col-md-12 companyname2">
 
                                     <select name="job_category_id" class="job select2" id="category">
-                                        <option disabled="" selected="">JOB APPLYING FOR</option>   
+                                        <option disabled="" selected="">INDUSTRY </option>   
                                         <?php
                                         $qry = sprintf("SELECT * FROM `job_categories` ORDER BY name");
                                         $res = Db::query($qry);
@@ -167,7 +166,13 @@ session_start(); } ?>
                                     </select>    
                                 </div>
                             </div>
-
+                            <div class="col-md-12">
+                             <div class="col-md-4 col-sm-12 col-xs-12 companyname2" id="cat">
+                                    <select name="sub_category" id="sub_category" class="job select2">
+                                        <option disabled="" selected="">JOB APPLYING FOR</option>
+                                    </select>     
+                                </div>
+                             </div>
 
                             <div class="col-md-12">
                                 <div class="col-md-4">
@@ -193,7 +198,7 @@ session_start(); } ?>
                             </div> 
                             <!--     ************************************************  -->
                             <div class="col-md-12">
-
+                                
                                 <div class="col-md-4 col-sm-12 col-xs-12 companyname3">
                                    <!-- <input name="qualification" id="qualification" type="text" placeholder="QUALIFICATION ">    -->
                                     <select name="qualification" id="qualification" class="select2">
@@ -207,21 +212,16 @@ session_start(); } ?>
                                         <?php }
                                         ?>
                                     </select>  
-                                </div> 
-
-                                <div class="col-md-4 col-sm-12 col-xs-12 companyname4" id="cat">
-                                    <select name="sub_category" id="sub_category" class="select2">
-                                        <option disabled="" selected="">INDUSTRY </option>
-                                    </select>     
-                                </div> 
-
+                                </div>
+                                
                                 <div class="col-md-4 col-sm-12 col-xs-12 move1">
                                     <input name="specification" id="specification" type="text" placeholder="SPECIALIZATION/CERTIFICATION">    
                                 </div>
-
-
-
-
+                                
+                                <div class="col-md-4 col-sm-12 col-xs-12">
+                                    <input name="current_location" id="location" type="text" placeholder="CURRENT LOCATION ">    
+                                </div>
+                                
                             </div>
                             <!--     ************************************************  -->
                             <div class="col-md-12">
@@ -252,9 +252,7 @@ session_start(); } ?>
                                         <?php } ?>
                                     </select>   
                                 </div>
-
-
-
+                                
                                 <div class="col-md-4 col-sm-12 col-xs-12" id="totalyrs">
                                     <input name="total1" id="email" type="text" placeholder="TOTAL YEARS" disabled="">    
                                 </div>
@@ -492,6 +490,7 @@ session_start(); } ?>
                                         </optgroup>
                                     </select>
                                 </div>
+                                
                                 <div class="col-md-2 col-sm-12 col-xs-12">
                                     <input name="mobile" id="mobile" type="text" placeholder="MOBILE NUMBER " maxlength="10">    
                                 </div>
@@ -499,36 +498,27 @@ session_start(); } ?>
                                 <div class="col-md-4 col-sm-12 col-xs-12">
                                     <input name="email" id="email" type="text" placeholder="EMAIL ">    
                                 </div>
-
-                                <div class="col-md-4 col-sm-12 col-xs-12">
-                                    <input name="current_location" id="location" type="text" placeholder="CURRENT LOCATION ">    
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-12">
-
-
-                                <div class="col-md-4 col-sm-12 col-xs-12">
+                                
+                                <div class="col-md-2 col-sm-12 col-xs-12">
 
                                     <input type="text" name="captcha" placeholder="ENTER CAPTCHA" maxlength="4" id="txtboxToFilter">
                                 </div>
 
-                                <div class="col-md-2 col-sm-12 col-xs-12">
-                                    <img src="verificationimage.php?<?php echo rand(0, 9999); ?>" alt="verification image, type it in the box" width="150" height="50" align="absbottom" id="captcha"/>
+                                <div class="col-md-1 col-sm-12 col-xs-12">
+                                    <img src="verificationimage.php?<?php echo rand(0, 9999); ?>" alt="verification image, type it in the box" width="100%" height="50" align="absbottom" id="captcha"/>
                                 </div>
-                                <div class="col-md-2 col-sm-12 col-xs-12">
+                                <div class="col-md-1 col-sm-12 col-xs-12" style="width:80px; height:50px; text-align: center;">
                                     <a href="javascript:void(0)" onclick="
                                             document.getElementById('captcha').src = 'verificationimage.php?' + Math.random();"
                                        id="change-image"><i class="fa fa-refresh rbutton"></i></a>
                                 </div>
+
                             </div>
+                            
                             </div>
                                 <div class="col-md-12">
-
                                     <input type="file"  class="col-md-12 col-sm-12 col-xs-12 resume" name="fileToUpload" id="f02" placeholder="UPLOAD YOUR CV" >
                                     <label for="f02">UPLOAD YOUR CV (DOC, DOCX, PDF, JPG, PNG, BMP, GIF)</label>
-
                                 </div>
 
                             <div class="col-md-12">
@@ -653,7 +643,7 @@ session_start(); } ?>
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $('#category').select2({tags:true});
+            $('#category').select2();
             $('#sub_category').select2({tags:true});
             $('#qualification').select2({tags:true});            
             
@@ -806,7 +796,7 @@ session_start(); } ?>
                 messages: {
                     title: "Please select title",
                     name: {required: "Please enter your full name"},
-                    job_category_id: "Please select job applied for",
+                    job_category_id: "Please select industry",
                     //                        sub_category:"Please select job title",
                     india: "Please enter experience in India",
                     //                        abroad:"Please enter experience in abroad",

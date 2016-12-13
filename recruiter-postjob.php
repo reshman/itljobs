@@ -200,12 +200,12 @@
 
                         <div class="col-md-12"> 
                             <div class="col-md-3">
-                                <span class="post-title">JOB TITLE:</span>    
+                                <span class="post-title">INDUSTRY:</span>    
                             </div>
 
                             <div class="col-md-8 companyname1">
                                 <select name="category" class="category select2" id="category">
-                                    <option selected disabled>JOB TITLE</option>
+                                    <option selected disabled>INDUSTRY</option>
                                     <?php
                                     $qry = sprintf("SELECT * FROM `job_categories` ORDER BY name");
                                     $res = Db::query($qry);
@@ -222,12 +222,12 @@
 
                         <div class="col-md-12"> 
                             <div class="col-md-3">
-                                <span class="post-title">INDUSTRY:</span>    
+                                <span class="post-title">JOB TITLE:</span>    
                             </div>
 
                             <div class="col-md-8 companyname1" id="industry">
                                 <select name="sub_category" id="sub_category" class="select2">
-                                    <option disabled="" selected="">INDUSTRY</option>
+                                    <option disabled="" selected="">JOB TITLE</option>
                                 </select>
                             </div>
 
@@ -427,7 +427,7 @@
                                         data: {jobcat: jobcat}
                                     }).done(function (data) {
                                         $("#industry").html(data);
-                                        $('#sub_category').select2({tags:true});
+                                        $('#sub_category').select2();
                                         $('span.select2').attr('style','width:100%');
                                     });
                                 });
@@ -469,7 +469,7 @@
 
                     rules: {
                         companyname: {required: true, nonNumeric: true},
-                        sub_category: {required: true},
+                        category: {required: true},
                         description: "required",
                         location: "required",
                         jobtype: "required",
@@ -490,7 +490,7 @@
 
                     messages: {
                         companyname: {required: "Please Enter company name"},
-                        sub_category: {required: "Please Enter Industry"},
+                        category: {required: "Please Enter Industry"},
                         job_description: {
                             required: "Please Enter Job Description",
                             minlength: "Please enter atleast 10 characters"

@@ -216,11 +216,6 @@
                                                     ?>
                                                 </p>
 
-                                                <p>
-                                                        <span
-                                                            style="color:#6495ED">Location : </span><?php echo $row['venue']; ?>
-                                                </p>
-
                                                 <?php if (isset($_SESSION['log'])) { ?>
                                                     <div id="apply"><a href="javascript:void(0)"
                                                                        onclick="apply(<?php echo $row['id'] ?>, this)"><input

@@ -229,7 +229,7 @@ if ($_GET) {
 
                             <div class="col-md-12"> 
                                 <div class="col-md-3">
-                                    <span class="post-title">JOB TITLE:</span>    
+                                    <span class="post-title">INDUSTRY:</span>    
                                 </div>
 
                                 <div class="col-md-8 companyname1">
@@ -254,7 +254,7 @@ if ($_GET) {
 
                             <div class="col-md-12"> 
                                 <div class="col-md-3">
-                                    <span class="post-title">INDUSTRY:</span>    
+                                    <span class="post-title">JOB TITLE:</span>    
                                 </div>
                                 <div class="col-md-8 companyname1" id="industry">
                                     <select name="sub_category" id="sub_category">
@@ -554,7 +554,7 @@ if ($_GET) {
 
                         rules: {
                             companyname: {required: true, nonNumeric: true},
-                            sub_category: {required: true},
+                            category: {required: true},
                             description: "required",
                             location: "required",
                             jobtype: "required",
@@ -568,7 +568,7 @@ if ($_GET) {
 
                         messages: {
                             companyname: {required: "Please Enter company name"},
-                            sub_category: {required: "Please Enter Industry"},
+                            category: {required: "Please Enter Industry"},
                             description: "Please Enter Description",
                             location: "Please Enter Location",
                             jobtype: "Please Enter Jobtype",

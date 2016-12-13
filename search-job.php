@@ -266,12 +266,10 @@ $start = ($page - 1) * $num_rec_per_page;
                     <div class="col-md-12">
                         <h3><?php echo $row['industry']; ?></h3>
 
-                        <p><?php echo $row['description']; ?></p>
+                        <p><?php echo str_replace(str_split('{}'), '', $row['description']); ?></p>
 
                         <p>
                             <span style="color:#6495ED">Salary : </span><?php echo $row['salary']; ?> ,
-                            <span style="color:#6495ED">Venue : </span><?php echo $row['venue']; ?>,
-                            <span style="color:#6495ED">Schedule date & time: </span><?php echo date("d/m/Y", strtotime($row['schedule_date'])) . ' - ' . $row['schedule_time']; ?>
                             <span style="color:#6495ED">Coordinator : </span><?php echo $row['coordinator']; ?>
                             <span style="color:#6495ED">Contact : </span><?php echo $row['contact']; ?>
                             <span style="color:#6495ED">Interview type : </span><?php echo $row['interview']; ?>

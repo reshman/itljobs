@@ -151,8 +151,8 @@
                                         <thead>
                                            <tr>
                                                 <th>Sl.No</th>
-                                                <th>Title</th>
                                                 <th>Industry</th>
+                                                <th>Job category</th>
                                                 <th>Description</th>
                                                 <th>Salary</th>
                                                 <th>Company Name</th>
