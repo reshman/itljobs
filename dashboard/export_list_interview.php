@@ -15,9 +15,8 @@
         <thead>
             <tr>
                 <th>Sl.No</th>
-                <th>Job Title</th>
-                <th>Job Category</th>
                 <th>Industry</th>
+                <th>Job Category</th>
                 <th>Schedule date</th>
                 <th>Name</th>
                 <th>Company Name</th>
@@ -44,7 +43,6 @@
 
                 <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $row['jobname']; ?></td>
                     <td><?php echo $row['jobcat']; ?></td>
                     <td><?php echo $row['industry']; ?></td>
                     <td><?php echo $row['schedule_date']; ?></td>

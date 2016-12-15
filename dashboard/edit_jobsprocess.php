@@ -7,12 +7,6 @@ session_start();
 $id = trim($_POST['id']);
 $title = trim($_POST['title']);
 
-/* Get industry name */
-$isql = sprintf('SELECT industry_name FROM industries WHERE id=%d',$title);
-$iresult = Db::query($isql);
-$irow = mysql_fetch_assoc($iresult);
-$title = $irow['industry_name'];
-
 $company = trim($_POST['company']);
 $job_description = trim($_POST['job_description']);
 $job_type = trim($_POST['job_type']);

@@ -201,20 +201,15 @@
 
                                             <select class="form-control" name="title" id="title">
                                                 <?php
-                                                if ($row['industry'] != 'Unavailable') {
-                                                    $qry = sprintf("SELECT i.id,i.industry_name as name FROM industries i LEFT JOIN industry_category ic ON i.id=ic.industry_id WHERE ic.category_id=%d", $rowedit['job_category_id']);
+                                                    $qry = sprintf("SELECT industry_name FROM industries");
                                                     $res = Db::query($qry);
                                                     if (mysql_num_rows($res)) {
                                                         while ($row1 = mysql_fetch_assoc($res)) {
                                                             ?>
-                                                            <option <?php if ($rowedit['industry'] == $row1['name']) { ?> selected="" <?php } ?> value="<?php echo $row1['name']; ?>"><?php echo $row1['name']; ?></option>
+                                                            <option <?php if ($rowedit['industry'] == $row1['industry_name']) { ?> selected="" <?php } ?> value="<?php echo $row1['industry_name']; ?>"><?php echo $row1['industry_name']; ?></option>
                                                             <?php
                                                         }
-                                                    }
-                                                } else {
-                                                    ?>
-                                                    <option value="Unavailable">No Industry Available</option>        
-                                                <?php } ?>
+                                                    } ?>
                                             </select>
 
                                         </div>
@@ -641,22 +636,6 @@
                 // When the browser is ready...
 
                 $(function () {
-                    $('#job_cat').change(function () {
-                        var id = $('#job_cat').val();
-                        $.post("get_industry.php", {
-                            id: id
-                        },
-                        function (response) {
-                            if (response != '<option selected disabled>Select Industry</option>') {
-                                $('#title').html(response);
-                                $('#title').removeAttr("disabled");
-                            } else {
-                                var msg = "<option value=\"Unavailable\" selected>No Industry Available for the selected Category</option>";
-                                $('#title').html(msg);
-                            }
-                        });
-                    });
-
 
                     $('#datepicker').datepicker({
                         format: "dd/mm/yyyy",

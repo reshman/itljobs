@@ -51,10 +51,7 @@ if ($flag == 1) {
 
     //Check to see if a new category is entered
 //If category is new add it to database
-    if (!is_numeric($job_category_id)) {
-        if ($sub_category == '') {
-            $sub_category = $job_category_id;
-        }
+    if (!is_numeric($job_category_id) AND $job_category_id!='') {
         $job_category_id = strtoupper($job_category_id);
         $sql = sprintf("SELECT * FROM job_categories WHERE name='%s' LIMIT 1", $job_category_id);
         $resultsql = Db::query($sql);
@@ -74,11 +71,8 @@ if ($flag == 1) {
                 die();
             }
         }
-    } elseif ($sub_category == '') {
-        $sql = sprintf("SELECT * FROM job_categories WHERE id=%d LIMIT 1", $job_category_id);
-        $resultsql = Db::query($sql);
-        $sub_row = mysql_fetch_assoc($resultsql);
-        $sub_category = $sub_row['name'];
+    }elseif($job_category_id==''){
+        $job_category_id = 0;
     }
 
 
@@ -95,7 +89,7 @@ if ($flag == 1) {
         window.location.href = '" . $urlin . "';
         </script>";
             die();
-        } else {
+        } else if($job_category_id!='') {
             $industry_id = mysql_insert_id();
             $sql = sprintf("INSERT INTO industry_category SET industry_id=%d,category_id=%d", $industry_id, $job_category_id);
             $result = DB::query($sql);

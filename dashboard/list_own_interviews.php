@@ -171,7 +171,7 @@
                                           $i = 1;
                                           date_default_timezone_set('Asia/Kolkata');
                                           $today_date = date('Y-m-d');
-                                          $query = sprintf("SELECT iv.id as intId,iv.id,iv.schedule_date,iv.salary,iv.country,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact,iv.coordinator,jc.name as jobcat,iv.industry,iv.vih FROM interviews as iv INNER JOIN job_categories as jc ON iv.job_category_id=jc.id WHERE (iv.schedule_date>='%s' OR iv.schedule_date='') AND iv.del_status='%s' AND iv.user_id='%s' ORDER BY schedule_date",$today_date,0,$id);
+                                          $query = sprintf("SELECT iv.id as intId,iv.id,iv.schedule_date,iv.salary,iv.country,iv.user_id,iv.name,iv.description,iv.active,iv.company_name,iv.schedule_time,iv.venue,iv.interview,iv.contact,iv.coordinator,iv.industry,iv.vih FROM interviews as iv WHERE (iv.schedule_date>='%s' OR iv.schedule_date='') AND iv.del_status='%s' AND iv.user_id='%s' ORDER BY schedule_date",$today_date,0,$id);
                                                                              
                                           $result = Db::query($query);
                                            while ($row = mysql_fetch_array($result)) {

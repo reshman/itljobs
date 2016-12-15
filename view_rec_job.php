@@ -189,9 +189,9 @@ if ($_GET) {
                                     <?php include('myprofile-sidemenu.php'); ?>
                                     <div class="col-md-10 jobs-m-listing">
 
-                                        <h3>JOB CATEGORY</h3>
-                                        <p><?php echo $row['name']; ?></p>
                                         <h3>INDUSTRY</h3>
+                                        <p><?php echo $row['name']; ?></p>
+                                        <h3>JOB CATEGORY</h3>
                                         <p><?php echo $row['job_listing']; ?></p>
                                         <h3>JOB DESCRIPTION</h3>
                                         <p><?php echo $row['job_description']; ?>

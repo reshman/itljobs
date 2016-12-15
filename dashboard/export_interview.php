@@ -16,10 +16,9 @@
         <thead>
             <tr>
                 <th>Sl.No</th>
-                <th>Job Title</th>
-                <th>Candidate Name</th>
-
                 <th>Industry</th>
+                <th>Candidate Name</th>
+                <th>Job Category</th>
                 <th>Specialization</th>
                 <th>Abroad experience</th>
                 <th>Indian experience</th>

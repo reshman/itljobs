@@ -157,7 +157,7 @@
 
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Job Title</label>
+                                            <label for="exampleInputEmail1">Industry</label>
 
                                             <select class="form-control" name="job_cat" id="job_cat">
                                                 <option disabled="" selected="">Select Job Title</option>
@@ -178,10 +178,10 @@
 
                                         <div class="form-group">
 
-                                            <label for="exampleInputEmail1">Industry</label>
+                                            <label for="exampleInputEmail1">Job Title</label>
 
                                             <select class="form-control" name="title" id="title">
-                                                <option disabled="" selected="">Select a Category to Populate</option>
+                                                <option disabled="" selected="">Select an Industry to Populate</option>
                                             </select>
 
                                         </div>
@@ -343,11 +343,11 @@
                             id: id
                         },
                                 function (response) {
-                                    if (response != '<option selected disabled>Select Industry</option>') {
+                                    if (response != '<option selected disabled>Select Job Category</option>') {
                                         $('#title').html(response);
                                         $('#title').removeAttr("disabled");
                                     } else {
-                                        var msg = "<option value=\"Unavailable\" selected>No Industry Available for the selected Category</option>";
+                                        var msg = "<option value=\"Unavailable\" selected>No Job Category Available for the selected Industry</option>";
                                         $('#title').html(msg);
                                     }
                                 });
@@ -372,7 +372,7 @@
                         ignore: [],
                         debug: false,
                         rules: {
-                            title: {required: true},
+                            job_cat: {required: true},
                             company: {required: true, lettersonly: true},
                             experience: {required: true, experience: true},
                             location: "required",
@@ -391,7 +391,7 @@
                         // Specify the validation error messages
 
                         messages: {
-                            title: {required: "Please enter industry"},
+                            job_cat: {required: "Please enter industry"},
                             company: {required: "Please enter company name", lettersonly: "Please enter letters , '&' and '-' only"},
                             experience: {required: "Please enter experience"},
                             location: "Please enter location",

@@ -3,7 +3,7 @@
 
 <html lang="en" class="no-js">
 <head>
-	<title>ITL JOBS</title>
+	<title>Job Search | Overseas Jobs | Recruitment | Vacancies | Work Abroad</title>
 
 	<meta charset="utf-8">
 

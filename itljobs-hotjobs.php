@@ -163,7 +163,7 @@
                                     $resultCat = Db::query($sqlCat);
                                     $rowCat = mysql_fetch_assoc($resultCat);
                                     ?>
-                                    <h2><?php echo strtoupper($rowCat['name']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?>
+                                    <h2><?php echo strtoupper($row['job_listing']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?>
                                         <span
                                             style="float:right;"><?php echo $row['job_location'].' | Posted on: ' . strtoupper($postDate); ?></span>
                                     </h2>
@@ -237,7 +237,7 @@
                                 }
                                 $postDate = date("d/m/Y", strtotime($row['created_date']));
                                 ?>
-                                <h2><?php echo strtoupper($rowCat['name']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?>
+                                <h2><?php echo strtoupper($row['job_listing']) . ', ' . strtoupper($row['company_name']) . ', ' . strtoupper($end); ?>
                                     <span
                                         style="float:right;"><?php echo $row['job_location'].' | Posted on: ' . strtoupper($postDate); ?></span>
                                 </h2>

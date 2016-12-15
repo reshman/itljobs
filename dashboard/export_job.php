@@ -15,8 +15,8 @@ include 'db.php';
                                             <tr>
                                                 <th>Sl.No</th>
                                                 <th>Reference Id</th>
-                                                <th>Category</th>
                                                 <th>Industry</th>
+                                                <th>Job Category</th>
                                                 <th>Job Description</th>
                                                 <th>Experience</th>
                                                 <th>Job Location</th>

@@ -16,8 +16,8 @@
         <thead>
             <tr>
                 <th>Sl.No</th>
-                <th>Job Title</th>
                 <th>Industry</th>
+                <th>Job Category</th>
                 <th>Candidate Name</th>              
                 <th>Date of Birth</th>
                 <th>Mobile</th>

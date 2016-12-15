@@ -3,7 +3,7 @@
 
 <html lang="en" class="no-js">
     <head>
-        <title>ITL JOBS</title>
+        <title>ITL JOBS | job search | overseas jobs | recruitment | vacancies | work abroad</title>
 
         <meta charset="utf-8">
 
@@ -182,11 +182,11 @@
 					 <div class="col-md-6">
                             <div class="contact-section">
                                 <div class="contact-info">
-                                    <h2>Kerala</h2>
+                                    <h2>Trivandrum</h2>
                                     <ul class="information-list">
                                         <li><i class="fa fa-map-marker"></i><span>Heera Chambers, East Fort, Trivandrum-695023, Kerala, India </span></li>
-                                        <li><i class="fa fa-phone"></i><span> +91 471 2469 555 555</span><span> +91 471 2479 555</span></li>
-                                        <li><i class="fa fa-envelope-o"></i><a href="mailto:info@itljobs.com">damodaran@ITLtravel.com</a></li>
+                                        <li><i class="fa fa-phone"></i><span> +91 471 2469 555</span><span> +91 471 2479 555</span></li>
+                                        <li><i class="fa fa-envelope-o"></i><a href="mailto:info@itljobs.com">info@itljobs.com</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -265,6 +265,20 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                   <div class="col-md-12">
+			<div class="col-md-6">
+                            <div class="contact-section">
+                                <div class="contact-info">
+                                    <h2>Chennai</h2>
+                                    <ul class="information-list">
+                                        <li><i class="fa fa-map-marker"></i><span>No 23, 24, Ground Floor, Deshbandu Plaza, No.47, Whites Road, Royapettah, Chennai-600014.(India)</span></li>
+                                        <li><i class="fa fa-phone"></i><span> +91 44 2855 2246/ 47/ 48 </span><span>+91 44 2855 2289</span></li>
+                                        <li><i class="fa fa-envelope-o"></i><a href="mailto:placementchennai@itltravel.com">placementchennai@itltravel.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>					
                     </div>
 
 
@@ -347,7 +361,7 @@
                         <div class="col-md-6">
                             <div class="contact-section">
                                 <div class="contact-info">
-                                    <h2>Saudi Arabia – Dammam1</h2>
+                                    <h2>Saudi Arabia – Dammam I</h2>
                                     <ul class="information-list">
                                         <li><i class="fa fa-map-marker"></i><span>Opposite Ramez Market, TOYOTA Road, Dammam</span></li>
                                         <li><i class="fa fa-phone"></i><span>+966 - 38376222 /  +966 - 38988997</span></li>
@@ -365,7 +379,7 @@
                         <div class="col-md-6">
                             <div class="contact-section">
                                 <div class="contact-info">
-                                    <h2>Saudi Arabia – Dammam11</h2>
+                                    <h2>Saudi Arabia – Dammam II</h2>
                                     <ul class="information-list">
                                         <li><i class="fa fa-map-marker"></i><span>ITL Leisure  Tourism & Travel Company, Dawasir District,Dhahran Street, Dammam, KSA</span></li>
                                         <li><i class="fa fa-phone"></i><span>+966 - 38353832 / 8301089</span></li>
@@ -378,7 +392,7 @@
                         <div class="col-md-6">
                             <div class="contact-section">
                                 <div class="contact-info">
-                                    <h2>Saudi Arabia – Dammam111</h2>
+                                    <h2>Saudi Arabia – Dammam III</h2>
                                     <ul class="information-list">
                                         <li><i class="fa fa-map-marker"></i><span>ITL Leisure Tourism & Travel Co., Al Nakheel District,King Saud Street, Dammam, KSA</span></li>
                                         <li><i class="fa fa-phone"></i><span> +966 - 38302065</span></li>
@@ -395,7 +409,7 @@
                         <div class="col-md-6">
                             <div class="contact-section">
                                 <div class="contact-info">
-                                    <h2>Saudi Arabia – Riyad1</h2>
+                                    <h2>Saudi Arabia – Riyad I</h2>
                                     <ul class="information-list">
                                         <li><i class="fa fa-map-marker"></i><span>ITL Leisure Tourism & Travel Co., Post Box No. 4168, King Faisal Street (Wazeer Street), Riyadh 11491, KSA</span></li>
                                         <li><i class="fa fa-phone"></i><span>+966 - 12862016</span></li>
@@ -408,7 +422,7 @@
                         <div class="col-md-6">
                             <div class="contact-section">
                                 <div class="contact-info">
-                                    <h2>Saudi Arabia – Riyad11</h2>
+                                    <h2>Saudi Arabia – Riyad II</h2>
                                     <ul class="information-list">
                                         <li><i class="fa fa-map-marker"></i><span>ITL Leisure Tourism & Travel Co., BATHA COMMERCIAL CENTER, FIRST FLOOR, SHOP NO:84, Riyadh, KSA</span></li>
                                         <li><i class="fa fa-phone"></i><span>+966 - 12760985</span></li>
@@ -460,6 +474,99 @@
                                     <ul class="information-list">
                                         <li><i class="fa fa-map-marker"></i><span>ITL Travel and Tourism, Opp. New Arrival Terminal, 29-Saeed Bin Al Aas Street, Um Guwalina (Mughlina), Doha-State of Qatar.</span></li>
                                         <li><i class="fa fa-phone"></i><span>+974 - 44412525  Fax: +974 - 44354872 </span></li>
+                                        <li><i class="fa fa-envelope-o"></i><a href="mailto:info@itljobs.com">info@itljobs.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="contact-section">
+                                <div class="contact-info">
+                                    <h2>THAILAND</h2>
+                                    <ul class="information-list">
+                                        <li><i class="fa fa-map-marker"></i><span>Tripmakers Asia Travel and Tour Co. Ltd. 12/55, Phueksa Village 12, T.Klong 2, Klong Luang, Pathumthani, 12120, Thailand</span></li>
+                                        <li><i class="fa fa-phone"></i><span>+66 81933 3828 </span></li>
+                                        <li><i class="fa fa-envelope-o"></i><a href="mailto:info@itljobs.com">info@itljobs.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+					<div class="col-md-12">
+
+
+                        <div class="col-md-6">
+                            <div class="contact-section">
+                                <div class="contact-info">
+                                    <h2>DUBAI MEDIA CITY</h2>
+                                    <ul class="information-list">
+                                        <li><i class="fa fa-map-marker"></i><span>ITL Tourism & Travel LLC.(Reelax Events) Suite No: 421, IV Floor, Building No: 8, Dubai Media City, Dubai, UAE</span></li>
+                                        <li><i class="fa fa-phone"></i><span>+971 4 368 5599, +971 4 298 6333 </span></li>
+                                        <li><i class="fa fa-envelope-o"></i><a href="mailto:info@itljobs.com">info@itljobs.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="contact-section">
+                                <div class="contact-info">
+                                    <h2>AJMAN</h2>
+                                    <ul class="information-list">
+                                        <li><i class="fa fa-map-marker"></i><span>ITL Tourism & Travel LLC.P.O Box 13199, Shop No13-15, Al Hassawi Building, Shaikh Rashid Bin Rashid Street, Ajman, Dubai, UAE</span></li>
+                                        <li><i class="fa fa-phone"></i><span>+971 6 7444973</span></li>
+                                        <li><i class="fa fa-envelope-o"></i><a href="mailto:info@itljobs.com">info@itljobs.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+					<div class="col-md-12">
+
+
+                        <div class="col-md-6">
+                            <div class="contact-section">
+                                <div class="contact-info">
+                                    <h2>KUALA LUMPUR</h2>
+                                    <ul class="information-list">
+                                        <li><i class="fa fa-map-marker"></i><span>Unit-2-3, Hotel Sentral Building, No 30, Jln Thamby Pillai Brickfields, 50470, Kuala Lumpur, Malaysia</span></li>
+                                        <li><i class="fa fa-phone"></i><span>+60 322 762212, +60 016 9624937 </span></li>
+                                        <li><i class="fa fa-envelope-o"></i><a href="mailto:info@itljobs.com">info@itljobs.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="contact-section">
+                                <div class="contact-info">
+                                    <h2>KUWAIT</h2>
+                                    <ul class="information-list">
+                                        <li><i class="fa fa-map-marker"></i><span>ITL World Travel and Tourism Company Floor 21, Safat Tower, Salhiya Area, Fahad Al Salem Street, Qibla, Kuwait City</span></li>
+                                        <li><i class="fa fa-phone"></i><span>+965 22958200 </span></li>
+                                        <li><i class="fa fa-envelope-o"></i><a href="mailto:info@itljobs.com">info@itljobs.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+					<div class="col-md-12">
+
+
+                        <div class="col-md-6">
+                            <div class="contact-section">
+                                <div class="contact-info">
+                                    <h2>OMAN</h2>
+                                    <ul class="information-list">
+                                        <li><i class="fa fa-map-marker"></i><span>ITL Travel and Tourism LLC. Post Box No: 36, Block 16/A, Building 358, Al Khuwair, Muscat, Sultanate of Oman</span></li>
+                                        <li><i class="fa fa-phone"></i><span>+968 24648333 </span></li>
                                         <li><i class="fa fa-envelope-o"></i><a href="mailto:info@itljobs.com">info@itljobs.com</a></li>
                                     </ul>
                                 </div>
